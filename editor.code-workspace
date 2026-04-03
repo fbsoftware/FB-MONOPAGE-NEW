@@ -1,0 +1,21 @@
+{
+    "folders": [
+		{
+			"path": "../FB-STD/editor"
+		}
+	],
+    "settings": {
+        "editor.quickSuggestions": {
+
+            "other": "on",
+            "comments": "on",
+            "strings": "on"
+        },
+        "editor.tabCompletion": "on",
+        "editor.inlineSuggest.edits.showCollapsed": false,
+        "editor.inlineSuggest.enabled": true,
+        "editor.inlineSuggest.suppressInSnippetMode": false,
+        "editor.suggest.preview": true,
+        "editor.wordBasedSuggestions": "currentDocument"
+    }
+}

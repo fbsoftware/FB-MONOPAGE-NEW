@@ -1,0 +1,26 @@
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+}
+
+nav {margin: 100px;}
+
+.site-nav{
+    display:flex;
+    gap:20px;
+    padding:16px 24px;
+    background:#f3f3f3;
+    border-bottom:1px solid #ddd;
+    
+}
+
+.site-nav a{
+    text-decoration:none;
+    color:#222;
+    font-weight:600;
+}
+
+main{
+    padding:20px;
+    margin: 100px;
+}

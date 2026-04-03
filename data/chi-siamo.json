@@ -1,0 +1,79 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "chi-siamo",
+        "version": "2.0",
+        "updated_at": "2026-04-03T20:02:30+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#ffffff",
+            "undefined": "#ffffff"
+        },
+        "typography": [],
+        "fonts": {
+            "heading-family": "Inter",
+            "heading-weight": "400",
+            "body-family": "Inter",
+            "body-weight": "400"
+        }
+    },
+    "sections": [
+        {
+            "id": "sec-1775151183180-400",
+            "background": "var(--color-bg)",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1775151183180-736",
+                    "width": 49,
+                    "widgets": [
+                        {
+                            "id": "w1775238369032_1",
+                            "type": "header",
+                            "props": {
+                                "text": "Titolo ---",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1775238372493_2",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1775238305328-834",
+                    "width": 52,
+                    "widgets": [
+                        {
+                            "id": "w1775238379504_3",
+                            "type": "image",
+                            "props": {
+                                "src": "uploads\/star-1775238394.jpg",
+                                "alt": "",
+                                "align": "center",
+                                "width": "150",
+                                "imageFile": "C:\\fakepath\\star.jpeg"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "selectedType": null,
+    "selectedId": null
+}

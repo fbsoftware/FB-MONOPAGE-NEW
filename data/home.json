@@ -1,0 +1,90 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "home",
+        "version": "2.0",
+        "updated_at": "2026-03-31T19:02:16+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#ffffff",
+            "undefined": "#ffffff"
+        },
+        "typography": [],
+        "fonts": {
+            "heading-family": "Inter",
+            "heading-weight": "400",
+            "body-family": "Inter",
+            "body-weight": "400"
+        }
+    },
+    "sections": [
+        {
+            "id": "sec-1774894497675-495",
+            "background": "var(--color-bg)",
+            "padding": "20px",
+            "margin": "0px",
+            "columns": [
+                {
+                    "id": "col-1774894497675-905",
+                    "width": 500,
+                    "widgets": [
+                        {
+                            "id": "w1774894512900_1",
+                            "type": "header",
+                            "props": {
+                                "text": "FONTENEY",
+                                "level": "h2",
+                                "align": "right",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1774894515311_2",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "right",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1774976460997_1",
+                            "type": "textarea",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
+                                "align": "right",
+                                "color": "var(--color-text)",
+                                "fontSize": "16px",
+                                "fontWeight": "400"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1774970970526-430",
+                    "width": 355,
+                    "widgets": [
+                        {
+                            "id": "w1774970994303_1",
+                            "type": "image",
+                            "props": {
+                                "src": "uploads\/Fonteney-005_edited-1774974305.jpg",
+                                "alt": "fonteney",
+                                "align": "left",
+                                "imageFile": "C:\\fakepath\\Fonteney-005_edited.jpg",
+                                "width": "327"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "selectedType": null,
+    "selectedId": null
+}

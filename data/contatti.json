@@ -1,0 +1,78 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "contatti",
+        "version": "2.0",
+        "updated_at": "2026-03-30T23:15:33+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#ffffff",
+            "undefined": "#ffffff"
+        },
+        "typography": [],
+        "fonts": {
+            "heading-family": "Inter",
+            "heading-weight": "400",
+            "body-family": "Inter",
+            "body-weight": "400"
+        }
+    },
+    "sections": [
+        {
+            "id": "sec-1774905220159-706",
+            "background": "var(--color-bg)",
+            "padding": "20px",
+            "margin": "0px",
+            "columns": [
+                {
+                    "id": "col-1774905220159-699",
+                    "width": 245,
+                    "widgets": [
+                        {
+                            "id": "w1774905237106_1",
+                            "type": "header",
+                            "props": {
+                                "text": "CONTATTI",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1774905226351-749",
+                    "width": 500,
+                    "widgets": [
+                        {
+                            "id": "w1774905275920_2",
+                            "type": "header",
+                            "props": {
+                                "text": "Personali",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1774905278922_3",
+                            "type": "text",
+                            "props": {
+                                "text": "Questi sono i miei contatti peersonali",
+                                "align": "left",
+                                "color": "#000000"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "selectedType": "widget",
+    "selectedId": "w1774905278922_3"
+}

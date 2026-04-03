@@ -1,0 +1,18 @@
+{
+    "colors":
+    {
+    "primary":"#3366ff",
+    "secondary":"#ff6633",
+    "accent":"#ffa500",
+    "text":"#222222",
+    "bg":"#ffffff",
+    "undefined":"#ffffff"
+    },
+    "fonts"
+    :{
+    "heading-family":"Inter",
+    "heading-weight":"400",
+    "body-family":"Inter",
+    "body-weight":"400"
+    }
+    }
