@@ -3,7 +3,7 @@
         "tema": null,
         "page": "contatti",
         "version": "2.0",
-        "updated_at": "2026-03-30T23:15:33+02:00"
+        "updated_at": "2026-04-04T23:13:30+02:00"
     },
     "global": {
         "colors": {
@@ -31,7 +31,7 @@
             "columns": [
                 {
                     "id": "col-1774905220159-699",
-                    "width": 245,
+                    "width": 42,
                     "widgets": [
                         {
                             "id": "w1774905237106_1",
@@ -47,7 +47,7 @@
                 },
                 {
                     "id": "col-1774905226351-749",
-                    "width": 500,
+                    "width": 57,
                     "widgets": [
                         {
                             "id": "w1774905275920_2",
@@ -55,7 +55,7 @@
                             "props": {
                                 "text": "Personali",
                                 "level": "h2",
-                                "align": "center",
+                                "align": "left",
                                 "color": "#000000"
                             }
                         },
@@ -74,5 +74,5 @@
         }
     ],
     "selectedType": "widget",
-    "selectedId": "w1774905278922_3"
+    "selectedId": "w1774905275920_2"
 }

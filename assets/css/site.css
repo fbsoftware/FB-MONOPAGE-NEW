@@ -1,6 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+:root {
+  /* 🎨 Colori */
+  --color-primary: #3366ff;
+  --color-secondary: #ff6633;
+  --color-accent: #ffa500;
+  --color-text: #000000;
+  --color-bg: #ffffff;
+
+  /* 🔤 Font */
+  --font-heading: 'Inter';
+  --font-heading-weight: 700;
+  --font-body: 'Inter';
+  --font-body-weight: 400;
+
+  /* 📏 Dimensioni */
+  --h1-size: 36px;
+  --h2-size: 28px;
+  --h3-size: 22px;
+  --body-size: 16px;
+}
 body{
     margin:0;
-    font-family:Arial, sans-serif;
+    font-family:Montserrat, sans-serif;
 }
 
 nav {margin: 100px;}
@@ -22,5 +45,41 @@ nav {margin: 100px;}
 
 main{
     padding:20px;
-    margin: 100px;
+    margin: 10px;
+}
+.page-section{
+    margin-bottom:20px;
+    width:1240px;
+    
+}
+.page-columns{
+    display:flex;
+    gap:10px;
+    align-items:stretch;
+    display: flex;
+}
+.page-column{
+    box-sizing:border-box;
+}
+.page-column img{
+    max-width:100%;
+    height:auto;
+    display:block;
+}
+
+.widget-button {
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0px ;
+    }
+ 
+.widget-button a:hover {
+    box-shadow: 2px 8px 15px rgba(0, 0, 0, 1);;
+    transition: box-shadow 0.3s ease;
+}
+ 
+.widget-image {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
 }

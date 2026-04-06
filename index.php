@@ -14,8 +14,8 @@ if (!file_exists($file)) {
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Sito</title>
-    <link rel="stylesheet" href="assets/css/site.css">
+    <title>Sito di FB</title>
+    <link rel="stylesheet" href="/FB-JSON/assets/css/site.css">
 </head>
 <body>
 

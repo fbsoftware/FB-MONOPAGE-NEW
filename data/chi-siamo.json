@@ -3,7 +3,7 @@
         "tema": null,
         "page": "chi-siamo",
         "version": "2.0",
-        "updated_at": "2026-04-04T00:11:22+02:00"
+        "updated_at": "2026-04-06T19:12:34+02:00"
     },
     "global": {
         "colors": {
@@ -37,9 +37,9 @@
                             "id": "w1775238369032_1",
                             "type": "header",
                             "props": {
-                                "text": "Titolo ---",
+                                "text": "CHI SIAMO NOI",
                                 "level": "h2",
-                                "align": "center",
+                                "align": "right",
                                 "color": "#000000"
                             }
                         },
@@ -48,7 +48,7 @@
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
-                                "align": "left",
+                                "align": "right",
                                 "color": "#000000"
                             }
                         }
@@ -65,7 +65,7 @@
                                 "src": "uploads\/star-1775238394.jpg",
                                 "alt": "",
                                 "align": "center",
-                                "width": "120",
+                                "width": "186",
                                 "imageFile": "C:\\fakepath\\star.jpeg"
                             }
                         }
@@ -97,5 +97,5 @@
         }
     ],
     "selectedType": "widget",
-    "selectedId": "w1775238379504_3"
+    "selectedId": "w1775238372493_2"
 }

@@ -222,8 +222,8 @@ defaultProps:{
         </div>
     `;
 }
-},
-    button: {   //-----------------------------------------------
+    },
+    button: {
 
         label: "Bottone",
         icon: "🔘",
@@ -232,85 +232,106 @@ defaultProps:{
             text: "CERCA",
             url: "#",
             align: "center",
-            color:"#000000",
-            sfondo:"#ffa500",
-            bordo:"25",
-            padd:"20",
-            fontSize:"22px"
+            color: "#000000",
+            sfondo: "#ffa500",
+            bordo: 25,
+            padd: 20,
+            fontSize: "22px",
+            fontWeight: "600"
         },
 
-        fields:{
-            text:{
-                type:"text",
-                label:"Titolo"
+        fields: {
+            text: {
+                type: "text",
+                label: "Titolo"
             },
-            url:{
-                type:"text",
-                label:"Link"
+            url: {
+                type: "text",
+                label: "Link"
             },
-            align:{
-                type:"select",
-                label:"Allineamento",
-                options:{
-                    left:"Sinistra",
-                    center:"Centro",
-                    right:"Destra"
+            align: {
+                type: "select",
+                label: "Allineamento",
+                options: {
+                    left: "Sinistra",
+                    center: "Centro",
+                    right: "Destra"
                 }
             },
-    color:{
-        type:"select",
-        label:"Colore",
-        options:{
-            "var(--color-primary)":"Primario",
-            "var(--color-secondary)":"Secondario",
-            "var(--color-accent)":"Accent",
-            "var(--color-text)":"Testo",
-            "var(--color-bg)":"Sfondo"
-        }
-    },
-            
-    sfondo:{
-        type:"select",
-        label:"Sfondo",
-        options:{
-            "var(--color-primary)":"Primario",
-            "var(--color-secondary)":"Secondario",
-            "var(--color-accent)":"Accent",
-            "var(--color-text)":"Testo",
-            "var(--color-bg)":"Sfondo"
-        }
-    },
-
-            bordo:{
-                type:"number",
-                label:"Raggio bordo px"},
-                
-            padd:{
-                type:"number",
-                label:"Padding px"},
-            fontSize:{
-                type:"select",
-                label:"Dimensione font",
-                options:{
-                    "16px":"Testo",
-                    "36px":"Titolo",
-                    "28px":"Sottotitolo",
-                    "22px":"Evidenza"
-        }
-    },
+            color: {
+                type: "select",
+                label: "Colore",
+                options: {
+                    "var(--color-primary)": "Primario",
+                    "var(--color-secondary)": "Secondario",
+                    "var(--color-accent)": "Accent",
+                    "var(--color-text)": "Testo",
+                    "var(--color-bg)": "Sfondo"
+                }
+            },
+            sfondo: {
+                type: "select",
+                label: "Sfondo",
+                options: {
+                    "var(--color-primary)": "Primario",
+                    "var(--color-secondary)": "Secondario",
+                    "var(--color-accent)": "Accent",
+                    "var(--color-text)": "Testo",
+                    "var(--color-bg)": "Sfondo"
+                }
+            },
+            bordo: {
+                type: "number",
+                label: "Raggio bordo px"
+            },
+            padd: {
+                type: "number",
+                label: "Padding px"
+            },
+            fontSize: {
+                type: "select",
+                label: "Dimensione font",
+                options: {
+                    "16": "Testo",
+                    "36": "Titolo",
+                    "28": "Sottotitolo",
+                    "22": "Evidenza"
+                }
+            },
+            fontWeight: {
+                type: "select",
+                label: "Peso font",
+                options: {
+                    "400": "Normal",
+                    "500": "Medium",
+                    "600": "SemiBold",
+                    "700": "Bold"
+                }
+            }
         },
 
         render: function(widget){
             return `
-            <div class="widget-button" style="text-align:${widget.props.align}; background-color:${widget.props.sfondo};
-            border-radius:${widget.props.bordo}px; padding:${widget.props.padd}px;">
-                <a  href="${widget.props.url}" style="text-decoration: none; font-size:${widget.props.fontSize}">
-                <span  style="justify-content:center;  color:${widget.props.color};">${widget.props.text}</span></a>
-            </div>    
+                <div class="widget-button" style="
+                    text-align:${widget.props.align}; ">
+
+                    <a href="${widget.props.url}" style="
+                        text-decoration:none;
+                        font-size:${widget.props.fontSize}px;
+                        font-weight:${widget.props.fontWeight};
+                        color:${widget.props.color};
+                        display:inline-block; 
+                        width:auto;
+                        padding:${widget.props.padd}px;
+                        background-color:${widget.props.sfondo};
+                        border-radius:${widget.props.bordo}px; ">
+                        ${widget.props.text}
+                    </a>
+                    
+                </div>
             `;
         }
-
-    }, 
+    },
     spacer: {   //-----------------------------------------------
 
         label: "Spaziatore",
@@ -318,7 +339,7 @@ defaultProps:{
 
         defaultProps: {
                 text: "",
-                height: "20px"
+                height: "20"
         },
 
         fields:{
@@ -354,23 +375,7 @@ editor.openWidgetInspector = function(id){
     editor.renderInspector(widget, def);
 };
 
-//=================================
-// crea widget
-//=================================
-    editor.createWidget = function(type){
-    const def = editor.widgets[type];
-    if(!def){
-        console.error("Widget type not found:", type);
-        return null;
-    }
-    return {
-        id: editor.uid(),
-        type: type,
-        props: structuredClone(def.defaultProps)
-    };
-};
-
-//=================================
+ //=================================
 // editor widget uid
 //=================================
 editor.uid = (function(){
@@ -426,6 +431,7 @@ editor.getSelectedWidget = function(){
 //=================================
 // Crea widget nel canvas
 //=================================
+/*
 editor.createWidget = function(type){
 
     const def = this.widgets[type];
@@ -440,7 +446,32 @@ editor.createWidget = function(type){
         props: structuredClone(def.defaultProps)
     };
 };
+*/
+editor.createWidget = function(type){
 
+    console.log("CREATE WIDGET type =", type);
+    console.log("this =", this);
+    console.log("this.uid =", this.uid);
+    console.log("typeof this.uid =", typeof this.uid);
+
+    const def = this.widgets[type];
+
+    if(!def){
+        console.error("Widget type not found:", type);
+        return null;
+    }
+
+    const newId = this.uid();
+
+    console.log("this.uid() =", newId);
+    console.log("typeof this.uid() =", typeof newId);
+
+    return {
+        id: newId,
+        type: type,
+        props: structuredClone(def.defaultProps)
+    };
+};
 
 //==================================================
 // cerca colonna per dettagli
@@ -563,6 +594,10 @@ editor.renderInspector = function(widget, def){
 editor.renderWidget = function(widget){
 
     const def = editor.widgets[widget.type];
+
+
+console.log("RENDER WIDGET:", widget);
+
 
      const selected =
         editor.state.selectedType === "widget" &&

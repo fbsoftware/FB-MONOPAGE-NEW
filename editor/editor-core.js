@@ -79,43 +79,40 @@ $(document).on("click", ".duplicate", function(e){
 // SAVE: BOTTONE PUBBLICA
 //================================
 $(document).on("click", "#save-layout", function(){
-if(!confirm("Vuoi Pubblicare il layout ?")) return;
+    if(!confirm("Vuoi Pubblicare il layout ?")) return;
 
-    const data = editor.state;
+    console.log("SALVATAGGIO:", editor.state);
 
-    console.log("SALVATAGGIO:", data);
-/*
-    fetch("save-layout.php", {
+    fetch("save.php", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data, null, 2)
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(editor.state)
     })
-    .then(res => res.text())
+    .then(async res => {
+        const text = await res.text();
+        console.log("RAW SAVE RESPONSE:", text);
+
+        try {
+            return JSON.parse(text);
+        } catch (err) {
+            throw new Error("Risposta non JSON da save.php: " + text);
+        }
+    })
     .then(res => {
-        console.log("Risposta server:", res);
+        console.log("SAVE RESULT:", res);
+
+        if(res.success){
+            alert("Salvato!");
+        } else {
+            alert("Errore: " + res.error);
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Errore salvataggio: " + err.message);
     });
-
-});*/
-fetch("save.php", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(editor.state)
-})
-.then(res => res.json())
-.then(res => {
-    console.log("SAVE RESULT:", res);
-
-    if(res.success){
-        alert("Salvato!");
-    } else {
-        alert("Errore: " + res.error);
-    }
 });
-});
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //================================
 // SAVE / PUBBLICA
 //================================

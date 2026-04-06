@@ -1,67 +1,3 @@
-<?php
-header('Content-Type: application/json');
-
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    echo json_encode([
-        'success' => false,
-        'error' => 'Metodo non consentito'
-    ]);
-    exit;
-}
-
-$input = file_get_contents("php://input");
-$data = json_decode($input, true);
-
-if (!$data) {
-    echo json_encode([
-        'success' => false,
-        'error' => 'JSON non valido'
-    ]);
-    exit;
-}
-
-$page = $data['meta']['page'] ?? null;
-
-if (!$page) {
-    echo json_encode([
-        'success' => false,
-        'error' => 'Nome pagina mancante'
-    ]);
-    exit;
-}
-
-$page = preg_replace('/[^a-zA-Z0-9\-_]/', '', $page);
-
-$rootDir  = dirname(__DIR__);
-$dataDir  = $rootDir . '/data';
-$pagesDir = $rootDir . '/pages';
-
-if (!is_dir($dataDir)) {
-    mkdir($dataDir, 0777, true);
-}
-
-if (!is_dir($pagesDir)) {
-    mkdir($pagesDir, 0777, true);
-}
-
-$data['meta']['updated_at'] = date('c');
-
-$jsonPath = $dataDir . '/' . $page . '.json';
-$json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-
-if (file_put_contents($jsonPath, $json) === false) {
-    echo json_encode([
-        'success' => false,
-        'error' => 'Errore scrittura JSON'
-    ]);
-    exit;
-}
-
-/** * Escape HTML */
-function h($value) {
-    return htmlspecialchars((string)$value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-}
-
 //******************************************** */
  // Render singolo widget in HTML pubblico
 //*/****************************************** */
@@ -90,11 +26,10 @@ function renderWidgetHTML(array $widget): string
                 . '</div>';
 
         case 'header':
-
             $text  = $props['text'] ?? '';
             $level = $props['level'] ?? 'h2';
             $align = $props['align'] ?? 'left';
-            $color = $props['color'] ?? 'primary';
+            $color = $props['color'] ?? 'inherit';
 
             $allowed = ['h1','h2','h3','h4','h5','h6'];
             if (!in_array($level, $allowed, true)) {
@@ -104,47 +39,26 @@ function renderWidgetHTML(array $widget): string
             return '<div class="widget-header" style="text-align:' . h($align) . ';">'
                 . '<' . $level . ' style="color:' . h($color) . ';">' . h($text) . '</' . $level . '>'
                 . '</div>';
+
         case 'button':
             $text  = $props['text'] ?? 'Bottone';
             $url   = $props['url'] ?? '#';
             $align = $props['align'] ?? 'left';
-            $color = $props['color'] ?? 'accent';
-            $sfondo = $props['sfondo'] ?? sfondo;
-            $bordo = $props['bordo'] ?? 25;
-            $padd = $props['padd'] ?? 20;
-            $fontSize = $props['fontSize'] ?? 22;
-            $fontWeight = $props['fontWeight'] ?? 600;  
 
-    return '<div class="widget-button" style="text-align:' . h($align) . ';">
-            <a href="' . h($URL) . '" style="
-                display:inline-block;
-                width:auto;
-                background-color:' . h($sfondo) . ';
-                border-radius:' . h($bordo) . 'px;
-                padding:' . h($padd) . 'px;
-                text-decoration:none;
-                font-size:' . h($fontSize) . 'px;
-                font-weight:' . h($fontWeight) . ';
-                color:' . h($color) . ';
-                cursor:pointer;"
-            ">
-                ' . h($text) . '
-            </a>
-        </div>
-   ';
+            return '<div class="widget-button" style="text-align:' . h($align) . ';">'
+                . '<a href="' . h($url) . '">' . h($text) . '</a>'
+                . '</div>';
 
         case 'image':
             $src = $props['src'] ?? '';
             $alt = $props['alt'] ?? '';
-            $align = $props['align'] ?? 'left';
-            $width = isset($props['width']) ? ((int)$props['width'] . 'px') : 'auto';
 
-            return '<div class="widget-image" style="justify-content:' . h($align) . ';align-items:' . h($align) . ';">'
-                . '<img src="' . h($src) . '" alt="' . h($alt) . '"   style="width:' . h($width) . '; " >'
+            return '<div class="widget-image">'
+                . '<img src="' . h($src) . '" alt="' . h($alt) . '">'
                 . '</div>';
 
         case 'spacer':
-            $height = $props['height'].'px' ?? '40px';
+            $height = $props['height'] ?? '40px';
 
             return '<div class="widget-spacer" style="height:' . h($height) . ';"></div>';
 
@@ -153,9 +67,9 @@ function renderWidgetHTML(array $widget): string
     }
 }
 
-//***********************************
-// Render colonna in HTML pubblico
-//******************************     
+/**
+ * Render colonna in HTML pubblico
+ */
 function renderColumnHTML(array $column): string
 {
     $width = $column['width'] ?? 100;
@@ -207,7 +121,41 @@ function renderPageHTML(array $data): string
         $body .= renderSectionHTML($section) . "\n";
     }
 
-    return $body;
+    return '<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>' . h($data['meta']['page'] ?? 'Pagina') . ' - RenderPageHTML</title>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <style>
+        .page-section{
+            margin-bottom:20px;
+            width:1240px;
+        }
+        .page-columns{
+            display:flex;
+            gap:10px;
+            align-items:stretch;
+        }
+        .page-column{
+            box-sizing:border-box;
+        }
+        .page-column img{
+            max-width:100%;
+            height:auto;
+            display:block;
+        }
+        .widget-button a{
+            display:inline-block;
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+' . $body . '
+</body>
+</html>';
 }
 
 $htmlPath = $pagesDir . '/' . $page . '.html';
@@ -226,3 +174,90 @@ echo json_encode([
     'json' => 'data/' . $page . '.json',
     'html' => 'pages/' . $page . '.html'
 ]);
+
+//============================================
+//  🧱 2.HTML widgets
+//============================================
+editor.renderWidgetHTML = function(widget){
+    const def = editor.widgets[widget.type];
+
+    if (!def || !def.render) return "";
+
+    return def.render(widget); // già pulito 👍
+};
+
+//============================================
+//  🧱 3. render colonna
+//============================================
+editor.renderColumnHTML = function(column){
+    return `
+        <div class="col">
+            ${column.widgets.map(w => editor.renderWidgetHTML(w)).join("")}
+        </div>
+    `;
+};
+
+//============================================
+//  🧱 4. render sezione
+//============================================
+editor.renderSectionHTML = function(section){
+    return `
+        <section class="section">
+          <div class="section-inner" style="max-width:1240px; margin:0 auto;">
+            ${section.columns.map(c => editor.renderColumnHTML(c)).join("")}
+        </section>
+    `;
+};
+
+//============================================
+//  🧱 5. render pagina completa
+//============================================
+editor.renderPageHTML = function(data){
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina</title>
+
+    <style>
+        body { font-family: sans-serif; }
+
+        :root {
+            --color-primary: #3366ff;
+            --color-secondary: #ff6633;
+            --color-accent: #ffa500;
+            --color-text: #222;
+            --color-bg: #fff;
+        }
+        .section {
+            display: flex;
+            gap: 20px;
+            padding: 20px; 
+        }
+        .col {
+            flex: 1;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body> 
+    return `
+    ${data.sections.map(s => editor.renderSectionHTML(s)).join("")}
+`;
+
+</body>
+</html>
+
+};
+//============================================
+//  💾 6. esportare file index.html
+//============================================
+function downloadHTML(html){
+    const blob = new Blob([html], { type: "text/html" });
+    const a = document.createElement("a");
+
+    a.href = URL.createObjectURL(blob);
+    a.download = "index.html";
+    a.click();
+}
