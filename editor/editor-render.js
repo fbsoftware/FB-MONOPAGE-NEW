@@ -1,19 +1,16 @@
 //=================================
 //  Editor Render - ricostruisce canvas
 //================================= 
-editor.render = function() {
-    const $canvas = $("#canvas");
-    $canvas.empty();
+ editor.render = function () {
+  $('#canvas').empty();
 
-    editor.state.sections.forEach(function(section) {
-        const $section = editor.renderSection(section);
-         $canvas.append($section);
-    });
+  editor.state.sections.forEach(section => {
+    $('#canvas').append(editor.renderSection(section));
+  });
 
-    editor.initSortableWidgets();
+  editor.initSortableWidgets();
+  editor.initSortableColumns();
 };
-
-
 
 //=================================
 //  APRE INSPECTOR SEZIONI

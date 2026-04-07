@@ -3,7 +3,7 @@
         "tema": null,
         "page": "home",
         "version": "2.0",
-        "updated_at": "2026-04-06T23:03:34+02:00"
+        "updated_at": "2026-04-07T15:23:12+02:00"
     },
     "global": {
         "colors": {
@@ -39,16 +39,16 @@
                             "props": {
                                 "text": "FONTENEY",
                                 "level": "h1",
-                                "align": "right",
+                                "align": "center",
                                 "color": "var(--color-primary)"
                             }
                         },
                         {
-                            "id": "w1775495381043_4",
+                            "id": "w1775565286074_4",
                             "type": "textarea",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
-                                "align": "right",
+                                "align": "left",
                                 "color": "var(--color-text)",
                                 "fontSize": "16px",
                                 "fontWeight": "400"
@@ -57,17 +57,55 @@
                     ]
                 },
                 {
-                    "id": "col-1775495365135-736",
+                    "id": "col-1775568059380-768",
                     "width": 50,
                     "widgets": [
                         {
-                            "id": "w1775496313959_1",
-                            "type": "spacer",
+                            "id": "w1775568147922_1",
+                            "type": "image",
                             "props": {
-                                "text": "",
-                                "height": "20"
+                                "src": "uploads\/Fonteney-005_edited-1775568156.jpg",
+                                "alt": "",
+                                "align": "left",
+                                "width": "344",
+                                "imageFile": "C:\\fakepath\\Fonteney-005_edited.jpg"
                             }
-                        },
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sec-1775565185612-666",
+            "background": "var(--color-bg)",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1775495365135-736",
+                    "width": 33,
+                    "widgets": [
+                        {
+                            "id": "w1775565265564_2",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1775565208762-86",
+                    "width": 33,
+                    "widgets": [
                         {
                             "id": "w1775495384136_5",
                             "type": "image",
@@ -75,31 +113,25 @@
                                 "src": "uploads\/Fonteney-005_edited-1775495396.jpg",
                                 "alt": "fontney",
                                 "align": "center",
-                                "width": "424",
+                                "width": "316",
                                 "imageFile": "C:\\fakepath\\Fonteney-005_edited.jpg"
                             }
-                        },
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1775565185612-511",
+                    "width": 34,
+                    "widgets": [
                         {
-                            "id": "w1775502981853_1",
-                            "type": "spacer",
+                            "id": "w1775565269088_3",
+                            "type": "image",
                             "props": {
-                                "text": "",
-                                "height": "20"
-                            }
-                        },
-                        {
-                            "id": "w1775495431018_1",
-                            "type": "button",
-                            "props": {
-                                "text": "CERCA",
-                                "url": "#",
+                                "src": "uploads\/star-1775565280.jpg",
+                                "alt": "",
                                 "align": "center",
-                                "color": "var(--color-bg)",
-                                "sfondo": "var(--color-accent)",
-                                "bordo": "79",
-                                "padd": "10",
-                                "fontSize": "22",
-                                "fontWeight": "600"
+                                "width": "150",
+                                "imageFile": "C:\\fakepath\\star.jpeg"
                             }
                         }
                     ]
@@ -108,5 +140,5 @@
         }
     ],
     "selectedType": "widget",
-    "selectedId": "w1775495431018_1"
+    "selectedId": "w1775568147922_1"
 }

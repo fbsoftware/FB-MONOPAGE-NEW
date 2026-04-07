@@ -19,10 +19,8 @@ if (!file_exists($file)) {
 </head>
 <body>
 
-<?php include __DIR__ . '/includes/nav.php'; ?>
-
 <main>
-    <?php
+<?php include __DIR__ . '/includes/nav.php'; 
     if (file_exists($file)) {
         readfile($file);
     } else {

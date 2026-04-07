@@ -191,7 +191,7 @@ editor.renderColumn = function(column){
 
     $column.prepend($toolbar);
 
-    column.widgets.forEach(widget => {
+    (column.widgets || []).forEach(widget => {
         $column.append(editor.renderWidget(widget));
     });
 
@@ -213,5 +213,73 @@ editor.syncColumnsState = function(){
         });
 
         section.columns = newOrder;
+    });
+};
+
+//=================================
+// Sortable columns between sections
+//=================================
+editor.initSortableColumns = function(){
+
+    if ($(".section-columns").data("ui-sortable")) {
+        $(".section-columns").sortable("destroy");
+    }
+
+    $(".section-columns").sortable({
+        items: "> .canvas-column",
+        connectWith: ".section-columns",
+        placeholder: "column-placeholder",
+        tolerance: "pointer",
+        forcePlaceholderSize: true,
+
+        start: function(event, ui){
+            ui.placeholder.height(ui.item.outerHeight());
+            ui.placeholder.width(ui.item.outerWidth());
+
+            $(".empty-dropzone").hide();
+        },
+
+        stop: function(event, ui){
+            editor.syncAllColumnsFromDOM();
+            editor.render();
+        }
+    });
+};
+//=================================
+// Sync all columns from DOM to state
+//=================================
+editor.syncAllColumnsFromDOM = function(){
+
+    const colMap = {};
+
+    editor.state.sections.forEach(section => {
+        (section.columns || []).forEach(col => {
+            colMap[col.id] = col;
+        });
+    });
+
+    editor.state.sections.forEach(section => {
+        section.columns = [];
+    });
+
+    $(".canvas-section").each(function(){
+        const sectionId = $(this).attr("data-id");
+        const section = editor.state.sections.find(s => s.id === sectionId);
+
+        if(!section) return;
+
+        $(this)
+            .children(".section-columns")
+            .children(".canvas-column")
+            .each(function(){
+                const colId = $(this).attr("data-id");
+                if(colMap[colId]){
+                    section.columns.push(colMap[colId]);
+                }
+            });
+    });
+
+    editor.state.sections.forEach(section => {
+        editor.normalizeSectionWidths(section);
     });
 };

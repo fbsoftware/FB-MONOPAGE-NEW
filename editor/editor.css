@@ -173,6 +173,19 @@ display: none !important;
     gap:10px;
     align-items:stretch;
     width:100%;
+    min-height: 80px;
+}
+.section-columns.empty-columns {
+    min-height: 100px;
+    border: 2px dashed #ddd;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-dropzone {
+    color: #999;
+    font-size: 13px;
+    pointer-events: none;
 }
 
 .canvas-column{
@@ -188,7 +201,12 @@ display: none !important;
     flex-grow:0;
     flex-shrink:0;
 }
-
+.column-placeholder {
+    min-height: 80px;
+    border: 2px dashed #999;
+    background: rgba(0,0,0,0.04);
+    flex: 0 0 120px;
+}
 .canvas-column.drag-over {
     background: #f5f8ff;
     border: 2px dashed #4a7dff;

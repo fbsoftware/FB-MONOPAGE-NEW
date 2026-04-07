@@ -144,7 +144,9 @@ if (file_exists($layoutFile)) {
 </div> <!-- tabs -->
 
 
-    <!-- CANVAS -->
+    <!-- CANVAS 
+    <?php include '../includes/nav.php'; ?> -->
+
     <div class="canvas-panel">
                 <div style="flex:2">&nbsp;</div>
                 <div style="display: flex; gap: 250px; align-items: center; margin-bottom: 20px;">

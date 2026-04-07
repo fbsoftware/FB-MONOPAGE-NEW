@@ -50,7 +50,7 @@ editor.deleteSection = function(sectionId){
 //=================================
 // Render section
 //=================================
- editor.renderSection = function(section){
+editor.renderSection = function(section){
 
     const selected =
         editor.state.selectedType === "section" &&
@@ -62,8 +62,8 @@ editor.deleteSection = function(sectionId){
         .addClass(`canvas-section ${selected}`)
         .attr("data-id", section.id)
         .css("background", section.background || "transparent")
-        .css("padding", section.padding + "px"|| "20px")
-        .css("margin", section.margin + "px" || "0px");
+        .css("padding", (section.padding ?? 20) + "px")
+        .css("margin", (section.margin ?? 0) + "px");
 
     const $toolbar = $("<div>")
         .addClass("section-toolbar")
@@ -93,17 +93,20 @@ editor.deleteSection = function(sectionId){
 
     const $columns = $("<div>").addClass("section-columns");
 
-    if(section.columns){
+    if(section.columns && section.columns.length){
         section.columns.forEach(col => {
             $columns.append(editor.renderColumn(col));
         });
+    } else {
+        $columns
+            .addClass("empty-columns")
+            .append(`<div class="empty-dropzone">Trascina qui una colonna</div>`);
     }
 
     $section.append($columns);
 
     return $section;
 };
-
 //=================================
 //  Create new section
 //=================================
@@ -129,4 +132,25 @@ editor.deleteSection = function(sectionId){
     editor.state.selectedId = section.id;
 
     editor.render();
+};
+
+//=================================
+// Normalize section column widths
+//=================================
+editor.normalizeSectionWidths = function(section){
+
+    if(!section || !section.columns || !section.columns.length) return;
+
+    const count = section.columns.length;
+    const width = Math.floor(100 / count);
+    let total = 0;
+
+    section.columns.forEach((col, index) => {
+        if(index < count - 1){
+            col.width = width;
+            total += width;
+        } else {
+            col.width = 100 - total;
+        }
+    });
 };
