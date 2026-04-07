@@ -75,8 +75,14 @@ function renderWidgetHTML(array $widget): string
             $text  = $props['text'] ?? '';
             $align = $props['align'] ?? 'left';
             $color = $props['color'] ?? 'inherit';
+            $padding = isset($props['padding']) ? ((int)$props['padding'] . 'px') : '0px';
+            $margin = isset($props['margin']) ? ((int)$props['margin'] . 'px') : '0px';    
 
-            return '<div class="widget-text" style="text-align:' . h($align) . ';color:' . h($color) . ';">'
+            return '<div class="widget-text" 
+            style="text-align:' . h($align) . '; 
+            color:' . h($color) . ';
+            padding:' . h($padding) . ';
+            margin:' . h($margin) . ';">'
                 . nl2br(h($text))
                 . '</div>';
 

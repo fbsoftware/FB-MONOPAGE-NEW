@@ -71,7 +71,9 @@ fields:{
   defaultProps:{
      text:"Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
      align:"left",
-     color:"#000000"
+     color:"#000000",
+     padding:0,
+     margin:0
   },
 
   fields:{
@@ -82,28 +84,39 @@ fields:{
     align:{type:"select",    
         options:{left:"Sinistra",
                 center:"Centro",
-                right:"Destra"} ,
+                right:"Destra",
+                justify:"Giustificato"}, 
         label:"Allineamento"}, 
 
     color:{
         type:"color",
-        label:"Colore",
-},
-  },
+        label:"Colore"},
+    
+    padding:{
+        type:"number",
+        label:"Padding px"}, 
 
-    render(widget){
-        const p = widget.props;
+    margin:{
+        type:"number",
+        label:"Margin px" }
+    } ,
 
-        return `
-        <div style="
-            text-align:${p.align || "left"};
-            color:${p.color || "#000"};
+render(widget){
+    const p = widget.props || {};
+
+    return `
+        <div  class="widget-text" style="
+            text-align:${p.align ?? "left"};
+            color:${p.color ?? "#000"};
+            padding:${p.padding ?? 0}px;
+            margin:${p.margin ?? 0}px;
         ">
-            ${p.text || ""}
+            ${p.text ?? ""}
         </div>
-        `;
-    }
+    `;
+}
     },
+    
     textarea: {  //-----------------------------------------------
 
         label:"Textarea",
@@ -167,7 +180,7 @@ defaultProps:{
     render(widget){
         const p = widget.props;
 
-        return `<div>
+        return `<div  class="widget-text" >
         <textarea style="
             text-align:${p.align || "left"};
             color:${p.color || "#000"};
@@ -431,22 +444,6 @@ editor.getSelectedWidget = function(){
 //=================================
 // Crea widget nel canvas
 //=================================
-/*
-editor.createWidget = function(type){
-
-    const def = this.widgets[type];
-
-    if(!def){
-        console.error("Widget type not found:", type);
-        return null;
-    }
-    return {
-        id: this.uid(),
-        type: type,
-        props: structuredClone(def.defaultProps)
-    };
-};
-*/
 editor.createWidget = function(type){
 
     console.log("CREATE WIDGET type =", type);

@@ -3,7 +3,7 @@
         "tema": null,
         "page": "home",
         "version": "2.0",
-        "updated_at": "2026-04-07T15:23:12+02:00"
+        "updated_at": "2026-04-07T18:30:32+02:00"
     },
     "global": {
         "colors": {
@@ -24,6 +24,198 @@
     },
     "sections": [
         {
+            "id": "sec-1775572672506-689",
+            "background": "var(--color-secondary)",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1775572672506-233",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1775573149662_9",
+                            "type": "header",
+                            "props": {
+                                "text": "PHP",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1775572891522_5",
+                            "type": "image",
+                            "props": {
+                                "src": "uploads\/classi-1775573094.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "150",
+                                "imageFile": "C:\\fakepath\\classi.png"
+                            }
+                        },
+                        {
+                            "id": "w1775573363483_15",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        },
+                        {
+                            "id": "w1775577587559_1",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1775572686799-104",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1775572839076_2",
+                            "type": "header",
+                            "props": {
+                                "text": "jQUERY",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1775572894095_6",
+                            "type": "image",
+                            "props": {
+                                "src": "uploads\/jquery-1775573105.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "150",
+                                "imageFile": "C:\\fakepath\\jquery.png"
+                            }
+                        },
+                        {
+                            "id": "w1775573369118_16",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        },
+                        {
+                            "id": "w1775573288877_12",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1775572688975-409",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1775572841448_3",
+                            "type": "header",
+                            "props": {
+                                "text": "Layout",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1775572897254_7",
+                            "type": "image",
+                            "props": {
+                                "src": "uploads\/layout-1775573116.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "150",
+                                "imageFile": "C:\\fakepath\\layout.png"
+                            }
+                        },
+                        {
+                            "id": "w1775573371191_17",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        },
+                        {
+                            "id": "w1775573291527_13",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1775572696541-522",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1775573205278_10",
+                            "type": "header",
+                            "props": {
+                                "text": "Traduzione",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1775572900593_8",
+                            "type": "image",
+                            "props": {
+                                "src": "uploads\/traduci-1775573124.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "111",
+                                "imageFile": "C:\\fakepath\\traduci.png"
+                            }
+                        },
+                        {
+                            "id": "w1775573373681_18",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        },
+                        {
+                            "id": "w1775573293910_14",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "id": "sec-1775494051577-420",
             "background": "var(--color-bg)",
             "padding": "20",
@@ -31,16 +223,14 @@
             "columns": [
                 {
                     "id": "col-1775494051577-429",
-                    "width": 50,
+                    "width": 33,
                     "widgets": [
                         {
-                            "id": "w1775494054279_3",
-                            "type": "header",
+                            "id": "w1775570787689_7",
+                            "type": "spacer",
                             "props": {
-                                "text": "FONTENEY",
-                                "level": "h1",
-                                "align": "center",
-                                "color": "var(--color-primary)"
+                                "text": "",
+                                "height": "65"
                             }
                         },
                         {
@@ -48,7 +238,85 @@
                             "type": "textarea",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
+                                "align": "right",
+                                "color": "var(--color-text)",
+                                "fontSize": "16px",
+                                "fontWeight": "400"
+                            }
+                        }
+                    ],
+                    "props": {
+                        "text": "PHP"
+                    }
+                },
+                {
+                    "id": "col-1775568059380-768",
+                    "width": 33,
+                    "widgets": [
+                        {
+                            "id": "w1775570587448_3",
+                            "type": "header",
+                            "props": {
+                                "text": "Fonteney",
+                                "level": "h1",
+                                "align": "center",
+                                "color": "var(--color-text)"
+                            }
+                        },
+                        {
+                            "id": "w1775568147922_1",
+                            "type": "image",
+                            "props": {
+                                "src": "uploads\/Fonteney-005_edited-1775568156.jpg",
+                                "alt": "",
+                                "align": "center",
+                                "width": "312",
+                                "imageFile": "C:\\fakepath\\Fonteney-005_edited.jpg"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1775570660709-915",
+                    "width": 34,
+                    "widgets": [
+                        {
+                            "id": "w1775570791964_8",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "65"
+                            }
+                        },
+                        {
+                            "id": "w1775570762512_6",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
                                 "align": "left",
+                                "color": "#000000"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sec-1775570514210-322",
+            "background": "var(--color-bg)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1775570514210-311",
+                    "width": 33,
+                    "widgets": [
+                        {
+                            "id": "wid-1775570514210-840",
+                            "type": "textarea",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
+                                "align": "right",
                                 "color": "var(--color-text)",
                                 "fontSize": "16px",
                                 "fontWeight": "400"
@@ -57,17 +325,38 @@
                     ]
                 },
                 {
-                    "id": "col-1775568059380-768",
-                    "width": 50,
+                    "id": "col-1775570514210-797",
+                    "width": 33,
                     "widgets": [
                         {
-                            "id": "w1775568147922_1",
+                            "id": "w1775570714501_5",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1775565208762-86",
+                    "width": 34,
+                    "widgets": [
+                        {
+                            "id": "w1775495384136_5",
                             "type": "image",
                             "props": {
-                                "src": "uploads\/Fonteney-005_edited-1775568156.jpg",
-                                "alt": "",
-                                "align": "left",
-                                "width": "344",
+                                "src": "uploads\/Fonteney-005_edited-1775495396.jpg",
+                                "alt": "fontney",
+                                "align": "center",
+                                "width": "234",
                                 "imageFile": "C:\\fakepath\\Fonteney-005_edited.jpg"
                             }
                         }
@@ -103,31 +392,31 @@
                     ]
                 },
                 {
-                    "id": "col-1775565208762-86",
+                    "id": "col-1775569557775-862",
                     "width": 33,
                     "widgets": [
                         {
-                            "id": "w1775495384136_5",
+                            "id": "w1775569585744_2",
                             "type": "image",
                             "props": {
-                                "src": "uploads\/Fonteney-005_edited-1775495396.jpg",
-                                "alt": "fontney",
+                                "src": "uploads\/logo-FB-3-1775569620.png",
+                                "alt": "",
                                 "align": "center",
-                                "width": "316",
-                                "imageFile": "C:\\fakepath\\Fonteney-005_edited.jpg"
+                                "width": "150",
+                                "imageFile": "C:\\fakepath\\logo-FB-3.png"
                             }
                         }
                     ]
                 },
                 {
-                    "id": "col-1775565185612-511",
+                    "id": "col-1775570560578-790",
                     "width": 34,
                     "widgets": [
                         {
-                            "id": "w1775565269088_3",
+                            "id": "w1775570617900_4",
                             "type": "image",
                             "props": {
-                                "src": "uploads\/star-1775565280.jpg",
+                                "src": "uploads\/star-1775570627.jpg",
                                 "alt": "",
                                 "align": "center",
                                 "width": "150",
@@ -140,5 +429,5 @@
         }
     ],
     "selectedType": "widget",
-    "selectedId": "w1775568147922_1"
+    "selectedId": "w1775573293910_14"
 }
