@@ -197,7 +197,7 @@ $("#saveSiteConfig").on("click", function(){
 //=================================
 $(document).on("click", ".canvas-column", function(e){
     e.stopPropagation();
-console.log("CLICCATA COLONNA");
+// console.log("CLICCATA COLONNA");
 if($(e.target).closest(".canvas-widget").length) return;
     const id = $(this).data("id");
 
@@ -501,23 +501,27 @@ console.log("col-input modificato" , value);
         editor.openColumnInspector(columnId);
     }
 );
-$(document).on("input change", "#inspector [data-column-field]",
-    function(){
+$(document).on("input change", "#inspector [data-column-field]", function(){
 
-        const field = $(this).data("column-field");
-        const value = parseInt($(this).val(), 10);
+    const field = $(this).data("column-field");
+    const type = $(this).attr("type");
+    let value = $(this).val();
 
-        const columnId = editor.state.selectedId;
-        const column = editor.findColumnById(columnId);
+    const columnId = editor.state.selectedId;
+    const column = editor.findColumnById(columnId);
 
-        if(!column) return;
+    if(!column) return;
 
-        column[field] = value;
-
-        editor.render();
-        editor.openColumnInspector(columnId);
+    if(type === "number" || type === "range"){
+        value = parseInt(value, 10);
+        if(isNaN(value)) value = 0;
     }
-);
+
+    column[field] = value;
+
+    editor.render();
+    editor.openColumnInspector(columnId);
+});
 
 
 //========================================
@@ -579,3 +583,4 @@ $(document).on("change", '#inspector input[data-upload-image="1"]', function(){
         alert("Errore upload immagine");
     });
 });
+

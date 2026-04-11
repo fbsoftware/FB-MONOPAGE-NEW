@@ -5,8 +5,76 @@
 $(document).on("click", "#add-section", function(){
     editor.createSection();
 });
+
 //=================================
-// Move section
+//  ➕ Sezione HERO
+//=================================
+$(document).on("click", ".add-hero-section", function(){
+    editor.state.sections.push(editor.createHeroSection());
+    editor.render();
+});
+
+//=================================
+//  FIELDS SEZIONE
+//================================= 
+editor.sectionFields = {
+    backgroundType: {
+        type: "select",
+        label: "Tipo sfondo",
+        options: {
+            color: "Colore",
+            image: "Immagine"
+        }
+    },
+
+    backgroundImage: {
+        type: "text",
+        label: "URL immagine"
+    },
+
+    minHeight: {
+        type: "number",
+        label: "Altezza minima"
+    },
+
+    backgroundSize: {
+        type: "select",
+        label: "Adatta immagine",
+        options: {
+            cover: "Cover",
+            contain: "Contain",
+            auto: "Auto"
+        }
+    },
+
+    backgroundPosition: {
+        type: "select",
+        label: "Posizione immagine",
+        options: {
+            "left top": "Sinistra alto",
+            "center top": "Centro alto",
+            "center center": "Centro",
+            "center bottom": "Centro basso"
+        }
+    },
+
+    overlayColor: {
+        type: "text",
+        label: "Overlay"
+    },
+
+    verticalAlign: {
+        type: "select",
+        label: "Allineamento contenuti",
+        options: {
+            top: "Alto",
+            center: "Centro",
+            bottom: "Basso"
+        }
+    }
+};
+//=================================
+// Move section UP DOWN           |
 //=================================
 editor.moveSection = function(sectionId, direction) {
 
@@ -81,14 +149,13 @@ editor.renderSectionInspector = function(section){
                 <option value="var(--color-accent)" ${section.background === "var(--color-accent)" ? "selected" : ""}>Accent</option>
                 <option value="var(--color-text)" ${section.background === "var(--color-text)" ? "selected" : ""}>Testo</option>
                 <option value="var(--color-bg)" ${section.background === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
-                <option value="var(--color-custom)" ${section.background === "var(--color-custom)" ? "selected" : ""}>Custom</option>
             </select>
                <input
                 id="sec-background"
                 type="color"
                 value="${section.background}"
                 data-section-field="background"
-            >
+                >
 
             <label for="sec-padding">Padding</label>
             <input
@@ -105,6 +172,21 @@ editor.renderSectionInspector = function(section){
                 value="${section.margin || "0"}"
                 data-section-field="margin"
             >
+
+            <label for="sec-minHeight">Altezza Minima</label>
+                <input
+                id="sec-minHeight"
+                type="number"
+                value="${section.minHeight || "0"}"
+                data-section-field="minHeight"
+            >
+                <label for="sec-verticalAlign">Allineamento verticale</label>
+                <select id="sec-verticalAlign" data-section-field="verticalAlign">
+                    <option value="top" ${section.verticalAlign === "top" ? "selected" : ""}>Alto</option>
+                    <option value="center" ${section.verticalAlign === "center" ? "selected" : ""}>Centro</option>
+                    <option value="bottom" ${section.verticalAlign === "bottom" ? "selected" : ""}>Basso</option>
+                </select>       
+                
         </div>
     `;
 
@@ -124,9 +206,11 @@ editor.renderSection = function(section){
     const $section = $("<div>")
         .addClass(`canvas-section ${selected}`)
         .attr("data-id", section.id)
-        .css("background", section.background || "transparent")
+        .css("background-color", section.background || "transparent")
         .css("padding", (section.padding ?? 20) + "px")
-        .css("margin", (section.margin ?? 0) + "px");
+        .css("margin", (section.margin ?? 0) + "px")
+        .css("min-height", (section.minHeight ?? 0) + "px")
+        .css("align-items", editor.getSectionVerticalAlign(section.verticalAlign));
 
     const $toolbar = $("<div>")
         .addClass("section-toolbar")
@@ -177,13 +261,13 @@ editor.renderSection = function(section){
 
     const section = {
         id: editor.utils.uuid("sec"),
-        background: "var(--color-bg)",
+        background: "#ffffff    ",
         padding: "20",
         margin: "0",
         columns: [
             {
                 id: editor.utils.uuid("col"),
-                width: 100,
+                width: 50,
                 widgets: []
             }
         ]
@@ -216,4 +300,76 @@ editor.normalizeSectionWidths = function(section){
             col.width = 100 - total;
         }
     });
+};
+
+
+//=================================
+//  Create Hero section
+//=================================
+editor.createHeroSection = function(){
+console.log("Creazione sezione Hero");
+    return {
+        id: editor.utils.uuid("sec"),
+        background: "transparent",
+        padding: 0,
+        margin: 0,
+
+        backgroundType: "image",
+        backgroundImage: "https://picsum.photos/1600/900",
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        backgroundRepeat: "no-repeat",
+        minHeight: 500,
+        overlayColor: "rgba(0,0,0,0.35)",
+        verticalAlign: "center",
+
+        columns: [
+            {
+                id: editor.utils.uuid("col"),
+                width: 100,
+                widgets: [
+                    {
+                        id: editor.uid(),
+                        type: "header",
+                        props: {
+                            text: "Titolo Hero",
+                            level: "h1",
+                            align: "center",
+                            color: "#000000"
+                        }
+                    },
+                    {
+                        id: editor.uid(),
+                        type: "text",
+                        props: {
+                            text: "Qui puoi inserire un testo introduttivo.",
+                            align: "center",
+                            color: "#000000"
+                        }
+                    },
+                    {
+                        id: editor.uid(),
+                        type: "button",
+                        props: {
+                            text: "Scopri di più",
+                            url: "#",
+                            align: "center"
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+};
+
+//================================= 
+//  supporto allineamento verticale contenuti
+//=================================
+editor.getSectionVerticalAlign = function(value){
+    switch(value){
+        case "top": return "flex-start";
+        case "bottom": return "flex-end";
+        case "center":
+        default: return "center";
+    }
 };

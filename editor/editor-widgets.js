@@ -445,12 +445,12 @@ editor.getSelectedWidget = function(){
 // Crea widget nel canvas
 //=================================
 editor.createWidget = function(type){
-
+/*
     console.log("CREATE WIDGET type =", type);
     console.log("this =", this);
     console.log("this.uid =", this.uid);
     console.log("typeof this.uid =", typeof this.uid);
-
+*/
     const def = this.widgets[type];
 
     if(!def){
@@ -593,7 +593,7 @@ editor.renderWidget = function(widget){
     const def = editor.widgets[widget.type];
 
 
-console.log("RENDER WIDGET:", widget);
+//console.log("RENDER WIDGET:", widget);
 
 
      const selected =

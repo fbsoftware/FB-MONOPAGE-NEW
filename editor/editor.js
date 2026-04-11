@@ -4,7 +4,7 @@ editor.init = function () {
 
 editor.renderWidgetPalette();   // ← QUESTO CARICA I WIDGET NELLA PALETTE
 // Carica layout iniziale
-console.log("INITIAL LAYOUT=",window.INITIAL_LAYOUT);
+//console.log("INITIAL LAYOUT=",window.INITIAL_LAYOUT);
          if (window.INITIAL_LAYOUT && window.INITIAL_LAYOUT.sections) {
         editor.state = window.INITIAL_LAYOUT;
 

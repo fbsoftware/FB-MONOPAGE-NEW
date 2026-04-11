@@ -120,7 +120,6 @@ function renderWidgetHTML(array $widget): string
             $padd = $props['padd'] ?? 20;
             $fontSize = $props['fontSize'] ?? 22;
             $fontWeight = $props['fontWeight'] ?? 600;  
-
     return '<div class="widget-button" style="text-align:' . h($align) . ';">
             <a href="' . h($URL) . '" style="
                 display:inline-block;
@@ -167,7 +166,14 @@ function renderColumnHTML(array $column): string
     $width = $column['width'] ?? 100;
     $widgets = $column['widgets'] ?? [];
 
-    $html = '<div class="page-column" style="flex-basis:' . h($width) . '%;">';
+    $html = '<div class="page-column" style="flex-basis:' . h($width) . '%;
+                padding:' . (isset($column['padding']) ? (h((int)$column['padding']) . 'px') : '0px') . ';
+                margin:' . (isset($column['margin']) ? (h((int)$column['margin']) . 'px') : '0px') . ';
+                border:' . (isset($column['border']) ? (h((int)$column['border']) . 'px solid ' . h($column['borderColor'] ?? 'transparent')) : 'none') . ';
+                border-radius:' . (isset($column['radius']) ? (h((int)$column['radius']) . 'px') : '0px') . ';
+                border-style:' . (isset($column['borderStyle']) ? h($column['borderStyle']) : 'solid') . ';
+                border-color:' . (isset($column['borderStyleColor']) ? h($column['borderStyleColor']) : 'transparent') . ';
+    ">';
 
     foreach ($widgets as $widget) {
         $html .= renderWidgetHTML($widget);
@@ -178,9 +184,9 @@ function renderColumnHTML(array $column): string
     return $html;
 }
 
-/**
+/************************************
  * Render sezione in HTML pubblico
- */
+ ************************************ */
 function renderSectionHTML(array $section): string
 {
     $background = $section['background'] ?? 'transparent';

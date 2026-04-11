@@ -163,6 +163,8 @@ if (file_exists($layoutFile)) {
             <div id="canvas" class="canvas"> </div>
             <div style="display:flex; justify-content:center">
             <button id="add-section" class="add-section-btn">➕ Sezione</button>
+            <button id="add-hero-section" class="add-hero-section">➕ Sezione Hero</button>
+
             </div>
         </div>
        
@@ -199,8 +201,8 @@ window.EDITOR_CONFIG = {
 
 window.INITIAL_LAYOUT = <?= json_encode($layoutData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) ?>;
 
-console.log("EDITOR PAGE =", window.EDITOR_CONFIG.page);
-console.log("INITIAL_LAYOUT =", window.INITIAL_LAYOUT);
+//console.log("EDITOR PAGE =", window.EDITOR_CONFIG.page);
+//console.log("INITIAL_LAYOUT =", window.INITIAL_LAYOUT);
 </script>
 
  <script>

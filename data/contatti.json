@@ -3,7 +3,7 @@
         "tema": null,
         "page": "contatti",
         "version": "2.0",
-        "updated_at": "2026-04-04T23:13:30+02:00"
+        "updated_at": "2026-04-11T18:50:49+02:00"
     },
     "global": {
         "colors": {
@@ -31,7 +31,7 @@
             "columns": [
                 {
                     "id": "col-1774905220159-699",
-                    "width": 42,
+                    "width": 33,
                     "widgets": [
                         {
                             "id": "w1774905237106_1",
@@ -43,11 +43,20 @@
                                 "color": "#000000"
                             }
                         }
-                    ]
+                    ],
+                    "padding": 23,
+                    "margin": 20
+                },
+                {
+                    "id": "col-1775750679067-651",
+                    "width": 33,
+                    "widgets": [],
+                    "border": 10,
+                    "radius": 41
                 },
                 {
                     "id": "col-1774905226351-749",
-                    "width": 57,
+                    "width": 34,
                     "widgets": [
                         {
                             "id": "w1774905275920_2",
@@ -63,7 +72,7 @@
                             "id": "w1774905278922_3",
                             "type": "text",
                             "props": {
-                                "text": "Questi sono i miei contatti peersonali",
+                                "text": "Questi sono i miei contatti personali aggiornati alla data odierna.",
                                 "align": "left",
                                 "color": "#000000"
                             }
@@ -71,8 +80,59 @@
                     ]
                 }
             ]
+        },
+        {
+            "id": "sec-1775926186789-121",
+            "background": "transparent",
+            "padding": 0,
+            "margin": "9",
+            "backgroundType": "image",
+            "backgroundImage": "https:\/\/picsum.photos\/1600\/900",
+            "backgroundSize": "cover",
+            "backgroundPosition": "center center",
+            "backgroundRepeat": "no-repeat",
+            "minHeight": 500,
+            "overlayColor": "rgba(0,0,0,0.35)",
+            "verticalAlign": "center",
+            "columns": [
+                {
+                    "id": "col-1775926186789-465",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1775926186789_1",
+                            "type": "header",
+                            "props": {
+                                "text": "Titolo Hero",
+                                "level": "h1",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1775926186789_2",
+                            "type": "text",
+                            "props": {
+                                "text": "Qui puoi inserire un testo introduttivo.",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1775926186789_3",
+                            "type": "button",
+                            "props": {
+                                "text": "Scopri di più",
+                                "url": "#",
+                                "align": "center"
+                            }
+                        }
+                    ],
+                    "padding": 12
+                }
+            ]
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1774905275920_2"
+    "selectedType": null,
+    "selectedId": null
 }
