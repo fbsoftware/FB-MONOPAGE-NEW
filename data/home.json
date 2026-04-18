@@ -3,7 +3,7 @@
         "tema": null,
         "page": "home",
         "version": "2.0",
-        "updated_at": "2026-04-07T18:30:32+02:00"
+        "updated_at": "2026-04-14T16:14:56+02:00"
     },
     "global": {
         "colors": {
@@ -24,8 +24,46 @@
     },
     "sections": [
         {
-            "id": "sec-1775572672506-689",
+            "id": "sec-1776096690416-135",
             "background": "var(--color-secondary)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1776096690416-274",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1776096711666_1",
+                            "type": "header",
+                            "props": {
+                                "text": "PROMO",
+                                "level": "h2",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": "0",
+                                "margin": "5"
+                            }
+                        },
+                        {
+                            "id": "w1776096716003_2",
+                            "type": "text",
+                            "props": {
+                                "text": "Spazio destinato alle promozioni in corso alla data odierna",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": "5"
+                            }
+                        }
+                    ],
+                    "margin": 11
+                }
+            ]
+        },
+        {
+            "id": "sec-1775572672506-689",
+            "background": "var(--color-bg)",
             "padding": "20",
             "margin": "0",
             "columns": [
@@ -67,7 +105,7 @@
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
-                                "align": "left",
+                                "align": "justify",
                                 "color": "#000000",
                                 "padding": "10",
                                 "margin": "10"
@@ -216,8 +254,210 @@
             ]
         },
         {
-            "id": "sec-1775494051577-420",
+            "id": "sec-1776100088881-564",
+            "background": "var(--color-secondary)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1776100088881-161",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "wid-1776100088881-771",
+                            "type": "header",
+                            "props": {
+                                "text": "SERVIZI",
+                                "level": "h2",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": "0",
+                                "margin": "5"
+                            }
+                        },
+                        {
+                            "id": "wid-1776100088881-51",
+                            "type": "text",
+                            "props": {
+                                "text": "Spazio destinato alle promozioni in corso alla data odierna",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": "5"
+                            }
+                        }
+                    ],
+                    "margin": 11
+                }
+            ]
+        },
+        {
+            "id": "sec-1776099597675-825",
             "background": "var(--color-bg)",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1776099597675-440",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "wid-1776099597675-372",
+                            "type": "header",
+                            "props": {
+                                "text": "PHP",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1776099613528_1",
+                            "type": "icon",
+                            "props": {
+                                "name": "home",
+                                "size": 48,
+                                "color": "#e66565",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "wid-1776099597675-555",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1776099597675-179",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "wid-1776099597675-81",
+                            "type": "header",
+                            "props": {
+                                "text": "jQUERY",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1776099657777_2",
+                            "type": "icon",
+                            "props": {
+                                "name": "delete",
+                                "size": 48,
+                                "color": "#3069c5",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "wid-1776099597675-933",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1776099597675-171",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "wid-1776099597675-710",
+                            "type": "header",
+                            "props": {
+                                "text": "Layout",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1776099662223_3",
+                            "type": "icon",
+                            "props": {
+                                "name": "shopping_cart",
+                                "size": 48,
+                                "color": "#808212",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "wid-1776099597676-58",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1776099597676-248",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "wid-1776099597676-217",
+                            "type": "header",
+                            "props": {
+                                "text": "Traduzione",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1776099664709_4",
+                            "type": "icon",
+                            "props": {
+                                "name": "search",
+                                "size": 48,
+                                "color": "#d07225",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "wid-1776099597676-242",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sec-1775494051577-420",
+            "background": "var(--color-secondary)",
             "padding": "20",
             "margin": "0",
             "columns": [
@@ -247,7 +487,10 @@
                     ],
                     "props": {
                         "text": "PHP"
-                    }
+                    },
+                    "border": 2,
+                    "radius": 10,
+                    "borderStyleColor": "var(--color-secondary)"
                 },
                 {
                     "id": "col-1775568059380-768",
@@ -274,7 +517,10 @@
                                 "imageFile": "C:\\fakepath\\Fonteney-005_edited.jpg"
                             }
                         }
-                    ]
+                    ],
+                    "borderStyleColor": "var(--color-secondary)",
+                    "radius": 10,
+                    "border": 2
                 },
                 {
                     "id": "col-1775570660709-915",
@@ -297,13 +543,16 @@
                                 "color": "#000000"
                             }
                         }
-                    ]
+                    ],
+                    "border": 3,
+                    "radius": 10,
+                    "borderStyleColor": "var(--color-secondary)"
                 }
             ]
         },
         {
             "id": "sec-1775570514210-322",
-            "background": "var(--color-bg)",
+            "background": "var(--color-secondary)",
             "padding": "0",
             "margin": "0",
             "columns": [
@@ -322,7 +571,8 @@
                                 "fontWeight": "400"
                             }
                         }
-                    ]
+                    ],
+                    "padding": 10
                 },
                 {
                     "id": "col-1775570514210-797",
@@ -343,7 +593,8 @@
                                 "fontWeight": "600"
                             }
                         }
-                    ]
+                    ],
+                    "padding": 10
                 },
                 {
                     "id": "col-1775565208762-86",
@@ -360,13 +611,14 @@
                                 "imageFile": "C:\\fakepath\\Fonteney-005_edited.jpg"
                             }
                         }
-                    ]
+                    ],
+                    "padding": 10
                 }
             ]
         },
         {
             "id": "sec-1775565185612-666",
-            "background": "var(--color-bg)",
+            "background": "var(--color-primary)",
             "padding": "20",
             "margin": "0",
             "columns": [
@@ -429,5 +681,5 @@
         }
     ],
     "selectedType": "widget",
-    "selectedId": "w1775573293910_14"
+    "selectedId": "wid-1776099597675-555"
 }

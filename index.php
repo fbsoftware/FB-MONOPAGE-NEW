@@ -16,6 +16,7 @@ if (!file_exists($file)) {
     <meta charset="UTF-8">
     <title>Sito di FB</title>
     <link rel="stylesheet" href="/FB-JSON/assets/css/site.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 </head>
 <body>
 

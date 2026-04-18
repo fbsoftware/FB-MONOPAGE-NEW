@@ -57,9 +57,63 @@ if (file_put_contents($jsonPath, $json) === false) {
     exit;
 }
 
+$htmlPath = $pagesDir . '/' . $page . '.html';
+$html = renderPageHTML($data);
+
+if (file_put_contents($htmlPath, $html) === false) {
+    echo json_encode([
+        'success' => false,
+        'error' => 'JSON salvato ma errore scrittura HTML'
+    ]);
+    exit;
+}
+
+echo json_encode([
+    'success' => true,
+    'json' => 'data/' . $page . '.json',
+    'html' => 'pages/' . $page . '.html'
+]);
+
+
+
 /** * Escape HTML */
 function h($value) {
     return htmlspecialchars((string)$value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+
+function getYoutubeVideoId(string $url): string
+{
+    if ($url === '') {
+        return '';
+    }
+
+    $patterns = [
+        '/youtube\.com\/watch\?v=([^&]+)/',
+        '/youtu\.be\/([^?&]+)/',
+        '/youtube\.com\/embed\/([^?&]+)/',
+        '/youtube\.com\/shorts\/([^?&]+)/'
+    ];
+
+    foreach ($patterns as $pattern) {
+        if (preg_match($pattern, $url, $matches)) {
+            return $matches[1] ?? '';
+        }
+    }
+
+    return '';
+}
+
+function getVideoAspectRatioPadding(string $ratio): string
+{
+    switch ($ratio) {
+        case '4:3':
+            return '75%';
+        case '1:1':
+            return '100%';
+        case '16:9':
+        default:
+            return '56.25%';
+    }
 }
 
 //******************************************** */
@@ -69,20 +123,20 @@ function renderWidgetHTML(array $widget): string
 {
     $type  = $widget['type'] ?? '';
     $props = $widget['props'] ?? [];
-
-    switch ($type) {
+error_log('Rendering widget: ' . $type); 
+     switch ($type) {
         case 'text':
             $text  = $props['text'] ?? '';
             $align = $props['align'] ?? 'left';
             $color = $props['color'] ?? 'inherit';
             $padding = isset($props['padding']) ? ((int)$props['padding'] . 'px') : '0px';
-            $margin = isset($props['margin']) ? ((int)$props['margin'] . 'px') : '0px';    
+            $margin = isset($props['margin']) ? ((int)$props['margin'] . 'px') : '0px';
 
             return '<div class="widget-text" 
-            style="text-align:' . h($align) . '; 
-            color:' . h($color) . ';
-            padding:' . h($padding) . ';
-            margin:' . h($margin) . ';">'
+                style="text-align:' . h($align) . '; 
+                color:' . h($color) . ';
+                padding:' . h($padding) . ';
+                margin:' . h($margin) . ';">'
                 . nl2br(h($text))
                 . '</div>';
 
@@ -96,47 +150,51 @@ function renderWidgetHTML(array $widget): string
                 . '</div>';
 
         case 'header':
-
             $text  = $props['text'] ?? '';
             $level = $props['level'] ?? 'h2';
             $align = $props['align'] ?? 'left';
             $color = $props['color'] ?? 'primary';
+            $padding = isset($props['padding']) ? ((int)$props['padding'] . 'px') : '0px';
+            $margin = isset($props['margin']) ? ((int)$props['margin'] . 'px') : '0px';
 
             $allowed = ['h1','h2','h3','h4','h5','h6'];
             if (!in_array($level, $allowed, true)) {
                 $level = 'h2';
             }
 
-            return '<div class="widget-header" style="text-align:' . h($align) . ';">'
+            return '<div class="widget-header" style="text-align:' . h($align) . ';
+                padding:' . h($padding) . ';
+                margin:' . h($margin) . ';">'
                 . '<' . $level . ' style="color:' . h($color) . ';">' . h($text) . '</' . $level . '>'
                 . '</div>';
+
         case 'button':
             $text  = $props['text'] ?? 'Bottone';
             $url   = $props['url'] ?? '#';
             $align = $props['align'] ?? 'left';
             $color = $props['color'] ?? 'accent';
-            $sfondo = $props['sfondo'] ?? sfondo;
+            $sfondo = $props['sfondo'] ?? '';
             $bordo = $props['bordo'] ?? 25;
             $padd = $props['padd'] ?? 20;
             $fontSize = $props['fontSize'] ?? 22;
-            $fontWeight = $props['fontWeight'] ?? 600;  
-    return '<div class="widget-button" style="text-align:' . h($align) . ';">
-            <a href="' . h($URL) . '" style="
-                display:inline-block;
-                width:auto;
-                background-color:' . h($sfondo) . ';
-                border-radius:' . h($bordo) . 'px;
-                padding:' . h($padd) . 'px;
-                text-decoration:none;
-                font-size:' . h($fontSize) . 'px;
-                font-weight:' . h($fontWeight) . ';
-                color:' . h($color) . ';
-                cursor:pointer;"
-            ">
-                ' . h($text) . '
-            </a>
-        </div>
-   ';
+            $fontWeight = $props['fontWeight'] ?? 600;
+
+            return '<div class="widget-button" style="text-align:' . h($align) . ';">
+                <a href="' . h($url) . '" style="
+                    display:inline-block;
+                    width:auto;
+                    background-color:' . h($sfondo) . ';
+                    border-radius:' . h($bordo) . 'px;
+                    padding:' . h($padd) . 'px;
+                    text-decoration:none;
+                    font-size:' . h($fontSize) . 'px;
+                    font-weight:' . h($fontWeight) . ';
+                    color:' . h($color) . ';
+                    cursor:pointer;
+                ">
+                    ' . h($text) . '
+                </a>
+            </div>';
 
         case 'image':
             $src = $props['src'] ?? '';
@@ -145,13 +203,83 @@ function renderWidgetHTML(array $widget): string
             $width = isset($props['width']) ? ((int)$props['width'] . 'px') : 'auto';
 
             return '<div class="widget-image" style="justify-content:' . h($align) . ';align-items:' . h($align) . ';">'
-                . '<img src="' . h($src) . '" alt="' . h($alt) . '"   style="width:' . h($width) . '; " >'
+                . '<img src="' . h($src) . '" alt="' . h($alt) . '" style="width:' . h($width) . ';">'
                 . '</div>';
 
         case 'spacer':
-            $height = $props['height'].'px' ?? '40px';
+            $height = isset($props['height']) ? ((int)$props['height'] . 'px') : '40px';
 
             return '<div class="widget-spacer" style="height:' . h($height) . ';"></div>';
+
+        case 'icon':
+            $align = $props['align'] ?? 'center';
+            $size = $props['size'] ?? 48;
+            $color = $props['color'] ?? 'var(--color-primary)';
+            $name = $props['name'] ?? 'home';
+            $padding = isset($props['padding']) ? ((int)$props['padding'] . 'px') : '0px';
+            $margin = isset($props['margin']) ? ((int)$props['margin'] . 'px') : '0px';
+
+            return '<div class="widget-icon" 
+                style="display:flex;
+                    justify-content:' . h($align) . ';
+                    align-items:' . h($align) . ';
+                    padding:' . h($padding) . ';
+                    margin:' . h($margin) . ';">
+                <span class="material-symbols-outlined" style="
+                    font-size:' . h($size) . 'px!important;
+                    color:' . h($color) . ';
+                    padding:' . h($padding) . ';
+                    margin:' . h($margin) . ';">
+                    ' . h($name) . '
+                </span>
+            </div>';
+
+        case 'video':
+            $url = $props['url'] ?? '';
+            $aspectRatio = $props['aspectRatio'] ?? '16:9';
+            $align = $props['align'] ?? 'center';
+            $padding = isset($props['padding']) ? (int)$props['padding'] : 0;
+            $margin = isset($props['margin']) ? (int)$props['margin'] : 0;
+
+            $videoId = getYoutubeVideoId($url);
+
+            if ($videoId === '') {
+                return '';
+            }
+
+            $ratioPadding = getVideoAspectRatioPadding($aspectRatio);
+
+            return '
+                <div class="widget-video" style="
+                    text-align:' . h($align) . ';
+                    padding:' . h($padding) . 'px;
+                    margin:' . h($margin) . 'px;
+                ">
+                    <div style="
+                        position:relative;
+                        width:100%;
+                        max-width:100%;
+                        padding-top:' . h($ratioPadding) . ';
+                        overflow:hidden;
+                        border-radius:8px;
+                    ">
+                        <iframe
+                            src="https://www.youtube.com/embed/' . h($videoId) . '"
+                            title="YouTube video player"
+                            style="
+                                position:absolute;
+                                top:0;
+                                left:0;
+                                width:100%;
+                                height:100%;
+                                border:0;
+                            "
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                </div>
+            ';
 
         default:
             return '<div class="widget-unknown">Widget non supportato: ' . h($type) . '</div>';
@@ -222,19 +350,3 @@ function renderPageHTML(array $data): string
     return $body;
 }
 
-$htmlPath = $pagesDir . '/' . $page . '.html';
-$html = renderPageHTML($data);
-
-if (file_put_contents($htmlPath, $html) === false) {
-    echo json_encode([
-        'success' => false,
-        'error' => 'JSON salvato ma errore scrittura HTML'
-    ]);
-    exit;
-}
-
-echo json_encode([
-    'success' => true,
-    'json' => 'data/' . $page . '.json',
-    'html' => 'pages/' . $page . '.html'
-]);

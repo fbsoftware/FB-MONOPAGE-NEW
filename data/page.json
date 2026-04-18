@@ -3,7 +3,7 @@
         "tema": null,
         "page": "page",
         "version": "2.0",
-        "updated_at": "2026-04-11T18:41:50+02:00"
+        "updated_at": "2026-04-12T19:15:28+02:00"
     },
     "global": {
         "colors": {
@@ -77,7 +77,7 @@
                     "border": 2,
                     "borderStyleColor": "var(--color-secondary)",
                     "radius": 15,
-                    "borderStyle": "dashed",
+                    "borderStyle": "solid",
                     "padding": 16
                 },
                 {
@@ -102,13 +102,13 @@
                     ],
                     "border": 5,
                     "radius": 15,
-                    "borderStyle": "dotted",
-                    "borderStyleColor": "#dc7474",
+                    "borderStyle": "solid",
+                    "borderStyleColor": "var(--color-primary)",
                     "padding": 15
                 }
             ]
         }
     ],
-    "selectedType": "column",
-    "selectedId": "col-1775923175091-801"
+    "selectedType": null,
+    "selectedId": null
 }

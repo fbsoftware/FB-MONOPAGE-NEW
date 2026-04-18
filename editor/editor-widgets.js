@@ -10,7 +10,9 @@ editor.widgets = {
             text: "Titolo ---",
             level: "h2",
             align: "center",    
-            color:"#000000"
+            color:"#000000",
+            padding:0,
+            margin:0  
         },
 
 fields:{
@@ -47,15 +49,24 @@ fields:{
             "var(--color-bg)":"Sfondo"
         }
     },
+    padding:{
+        type:"number",
+        label:"Padding px"  },
+
+    margin:{
+        type:"number",
+        label:"Margin px"  },    
 },
 
         render: function(widget){
             const tag = widget.props.level;
             const col = widget.props.color;
             const all = widget.props.align;
+            const p = widget.props.padding;
+            const m = widget.props.margin;  
             return `
             <div class="widget-header">
-                <${tag} style="text-align:${all} ; color:${col}">
+                <${tag} style="text-align:${all} ; color:${col}; padding:${p}px; margin:${m}px; ">
                     ${widget.props.text}
                 </${tag}>
             </div>
@@ -116,7 +127,6 @@ render(widget){
     `;
 }
     },
-    
     textarea: {  //-----------------------------------------------
 
         label:"Textarea",
@@ -169,6 +179,7 @@ defaultProps:{
         label:"Peso font",
         options:{
             "400":"Normale",
+            "500":"Medio",
             "600":"Semibold",
             "700":"Bold"
         }
@@ -199,7 +210,7 @@ defaultProps:{
     icon: "🖼️",
 
     defaultProps: {
-        src: "",
+        src: "/assets/images/image.png",
         alt: "",
         align: "center",
         width: "150"
@@ -372,8 +383,183 @@ defaultProps:{
             `;
         }
 
-    }  
-}
+    }  ,
+    icon: {     //-----------------------------------------------
+    label: "Icona",
+    icon: "⭐",
+
+    defaultProps: {
+        name: "home",
+        size: 48,
+        color: "var(--color-primary)",
+        align: "center",
+        padding: 0,
+        margin: 0
+    },
+
+    fields: {
+        name: {
+            type: "text",
+            label: "Nome icona"
+        },
+
+        size: {
+            type: "number",
+            label: "Dimensione px"
+        },
+
+        color: {
+            type: "color",
+            label: "Colore"
+        },
+
+        align: {
+            type: "select",
+            label: "Allineamento",
+            options: {
+                left: "Sinistra",
+                center: "Centro",
+                right: "Destra"
+            }
+        },
+
+        padding: {
+            type: "number",
+            label: "Padding px"
+        },
+
+        margin: {
+            type: "number",
+            label: "Margin px"
+        }
+    },
+
+    render(widget) {
+        const p = widget.props || {};
+
+        return `
+            <div class="widget-icon" style="
+                text-align:${p.align ?? "center"};
+                padding:${p.padding ?? 0}px;
+                margin:${p.margin ?? 0}px;
+            ">
+                <span class="material-symbols-outlined" style="
+                    font-size:${p.size ?? 48}px!important;
+                    color:${p.color ?? "var(--color-primary)"};
+                ">
+                    ${p.name ?? "home"}
+                </span>
+            </div>
+        `;
+    }
+    },
+    video: {    //-----------------------------------------------
+    label: "Video",
+    icon: "🎥",
+
+    defaultProps: {
+        url: "",
+        aspectRatio: "16:9",
+        align: "center",
+        padding: 20,
+        margin: 20
+    },
+
+    fields: {
+        url: {
+            type: "text",
+            label: "URL YouTube"
+        },
+
+        aspectRatio: {
+            type: "select",
+            label: "Formato",
+            options: {
+                "16:9": "16:9",
+                "4:3": "4:3",
+                "1:1": "1:1"
+            }
+        },
+
+        align: {
+            type: "select",
+            label: "Allineamento",
+            options: {
+                left: "Sinistra",
+                center: "Centro",
+                right: "Destra"
+            }
+        },
+
+        padding: {
+            type: "number",
+            label: "Padding px"
+        },
+
+        margin: {
+            type: "number",
+            label: "Margin px"
+        }
+    },
+
+    render(widget) {
+        const p = widget.props || {};
+        const videoId = editor.getYoutubeVideoId(p.url || "");
+
+        if (!videoId) {
+            return `
+                <div class="widget-video" style="
+                    text-align:${p.align ?? "center"};
+                    padding:${p.padding ?? 0}px;
+                    margin:${p.margin ?? 0}px;
+                ">
+                    <div style="
+                        padding:20px;
+                        border:1px dashed #ccc;
+                        border-radius:8px;
+                    ">
+                        Inserisci un URL YouTube valido
+                    </div>
+                </div>
+            `;
+        }
+
+        const ratio = editor.getAspectRatioPadding(p.aspectRatio || "16:9");
+
+        return `
+            <div class="widget-video" style="
+                text-align:${p.align ?? "center"};
+                padding:${p.padding ?? 0}px;
+                margin:${p.margin ?? 0}px;
+            ">
+                <div style="
+                    position:relative;
+                    width:100%;
+                    max-width:100%;
+                    padding-top:${ratio};
+                    overflow:hidden;
+                    border-radius:8px;
+                ">
+                    <iframe
+                        src="https://www.youtube.com/embed/${videoId}"
+                        title="YouTube video player"
+                        style="
+                            position:absolute;
+                            top:0;
+                            left:0;
+                            width:100%;
+                            height:100%;
+                            border:0;
+                        "
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+            </div>
+        `;
+    }
+},
+};
 
 //=================================
 // Apre pannello dettagli widget 
@@ -445,12 +631,7 @@ editor.getSelectedWidget = function(){
 // Crea widget nel canvas
 //=================================
 editor.createWidget = function(type){
-/*
-    console.log("CREATE WIDGET type =", type);
-    console.log("this =", this);
-    console.log("this.uid =", this.uid);
-    console.log("typeof this.uid =", typeof this.uid);
-*/
+
     const def = this.widgets[type];
 
     if(!def){
@@ -615,4 +796,45 @@ editor.renderWidget = function(widget){
             ${content}
         </div>
     `;
+};
+
+//=================================
+//  URL YouTube -> video ID
+//=================================
+editor.getYoutubeVideoId = function(url) {
+    if (!url) return "";
+
+    const patterns = [
+        /youtube\.com\/watch\?v=([^&]+)/,
+        /youtu\.be\/([^?&]+)/,
+        /youtube\.com\/embed\/([^?&]+)/,
+        /youtube\.com\/shorts\/([^?&]+)/
+    ];
+
+    for (const pattern of patterns) {
+        const match = url.match(pattern);
+        if (match && match[1]) {
+// FB: render colonna completo
+console.log('URL=',match[0], 'ID=', match[1]);
+
+            return match[1];
+        }
+    }
+
+    return "";
+};
+
+//=================================
+//  aspett ratio -> padding
+//=================================
+editor.getAspectRatioPadding = function(ratio) {
+    switch (ratio) {
+        case "4:3":
+            return "75%";
+        case "1:1":
+            return "100%";
+        case "16:9":
+        default:
+            return "56.25%";
+    }
 };

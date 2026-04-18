@@ -163,8 +163,6 @@ if (file_exists($layoutFile)) {
             <div id="canvas" class="canvas"> </div>
             <div style="display:flex; justify-content:center">
             <button id="add-section" class="add-section-btn">➕ Sezione</button>
-            <button id="add-hero-section" class="add-hero-section">➕ Sezione Hero</button>
-
             </div>
         </div>
        
