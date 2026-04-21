@@ -204,50 +204,64 @@ defaultProps:{
         `;
     }
     },
-    image:  //-----------------------------------------------
-       {
+    image: {
     label: "Immagine",
     icon: "🖼️",
 
     defaultProps: {
-        src: "/assets/images/image.png",
+        src: "",
         alt: "",
-        align: "center",
-        width: "150"
+        align: "left",
+        width: 300
     },
 
     fields: {
-        src:{type:"text",label:"Percorso immagine"},
-        imageFile:{type:"image_upload",label:"Carica immagine"},
-        alt:{type:"text",label:"Alt"},
-        align:{
-            type:"select",
-            label:"Allineamento",
-            options:{
-                left:"Sinistra",
-                center:"Centro",
-                right:"Destra"
+        src: {
+            type: "image_picker",
+            label: "Immagine"
+        },
+
+        alt: {
+            type: "text",
+            label: "Alt"
+        },
+
+        align: {
+            type: "select",
+            label: "Allineamento",
+            options: {
+                left: "Sinistra",
+                center: "Centro",
+                right: "Destra"
             }
         },
-        width:{type:"number", label:"Larghezza px"}
+
+        width: {
+            type: "number",
+            label: "Larghezza px"
+        }
     },
 
-    render: function(widget){
+    render(widget){
+        const p = widget.props || {};
+        const src = editor.resolveAssetUrl(p.src || "");
 
-    let src = widget.props.src || "";
+        if(!src){
+            return `
+                <div class="widget-image-empty">
+                    Nessuna immagine selezionata
+                </div>
+            `;
+        }
 
-    if(src && !src.startsWith("http") && !src.startsWith("../")){
-        src = "../" + src;
+        return `
+            <div class="widget-image" style="text-align:${p.align ?? "left"};">
+                <img src="${src}" alt="${p.alt ?? ""}" style="width:${p.width ?? 300}px;">
+            </div>
+        `;
     }
-
-    return `
-        <div class="widget-image" style="text-align:${widget.props.align};">
-            ${src ? `<img src="${src}" alt="${widget.props.alt || ""}" style="width:${widget.props.width}px;">` : ""}
-        </div>
-    `;
-}
-    },
-    button: {
+},
+    button: {   // -----------------------------------------------
 
         label: "Bottone",
         icon: "🔘",
@@ -260,6 +274,7 @@ defaultProps:{
             sfondo: "#ffa500",
             bordo: 25,
             padd: 20,
+            padding: 20,
             fontSize: "22px",
             fontWeight: "600"
         },
@@ -308,9 +323,13 @@ defaultProps:{
                 type: "number",
                 label: "Raggio bordo px"
             },
-            padd: {
+            padding: {
                 type: "number",
-                label: "Padding px"
+                label: "Padding div px"
+            },
+           padd: {
+                type: "number",
+                label: "Padding button px"
             },
             fontSize: {
                 type: "select",
@@ -337,7 +356,7 @@ defaultProps:{
         render: function(widget){
             return `
                 <div class="widget-button" style="
-                    text-align:${widget.props.align}; ">
+                    text-align:${widget.props.align}; padding:${widget.props.padding}px;">
 
                     <a href="${widget.props.url}" style="
                         text-decoration:none;
@@ -558,7 +577,66 @@ defaultProps:{
             </div>
         `;
     }
-},
+    },
+    divider: {   //-----------------------------------------------
+
+        label: "Divisore",
+        icon: "🧱",
+
+        defaultProps: {
+        name: "home",
+        size: 48,
+        color: "var(--color-primary)",
+        padding: 0,
+        margin: 0,
+        height: 1
+        },
+
+        fields:{
+            name:{
+                type:"text",
+                label: "Nome icona"},
+            size:{
+                type:"number",
+                label:"Altezza px"},
+            color: {
+                type: "color",
+                label: "Colore"
+        },
+            height: {
+                type: "number",
+                label: "Altezza riga px"
+        },
+            padding: {
+                type: "number",
+                label: "Padding px"
+            },
+
+        margin: {
+            type: "number",
+            label: "Margin px"
+        }
+ }, 
+        render: function(widget){
+            const p = widget.props || {};
+            return `
+            <div class="widget-divider" style="display: flex; 
+                                        flex-direction: row;
+                                        align-items: center; 
+                                        gap: 15px; 
+                                        margin: 20px 0;">
+                <div style="flex: 1; height: ${p.height ?? 1}px; background: ${resolveColor(p.color)};"></div>
+                    <div><span class="material-symbols-outlined" style="
+                    font-size:${p.size ?? 48}px!important;
+                    color:${p.color ?? "var(--color-primary)"};">
+                    ${p.name ?? "home"}
+                    </span></div>
+                <div style="flex: 1; height: ${p.height ?? 1}px; background: ${resolveColor(p.color)};"></div>
+            </div>    
+            `;
+        }
+
+    }  ,
 };
 
 //=================================
@@ -728,7 +806,6 @@ editor.renderInspector = function(widget, def){
             let options = "";
 
             Object.keys(field.options).forEach(k => {
-
                 const selected = k === value ? "selected" : "";
 
                 options += `
@@ -754,6 +831,20 @@ editor.renderInspector = function(widget, def){
                     data-upload-image="1"
                 >
             `;
+        }
+
+        if(field.type === "image_picker"){
+            input = `
+                <div class="image-picker-slot"
+                     data-image-picker="${fieldName}">
+                    Loading...
+                </div>
+            `;
+
+            setTimeout(async () => {
+                const html = await editor.renderImagePicker(fieldName, value);
+                $panel.find(`[data-image-picker="${fieldName}"]`).html(html);
+            }, 0);
         }
 
         const row = `
@@ -837,4 +928,36 @@ editor.getAspectRatioPadding = function(ratio) {
         default:
             return "56.25%";
     }
+};
+
+//=================================
+//  image picker
+//=================================
+editor.renderImagePicker = async function(fieldName, value){
+
+    const images = await editor.loadImages();
+    let html = `<div class="image_picker">`;
+
+    images.forEach(img => {
+
+        const selected = img.file === value ? "selected" : "";
+
+        html += `
+            <div class="image-thumb ${selected}"
+                 data-field="${fieldName}"
+                 data-value="${img.file}"
+                 draggable="false">
+                 
+                <img src="${editor.resolveAssetUrl(img.file)}"
+                     alt="${img.name}"
+                     draggable="false">
+
+                <div class="img-name">${img.name}</div>
+            </div>
+        `;
+    });
+
+    html += `</div>`;
+
+    return html;
 };

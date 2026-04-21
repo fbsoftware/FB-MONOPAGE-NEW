@@ -273,14 +273,6 @@ editor.renderColumn = function(column){
     const $toolbar = $("<div>")
         .addClass("column-toolbar")
         .html(`
-            <button class="move-left button">
-                <span class="material-symbols-outlined">arrow_back</span>
-            </button>
-
-            <button class="move-right button">
-                <span class="material-symbols-outlined">arrow_forward</span>
-            </button>
-
             <button class="delete-column button">
                 <span class="material-symbols-outlined">delete</span>
             </button>

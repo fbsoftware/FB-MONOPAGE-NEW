@@ -235,7 +235,6 @@ window.INITIAL_LAYOUT = <?= json_encode($layoutData, JSON_PRETTY_PRINT | JSON_UN
 <script src="editor-inspector.js"></script>
 <script src="editor-state.js"></script>
 <script src="editor-render.js"></script>        <!-- quì editor.render() definizione -->
-<script src="HTML.js"></script>
 <script src="editor-core.js"></script>
 <script src="editor.js"></script>             <!-- quì editor.init() defin. + uso -->
 

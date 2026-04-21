@@ -497,3 +497,38 @@ textarea{
 .material-symbols-outlined{
     font-size:16px !important;
 }
+
+/*  IMMAGINI  */
+.image-picker {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 8px;
+}
+
+.image-thumb {
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 4px;
+    text-align: center;
+    outline: 2px solid red;
+    pointer-events: auto;
+}
+
+.image-thumb img {
+    width: 100%;
+    height: 60px;
+    object-fit: cover;
+}
+
+.image-thumb.selected {
+    border-color: blue;
+}
+
+.img-name {
+    font-size: 10px;
+    overflow: hidden;
+}
+.image-thumb img,
+.image-thumb .img-name {
+    pointer-events: none;
+}

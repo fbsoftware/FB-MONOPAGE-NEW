@@ -17,6 +17,7 @@
         <a href="/FB-JSON/index.php?page=chi-siamo">Chi siamo</a>
         <a href="/FB-JSON/index.php?page=contatti">Contatti</a>
         <a href="/FB-JSON/index.php?page=page">Pagina</a>
+        <a href="/FB-JSON/index.php?page=test">Prove</a>
     </nav>
 
 </div>

@@ -176,10 +176,11 @@ error_log('Rendering widget: ' . $type);
             $sfondo = $props['sfondo'] ?? '';
             $bordo = $props['bordo'] ?? 25;
             $padd = $props['padd'] ?? 20;
+            $padding = $props['padding'] ?? 20;
             $fontSize = $props['fontSize'] ?? 22;
             $fontWeight = $props['fontWeight'] ?? 600;
 
-            return '<div class="widget-button" style="text-align:' . h($align) . ';">
+            return '<div class="widget-button" style="text-align:' . h($align) . '; padding:' . h($padding) . 'px;  ">
                 <a href="' . h($url) . '" style="
                     display:inline-block;
                     width:auto;
@@ -235,6 +236,7 @@ error_log('Rendering widget: ' . $type);
             </div>';
 
         case 'video':
+
             $url = $props['url'] ?? '';
             $aspectRatio = $props['aspectRatio'] ?? '16:9';
             $align = $props['align'] ?? 'center';
@@ -280,7 +282,35 @@ error_log('Rendering widget: ' . $type);
                     </div>
                 </div>
             ';
+        case 'divider':
+            $size = $props['size'] ?? 48;
+            $color = $props['color'] ?? 'var(--color-primary)';
+            $name = $props['name'] ?? 'home';
+            $padding = isset($props['padding']) ? ((int)$props['padding'] . 'px') : '0px';
+            $margin = isset($props['margin']) ? ((int)$props['margin'] . 'px') : '0px';
+            $height = isset($props['height']) ? ((int)$props['height'] . 'px') : '1px';
 
+            return '<div class="widget-divider" 
+                style="display:flex;
+                    align-items: center;
+                    justify-content:center;
+                    align-items:' . h($align) . ';
+                    padding:' . h($padding) . ';
+                    margin:' . h($margin) . ';">
+                <div style="flex: 1; height:'. h($height).'; background:'. h($color).';"></div>
+                <div>
+                    <span class="material-symbols-outlined" style="
+                        font-size:' . h($size) . 'px!important;
+                        color:' . h($color) . ';
+                        padding:' . h($padding) . ';
+                        margin:' . h($margin) . ';">
+                        ' . h($name) . '
+                    </span>
+                </div>
+                <div style="flex: 1; height:'. h($height).'; background:'. h($color).';"></div>
+            </div>';
+        
+        
         default:
             return '<div class="widget-unknown">Widget non supportato: ' . h($type) . '</div>';
     }
@@ -348,5 +378,16 @@ function renderPageHTML(array $data): string
     }
 
     return $body;
-}
+}//============================ 
+// Risolve URL asset (immagini) per HTML pubblico
+//============================
+function resolveAssetUrl(string $path): string
+{
+    $baseUrl = '/FB-JSON';
 
+    if ($path === '') return '';
+    if (preg_match('#^https?://#', $path)) return $path;
+    if (strpos($path, '/') === 0) return $path;
+
+    return $baseUrl . '/' . ltrim($path, '/');
+}

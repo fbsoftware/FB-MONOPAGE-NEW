@@ -3,7 +3,7 @@
         "tema": null,
         "page": "page",
         "version": "2.0",
-        "updated_at": "2026-04-12T19:15:28+02:00"
+        "updated_at": "2026-04-21T14:33:38+02:00"
     },
     "global": {
         "colors": {
@@ -72,6 +72,22 @@
                                 "align": "center",
                                 "color": "var(--color-secondary)"
                             }
+                        },
+                        {
+                            "id": "w1776774725950_1",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "var(--color-bg)",
+                                "sfondo": "var(--color-accent)",
+                                "bordo": "38",
+                                "padd": "15",
+                                "padding": "43",
+                                "fontSize": "36",
+                                "fontWeight": "600"
+                            }
                         }
                     ],
                     "border": 2,
@@ -109,6 +125,6 @@
             ]
         }
     ],
-    "selectedType": null,
-    "selectedId": null
+    "selectedType": "widget",
+    "selectedId": "w1776774725950_1"
 }

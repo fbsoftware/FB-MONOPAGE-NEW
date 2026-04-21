@@ -246,90 +246,6 @@ $(document).on("click",".delete-column",function(e){
 
 });
 
-//=================================
-//  move column left
-//=================================
-editor.moveColumnLeft = function(colId){
-
-    editor.state.sections.forEach(section => {
-
-        const index = section.columns.findIndex(c => c.id === colId);
-
-        if(index > 0){
-
-            const temp = section.columns[index-1];
-            section.columns[index-1] = section.columns[index];
-            section.columns[index] = temp;
-
-        }
-
-    });
-
-    editor.render();
-
-};
-
-
-//=================================
-//  Spostare colonna a destra
-//=================================
-editor.moveColumnRight = function(colId){
-
-    editor.state.sections.forEach(section => {
-
-        const index = section.columns.findIndex(c => c.id === colId);
-
-        if(index >= 0 && index < section.columns.length-1){
-
-            const temp = section.columns[index+1];
-            section.columns[index+1] = section.columns[index];
-            section.columns[index] = temp;
-
-        }
-
-    });
-
-    editor.render();
-
-};
-
-//=================================
-//  Spostare colonna a destra
-//=================================
-editor.moveColumnRight = function(colId){
-
-    editor.state.sections.forEach(section => {
-
-        const index = section.columns.findIndex(c => c.id === colId);
-
-        if(index >= 0 && index < section.columns.length-1){
-
-            const temp = section.columns[index+1];
-            section.columns[index+1] = section.columns[index];
-            section.columns[index] = temp;
-
-        }
-
-    });
-
-    editor.render();
-
-};
-
-//=================================
-//  colonna a destra
-//=================================
-$(document).on("click",".move-right",function(e){
-
-    e.stopPropagation();
-
-    const colId = $(this)
-        .closest(".canvas-column")
-        .data("id");
-
-    editor.moveColumnRight(colId);
-
-});
 
 //======================================
 // clic-widget per selezione
@@ -584,3 +500,61 @@ $(document).on("change", '#inspector input[data-upload-image="1"]', function(){
     });
 });
 
+//=================================
+//  lettura immagini    
+//=================================
+editor.loadImages = async function(){
+
+    const res = await fetch("/FB-JSON/api/list-images.php");
+    const data = await res.json();
+
+    if(!data.success){
+        console.error("Errore immagini:", data.error);
+        return [];
+    }
+
+    return data.images;
+};
+
+//=================================
+// image-thumb click
+//=================================
+console.log("HANDLER image-thumb caricato");
+$(document).on("click", ".image-thumb", function(e){
+    e.preventDefault();
+    e.stopPropagation();
+
+    const field = $(this).data("field");
+    const value = $(this).data("value");
+
+    const widgetId = editor.state.selectedId;
+    const widget = editor.findWidgetById(widgetId);
+
+    console.log("selectedId", widgetId);
+    console.log("widget", widget);
+    console.log("field", field, "value", value);
+
+    if(!widget) return;
+
+    widget.props[field] = value;
+
+    editor.render();
+    editor.openInspector(widget, editor.widgets[widget.type]);
+});
+
+//=================================
+// blocca la propagazione sull’intero picker:
+//================================= 
+$(document).on("click", ".image-picker, .image-thumb, .image-thumb *", function(e){
+    e.stopPropagation();
+});
+//=================================
+///  risolve path immagini
+//=================================
+editor.resolveAssetUrl = function(path){
+    if(!path) return "";
+    if(path.startsWith("http://") || path.startsWith("https://") || path.startsWith("/")){
+        return path;
+    }
+    return "/FB-JSON/" + path.replace(/^\/+/, "");
+};

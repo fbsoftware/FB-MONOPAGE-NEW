@@ -1,0 +1,134 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "test",
+        "version": "2.0",
+        "updated_at": "2026-04-21T15:23:35+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#ffffff",
+            "undefined": "#ffffff"
+        },
+        "typography": [],
+        "fonts": {
+            "heading-family": "Inter",
+            "heading-weight": "400",
+            "body-family": "Inter",
+            "body-weight": "400"
+        }
+    },
+    "sections": [
+        {
+            "id": "sec-1776608234248-748",
+            "background": "var(--color-primary)",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1776608255975-546",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1776608277023_3",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/image.png",
+                                "alt": "IMAGE",
+                                "align": "center",
+                                "width": "150"
+                            }
+                        },
+                        {
+                            "id": "w1776608286549_4",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "right",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": "30",
+                                "padd": "15",
+                                "fontSize": "22px",
+                                "fontWeight": "600",
+                                "padding": "15"
+                            }
+                        },
+                        {
+                            "id": "w1776695805523_1",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/auto.jpg",
+                                "alt": "",
+                                "align": "center",
+                                "width": 300
+                            }
+                        },
+                        {
+                            "id": "w1776705592554_1",
+                            "type": "divider",
+                            "props": {
+                                "name": "home",
+                                "size": "43",
+                                "color": "#faf9f9",
+                                "padding": "0",
+                                "margin": "0",
+                                "height": "2"
+                            }
+                        }
+                    ],
+                    "padding": 20
+                }
+            ]
+        },
+        {
+            "id": "sec-1776695669585-468",
+            "background": "var(--color-secondary)",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1776695669585-575",
+                    "width": 50,
+                    "widgets": []
+                },
+                {
+                    "id": "col-1776608234248-842",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1776608271426_1",
+                            "type": "header",
+                            "props": {
+                                "text": "Titolo ---",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1776608273689_2",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "selectedType": null,
+    "selectedId": null
+}
