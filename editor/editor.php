@@ -149,17 +149,18 @@ if (file_exists($layoutFile)) {
 
     <div class="canvas-panel">
                 <div style="flex:2">&nbsp;</div>
-                <div style="display: flex; gap: 250px; align-items: center; margin-bottom: 20px;">
-                    <div style="flex:3">     
-                        <h2 style="text-align:center">Layout del tema <span style="color: black"><?=$tema?></span> pagina <span style="color: black"><?=$page?></span></h2>  
+                <div style="display: flex; gap: 250px; justify-content: space-between; margin-bottom: 20px;">
+                    <div style="flex:7">     
+                        <h2 style="text-align:center">Layout del tema: <span style="color: black"><?=$tema?></span> pagina: <span style="color: black"><?=$page?></span></h2>  
                     </div>
                     <div style="flex:1">
                         <button id="save-layout">Pubblica</button>
-                    </div>                    
+                    </div> 
                 </div> 
 
 
         <div>
+            <div id="site-menu-builder"></div>
             <div id="canvas" class="canvas"> </div>
             <div style="display:flex; justify-content:center">
             <button id="add-section" class="add-section-btn">➕ Sezione</button>
@@ -236,6 +237,7 @@ window.INITIAL_LAYOUT = <?= json_encode($layoutData, JSON_PRETTY_PRINT | JSON_UN
 <script src="editor-state.js"></script>
 <script src="editor-render.js"></script>        <!-- quì editor.render() definizione -->
 <script src="editor-core.js"></script>
+<script src="nav.js"></script>
 <script src="editor.js"></script>             <!-- quì editor.init() defin. + uso -->
 
 </body>

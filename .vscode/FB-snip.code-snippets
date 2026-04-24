@@ -31,7 +31,6 @@
 	 	"body":
 		[
 		"// FB: render colonna completo",
-		
 	 		"console.log('$1');",
 	 		"$2"
 	 	],
@@ -121,10 +120,11 @@
 		"        var(--color-primary):\"Primario\",",
 		"        var(--color-secondary):\"Secondario\",",
 		"        var(--color-accent):\"Accent\",",
-		"        var(--color-text):\"Testo\","
-		"        var(--color-bg):\"Sfondo\","
+		"        var(--color-text):\"Testo\",",
+		"        var(--color-bg):\"Sfondo\",",
 		"    }",
 		"},"	
 	]
-	  },
+  },
+
 

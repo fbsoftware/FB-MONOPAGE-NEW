@@ -1,14 +1,71 @@
 <?php
-$page = $_GET['page'] ?? 'home';
+function h($value) {
+    return htmlspecialchars((string)$value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
 
-// sicurezza base
+function loadSiteMenu(): array
+{
+    $menuPath = __DIR__ . '/data/site-menu.json';
+
+    if (!file_exists($menuPath)) {
+        return [];
+    }
+
+    $json = file_get_contents($menuPath);
+    $menu = json_decode($json, true);
+
+    return is_array($menu) ? $menu : [];
+}
+
+function renderSiteMenuHTML(array $items): string
+{
+    if (empty($items)) {
+        return '';
+    }
+
+    $html = '<ul class="site-menu">';
+    $prevLevel = 0;
+
+    foreach ($items as $i => $item) {
+        $title = $item['title'] ?? 'Pagina';
+        $page  = $item['page'] ?? '#';
+        $level = isset($item['level']) ? (int)$item['level'] : 0;
+
+        if ($i > 0) {
+            if ($level > $prevLevel) {
+                $html .= '<ul>';
+            } elseif ($level < $prevLevel) {
+                for ($j = $prevLevel; $j > $level; $j--) {
+                    $html .= '</li></ul>';
+                }
+                $html .= '</li>';
+            } else {
+                $html .= '</li>';
+            }
+        }
+
+        $html .= '<li>';
+        $html .= '<a href="index.php?page=' . h($page) . '">' . h($title) . '</a>';
+
+        $prevLevel = $level;
+    }
+
+    for ($j = $prevLevel; $j >= 0; $j--) {
+        $html .= '</li></ul>';
+    }
+
+    return $html;
+}
+
+$siteMenu = loadSiteMenu();
+$page = $_GET['page'] ?? 'home';
 $page = preg_replace('/[^a-zA-Z0-9\-_]/', '', $page);
 
-$file = __DIR__ . '/pages/' . $page . '.html';
+$pagePath = __DIR__ . '/pages/' . $page . '.html';
 
-if (!file_exists($file)) {
-    $file = __DIR__ . '/pages/404.html';
-}
+$pageContent = file_exists($pagePath)
+    ? file_get_contents($pagePath)
+    : '<p>Pagina non trovata</p>';
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -21,13 +78,28 @@ if (!file_exists($file)) {
 <body>
 
 <main>
-<?php include __DIR__ . '/includes/nav.php'; 
-    if (file_exists($file)) {
-        readfile($file);
-    } else {
-        echo "<h1>Pagina non trovata</h1>";
-    }
-    ?>
+<div style="display: flex; 
+            flex-direction: row; 
+            align-items: center;
+            width: 1240px; 
+            background: var(--color-bg); 
+            padding: 10px;  
+            height: 140px;
+            ">
+
+    <header class="header" >
+    <img src="assets/images/logo.png" alt="Logo di FB" class="logo" height="150px" 
+            style="padding: 20px;"   >
+    </header>
+
+    <nav>
+        <?php echo renderSiteMenuHTML(loadSiteMenu()); ?>
+    </nav>
+</div>
+    <section id="page-content">
+        <?php echo $pageContent; ?>
+    </section>
+
 </main>
 
 </body>

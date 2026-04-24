@@ -197,7 +197,7 @@ $("#saveSiteConfig").on("click", function(){
 //=================================
 $(document).on("click", ".canvas-column", function(e){
     e.stopPropagation();
-// console.log("CLICCATA COLONNA");
+ console.log("CLICCATA COLONNA");
 if($(e.target).closest(".canvas-widget").length) return;
     const id = $(this).data("id");
 

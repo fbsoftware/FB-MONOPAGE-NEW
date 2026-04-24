@@ -1,7 +1,7 @@
 var editor = editor || {};
 
 editor.init = function () {
-
+    // carica menu iniziale
 editor.renderWidgetPalette();   // ← QUESTO CARICA I WIDGET NELLA PALETTE
 // Carica layout iniziale
 //console.log("INITIAL LAYOUT=",window.INITIAL_LAYOUT);
@@ -27,6 +27,17 @@ editor.renderWidgetPalette();   // ← QUESTO CARICA I WIDGET NELLA PALETTE
 };
 
 //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+$(document).ready(function(){
+
+    editor.siteMenu = [
+        { title: "Home", page: "home", level: 0 },
+        { title: "Servizi", page: "servizi", level: 0 },
+        { title: "Web Design", page: "web-design", level: 1 },
+        { title: "Contatti", page: "contatti", level: 0 }
+    ];
+
+});
 $(document).ready(function () {
-  editor.init();
+    editor.init();
+
 });

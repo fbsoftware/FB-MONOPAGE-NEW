@@ -3,7 +3,7 @@
         "tema": null,
         "page": "test",
         "version": "2.0",
-        "updated_at": "2026-04-21T15:23:35+02:00"
+        "updated_at": "2026-04-24T20:38:03+02:00"
     },
     "global": {
         "colors": {
@@ -25,13 +25,13 @@
     "sections": [
         {
             "id": "sec-1776608234248-748",
-            "background": "var(--color-primary)",
+            "background": "var(--color-secondary)",
             "padding": "20",
             "margin": "0",
             "columns": [
                 {
                     "id": "col-1776608255975-546",
-                    "width": 100,
+                    "width": 50,
                     "widgets": [
                         {
                             "id": "w1776608277023_3",
@@ -49,7 +49,7 @@
                             "props": {
                                 "text": "CERCA",
                                 "url": "#",
-                                "align": "right",
+                                "align": "center",
                                 "color": "#000000",
                                 "sfondo": "#ffa500",
                                 "bordo": "30",
@@ -63,26 +63,80 @@
                             "id": "w1776695805523_1",
                             "type": "image",
                             "props": {
-                                "src": "assets\/images\/auto.jpg",
+                                "src": "assets\/images\/FAEL-logo-2025.png",
                                 "alt": "",
                                 "align": "center",
-                                "width": 300
-                            }
-                        },
-                        {
-                            "id": "w1776705592554_1",
-                            "type": "divider",
-                            "props": {
-                                "name": "home",
-                                "size": "43",
-                                "color": "#faf9f9",
-                                "padding": "0",
-                                "margin": "0",
-                                "height": "2"
+                                "width": "150"
                             }
                         }
                     ],
                     "padding": 20
+                },
+                {
+                    "id": "col-1776780724452-674",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1776780753225_2",
+                            "type": "header",
+                            "props": {
+                                "text": "Titolo ---",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1776780756114_3",
+                            "type": "textarea",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
+                                "align": "left",
+                                "color": "var(--color-text)",
+                                "fontSize": "16px",
+                                "fontWeight": "400"
+                            }
+                        },
+                        {
+                            "id": "w1776780772998_4",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/logo.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": 300
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sec-1776780827052-349",
+            "background": "var(--color-secondary)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1776780827052-118",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1776780865370_5",
+                            "type": "divider",
+                            "props": {
+                                "name": "home",
+                                "size": "25",
+                                "color": "#f3f1f1",
+                                "padding": "0",
+                                "margin": "0",
+                                "height": 1
+                            }
+                        }
+                    ],
+                    "margin": 12
                 }
             ]
         },
@@ -129,6 +183,6 @@
             ]
         }
     ],
-    "selectedType": null,
-    "selectedId": null
+    "selectedType": "section",
+    "selectedId": "sec-1776608234248-748"
 }

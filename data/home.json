@@ -3,7 +3,7 @@
         "tema": null,
         "page": "home",
         "version": "2.0",
-        "updated_at": "2026-04-14T16:14:56+02:00"
+        "updated_at": "2026-04-24T20:12:47+02:00"
     },
     "global": {
         "colors": {
@@ -85,7 +85,7 @@
                             "id": "w1775572891522_5",
                             "type": "image",
                             "props": {
-                                "src": "uploads\/classi-1775573094.png",
+                                "src": "assets\/images\/classi.png",
                                 "alt": "",
                                 "align": "center",
                                 "width": "150",
@@ -131,7 +131,7 @@
                             "id": "w1775572894095_6",
                             "type": "image",
                             "props": {
-                                "src": "uploads\/jquery-1775573105.png",
+                                "src": "assets\/images\/jquery.png",
                                 "alt": "",
                                 "align": "center",
                                 "width": "150",
@@ -177,7 +177,7 @@
                             "id": "w1775572897254_7",
                             "type": "image",
                             "props": {
-                                "src": "uploads\/layout-1775573116.png",
+                                "src": "assets\/images\/layout.png",
                                 "alt": "",
                                 "align": "center",
                                 "width": "150",
@@ -223,7 +223,7 @@
                             "id": "w1775572900593_8",
                             "type": "image",
                             "props": {
-                                "src": "uploads\/traduci-1775573124.png",
+                                "src": "assets\/images\/traduci.png",
                                 "alt": "",
                                 "align": "center",
                                 "width": "111",
@@ -680,6 +680,6 @@
             ]
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "wid-1776099597675-555"
+    "selectedType": null,
+    "selectedId": null
 }
