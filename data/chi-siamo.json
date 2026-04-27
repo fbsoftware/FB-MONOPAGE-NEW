@@ -3,7 +3,7 @@
         "tema": null,
         "page": "chi-siamo",
         "version": "2.0",
-        "updated_at": "2026-04-04T00:11:22+02:00"
+        "updated_at": "2026-04-21T18:58:03+02:00"
     },
     "global": {
         "colors": {
@@ -25,22 +25,30 @@
     "sections": [
         {
             "id": "sec-1775151183180-400",
-            "background": "var(--color-bg)",
+            "background": "var(--color-primary)",
             "padding": "20",
             "margin": "0",
             "columns": [
                 {
                     "id": "col-1775151183180-736",
-                    "width": 49,
+                    "width": 50,
                     "widgets": [
+                        {
+                            "id": "w1776781615403_2",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        },
                         {
                             "id": "w1775238369032_1",
                             "type": "header",
                             "props": {
-                                "text": "Titolo ---",
+                                "text": "CHI SIAMO NOI",
                                 "level": "h2",
-                                "align": "center",
-                                "color": "#000000"
+                                "align": "right",
+                                "color": "var(--color-bg)"
                             }
                         },
                         {
@@ -48,7 +56,7 @@
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
-                                "align": "left",
+                                "align": "right",
                                 "color": "#000000"
                             }
                         }
@@ -56,7 +64,7 @@
                 },
                 {
                     "id": "col-1775238305328-834",
-                    "width": 52,
+                    "width": 50,
                     "widgets": [
                         {
                             "id": "w1775238379504_3",
@@ -65,30 +73,18 @@
                                 "src": "uploads\/star-1775238394.jpg",
                                 "alt": "",
                                 "align": "center",
-                                "width": "120",
+                                "width": "186",
                                 "imageFile": "C:\\fakepath\\star.jpeg"
                             }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "sec-1775254211356-424",
-            "background": "var(--color-bg)",
-            "padding": "20",
-            "margin": "0",
-            "columns": [
-                {
-                    "id": "col-1775254211356-220",
-                    "width": 100,
-                    "widgets": [
+                        },
                         {
-                            "id": "w1775254220031_1",
-                            "type": "spacer",
+                            "id": "w1776781592390_1",
+                            "type": "image",
                             "props": {
-                                "text": "spaziatore",
-                                "height": "134"
+                                "src": "assets\/images\/Fonteney-005.jpg",
+                                "alt": "",
+                                "align": "left",
+                                "width": 300
                             }
                         }
                     ]
@@ -96,6 +92,6 @@
             ]
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1775238379504_3"
+    "selectedType": null,
+    "selectedId": null
 }

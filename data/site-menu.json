@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Home",
+        "page": "home",
+        "level": 0
+    },
+    {
+        "title": "Chi-siamo",
+        "page": "chi-siamo",
+        "level": 0
+    },
+    {
+        "title": "Contatti",
+        "page": "contatti",
+        "level": 0
+    },
+    {
+        "title": "Page",
+        "page": "page",
+        "level": 0
+    },
+    {
+        "title": "Test",
+        "page": "test",
+        "level": 1
+    },
+    {
+        "title": "New",
+        "page": "new",
+        "level": 1
+    }
+]

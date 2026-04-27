@@ -79,43 +79,40 @@ $(document).on("click", ".duplicate", function(e){
 // SAVE: BOTTONE PUBBLICA
 //================================
 $(document).on("click", "#save-layout", function(){
-if(!confirm("Vuoi Pubblicare il layout ?")) return;
+    if(!confirm("Vuoi Pubblicare il layout ?")) return;
 
-    const data = editor.state;
+    console.log("SALVATAGGIO:", editor.state);
 
-    console.log("SALVATAGGIO:", data);
-/*
-    fetch("save-layout.php", {
+    fetch("save.php", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data, null, 2)
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(editor.state)
     })
-    .then(res => res.text())
+    .then(async res => {
+        const text = await res.text();
+        console.log("RAW SAVE RESPONSE:", text);
+
+        try {
+            return JSON.parse(text);
+        } catch (err) {
+            throw new Error("Risposta non JSON da save.php: " + text);
+        }
+    })
     .then(res => {
-        console.log("Risposta server:", res);
+        console.log("SAVE RESULT:", res);
+
+        if(res.success){
+            alert("Salvato!");
+        } else {
+            alert("Errore: " + res.error);
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Errore salvataggio: " + err.message);
     });
-
-});*/
-fetch("save.php", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(editor.state)
-})
-.then(res => res.json())
-.then(res => {
-    console.log("SAVE RESULT:", res);
-
-    if(res.success){
-        alert("Salvato!");
-    } else {
-        alert("Errore: " + res.error);
-    }
 });
-});
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //================================
 // SAVE / PUBBLICA
 //================================
@@ -200,7 +197,7 @@ $("#saveSiteConfig").on("click", function(){
 //=================================
 $(document).on("click", ".canvas-column", function(e){
     e.stopPropagation();
-console.log("CLICCATA COLONNA");
+ console.log("CLICCATA COLONNA");
 if($(e.target).closest(".canvas-widget").length) return;
     const id = $(this).data("id");
 
@@ -249,90 +246,6 @@ $(document).on("click",".delete-column",function(e){
 
 });
 
-//=================================
-//  move column left
-//=================================
-editor.moveColumnLeft = function(colId){
-
-    editor.state.sections.forEach(section => {
-
-        const index = section.columns.findIndex(c => c.id === colId);
-
-        if(index > 0){
-
-            const temp = section.columns[index-1];
-            section.columns[index-1] = section.columns[index];
-            section.columns[index] = temp;
-
-        }
-
-    });
-
-    editor.render();
-
-};
-
-
-//=================================
-//  Spostare colonna a destra
-//=================================
-editor.moveColumnRight = function(colId){
-
-    editor.state.sections.forEach(section => {
-
-        const index = section.columns.findIndex(c => c.id === colId);
-
-        if(index >= 0 && index < section.columns.length-1){
-
-            const temp = section.columns[index+1];
-            section.columns[index+1] = section.columns[index];
-            section.columns[index] = temp;
-
-        }
-
-    });
-
-    editor.render();
-
-};
-
-//=================================
-//  Spostare colonna a destra
-//=================================
-editor.moveColumnRight = function(colId){
-
-    editor.state.sections.forEach(section => {
-
-        const index = section.columns.findIndex(c => c.id === colId);
-
-        if(index >= 0 && index < section.columns.length-1){
-
-            const temp = section.columns[index+1];
-            section.columns[index+1] = section.columns[index];
-            section.columns[index] = temp;
-
-        }
-
-    });
-
-    editor.render();
-
-};
-
-//=================================
-//  colonna a destra
-//=================================
-$(document).on("click",".move-right",function(e){
-
-    e.stopPropagation();
-
-    const colId = $(this)
-        .closest(".canvas-column")
-        .data("id");
-
-    editor.moveColumnRight(colId);
-
-});
 
 //======================================
 // clic-widget per selezione
@@ -504,23 +417,27 @@ console.log("col-input modificato" , value);
         editor.openColumnInspector(columnId);
     }
 );
-$(document).on("input change", "#inspector [data-column-field]",
-    function(){
+$(document).on("input change", "#inspector [data-column-field]", function(){
 
-        const field = $(this).data("column-field");
-        const value = parseInt($(this).val(), 10);
+    const field = $(this).data("column-field");
+    const type = $(this).attr("type");
+    let value = $(this).val();
 
-        const columnId = editor.state.selectedId;
-        const column = editor.findColumnById(columnId);
+    const columnId = editor.state.selectedId;
+    const column = editor.findColumnById(columnId);
 
-        if(!column) return;
+    if(!column) return;
 
-        column[field] = value;
-
-        editor.render();
-        editor.openColumnInspector(columnId);
+    if(type === "number" || type === "range"){
+        value = parseInt(value, 10);
+        if(isNaN(value)) value = 0;
     }
-);
+
+    column[field] = value;
+
+    editor.render();
+    editor.openColumnInspector(columnId);
+});
 
 
 //========================================
@@ -582,3 +499,62 @@ $(document).on("change", '#inspector input[data-upload-image="1"]', function(){
         alert("Errore upload immagine");
     });
 });
+
+//=================================
+//  lettura immagini    
+//=================================
+editor.loadImages = async function(){
+
+    const res = await fetch("/FB-JSON/api/list-images.php");
+    const data = await res.json();
+
+    if(!data.success){
+        console.error("Errore immagini:", data.error);
+        return [];
+    }
+
+    return data.images;
+};
+
+//=================================
+// image-thumb click
+//=================================
+console.log("HANDLER image-thumb caricato");
+$(document).on("click", ".image-thumb", function(e){
+    e.preventDefault();
+    e.stopPropagation();
+
+    const field = $(this).data("field");
+    const value = $(this).data("value");
+
+    const widgetId = editor.state.selectedId;
+    const widget = editor.findWidgetById(widgetId);
+
+    console.log("selectedId", widgetId);
+    console.log("widget", widget);
+    console.log("field", field, "value", value);
+
+    if(!widget) return;
+
+    widget.props[field] = value;
+
+    editor.render();
+    editor.openInspector(widget, editor.widgets[widget.type]);
+});
+
+//=================================
+// blocca la propagazione sull’intero picker:
+//================================= 
+$(document).on("click", ".image-picker, .image-thumb, .image-thumb *", function(e){
+    e.stopPropagation();
+});
+//=================================
+///  risolve path immagini
+//=================================
+editor.resolveAssetUrl = function(path){
+    if(!path) return "";
+    if(path.startsWith("http://") || path.startsWith("https://") || path.startsWith("/")){
+        return path;
+    }
+    return "/FB-JSON/" + path.replace(/^\/+/, "");
+};

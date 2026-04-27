@@ -5,8 +5,9 @@
 $(document).on("click", "#add-section", function(){
     editor.createSection();
 });
+
 //=================================
-// Move section
+// Move section UP DOWN           |
 //=================================
 editor.moveSection = function(sectionId, direction) {
 
@@ -48,9 +49,71 @@ editor.deleteSection = function(sectionId){
 };
  
 //=================================
+//  APRE INSPECTOR SEZIONI
+//=================================
+editor.openSectionInspector = function(sectionId){
+
+    const section = editor.findSectionById(sectionId);
+
+    if(!section){
+        console.error("Sezione non trovata:", sectionId);
+        return;
+    }
+
+    editor.renderSectionInspector(section);
+};
+
+//=================================
+//  RENDER INSPECTOR SEZIONI
+//=================================
+editor.renderSectionInspector = function(section){
+
+    const $panel = $("#inspector");
+    $panel.empty();
+
+    const html = `
+        <div class="inspector">
+            <h3>Sezione</h3>
+
+            <label for="sec-background">Sfondo</label>
+            <select id="sec-background" data-section-field="background">
+                <option value="var(--color-primary)" ${section.background === "var(--color-primary)" ? "selected" : ""}>Primario</option>
+                <option value="var(--color-secondary)" ${section.background === "var(--color-secondary)" ? "selected" : ""}>Secondario</option>
+                <option value="var(--color-accent)" ${section.background === "var(--color-accent)" ? "selected" : ""}>Accent</option>
+                <option value="var(--color-text)" ${section.background === "var(--color-text)" ? "selected" : ""}>Testo</option>
+                <option value="var(--color-bg)" ${section.background === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
+            </select>
+               <input
+                id="sec-background"
+                type="color"
+                value="${section.background}"
+                data-section-field="background"
+                >
+
+            <label for="sec-padding">Padding</label>
+            <input
+                id="sec-padding"
+                type="number"
+                value="${section.padding || "20"}"
+                data-section-field="padding"
+            >
+
+            <label for="sec-margin">Margin</label>
+            <input
+                id="sec-margin"
+                type="number"
+                value="${section.margin || "0"}"
+                data-section-field="margin"
+            >
+     </div>
+    `;
+
+    $panel.html(html);
+};
+//=================================
 // Render section
 //=================================
- editor.renderSection = function(section){
+editor.renderSection = function(section){
 
     const selected =
         editor.state.selectedType === "section" &&
@@ -61,9 +124,9 @@ editor.deleteSection = function(sectionId){
     const $section = $("<div>")
         .addClass(`canvas-section ${selected}`)
         .attr("data-id", section.id)
-        .css("background", section.background || "transparent")
-        .css("padding", section.padding + "px"|| "20px")
-        .css("margin", section.margin + "px" || "0px");
+        .css("background-color", section.background || "transparent")
+        .css("padding", (section.padding ?? 20) + "px")
+        .css("margin", (section.margin ?? 0) + "px");
 
     const $toolbar = $("<div>")
         .addClass("section-toolbar")
@@ -93,17 +156,14 @@ editor.deleteSection = function(sectionId){
 
     const $columns = $("<div>").addClass("section-columns");
 
-    if(section.columns){
         section.columns.forEach(col => {
             $columns.append(editor.renderColumn(col));
         });
-    }
-
+   
     $section.append($columns);
 
     return $section;
 };
-
 //=================================
 //  Create new section
 //=================================
@@ -111,13 +171,13 @@ editor.deleteSection = function(sectionId){
 
     const section = {
         id: editor.utils.uuid("sec"),
-        background: "var(--color-bg)",
+        background: "#ffffff    ",
         padding: "20",
-        margin: "0",
+        margin: "20",
         columns: [
             {
                 id: editor.utils.uuid("col"),
-                width: 100,
+                width: 50,
                 widgets: []
             }
         ]
@@ -129,4 +189,25 @@ editor.deleteSection = function(sectionId){
     editor.state.selectedId = section.id;
 
     editor.render();
+};
+
+//=================================
+// Normalize section column widths
+//=================================
+editor.normalizeSectionWidths = function(section){
+
+    if(!section || !section.columns || !section.columns.length) return;
+
+    const count = section.columns.length;
+    const width = Math.floor(100 / count);
+    let total = 0;
+
+    section.columns.forEach((col, index) => {
+        if(index < count - 1){
+            col.width = width;
+            total += width;
+        } else {
+            col.width = 100 - total;
+        }
+    });
 };

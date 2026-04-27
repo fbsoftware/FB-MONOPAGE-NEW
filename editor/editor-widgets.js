@@ -10,7 +10,9 @@ editor.widgets = {
             text: "Titolo ---",
             level: "h2",
             align: "center",    
-            color:"#000000"
+            color:"#000000",
+            padding:0,
+            margin:0  
         },
 
 fields:{
@@ -47,15 +49,24 @@ fields:{
             "var(--color-bg)":"Sfondo"
         }
     },
+    padding:{
+        type:"number",
+        label:"Padding px"  },
+
+    margin:{
+        type:"number",
+        label:"Margin px"  },    
 },
 
         render: function(widget){
             const tag = widget.props.level;
             const col = widget.props.color;
             const all = widget.props.align;
+            const p = widget.props.padding;
+            const m = widget.props.margin;  
             return `
             <div class="widget-header">
-                <${tag} style="text-align:${all} ; color:${col}">
+                <${tag} style="text-align:${all} ; color:${col}; padding:${p}px; margin:${m}px; ">
                     ${widget.props.text}
                 </${tag}>
             </div>
@@ -71,7 +82,9 @@ fields:{
   defaultProps:{
      text:"Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
      align:"left",
-     color:"#000000"
+     color:"#000000",
+     padding:0,
+     margin:0
   },
 
   fields:{
@@ -82,27 +95,37 @@ fields:{
     align:{type:"select",    
         options:{left:"Sinistra",
                 center:"Centro",
-                right:"Destra"} ,
+                right:"Destra",
+                justify:"Giustificato"}, 
         label:"Allineamento"}, 
 
     color:{
         type:"color",
-        label:"Colore",
-},
-  },
+        label:"Colore"},
+    
+    padding:{
+        type:"number",
+        label:"Padding px"}, 
 
-    render(widget){
-        const p = widget.props;
+    margin:{
+        type:"number",
+        label:"Margin px" }
+    } ,
 
-        return `
-        <div style="
-            text-align:${p.align || "left"};
-            color:${p.color || "#000"};
+render(widget){
+    const p = widget.props || {};
+
+    return `
+        <div  class="widget-text" style="
+            text-align:${p.align ?? "left"};
+            color:${p.color ?? "#000"};
+            padding:${p.padding ?? 0}px;
+            margin:${p.margin ?? 0}px;
         ">
-            ${p.text || ""}
+            ${p.text ?? ""}
         </div>
-        `;
-    }
+    `;
+}
     },
     textarea: {  //-----------------------------------------------
 
@@ -156,6 +179,7 @@ defaultProps:{
         label:"Peso font",
         options:{
             "400":"Normale",
+            "500":"Medio",
             "600":"Semibold",
             "700":"Bold"
         }
@@ -167,7 +191,7 @@ defaultProps:{
     render(widget){
         const p = widget.props;
 
-        return `<div>
+        return `<div  class="widget-text" >
         <textarea style="
             text-align:${p.align || "left"};
             color:${p.color || "#000"};
@@ -180,50 +204,64 @@ defaultProps:{
         `;
     }
     },
-    image:  //-----------------------------------------------
-       {
+    image: {
     label: "Immagine",
     icon: "🖼️",
 
     defaultProps: {
         src: "",
         alt: "",
-        align: "center",
-        width: "150"
+        align: "left",
+        width: 300
     },
 
     fields: {
-        src:{type:"text",label:"Percorso immagine"},
-        imageFile:{type:"image_upload",label:"Carica immagine"},
-        alt:{type:"text",label:"Alt"},
-        align:{
-            type:"select",
-            label:"Allineamento",
-            options:{
-                left:"Sinistra",
-                center:"Centro",
-                right:"Destra"
+        src: {
+            type: "image_picker",
+            label: "Immagine"
+        },
+
+        alt: {
+            type: "text",
+            label: "Alt"
+        },
+
+        align: {
+            type: "select",
+            label: "Allineamento",
+            options: {
+                left: "Sinistra",
+                center: "Centro",
+                right: "Destra"
             }
         },
-        width:{type:"number", label:"Larghezza px"}
+
+        width: {
+            type: "number",
+            label: "Larghezza px"
+        }
     },
 
-    render: function(widget){
+    render(widget){
+        const p = widget.props || {};
+        const src = editor.resolveAssetUrl(p.src || "");
 
-    let src = widget.props.src || "";
+        if(!src){
+            return `
+                <div class="widget-image-empty">
+                    Nessuna immagine selezionata
+                </div>
+            `;
+        }
 
-    if(src && !src.startsWith("http") && !src.startsWith("../")){
-        src = "../" + src;
+        return `
+            <div class="widget-image" style="text-align:${p.align ?? "left"};">
+                <img src="${src}" alt="${p.alt ?? ""}" style="width:${p.width ?? 300}px;">
+            </div>
+        `;
     }
-
-    return `
-        <div class="widget-image" style="text-align:${widget.props.align};">
-            ${src ? `<img src="${src}" alt="${widget.props.alt || ""}" style="width:${widget.props.width}px;">` : ""}
-        </div>
-    `;
-}
 },
-    button: {   //-----------------------------------------------
+    button: {   // -----------------------------------------------
 
         label: "Bottone",
         icon: "🔘",
@@ -232,85 +270,111 @@ defaultProps:{
             text: "CERCA",
             url: "#",
             align: "center",
-            color:"#000000",
-            sfondo:"#ffa500",
-            bordo:"25",
-            padd:"20",
-            fontSize:"22px"
+            color: "#000000",
+            sfondo: "#ffa500",
+            bordo: 25,
+            padd: 20,
+            padding: 20,
+            fontSize: "22px",
+            fontWeight: "600"
         },
 
-        fields:{
-            text:{
-                type:"text",
-                label:"Titolo"
+        fields: {
+            text: {
+                type: "text",
+                label: "Titolo"
             },
-            url:{
-                type:"text",
-                label:"Link"
+            url: {
+                type: "text",
+                label: "Link"
             },
-            align:{
-                type:"select",
-                label:"Allineamento",
-                options:{
-                    left:"Sinistra",
-                    center:"Centro",
-                    right:"Destra"
+            align: {
+                type: "select",
+                label: "Allineamento",
+                options: {
+                    left: "Sinistra",
+                    center: "Centro",
+                    right: "Destra"
                 }
             },
-    color:{
-        type:"select",
-        label:"Colore",
-        options:{
-            "var(--color-primary)":"Primario",
-            "var(--color-secondary)":"Secondario",
-            "var(--color-accent)":"Accent",
-            "var(--color-text)":"Testo",
-            "var(--color-bg)":"Sfondo"
-        }
-    },
-            
-    sfondo:{
-        type:"select",
-        label:"Sfondo",
-        options:{
-            "var(--color-primary)":"Primario",
-            "var(--color-secondary)":"Secondario",
-            "var(--color-accent)":"Accent",
-            "var(--color-text)":"Testo",
-            "var(--color-bg)":"Sfondo"
-        }
-    },
-
-            bordo:{
-                type:"number",
-                label:"Raggio bordo px"},
-                
-            padd:{
-                type:"number",
-                label:"Padding px"},
-            fontSize:{
-                type:"select",
-                label:"Dimensione font",
-                options:{
-                    "16px":"Testo",
-                    "36px":"Titolo",
-                    "28px":"Sottotitolo",
-                    "22px":"Evidenza"
-        }
-    },
+            color: {
+                type: "select",
+                label: "Colore",
+                options: {
+                    "var(--color-primary)": "Primario",
+                    "var(--color-secondary)": "Secondario",
+                    "var(--color-accent)": "Accent",
+                    "var(--color-text)": "Testo",
+                    "var(--color-bg)": "Sfondo"
+                }
+            },
+            sfondo: {
+                type: "select",
+                label: "Sfondo",
+                options: {
+                    "var(--color-primary)": "Primario",
+                    "var(--color-secondary)": "Secondario",
+                    "var(--color-accent)": "Accent",
+                    "var(--color-text)": "Testo",
+                    "var(--color-bg)": "Sfondo"
+                }
+            },
+            bordo: {
+                type: "number",
+                label: "Raggio bordo px"
+            },
+            padding: {
+                type: "number",
+                label: "Padding div px"
+            },
+           padd: {
+                type: "number",
+                label: "Padding button px"
+            },
+            fontSize: {
+                type: "select",
+                label: "Dimensione font",
+                options: {
+                    "16": "Testo",
+                    "36": "Titolo",
+                    "28": "Sottotitolo",
+                    "22": "Evidenza"
+                }
+            },
+            fontWeight: {
+                type: "select",
+                label: "Peso font",
+                options: {
+                    "400": "Normal",
+                    "500": "Medium",
+                    "600": "SemiBold",
+                    "700": "Bold"
+                }
+            }
         },
 
         render: function(widget){
             return `
-            <div class="widget-button" style="text-align:${widget.props.align}; background-color:${widget.props.sfondo};
-            border-radius:${widget.props.bordo}px; padding:${widget.props.padd}px;">
-                <a  href="${widget.props.url}" style="text-decoration: none; font-size:${widget.props.fontSize}">
-                <span  style="justify-content:center;  color:${widget.props.color};">${widget.props.text}</span></a>
-            </div>    
+                <div class="widget-button" style="
+                    text-align:${widget.props.align}; padding:${widget.props.padding}px;">
+
+                    <a href="${widget.props.url}" style="
+                        text-decoration:none;
+                        font-size:${widget.props.fontSize}px;
+                        font-weight:${widget.props.fontWeight};
+                        color:${widget.props.color};
+                        display:inline-block; 
+                        width:auto;
+                        padding:${widget.props.padd}px;
+                        background-color:${widget.props.sfondo};
+                        border-radius:${widget.props.bordo}px; ">
+                        ${widget.props.text}
+                    </a>
+                    
+                </div>
             `;
         }
-
-    }, 
+    },
     spacer: {   //-----------------------------------------------
 
         label: "Spaziatore",
@@ -318,7 +382,7 @@ defaultProps:{
 
         defaultProps: {
                 text: "",
-                height: "20px"
+                height: "20"
         },
 
         fields:{
@@ -338,8 +402,242 @@ defaultProps:{
             `;
         }
 
-    }  
-}
+    }  ,
+    icon: {     //-----------------------------------------------
+    label: "Icona",
+    icon: "⭐",
+
+    defaultProps: {
+        name: "home",
+        size: 48,
+        color: "var(--color-primary)",
+        align: "center",
+        padding: 0,
+        margin: 0
+    },
+
+    fields: {
+        name: {
+            type: "text",
+            label: "Nome icona"
+        },
+
+        size: {
+            type: "number",
+            label: "Dimensione px"
+        },
+
+        color: {
+            type: "color",
+            label: "Colore"
+        },
+
+        align: {
+            type: "select",
+            label: "Allineamento",
+            options: {
+                left: "Sinistra",
+                center: "Centro",
+                right: "Destra"
+            }
+        },
+
+        padding: {
+            type: "number",
+            label: "Padding px"
+        },
+
+        margin: {
+            type: "number",
+            label: "Margin px"
+        }
+    },
+
+    render(widget) {
+        const p = widget.props || {};
+
+        return `
+            <div class="widget-icon" style="
+                text-align:${p.align ?? "center"};
+                padding:${p.padding ?? 0}px;
+                margin:${p.margin ?? 0}px;
+            ">
+                <span class="material-symbols-outlined" style="
+                    font-size:${p.size ?? 48}px!important;
+                    color:${p.color ?? "var(--color-primary)"};
+                ">
+                    ${p.name ?? "home"}
+                </span>
+            </div>
+        `;
+    }
+    },
+    video: {    //-----------------------------------------------
+    label: "Video",
+    icon: "🎥",
+
+    defaultProps: {
+        url: "",
+        aspectRatio: "16:9",
+        align: "center",
+        padding: 20,
+        margin: 20
+    },
+
+    fields: {
+        url: {
+            type: "text",
+            label: "URL YouTube"
+        },
+
+        aspectRatio: {
+            type: "select",
+            label: "Formato",
+            options: {
+                "16:9": "16:9",
+                "4:3": "4:3",
+                "1:1": "1:1"
+            }
+        },
+
+        align: {
+            type: "select",
+            label: "Allineamento",
+            options: {
+                left: "Sinistra",
+                center: "Centro",
+                right: "Destra"
+            }
+        },
+
+        padding: {
+            type: "number",
+            label: "Padding px"
+        },
+
+        margin: {
+            type: "number",
+            label: "Margin px"
+        }
+    },
+
+    render(widget) {
+        const p = widget.props || {};
+        const videoId = editor.getYoutubeVideoId(p.url || "");
+
+        if (!videoId) {
+            return `
+                <div class="widget-video" style="
+                    text-align:${p.align ?? "center"};
+                    padding:${p.padding ?? 0}px;
+                    margin:${p.margin ?? 0}px;
+                ">
+                    <div style="
+                        padding:20px;
+                        border:1px dashed #ccc;
+                        border-radius:8px;
+                    ">
+                        Inserisci un URL YouTube valido
+                    </div>
+                </div>
+            `;
+        }
+
+        const ratio = editor.getAspectRatioPadding(p.aspectRatio || "16:9");
+
+        return `
+            <div class="widget-video" style="
+                text-align:${p.align ?? "center"};
+                padding:${p.padding ?? 0}px;
+                margin:${p.margin ?? 0}px;
+            ">
+                <div style="
+                    position:relative;
+                    width:100%;
+                    max-width:100%;
+                    padding-top:${ratio};
+                    overflow:hidden;
+                    border-radius:8px;
+                ">
+                    <iframe
+                        src="https://www.youtube.com/embed/${videoId}"
+                        title="YouTube video player"
+                        style="
+                            position:absolute;
+                            top:0;
+                            left:0;
+                            width:100%;
+                            height:100%;
+                            border:0;
+                        "
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+            </div>
+        `;
+    }
+    },
+    divider: {   //-----------------------------------------------
+
+        label: "Divisore",
+        icon: "🧱",
+
+        defaultProps: {
+        name: "home",
+        size: 48,
+        color: "var(--color-primary)",
+        padding: 0,
+        margin: 0,
+        height: 1
+        },
+
+        fields:{
+            name:{
+                type:"text",
+                label: "Nome icona"},
+            size:{
+                type:"number",
+                label:"Altezza px"},
+            color: {
+                type: "color",
+                label: "Colore"
+        },
+            height: {
+                type: "number",
+                label: "Altezza riga px"
+        },
+            padding: {
+                type: "number",
+                label: "Padding px"
+            },
+
+        margin: {
+            type: "number",
+            label: "Margin px"
+        }
+ }, 
+        render: function(widget){
+            const p = widget.props || {};
+            return `
+            <div class="widget-divider" style="display: flex; 
+                                        flex-direction: row;
+                                        align-items: center; 
+                                        gap: 15px; 
+                                        margin: 20px 0;">
+                <div style="flex: 1; height: ${p.height ?? 1}px; background: ${resolveColor(p.color)};"></div>
+                    <div><span class="material-symbols-outlined" style="
+                    font-size:${p.size ?? 48}px!important;
+                    color:${p.color ?? "var(--color-primary)"};">
+                    ${p.name ?? "home"}
+                    </span></div>
+                <div style="flex: 1; height: ${p.height ?? 1}px; background: ${resolveColor(p.color)};"></div>
+            </div>    
+            `;
+        }
+
+    }  ,
+};
 
 //=================================
 // Apre pannello dettagli widget 
@@ -354,23 +652,7 @@ editor.openWidgetInspector = function(id){
     editor.renderInspector(widget, def);
 };
 
-//=================================
-// crea widget
-//=================================
-    editor.createWidget = function(type){
-    const def = editor.widgets[type];
-    if(!def){
-        console.error("Widget type not found:", type);
-        return null;
-    }
-    return {
-        id: editor.uid(),
-        type: type,
-        props: structuredClone(def.defaultProps)
-    };
-};
-
-//=================================
+ //=================================
 // editor widget uid
 //=================================
 editor.uid = (function(){
@@ -434,13 +716,18 @@ editor.createWidget = function(type){
         console.error("Widget type not found:", type);
         return null;
     }
+
+    const newId = this.uid();
+
+    console.log("this.uid() =", newId);
+    console.log("typeof this.uid() =", typeof newId);
+
     return {
-        id: this.uid(),
+        id: newId,
         type: type,
         props: structuredClone(def.defaultProps)
     };
 };
-
 
 //==================================================
 // cerca colonna per dettagli
@@ -519,7 +806,6 @@ editor.renderInspector = function(widget, def){
             let options = "";
 
             Object.keys(field.options).forEach(k => {
-
                 const selected = k === value ? "selected" : "";
 
                 options += `
@@ -547,6 +833,20 @@ editor.renderInspector = function(widget, def){
             `;
         }
 
+        if(field.type === "image_picker"){
+            input = `
+                <div class="image-picker-slot"
+                     data-image-picker="${fieldName}">
+                    Loading...
+                </div>
+            `;
+
+            setTimeout(async () => {
+                const html = await editor.renderImagePicker(fieldName, value);
+                $panel.find(`[data-image-picker="${fieldName}"]`).html(html);
+            }, 0);
+        }
+
         const row = `
             <div class="inspector-row">
                 <label>${field.label}</label>
@@ -563,6 +863,10 @@ editor.renderInspector = function(widget, def){
 editor.renderWidget = function(widget){
 
     const def = editor.widgets[widget.type];
+
+
+//console.log("RENDER WIDGET:", widget);
+
 
      const selected =
         editor.state.selectedType === "widget" &&
@@ -583,4 +887,77 @@ editor.renderWidget = function(widget){
             ${content}
         </div>
     `;
+};
+
+//=================================
+//  URL YouTube -> video ID
+//=================================
+editor.getYoutubeVideoId = function(url) {
+    if (!url) return "";
+
+    const patterns = [
+        /youtube\.com\/watch\?v=([^&]+)/,
+        /youtu\.be\/([^?&]+)/,
+        /youtube\.com\/embed\/([^?&]+)/,
+        /youtube\.com\/shorts\/([^?&]+)/
+    ];
+
+    for (const pattern of patterns) {
+        const match = url.match(pattern);
+        if (match && match[1]) {
+// FB: render colonna completo
+console.log('URL=',match[0], 'ID=', match[1]);
+
+            return match[1];
+        }
+    }
+
+    return "";
+};
+
+//=================================
+//  aspett ratio -> padding
+//=================================
+editor.getAspectRatioPadding = function(ratio) {
+    switch (ratio) {
+        case "4:3":
+            return "75%";
+        case "1:1":
+            return "100%";
+        case "16:9":
+        default:
+            return "56.25%";
+    }
+};
+
+//=================================
+//  image picker
+//=================================
+editor.renderImagePicker = async function(fieldName, value){
+
+    const images = await editor.loadImages();
+    let html = `<div class="image_picker">`;
+
+    images.forEach(img => {
+
+        const selected = img.file === value ? "selected" : "";
+
+        html += `
+            <div class="image-thumb ${selected}"
+                 data-field="${fieldName}"
+                 data-value="${img.file}"
+                 draggable="false">
+                 
+                <img src="${editor.resolveAssetUrl(img.file)}"
+                     alt="${img.name}"
+                     draggable="false">
+
+                <div class="img-name">${img.name}</div>
+            </div>
+        `;
+    });
+
+    html += `</div>`;
+
+    return html;
 };

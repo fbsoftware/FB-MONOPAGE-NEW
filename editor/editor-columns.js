@@ -46,7 +46,11 @@ editor.columns = {
     icon:"📝",
 
     defaultProps:{
-      width: 100
+      width: 100,
+      padding: 20,  
+      margin: 0,
+      background: "transparent"  
+      
     },
 
     fields: {
@@ -55,6 +59,22 @@ editor.columns = {
         min: 10,
         max: 100,
         label: "Larghezza"
+      },
+            padding: {
+        type: "range",
+        min: 10,
+        max: 100,
+        label: "Padding"
+      },
+            margin: {
+        type: "range",
+        min: 10,
+        max: 100,
+        label: "Margin"
+      },
+            background: {
+        type: "color",
+        label: "Sfondo"
       }
     },
 
@@ -63,7 +83,10 @@ editor.columns = {
       return `
       <div class="canvas-column"
            data-id="${column.id}"
-           style="width:${p.width ||100}%;">
+           style="width:${p.width ||100}%;
+                  padding:${p.padding ||20}px;
+                  margin:${p.margin ||0}px;
+                  background:${p.background ||'transparent'};">
       </div>
       `;
     }
@@ -110,7 +133,7 @@ editor.openColumnInspector = function(Id){
         console.error("Colonna non trovata:", Id);
         return;
     }
-console.log("COLONNA TROVATA");
+// console.log("COLONNA TROVATA");
     editor.renderColumnInspector(column);
 };
 
@@ -133,8 +156,7 @@ editor.renderColumnInspector = function(column){
                 type="range"
                 min="10"
                 max="100"
-                step="1"
-                value="${column.width}"
+                value="${column.width ?? 100}"
                 data-column-field="width"
                 data-column-input="range"
             >
@@ -144,10 +166,104 @@ editor.renderColumnInspector = function(column){
                 type="number"
                 min="10"
                 max="100"
-                step="1"
-                value="${column.width}"
+                value="${column.width ?? 100}"
                 data-column-field="width"
                 data-column-input="number"
+            >
+
+            <label for="col-padding">Padding px</label>
+            <input
+                id="col-padding"
+                type="number"
+                min="0"
+                max="100"
+                value="${column.padding ?? 0}"
+                data-column-field="padding"
+                data-column-input="number"
+            >
+
+            <label for="col-margin">Margin px</label>
+            <input
+                id="col-margin"
+                type="number"
+                min="0"
+                max="100"
+                value="${column.margin ?? 0}"
+                data-column-field="margin"
+                data-column-input="number"
+            >
+            <label for="col-sfondo">Colore sfondo</label>
+            <select
+                id="col-sfondo"
+                type="select"
+                data-column-field="sfondoColor"
+            >
+                <option value="var(--color-primary)" ${column.sfondoColor === "var(--color-primary)" ? "selected" : ""}>Primario</option>
+                <option value="var(--color-secondary)" ${column.sfondoColor === "var(--color-secondary)" ? "selected" : ""}>Secondario</option>
+                <option value="var(--color-accent)" ${column.sfondoColor === "var(--color-accent)" ? "selected" : ""}>Accent</option>
+                <option value="var(--color-text)" ${column.sfondoColor === "var(--color-text)" ? "selected" : ""}>Testo</option>
+                <option value="var(--color-bg)" ${column.sfondoColor === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
+            </select>
+
+            <input
+                id="col-sfondo-color-picker"
+                type="color"
+                value="${column.sfondoColor && column.sfondoColor.startsWith('#') ? column.sfondoColor : '#000000'}"
+                data-column-field="sfondoColor"
+            >
+
+                
+            <label for="col-border">Spessore bordo px</label>
+            <input
+                id="col-border"
+                type="number"
+                min="0"
+                max="10"
+                value="${column.border ?? 0}"
+                data-column-field="border"
+                data-column-input="number"
+            >
+
+            <label for="col-radius">Raggio bordo px</label>
+            <input
+                id="col-radius"
+                type="number"
+                min="0"
+                max="100"
+                value="${column.radius ?? 0}"
+                data-column-field="radius"
+                data-column-input="number"
+            >
+
+            <label for="col-border-style">Stile linea</label>
+            <select
+                id="col-border-style"
+                type="select"
+                data-column-field="borderStyle"
+            >
+                <option value="solid" ${column.borderStyle === "solid" ? "selected" : ""}>solido</option>
+                <option value="dashed" ${column.borderStyle === "dashed" ? "selected" : ""}>tratteggiato</option>
+                <option value="dotted" ${column.borderStyle === "dotted" ? "selected" : ""}>punteggiato</option>
+            </select>
+
+            <label for="col-border-color">Colore bordo</label>
+            <select
+                id="col-border-color"
+                type="select"
+                data-column-field="borderStyleColor"
+            >
+                <option value="var(--color-primary)" ${column.borderStyleColor === "var(--color-primary)" ? "selected" : ""}>Primario</option>
+                <option value="var(--color-secondary)" ${column.borderStyleColor === "var(--color-secondary)" ? "selected" : ""}>Secondario</option>
+                <option value="var(--color-accent)" ${column.borderStyleColor === "var(--color-accent)" ? "selected" : ""}>Accent</option>
+                <option value="var(--color-text)" ${column.borderStyleColor === "var(--color-text)" ? "selected" : ""}>Testo</option>
+                <option value="var(--color-bg)" ${column.borderStyleColor === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
+            </select>
+
+            <input
+                id="col-border-color-picker"
+                type="color"
+                value="${column.borderStyleColor && column.borderStyleColor.startsWith('#') ? column.borderStyleColor : '#000000'}"
+                data-column-field="borderStyleColor"
             >
         </div>
     `;
@@ -169,21 +285,20 @@ editor.renderColumn = function(column){
     const $column = $("<div>")
         .addClass(`canvas-column ${selected}`)
         .attr("data-id", column.id)
-        .css("flex-basis", column.width + "%")
+        .css("flex-basis", (column.width ?? 100) + "%")
+        .css("padding", (column.padding ?? 0) + "px")
+        .css("margin", (column.margin ?? 0) + "px")
+        .css("background", column.sfondoColor || "transparent")
+        .css("border-width", (column.border ?? 0) + "px")
+        .css("border-style", column.borderStyle || "solid")
+        .css("border-color", column.borderStyleColor || "#dddddd")
+        .css("border-radius", (column.radius ?? 0) + "px")
         .css("flex-grow", 0)
         .css("flex-shrink", 0);
 
     const $toolbar = $("<div>")
         .addClass("column-toolbar")
         .html(`
-            <button class="move-left button">
-                <span class="material-symbols-outlined">arrow_back</span>
-            </button>
-
-            <button class="move-right button">
-                <span class="material-symbols-outlined">arrow_forward</span>
-            </button>
-
             <button class="delete-column button">
                 <span class="material-symbols-outlined">delete</span>
             </button>
@@ -191,7 +306,7 @@ editor.renderColumn = function(column){
 
     $column.prepend($toolbar);
 
-    column.widgets.forEach(widget => {
+    (column.widgets || []).forEach(widget => {
         $column.append(editor.renderWidget(widget));
     });
 
@@ -213,5 +328,73 @@ editor.syncColumnsState = function(){
         });
 
         section.columns = newOrder;
+    });
+};
+
+//=================================
+// Sortable columns between sections
+//=================================
+editor.initSortableColumns = function(){
+
+    if ($(".section-columns").data("ui-sortable")) {
+        $(".section-columns").sortable("destroy");
+    }
+
+    $(".section-columns").sortable({
+        items: "> .canvas-column",
+        connectWith: ".section-columns",
+        placeholder: "column-placeholder",
+        tolerance: "pointer",
+        forcePlaceholderSize: true,
+
+        start: function(event, ui){
+            ui.placeholder.height(ui.item.outerHeight());
+            ui.placeholder.width(ui.item.outerWidth());
+
+            $(".empty-dropzone").hide();
+        },
+
+        stop: function(event, ui){
+            editor.syncAllColumnsFromDOM();
+            editor.render();
+        }
+    });
+};
+//=================================
+// Sync all columns from DOM to state
+//=================================
+editor.syncAllColumnsFromDOM = function(){
+
+    const colMap = {};
+
+    editor.state.sections.forEach(section => {
+        (section.columns || []).forEach(col => {
+            colMap[col.id] = col;
+        });
+    });
+
+    editor.state.sections.forEach(section => {
+        section.columns = [];
+    });
+
+    $(".canvas-section").each(function(){
+        const sectionId = $(this).attr("data-id");
+        const section = editor.state.sections.find(s => s.id === sectionId);
+
+        if(!section) return;
+
+        $(this)
+            .children(".section-columns")
+            .children(".canvas-column")
+            .each(function(){
+                const colId = $(this).attr("data-id");
+                if(colMap[colId]){
+                    section.columns.push(colMap[colId]);
+                }
+            });
+    });
+
+    editor.state.sections.forEach(section => {
+        editor.normalizeSectionWidths(section);
     });
 };
