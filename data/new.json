@@ -3,7 +3,7 @@
         "tema": null,
         "page": "new",
         "version": "2.0",
-        "updated_at": "2026-04-24T20:39:25+02:00"
+        "updated_at": "2026-04-27T16:55:50+02:00"
     },
     "global": {
         "colors": {
@@ -31,7 +31,7 @@
             "columns": [
                 {
                     "id": "col-1777055925041-374",
-                    "width": 50,
+                    "width": 45,
                     "widgets": [
                         {
                             "id": "w1777055935456_1",
@@ -39,15 +39,18 @@
                             "props": {
                                 "src": "assets\/images\/logo.png",
                                 "alt": "",
-                                "align": "left",
-                                "width": 300
+                                "align": "center",
+                                "width": "100"
                             }
                         }
-                    ]
+                    ],
+                    "borderStyleColor": "var(--color-accent)",
+                    "border": 3,
+                    "radius": 10
                 }
             ]
         }
     ],
-    "selectedType": null,
-    "selectedId": null
+    "selectedType": "widget",
+    "selectedId": "w1777055935456_1"
 }

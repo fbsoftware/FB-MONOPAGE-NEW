@@ -48,8 +48,9 @@ editor.columns = {
     defaultProps:{
       width: 100,
       padding: 20,  
-      background: "transparent",  
-      margin: 0
+      margin: 0,
+      background: "transparent"  
+      
     },
 
     fields: {
@@ -70,6 +71,10 @@ editor.columns = {
         min: 10,
         max: 100,
         label: "Margin"
+      },
+            background: {
+        type: "color",
+        label: "Sfondo"
       }
     },
 
@@ -80,8 +85,8 @@ editor.columns = {
            data-id="${column.id}"
            style="width:${p.width ||100}%;
                   padding:${p.padding ||20}px;
-                  background:${p.background ||'transparent'};
-                  margin:${p.margin ||0}px;">
+                  margin:${p.margin ||0}px;
+                  background:${p.background ||'transparent'};">
       </div>
       `;
     }
@@ -187,6 +192,26 @@ editor.renderColumnInspector = function(column){
                 data-column-field="margin"
                 data-column-input="number"
             >
+            <label for="col-sfondo">Colore sfondo</label>
+            <select
+                id="col-sfondo"
+                type="select"
+                data-column-field="sfondoColor"
+            >
+                <option value="var(--color-primary)" ${column.sfondoColor === "var(--color-primary)" ? "selected" : ""}>Primario</option>
+                <option value="var(--color-secondary)" ${column.sfondoColor === "var(--color-secondary)" ? "selected" : ""}>Secondario</option>
+                <option value="var(--color-accent)" ${column.sfondoColor === "var(--color-accent)" ? "selected" : ""}>Accent</option>
+                <option value="var(--color-text)" ${column.sfondoColor === "var(--color-text)" ? "selected" : ""}>Testo</option>
+                <option value="var(--color-bg)" ${column.sfondoColor === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
+            </select>
+
+            <input
+                id="col-sfondo-color-picker"
+                type="color"
+                value="${column.sfondoColor && column.sfondoColor.startsWith('#') ? column.sfondoColor : '#000000'}"
+                data-column-field="sfondoColor"
+            >
+
                 
             <label for="col-border">Spessore bordo px</label>
             <input
@@ -263,6 +288,7 @@ editor.renderColumn = function(column){
         .css("flex-basis", (column.width ?? 100) + "%")
         .css("padding", (column.padding ?? 0) + "px")
         .css("margin", (column.margin ?? 0) + "px")
+        .css("background", column.sfondoColor || "transparent")
         .css("border-width", (column.border ?? 0) + "px")
         .css("border-style", column.borderStyle || "solid")
         .css("border-color", column.borderStyleColor || "#dddddd")
