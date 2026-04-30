@@ -3,7 +3,7 @@
         "tema": null,
         "page": "chi-siamo",
         "version": "2.0",
-        "updated_at": "2026-04-21T18:58:03+02:00"
+        "updated_at": "2026-04-28T18:38:51+02:00"
     },
     "global": {
         "colors": {
@@ -24,6 +24,30 @@
     },
     "sections": [
         {
+            "id": "sec-1777393641804-152",
+            "background": "var(--color-primary)",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1777393641804-905",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1777393648689_1",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/aereo-pec2.png",
+                                "alt": "",
+                                "align": "left",
+                                "width": "1240"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "id": "sec-1775151183180-400",
             "background": "var(--color-primary)",
             "padding": "20",
@@ -34,30 +58,37 @@
                     "width": 50,
                     "widgets": [
                         {
-                            "id": "w1776781615403_2",
-                            "type": "spacer",
-                            "props": {
-                                "text": "",
-                                "height": "20"
-                            }
-                        },
-                        {
-                            "id": "w1775238369032_1",
+                            "id": "w1777393042595_2",
                             "type": "header",
                             "props": {
-                                "text": "CHI SIAMO NOI",
-                                "level": "h2",
+                                "text": "Fontney",
+                                "level": "h1",
                                 "align": "right",
-                                "color": "var(--color-bg)"
+                                "color": "var(--color-bg)",
+                                "padding": 0,
+                                "margin": 0
                             }
                         },
                         {
-                            "id": "w1775238372493_2",
+                            "id": "w1777388432894_2",
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
                                 "align": "right",
-                                "color": "#000000"
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777391495648_1",
+                            "type": "textarea",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
+                                "align": "right",
+                                "color": "var(--color-text)",
+                                "fontSize": "16px",
+                                "fontWeight": "400"
                             }
                         }
                     ]
@@ -67,24 +98,13 @@
                     "width": 50,
                     "widgets": [
                         {
-                            "id": "w1775238379504_3",
-                            "type": "image",
-                            "props": {
-                                "src": "uploads\/star-1775238394.jpg",
-                                "alt": "",
-                                "align": "center",
-                                "width": "186",
-                                "imageFile": "C:\\fakepath\\star.jpeg"
-                            }
-                        },
-                        {
-                            "id": "w1776781592390_1",
+                            "id": "w1777393019800_1",
                             "type": "image",
                             "props": {
                                 "src": "assets\/images\/Fonteney-005.jpg",
                                 "alt": "",
                                 "align": "left",
-                                "width": 300
+                                "width": "600"
                             }
                         }
                     ]
@@ -92,6 +112,6 @@
             ]
         }
     ],
-    "selectedType": null,
-    "selectedId": null
+    "selectedType": "section",
+    "selectedId": "sec-1777393641804-152"
 }

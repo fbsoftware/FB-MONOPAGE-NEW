@@ -22,11 +22,16 @@
     {
         "title": "Test",
         "page": "test",
-        "level": 1
+        "level": 0
     },
     {
         "title": "New",
         "page": "new",
-        "level": 1
+        "level": 0
+    },
+    {
+        "title": "Nuovo",
+        "page": "nuovo",
+        "level": 0
     }
 ]

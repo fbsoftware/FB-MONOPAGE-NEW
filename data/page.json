@@ -3,7 +3,7 @@
         "tema": null,
         "page": "page",
         "version": "2.0",
-        "updated_at": "2026-04-27T17:03:15+02:00"
+        "updated_at": "2026-04-30T12:36:15+02:00"
     },
     "global": {
         "colors": {
@@ -30,32 +30,107 @@
             "margin": "0",
             "columns": [
                 {
-                    "id": "col-1775923175091-801",
-                    "width": 100,
-                    "border": 2,
-                    "borderStyleColor": "var(--color-primary)",
-                    "borderStyle": "solid",
-                    "radius": 15,
+                    "id": "col-1777308036787-287",
+                    "width": 33,
                     "widgets": [
                         {
-                            "id": "w1775923280008_1",
-                            "type": "header",
+                            "id": "w1777308286157_3",
+                            "type": "spacer",
                             "props": {
-                                "text": "Titolo ---",
-                                "level": "h2",
+                                "text": "",
+                                "height": "143"
+                            }
+                        },
+                        {
+                            "id": "w1777308266154_1",
+                            "type": "icon",
+                            "props": {
+                                "name": "home",
+                                "size": "135",
+                                "color": "#2d7f10",
                                 "align": "center",
-                                "color": "var(--color-primary)"
+                                "padding": 0,
+                                "margin": 0
                             }
                         }
                     ],
-                    "padding": 20,
+                    "sfondoColor": "var(--color-bg)",
+                    "margin": 10,
+                    "border": 2,
+                    "radius": 20,
+                    "borderStyleColor": "#ea1a1a"
+                },
+                {
+                    "id": "col-1777308040156-259",
+                    "width": 33,
+                    "widgets": [],
+                    "sfondoColor": "var(--color-bg)",
+                    "border": 1,
+                    "radius": 10
+                },
+                {
+                    "id": "col-1777302019997-49",
+                    "width": 34,
+                    "widgets": [
+                        {
+                            "id": "w1777307254058_2",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        },
+                        {
+                            "id": "w1777302084488_2",
+                            "type": "header",
+                            "props": {
+                                "text": "Volontariato",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "var(--color-text)",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777306887688_1",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        },
+                        {
+                            "id": "w1777308348285_4",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "16"
+                            }
+                        },
+                        {
+                            "id": "w1777306336284_2",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/FAEL-logo-2025.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "150"
+                            }
+                        }
+                    ],
+                    "border": 1,
+                    "radius": 10,
+                    "borderStyleColor": "var(--color-text)",
+                    "sfondoColor": "var(--color-bg)",
+                    "padding": 15,
                     "margin": 10
                 }
             ]
         },
         {
             "id": "sec-1775924935185-979",
-            "background": "#a2f29c",
+            "background": "#95f3ed",
             "padding": "20",
             "margin": "0",
             "columns": [
@@ -67,10 +142,21 @@
                             "id": "w1775923388041_1",
                             "type": "header",
                             "props": {
-                                "text": "Titolo ---",
+                                "text": "C T A",
                                 "level": "h2",
                                 "align": "center",
-                                "color": "var(--color-secondary)"
+                                "color": "var(--color-text)"
+                            }
+                        },
+                        {
+                            "id": "w1777307586539_6",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
                             }
                         },
                         {
@@ -85,7 +171,7 @@
                                 "bordo": "38",
                                 "padd": "15",
                                 "padding": "43",
-                                "fontSize": "36",
+                                "fontSize": "28",
                                 "fontWeight": "600"
                             }
                         }
@@ -94,25 +180,90 @@
                     "borderStyleColor": "var(--color-secondary)",
                     "radius": 15,
                     "borderStyle": "solid",
-                    "padding": 16
+                    "padding": 16,
+                    "sfondoColor": "var(--color-bg)",
+                    "props": {
+                        "text": "Visita"
+                    }
+                },
+                {
+                    "id": "col-1775923175091-801",
+                    "width": 33,
+                    "border": 2,
+                    "borderStyleColor": "var(--color-accent)",
+                    "borderStyle": "solid",
+                    "radius": 15,
+                    "widgets": [
+                        {
+                            "id": "w1775923280008_1",
+                            "type": "header",
+                            "props": {
+                                "text": "Miles Davis",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "var(--color-text)"
+                            }
+                        },
+                        {
+                            "id": "w1777307622679_7",
+                            "type": "video",
+                            "props": {
+                                "url": "https:\/\/www.youtube.com\/watch?v=zqNTltOGh5c&t=2s",
+                                "aspectRatio": "16:9",
+                                "align": "center",
+                                "padding": "0",
+                                "margin": "0"
+                            }
+                        }
+                    ],
+                    "padding": 20,
+                    "margin": 10,
+                    "props": {
+                        "url": "https:\/\/www.youtube.com\/watch?v=zqNTltOGh5c&t=2s"
+                    },
+                    "sfondoColor": "var(--color-bg)"
                 },
                 {
                     "id": "col-1775924935185-186",
-                    "width": 33,
+                    "width": 34,
                     "widgets": [
                         {
-                            "id": "w1775924996275_1",
-                            "type": "button",
+                            "id": "w1777307305835_3",
+                            "type": "header",
                             "props": {
-                                "text": "CERCA",
-                                "url": "#",
+                                "text": "Promo",
+                                "level": "h2",
                                 "align": "center",
                                 "color": "#000000",
-                                "sfondo": "#ffa500",
-                                "bordo": 25,
-                                "padd": 20,
-                                "fontSize": "22px",
-                                "fontWeight": "600"
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777308558968_6",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        },
+                        {
+                            "id": "w1777307374099_5",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777308556063_5",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
                             }
                         },
                         {
@@ -121,8 +272,23 @@
                             "props": {
                                 "src": "assets\/images\/auto.jpg",
                                 "alt": "",
-                                "align": "left",
+                                "align": "center",
                                 "width": 300
+                            }
+                        },
+                        {
+                            "id": "w1775924996275_1",
+                            "type": "button",
+                            "props": {
+                                "text": "Visita",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": "14",
+                                "fontSize": "22px",
+                                "fontWeight": "600"
                             }
                         }
                     ],
@@ -130,32 +296,185 @@
                     "radius": 15,
                     "borderStyle": "solid",
                     "borderStyleColor": "var(--color-accent)",
-                    "padding": 15
-                },
+                    "padding": 15,
+                    "sfondoColor": "var(--color-bg)"
+                }
+            ]
+        },
+        {
+            "id": "sec-1777308850562-624",
+            "background": "#95f3ed",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
                 {
-                    "id": "col-1777302019997-49",
-                    "width": 34,
+                    "id": "col-1777308850563-251",
+                    "width": 33,
                     "widgets": [
                         {
-                            "id": "w1777302084488_2",
+                            "id": "wid-1777308850563-656",
                             "type": "header",
                             "props": {
-                                "text": "Titolo ---",
+                                "text": "Promo",
                                 "level": "h2",
                                 "align": "center",
-                                "color": "var(--color-primary)",
+                                "color": "#000000",
                                 "padding": 0,
                                 "margin": 0
                             }
+                        },
+                        {
+                            "id": "wid-1777308850563-135",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "wid-1777308850563-312",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        },
+                        {
+                            "id": "wid-1777308850563-252",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/auto.jpg",
+                                "alt": "",
+                                "align": "center",
+                                "width": 300
+                            }
+                        },
+                        {
+                            "id": "wid-1777308850563-188",
+                            "type": "button",
+                            "props": {
+                                "text": "Visita",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": "14",
+                                "fontSize": "22px",
+                                "fontWeight": "600"
+                            }
                         }
                     ],
-                    "border": 1,
-                    "radius": 10,
-                    "borderStyleColor": "var(--color-text)"
+                    "border": 5,
+                    "radius": 15,
+                    "borderStyle": "solid",
+                    "borderStyleColor": "var(--color-accent)",
+                    "padding": 15,
+                    "sfondoColor": "var(--color-bg)"
+                },
+                {
+                    "id": "col-1777308850563-822",
+                    "width": 33,
+                    "widgets": [
+                        {
+                            "id": "wid-1777308850563-962",
+                            "type": "header",
+                            "props": {
+                                "text": "C T A",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "var(--color-text)"
+                            }
+                        },
+                        {
+                            "id": "wid-1777308850563-639",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "wid-1777308850563-607",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "var(--color-bg)",
+                                "sfondo": "var(--color-accent)",
+                                "bordo": "38",
+                                "padd": "15",
+                                "padding": "43",
+                                "fontSize": "28",
+                                "fontWeight": "600"
+                            }
+                        }
+                    ],
+                    "border": 2,
+                    "borderStyleColor": "var(--color-secondary)",
+                    "radius": 15,
+                    "borderStyle": "solid",
+                    "padding": 16,
+                    "sfondoColor": "var(--color-bg)",
+                    "props": {
+                        "text": "Visita"
+                    }
+                },
+                {
+                    "id": "col-1777308850563-279",
+                    "width": 34,
+                    "border": 2,
+                    "borderStyleColor": "var(--color-accent)",
+                    "borderStyle": "solid",
+                    "radius": 15,
+                    "widgets": [
+                        {
+                            "id": "wid-1777308850563-718",
+                            "type": "header",
+                            "props": {
+                                "text": "Miles Davis",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "var(--color-text)"
+                            }
+                        },
+                        {
+                            "id": "wid-1777308850563-392",
+                            "type": "video",
+                            "props": {
+                                "url": "https:\/\/www.youtube.com\/watch?v=zqNTltOGh5c&t=2s",
+                                "aspectRatio": "16:9",
+                                "align": "center",
+                                "padding": "0",
+                                "margin": "0"
+                            }
+                        },
+                        {
+                            "id": "wid-1777308850563-297",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        }
+                    ],
+                    "padding": 20,
+                    "margin": 10,
+                    "props": {
+                        "url": "https:\/\/www.youtube.com\/watch?v=zqNTltOGh5c&t=2s"
+                    },
+                    "sfondoColor": "var(--color-bg)"
                 }
             ]
         }
     ],
-    "selectedType": null,
-    "selectedId": null
+    "selectedType": "widget",
+    "selectedId": "w1777308266154_1"
 }

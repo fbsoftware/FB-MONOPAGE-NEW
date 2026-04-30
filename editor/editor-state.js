@@ -27,10 +27,8 @@ editor.generateId = function(prefix) {
     return prefix + "-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
 };
 
-
 //=================================
 //  Select element
-//=================================
 editor.select = function(type, id) {
     editor.state.selected.type = type;
     editor.state.selected.id = id;

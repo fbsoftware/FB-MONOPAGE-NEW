@@ -2,7 +2,7 @@
 // Editor Widgets - proprietà + campi di modifica
 //==============================================================    
 editor.widgets = {
-   header: {   //-----------------------------------------------
+   header: {   //------------------------------------------------*
         label: "Titolo",
         icon: "📌",
 
@@ -18,11 +18,13 @@ editor.widgets = {
 fields:{
     text:{
         type:"text",
-        label:"Titolo"
+        label:"Titolo",
+        group:"contenuto"
     },
     level:{
         type:"select",
         label:"Tag",
+        group:"contenuto",
         options:{
             h1:"H1",
             h2:"H2",
@@ -32,6 +34,7 @@ fields:{
     align:{
         type:"select",
         label:"Allineamento",
+        group:"stile",
         options:{
             left:"Sinistra",
             center:"Centro",
@@ -41,6 +44,7 @@ fields:{
     color:{
         type:"select",
         label:"Colore",
+        group:"stile",
         options:{
             "var(--color-primary)":"Primario",
             "var(--color-secondary)":"Secondario",
@@ -51,12 +55,16 @@ fields:{
     },
     padding:{
         type:"number",
-        label:"Padding px"  },
+        label:"Padding px",
+        group:"avanzate"
+    },
 
     margin:{
         type:"number",
-        label:"Margin px"  },    
-},
+        label:"Margin px",
+        group:"avanzate"
+    }
+} ,  
 
         render: function(widget){
             const tag = widget.props.level;
@@ -87,40 +95,25 @@ fields:{
      margin:0
   },
 
-  fields:{
-    text:{
-        type:"text",
-        label:"Testo"},
-
-    align:{type:"select",    
-        options:{left:"Sinistra",
-                center:"Centro",
-                right:"Destra",
-                justify:"Giustificato"}, 
-        label:"Allineamento"}, 
-
-    color:{
-        type:"color",
-        label:"Colore"},
-    
-    padding:{
-        type:"number",
-        label:"Padding px"}, 
-
-    margin:{
-        type:"number",
-        label:"Margin px" }
-    } ,
+fields:{
+    text:{ type:"textarea", label:"Testo", group:"contenuto" },
+    align:{ type:"select", label:"Allineamento", group:"stile", options:{            left:"Sinistra",
+            center:"Centro",
+            right:"Destra",
+            justify:"Giustificato"} },
+    color:{ type:"color", label:"Colore", group:"stile" },
+    padding:{ type:"number", label:"Padding px", group:"avanzate" },
+    margin:{ type:"number", label:"Margin px", group:"avanzate" }
+},
 
 render(widget){
     const p = widget.props || {};
 
     return `
-        <div  class="widget-text" style="
-            text-align:${p.align ?? "left"};
-            color:${p.color ?? "#000"};
-            padding:${p.padding ?? 0}px;
-            margin:${p.margin ?? 0}px;
+        <div  class="widget-text" style="text-align:${p.align ?? "left"};
+                                        color:${p.color ?? "#000"};
+                                        padding:${p.padding ?? 0}px;
+                                        margin:${p.margin ?? 0}px;
         ">
             ${p.text ?? ""}
         </div>
@@ -141,10 +134,11 @@ defaultProps:{
 },
 
   fields:{
-    text:{type:"textarea", label:"Testo"},
+    text:{type:"textarea", label:"Testo", group:"contenuto"},
     align:{
         type:"select",
         label:"Allineamento",
+        group:"stile",
         options:{
             left:"Sinistra",
             center:"Centro",
@@ -155,6 +149,7 @@ defaultProps:{
     color:{
         type:"select",
         label:"Colore",
+        group:"stile",
         options:{
             "var(--color-primary)":"Primario",
             "var(--color-secondary)":"Secondario",
@@ -166,6 +161,7 @@ defaultProps:{
     fontSize:{
         type:"select",
         label:"Dimensione font",
+        group:"stile",
         options:{
             "16px":"Testo",
             "36px":"Titolo",
@@ -177,6 +173,7 @@ defaultProps:{
     fontWeight:{
         type:"select",
         label:"Peso font",
+        group:"stile",
         options:{
             "400":"Normale",
             "500":"Medio",
@@ -184,8 +181,8 @@ defaultProps:{
             "700":"Bold"
         }
     },
-    link:{type:"text", label:"Link"},
-    image:{type:"text", label:"Immagine URL"}
+    link:{type:"text", label:"Link",group:"avanzate"},
+    image:{type:"text", label:"Immagine URL",group:"avanzate"}
 },
 
     render(widget){
@@ -197,6 +194,7 @@ defaultProps:{
             color:${p.color || "#000"};
             font-size:${p.fontSize || "16px"};
             font-weight:${p.fontWeight|| "400"};
+            background:transparent;
         ">
             ${p.text || ""}
         </textarea>
@@ -218,17 +216,20 @@ defaultProps:{
     fields: {
         src: {
             type: "image_picker",
-            label: "Immagine"
+            label: "Immagine",
+            group: "contenuto"
         },
 
         alt: {
             type: "text",
-            label: "Alt"
+            label: "Alt",
+            group: "contenuto"
         },
 
         align: {
             type: "select",
             label: "Allineamento",
+            group: "stile",
             options: {
                 left: "Sinistra",
                 center: "Centro",
@@ -238,7 +239,9 @@ defaultProps:{
 
         width: {
             type: "number",
-            label: "Larghezza px"
+            label: "Larghezza px",  
+            group: "stile"
+
         }
     },
 
@@ -282,15 +285,19 @@ defaultProps:{
         fields: {
             text: {
                 type: "text",
-                label: "Titolo"
+                label: "Titolo",
+                group: "contenuto"
+
             },
             url: {
                 type: "text",
-                label: "Link"
+                label: "Link",
+                group: "contenuto"
             },
             align: {
                 type: "select",
                 label: "Allineamento",
+                group: "stile",
                 options: {
                     left: "Sinistra",
                     center: "Centro",
@@ -300,6 +307,7 @@ defaultProps:{
             color: {
                 type: "select",
                 label: "Colore",
+                group: "stile",
                 options: {
                     "var(--color-primary)": "Primario",
                     "var(--color-secondary)": "Secondario",
@@ -311,6 +319,7 @@ defaultProps:{
             sfondo: {
                 type: "select",
                 label: "Sfondo",
+                group: "stile",
                 options: {
                     "var(--color-primary)": "Primario",
                     "var(--color-secondary)": "Secondario",
@@ -321,19 +330,24 @@ defaultProps:{
             },
             bordo: {
                 type: "number",
-                label: "Raggio bordo px"
+                label: "Raggio bordo px",
+                group: "avanzate"
+
             },
             padding: {
                 type: "number",
-                label: "Padding div px"
+                label: "Padding div px",
+                group: "avanzate"
             },
            padd: {
                 type: "number",
-                label: "Padding button px"
+                label: "Padding button px",
+                group: "avanzate"
             },
             fontSize: {
                 type: "select",
                 label: "Dimensione font",
+                group: "avanzate",
                 options: {
                     "16": "Testo",
                     "36": "Titolo",
@@ -344,6 +358,7 @@ defaultProps:{
             fontWeight: {
                 type: "select",
                 label: "Peso font",
+                group: "avanzate",
                 options: {
                     "400": "Normal",
                     "500": "Medium",
@@ -386,18 +401,17 @@ defaultProps:{
         },
 
         fields:{
-            text:{
-                type:"text",
-                label:"Testo"},
             height:{
                 type:"number",
-                label:"Altezza px"}
+                label:"Altezza px",
+                group:"stile" },
+
        },  
 
         render: function(widget){
             return `
             <div class="widget-spacer" style="height:${widget.props.height}px">
-                ${widget.props.text}
+               
             </div>    
             `;
         }
@@ -419,17 +433,20 @@ defaultProps:{
     fields: {
         name: {
             type: "text",
-            label: "Nome icona"
+            label: "Nome icona",
+            group: "contenuto"
         },
 
         size: {
             type: "number",
-            label: "Dimensione px"
+            label: "Dimensione px",
+            group: "stile"  
         },
 
         color: {
             type: "color",
-            label: "Colore"
+            label: "Colore",
+            group: "stile"
         },
 
         align: {
@@ -444,12 +461,14 @@ defaultProps:{
 
         padding: {
             type: "number",
-            label: "Padding px"
+            label: "Padding px",
+            group: "stile"
         },
 
         margin: {
             type: "number",
-            label: "Margin px"
+            label: "Margin px",
+            group: "stile"
         }
     },
 
@@ -487,12 +506,14 @@ defaultProps:{
     fields: {
         url: {
             type: "text",
-            label: "URL YouTube"
+            label: "URL YouTube",
+            group: "contenuto"
         },
 
         aspectRatio: {
             type: "select",
             label: "Formato",
+            group: "stile",
             options: {
                 "16:9": "16:9",
                 "4:3": "4:3",
@@ -503,6 +524,7 @@ defaultProps:{
         align: {
             type: "select",
             label: "Allineamento",
+                group: "stile",
             options: {
                 left: "Sinistra",
                 center: "Centro",
@@ -512,12 +534,14 @@ defaultProps:{
 
         padding: {
             type: "number",
-            label: "Padding px"
+            label: "Padding px",
+            group: "stile"
         },
 
         margin: {
             type: "number",
-            label: "Margin px"
+            label: "Margin px",
+            group: "stile"
         }
     },
 
@@ -595,26 +619,34 @@ defaultProps:{
         fields:{
             name:{
                 type:"text",
-                label: "Nome icona"},
+                label: "Nome icona",
+                group: "contenuto"
+            },
             size:{
                 type:"number",
-                label:"Altezza px"},
+                label:"Altezza px",
+                group: "stile"
+            },
             color: {
                 type: "color",
-                label: "Colore"
+                label: "Colore",
+                group: "stile"
         },
             height: {
                 type: "number",
-                label: "Altezza riga px"
+                label: "Altezza riga px",
+                group: "stile"
         },
             padding: {
                 type: "number",
-                label: "Padding px"
+                label: "Padding px",
+                group: "stile"
             },
 
         margin: {
             type: "number",
-            label: "Margin px"
+            label: "Margin px",
+            group: "stile"
         }
  }, 
         render: function(widget){
@@ -668,9 +700,11 @@ editor.uid = (function(){
 //=================================
 editor.renderWidgetPalette = function(){
 
-    const $panel = $("#widgets-panel");
+        console.log('PALETTE-prima:', editor.state);
 
-    $panel.empty();
+            const $panel = $("#widgets-panel");
+            $panel.empty();
+
 
     Object.keys(editor.widgets).forEach(function(type){
 
@@ -763,99 +797,170 @@ editor.renderInspector = function(widget, def){
 
     const $panel = $("#inspector");
     $panel.empty();
+//---
+widget.props = widget.props || {};
 
+Object.keys(def.defaultProps || {}).forEach(key => {
+    if(widget.props[key] === undefined){
+        widget.props[key] = def.defaultProps[key];
+    }
+});
+//---
     if(!def.fields) return;
 
+// prepara i gruppi
+        const groups = {
+        contenuto: [],
+        stile: [],
+        avanzate: []
+    };
+
     Object.keys(def.fields).forEach(fieldName => {
-
         const field = def.fields[fieldName];
-        const value = widget.props[fieldName] ?? "";
-        let input = "";
+        const group = field.group || "contenuto";
 
-        if(field.type === "text"){
-            input = `
-                <input type="text"
-                       data-field="${fieldName}"
-                       value="${value}">
-            `;
+        if(!groups[group]){
+            groups[group] = [];
         }
 
-        if(field.type === "textarea"){
-            input = `
-                <textarea data-field="${fieldName}" rows="8">${value}</textarea>
-            `;
-        }
+        groups[group].push(fieldName);
+    });
 
-        if(field.type === "number"){
-            input = `
-                <input type="number"
-                       data-field="${fieldName}"
-                       value="${value}">
-            `;
-        }
+    Object.keys(groups).forEach(groupName => {
+        if(!groups[groupName].length) return;
 
-        if(field.type === "color"){
-            input = `
-                <input type="color"
-                       data-field="${fieldName}"
-                       value="${value}">
-            `;
-        }
-
-        if(field.type === "select"){
-            let options = "";
-
-            Object.keys(field.options).forEach(k => {
-                const selected = k === value ? "selected" : "";
-
-                options += `
-                    <option value="${k}" ${selected}>
-                        ${field.options[k]}
-                    </option>
-                `;
-            });
-
-            input = `
-                <select data-field="${fieldName}">
-                    ${options}
-                </select>
-            `;
-        }
-
-        if(field.type === "image_upload"){
-            input = `
-                <input
-                    type="file"
-                    accept="image/*"
-                    data-field="${fieldName}"
-                    data-upload-image="1"
-                >
-            `;
-        }
-
-        if(field.type === "image_picker"){
-            input = `
-                <div class="image-picker-slot"
-                     data-image-picker="${fieldName}">
-                    Loading...
+        let html = `
+            <div class="inspector-accordion">
+                <div class="accordion-title" data-group="${groupName}">
+                    ${editor.inspectorGroups[groupName] || groupName}
                 </div>
-            `;
+                <div class="accordion-content">
+        `;
 
-            setTimeout(async () => {
-                const html = await editor.renderImagePicker(fieldName, value);
-                $panel.find(`[data-image-picker="${fieldName}"]`).html(html);
-            }, 0);
-        }
+groups[groupName].forEach(fieldName => {
 
-        const row = `
-            <div class="inspector-row">
-                <label>${field.label}</label>
-                ${input}
+    const field = def.fields[fieldName];
+
+    const value = widget.props && widget.props[fieldName] !== undefined
+        ? widget.props[fieldName]
+        : "";
+console.log("ACCORDION FIELD:", fieldName, "VALUE:", widget.props[fieldName]);
+    const input = editor.renderInspectorInput(fieldName, field, value);
+
+    html += `
+        <div class="inspector-row">
+            <label>${field.label}</label>
+            ${input}
+        </div>
+    `;
+});
+
+        html += `
+                </div>
             </div>
         `;
 
-        $panel.append(row);
+        $panel.append(html);
     });
+};
+
+//================================= 
+// render input campo dettagli
+//=================================
+editor.renderInspectorInput = function(fieldName, field, value){
+
+    let input = "";
+
+    if(field.type === "text"){
+        input = `
+            <input type="text"
+                   data-field="${fieldName}"
+                   value="${value}">
+        `;
+    }
+
+    if(field.type === "textarea"){
+        input = `
+            <textarea data-field="${fieldName}" rows="8">${value}</textarea>
+        `;
+    }
+
+    if(field.type === "number"){
+        input = `
+            <input type="number"
+                   data-field="${fieldName}"
+                   value="${value}">
+        `;
+    }
+
+    if(field.type === "color"){
+        input = `
+            <input type="color"
+                   data-field="${fieldName}"
+                   value="${value}">
+        `;
+    }
+
+    if(field.type === "select"){
+        let options = "";
+
+        Object.keys(field.options || {}).forEach(k => {
+            const selected = k === value ? "selected" : "";
+
+            options += `
+                <option value="${k}" ${selected}>
+                    ${field.options[k]}
+                </option>
+            `;
+        });
+
+        input = `
+            <select data-field="${fieldName}">
+                ${options}
+            </select>
+        `;
+    }
+
+    if(field.type === "image_upload"){
+        input = `
+            <input
+                type="file"
+                accept="image/*"
+                data-field="${fieldName}"
+                data-upload-image="1"
+            >
+        `;
+    }
+
+    if(field.type === "image_picker"){
+        input = `
+            <div class="image-picker-slot"
+                 data-image-picker="${fieldName}">
+                Loading...
+            </div>
+        `;
+
+        setTimeout(async () => {
+            const html = await editor.renderImagePicker(fieldName, value);
+            $("#inspector")
+                .find(`[data-image-picker="${fieldName}"]`)
+                .html(html);
+        }, 0);
+    }
+
+    if(field.type === "color"){
+        input = editor.renderInspectorColorField(fieldName, value);
+    }
+
+    if(!input){
+        input = `
+            <div class="inspector-error">
+                Tipo campo non supportato: ${field.type}
+            </div>
+        `;
+    }
+
+    return input;
 };
 //=================================
 // Render widget
@@ -863,10 +968,7 @@ editor.renderInspector = function(widget, def){
 editor.renderWidget = function(widget){
 
     const def = editor.widgets[widget.type];
-
-
 //console.log("RENDER WIDGET:", widget);
-
 
      const selected =
         editor.state.selectedType === "widget" &&
@@ -960,4 +1062,39 @@ editor.renderImagePicker = async function(fieldName, value){
     html += `</div>`;
 
     return html;
+};
+
+//=================================
+//  inspector groups
+//=================================
+editor.inspectorGroups = {
+    contenuto: "Contenuto",
+    stile:     "Stile",
+    avanzate:  "Avanzate"
+};
+
+//=================================
+//  render campo colore
+//=================================
+editor.renderInspectorColorField = function(fieldName, value){
+    const pickerValue =
+        typeof value === "string" && value.startsWith("#")
+            ? value
+            : "#000000";
+
+    return `
+        <select data-field="${fieldName}">
+            <option value="var(--color-primary)" ${value === "var(--color-primary)" ? "selected" : ""}>Primario</option>
+            <option value="var(--color-secondary)" ${value === "var(--color-secondary)" ? "selected" : ""}>Secondario</option>
+            <option value="var(--color-accent)" ${value === "var(--color-accent)" ? "selected" : ""}>Accent</option>
+            <option value="var(--color-text)" ${value === "var(--color-text)" ? "selected" : ""}>Testo</option>
+            <option value="var(--color-bg)" ${value === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
+            <option value="transparent" ${value === "transparent" ? "selected" : ""}>Trasparente</option>
+        </select>
+
+        <input
+            type="color"
+            data-field="${fieldName}"
+            value="${pickerValue}">
+    `;
 };

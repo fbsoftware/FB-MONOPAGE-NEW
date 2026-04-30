@@ -328,12 +328,13 @@ function renderColumnHTML(array $column): string
                 padding:' . (isset($column['padding']) ? (h((int)$column['padding']) . 'px') : '0px') . ';
                 margin:' . (isset($column['margin']) ? (h((int)$column['margin']) . 'px') : '0px') . ';
                 border:' . (isset($column['border']) ? (h((int)$column['border']) . 'px solid ' . h($column['borderColor'] ?? 'transparent')) : 'none') . ';
+                background:' . (isset($column['sfondoColor']) ? h($column['sfondoColor']) : 'transparent') . ';
                 border-radius:' . (isset($column['radius']) ? (h((int)$column['radius']) . 'px') : '0px') . ';
                 border-style:' . (isset($column['borderStyle']) ? h($column['borderStyle']) : 'solid') . ';
                 border-color:' . (isset($column['borderStyleColor']) ? h($column['borderStyleColor']) : 'transparent') . ';
     ">';
 
-    foreach ($widgets as $widget) {
+    foreach ($widgets as $widget) { 
         $html .= renderWidgetHTML($widget);
     }
 

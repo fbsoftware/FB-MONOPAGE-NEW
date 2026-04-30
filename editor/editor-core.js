@@ -519,7 +519,7 @@ editor.loadImages = async function(){
 //=================================
 // image-thumb click
 //=================================
-console.log("HANDLER image-thumb caricato");
+//console.log("HANDLER image-thumb caricato");
 $(document).on("click", ".image-thumb", function(e){
     e.preventDefault();
     e.stopPropagation();
@@ -558,3 +558,14 @@ editor.resolveAssetUrl = function(path){
     }
     return "/FB-JSON/" + path.replace(/^\/+/, "");
 };
+
+//=================================
+//  accordion inspector
+//=================================
+$(document).on("click", ".accordion-title", function(){
+    $(this)
+        .closest(".inspector-accordion")
+        .toggleClass("open")
+        .find(".accordion-content")
+        .slideToggle(120);
+});

@@ -3,7 +3,7 @@
         "tema": null,
         "page": "test",
         "version": "2.0",
-        "updated_at": "2026-04-24T20:38:03+02:00"
+        "updated_at": "2026-04-30T16:27:30+02:00"
     },
     "global": {
         "colors": {
@@ -39,7 +39,7 @@
                             "props": {
                                 "src": "assets\/images\/image.png",
                                 "alt": "IMAGE",
-                                "align": "center",
+                                "align": "right",
                                 "width": "150"
                             }
                         },
@@ -47,7 +47,7 @@
                             "id": "w1776608286549_4",
                             "type": "button",
                             "props": {
-                                "text": "CERCA",
+                                "text": "Guarda poi",
                                 "url": "#",
                                 "align": "center",
                                 "color": "#000000",
@@ -65,7 +65,7 @@
                             "props": {
                                 "src": "assets\/images\/FAEL-logo-2025.png",
                                 "alt": "",
-                                "align": "center",
+                                "align": "left",
                                 "width": "150"
                             }
                         }
@@ -80,7 +80,7 @@
                             "id": "w1776780753225_2",
                             "type": "header",
                             "props": {
-                                "text": "Titolo ---",
+                                "text": "Ferrari gialla",
                                 "level": "h2",
                                 "align": "center",
                                 "color": "#000000",
@@ -103,10 +103,10 @@
                             "id": "w1776780772998_4",
                             "type": "image",
                             "props": {
-                                "src": "assets\/images\/logo.png",
+                                "src": "assets\/images\/auto.jpg",
                                 "alt": "",
                                 "align": "center",
-                                "width": 300
+                                "width": "415"
                             }
                         }
                     ]
@@ -127,9 +127,9 @@
                             "id": "w1776780865370_5",
                             "type": "divider",
                             "props": {
-                                "name": "home",
-                                "size": "25",
-                                "color": "#f3f1f1",
+                                "name": "settings",
+                                "size": "58",
+                                "color": "var(--color-bg)",
                                 "padding": "0",
                                 "margin": "0",
                                 "height": 1
@@ -149,7 +149,28 @@
                 {
                     "id": "col-1776695669585-575",
                     "width": 50,
-                    "widgets": []
+                    "widgets": [
+                        {
+                            "id": "w1777545088579_1",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "97"
+                            }
+                        },
+                        {
+                            "id": "w1777545112282_2",
+                            "type": "icon",
+                            "props": {
+                                "name": "home",
+                                "size": 48,
+                                "color": "#ff0000",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        }
+                    ]
                 },
                 {
                     "id": "col-1776608234248-842",
@@ -183,6 +204,6 @@
             ]
         }
     ],
-    "selectedType": "section",
-    "selectedId": "sec-1776608234248-748"
+    "selectedType": "widget",
+    "selectedId": "w1776780865370_5"
 }

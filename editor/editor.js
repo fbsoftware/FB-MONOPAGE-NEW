@@ -1,16 +1,28 @@
 var editor = editor || {};
 
 editor.init = function () {
-    // carica menu iniziale
-editor.renderWidgetPalette();   // ← QUESTO CARICA I WIDGET NELLA PALETTE
+
+    console.log("palette-prima");
+
+    try {
+        editor.renderWidgetPalette();
+    } catch (err) {
+        console.error("ERRORE renderWidgetPalette:", err);
+        return;
+    }
+
+    console.log("palette-dopo");
+
+//=================================
+//editor.renderWidgetPalette();   // ← QUESTO CARICA I WIDGET NELLA PALETTE
+//console.log('palette-dopo');
+//=================================
 // Carica layout iniziale
-//console.log("INITIAL LAYOUT=",window.INITIAL_LAYOUT);
          if (window.INITIAL_LAYOUT && window.INITIAL_LAYOUT.sections) {
         editor.state = window.INITIAL_LAYOUT;
 
     } else {
 // Se non c'è un layout iniziale, creane uno di default
-//console.log("Nuovo layout");
         editor.createSection();
     }
  // Popolo i dati globali da site-config.json
@@ -27,17 +39,7 @@ editor.renderWidgetPalette();   // ← QUESTO CARICA I WIDGET NELLA PALETTE
 };
 
 //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-$(document).ready(function(){
 
-    editor.siteMenu = [
-        { title: "Home", page: "home", level: 0 },
-        { title: "Servizi", page: "servizi", level: 0 },
-        { title: "Web Design", page: "web-design", level: 1 },
-        { title: "Contatti", page: "contatti", level: 0 }
-    ];
-
-});
 $(document).ready(function () {
     editor.init();
-
 });
