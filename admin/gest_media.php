@@ -22,8 +22,5 @@ $m = new msg($parm);
 $m->msg();
 
 // emette tebella con immagini
-?>
-
-<?php
-        $f = new DB_tip_i('pathi','pcol','','Path immagini','Path immagini da gestire');
+$f = new DB_tip_i('pathi','pcol','','Path immagini','Path immagini da gestire');
                 $f->select();

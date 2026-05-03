@@ -1,0 +1,41 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "hero",
+        "version": "2.0",
+        "updated_at": "2026-05-02T18:54:24+02:00"
+    },
+    "global": {
+        "colors": [],
+        "typography": [],
+        "fonts": []
+    },
+    "sections": [
+        {
+            "id": "sec-1777655769127-517",
+            "background": "var(--color-primary)",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1777655769127-233",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1777655781262_1",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/flyfishing1.jpg",
+                                "alt": "",
+                                "align": "center",
+                                "width": "1159"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "selectedType": "widget",
+    "selectedId": "w1777655781262_1"
+}

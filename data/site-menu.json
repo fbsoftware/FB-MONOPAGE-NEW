@@ -1,12 +1,17 @@
 [
     {
-        "title": "Home",
-        "page": "home",
+        "title": "Hero",
+        "page": "hero",
         "level": 0
     },
     {
         "title": "Chi-siamo",
         "page": "chi-siamo",
+        "level": 0
+    },
+    {
+        "title": "Home",
+        "page": "home",
         "level": 0
     },
     {
@@ -32,6 +37,16 @@
     {
         "title": "Nuovo",
         "page": "nuovo",
+        "level": 0
+    },
+    {
+        "title": "Servizi",
+        "page": "servizi",
+        "level": 0
+    },
+    {
+        "title": "Ciao",
+        "page": "ciao",
         "level": 0
     }
 ]

@@ -299,6 +299,9 @@ editor.renderColumn = function(column){
     const $toolbar = $("<div>")
         .addClass("column-toolbar")
         .html(`
+            <button class="apps button">
+                <span class="material-symbols-outlined">apps</span>
+            </button>
             <button class="delete-column button">
                 <span class="material-symbols-outlined">delete</span>
             </button>

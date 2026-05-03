@@ -465,7 +465,7 @@ textarea{
 .canvas-section.selected{
     outline:1px solid #02fd0a;
 }
-/*  deseleziona toolbar widget  */
+/*   toolbar widget  */
 .widget-toolbar,
 .column-toolbar,
 .section-toolbar{
@@ -478,9 +478,6 @@ textarea{
     transition:opacity 0.15s ease;
     height: 35px;
 }
- 
-.widget-toolbar button,
-.column-toolbar button,
 .section-toolbar button  {
     border:none;
 }

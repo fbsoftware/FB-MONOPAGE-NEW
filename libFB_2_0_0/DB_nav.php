@@ -33,7 +33,6 @@ class DB_nav          extends DB
        echo "<option value='".$row['nmenu']."'>
                        ".$row['nmenu']."
                        </option>"; 
-                       echo $row['nmenu']."<br >";                  
             }  
            echo "</select>";
 		   echo "</div>";

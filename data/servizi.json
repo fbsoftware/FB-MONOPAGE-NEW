@@ -1,0 +1,82 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "servizi",
+        "version": "2.0",
+        "updated_at": "2026-05-02T15:57:21+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#ffffff",
+            "undefined": "#ffffff"
+        },
+        "typography": [],
+        "fonts": {
+            "heading-family": "Inter",
+            "heading-weight": "400",
+            "body-family": "Inter",
+            "body-weight": "400"
+        }
+    },
+    "sections": [
+        {
+            "id": "sec-1777641570421-234",
+            "background": "var(--color-secondary)",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1777641570421-695",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1777641578174_1",
+                            "type": "header",
+                            "props": {
+                                "text": "Servizi",
+                                "level": "h1",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": "20"
+                            }
+                        },
+                        {
+                            "id": "w1777641608874_2",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777729364066_1",
+                            "type": "textarea",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
+                                "align": "left",
+                                "color": "var(--color-text)",
+                                "fontSize": "16px",
+                                "fontWeight": "400"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1777729999306-5",
+                    "width": 50,
+                    "widgets": []
+                }
+            ]
+        }
+    ],
+    "selectedType": null,
+    "selectedId": null
+}
