@@ -126,7 +126,7 @@ editor.renderSection = function(section){
         .attr("data-id", section.id)
         .css("background-color", section.background || "transparent")
         .css("padding", (section.padding ?? 20) + "px")
-        .css("margin", (section.margin ?? 0) + "px");
+        .css("margin", (section.margin ?? 20) + "px");
 
     const $toolbar = $("<div>")
         .addClass("section-toolbar")
@@ -149,6 +149,9 @@ editor.renderSection = function(section){
 
             <button class="add-column button">
                 <span class="material-symbols-outlined">add_column_right</span>
+            </button>
+            <button class="save-section-template button">
+                <span class="material-symbols-outlined">save</span>
             </button>
         `);
 
@@ -210,4 +213,37 @@ editor.normalizeSectionWidths = function(section){
             col.width = 100 - total;
         }
     });
+};
+
+
+//=================================
+// inserisce sezione nella pagina
+//=================================
+editor.insertSectionTemplate = async function(file){
+
+    const res = await fetch("/FB-JSON/data/templates/sections/" + file);
+    const data = await res.json();
+
+    if(!data.section) return;
+
+    const section = JSON.parse(JSON.stringify(data.section));
+
+    section.id = editor.uid("sec");
+
+    (section.columns || []).forEach(col => {
+        col.id = editor.uid("col");
+
+        (col.widgets || []).forEach(widget => {
+            widget.id = editor.uid("w");
+        });
+    });
+
+    editor.state.sections.push(section);
+    editor.state.isDirty = true;
+
+    editor.render();
+
+    editor.state.selectedType = "section";
+    editor.state.selectedId = section.id;
+    editor.openSectionInspector(section.id);
 };

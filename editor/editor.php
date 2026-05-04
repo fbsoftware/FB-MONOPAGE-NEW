@@ -150,19 +150,32 @@ if (file_exists($layoutFile)) {
                     <div style="flex:1">
                         <button id="save-layout">Pubblica</button>
                     </div> 
+                    <div style="flex:1">
+                        <button id="editor-exit"> ⬅ Esci</button>
+                    </div> 
                 </div> 
 
 
         <div>
             <div id="site-menu-builder"></div>
             <div id="canvas" class="canvas"> </div>
-            <div style="display:flex; justify-content:center">
-            <button id="add-section" class="add-section-btn">➕ Sezione</button>
+                <div style="display:flex; justify-content:center">
+                    <button id="add-section" class="add-section-btn">➕ Sezione</button>
+                    <button class="add-template">➕ Template</button>
+                </div>
             </div>
-        </div>
-       
-    </div>  
-   
+
+            <!--  modal per templates -->
+            <div id="template-modal" style="display:none;">
+                <div class="overlay"></div>
+                <div class="box">
+                    <h3>Template</h3>
+                    <div class="content"></div>
+                    <button class="close-template">Chiudi</button>
+                </div>
+            </div>
+        </div>  
+    </div> 
 </div> <!--#editor-->
 
 

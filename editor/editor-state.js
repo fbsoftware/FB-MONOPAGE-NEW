@@ -18,8 +18,11 @@ editor.state = {
 
     sections: [],
     selectedType: null,
-    selectedId: null
+    selectedId: null,
+
+    isDirty : false 
 };
+
 //================================= 
 //  State genera Id
 //=================================
@@ -29,6 +32,7 @@ editor.generateId = function(prefix) {
 
 //=================================
 //  Select element
+//=================================
 editor.select = function(type, id) {
     editor.state.selected.type = type;
     editor.state.selected.id = id;

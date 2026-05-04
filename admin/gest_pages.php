@@ -11,20 +11,27 @@ require_once('init_admin.php');
 require_once('errorOn.php');
 echo "<body class='admin'>";
 
-		 $array_file=array();
+$array_file=array();
 echo    "<div class='f-flex fd-row fw'>";
+
  //   bottoni gestione
 $param = array('nuovo','modifica','chiudi');
 $btx   = new bottoni_str_par('Gestione delle pagine','art','gest_pages2.php',$param);
      $btx->btn();	
 echo "</div>";
 
+// nuova pagina
+echo "<div class='f-new'>";
+        echo "<label>Nuova pagina</label>";
+        echo "<input type='text' name='new_page' placeholder='es. servizi'>";
+echo "</div>";
+echo "<hr>";
+
 // lettura directory
 $path = $_SERVER['DOCUMENT_ROOT'] . "/FB-JSON/data/";
 foreach (glob($path . "*.json") as $gx) {
     $array_file[] = basename($gx, ".json");
 }
-
 // cartella pagine generali sel sito, mostro i file in una tabella
 //   testate
 echo "<section id='nav'>";
@@ -55,13 +62,7 @@ echo "</div>";
 }
 echo "</div>";//table
 
-echo "<hr>";
 
-echo "<div class='f-new'>";
-        echo "<label>Nuova pagina</label>";
-        echo "<input type='text' name='new_page' placeholder='es. servizi'>";
-        //echo "<button type='submit' name='azione' value='aggiungi'>Aggiungi pagina</button>";
-echo "</div>";
 
 echo "</section>";
 echo "</form>";

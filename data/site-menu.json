@@ -10,11 +10,6 @@
         "level": 0
     },
     {
-        "title": "Home",
-        "page": "home",
-        "level": 0
-    },
-    {
         "title": "Contatti",
         "page": "contatti",
         "level": 0
@@ -25,28 +20,18 @@
         "level": 0
     },
     {
-        "title": "Test",
-        "page": "test",
-        "level": 0
-    },
-    {
-        "title": "New",
-        "page": "new",
-        "level": 0
-    },
-    {
-        "title": "Nuovo",
-        "page": "nuovo",
-        "level": 0
-    },
-    {
         "title": "Servizi",
         "page": "servizi",
         "level": 0
     },
     {
-        "title": "Ciao",
-        "page": "ciao",
+        "title": "Portfolio",
+        "page": "portfolio",
+        "level": 0
+    },
+    {
+        "title": "Promo",
+        "page": "promo",
         "level": 0
     }
 ]

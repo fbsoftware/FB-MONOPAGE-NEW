@@ -3,7 +3,7 @@
         "tema": null,
         "page": "hero",
         "version": "2.0",
-        "updated_at": "2026-05-02T18:54:24+02:00"
+        "updated_at": "2026-05-03T19:26:49+02:00"
     },
     "global": {
         "colors": [],
@@ -22,10 +22,33 @@
                     "width": 100,
                     "widgets": [
                         {
+                            "id": "w1777828520271_1",
+                            "type": "header",
+                            "props": {
+                                "text": "Fly fishing",
+                                "level": "h1",
+                                "align": "center",
+                                "color": "var(--color-secondary)",
+                                "padding": 0,
+                                "margin": "0"
+                            }
+                        },
+                        {
+                            "id": "w1777828523167_2",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "var(--color-bg)",
+                                "padding": "0",
+                                "margin": "0"
+                            }
+                        },
+                        {
                             "id": "w1777655781262_1",
                             "type": "image",
                             "props": {
-                                "src": "assets\/images\/flyfishing1.jpg",
+                                "src": "assets\/images\/mulinello.jpg",
                                 "alt": "",
                                 "align": "center",
                                 "width": "1159"
@@ -37,5 +60,6 @@
         }
     ],
     "selectedType": "widget",
-    "selectedId": "w1777655781262_1"
+    "selectedId": "w1777828520271_1",
+    "isDirty": true
 }

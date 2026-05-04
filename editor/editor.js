@@ -2,16 +2,12 @@ var editor = editor || {};
 
 editor.init = function () {
 
-    console.log("palette-prima");
-
     try {
         editor.renderWidgetPalette();
     } catch (err) {
         console.error("ERRORE renderWidgetPalette:", err);
         return;
     }
-
-    console.log("palette-dopo");
 
 //=================================
 //editor.renderWidgetPalette();   // ← QUESTO CARICA I WIDGET NELLA PALETTE

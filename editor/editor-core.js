@@ -125,6 +125,20 @@ downloadHTML(html);
 
 })
 
+//===========================================
+//  EXIT da editor
+//===========================================
+$(document).on("click", "#editor-exit", function(){
+
+    if(editor.state.isDirty){
+
+        const ok = confirm("Vuoi uscire senza salvare?");
+
+        if(!ok) return;
+    }
+
+    window.location.href = "/FB-JSON/admin/admin.php";
+});
 //=================================
 //  Load site config
 //=================================
@@ -225,6 +239,7 @@ $(document).on("click", ".add-column", function(e){
     section.columns.push({
         id: editor.utils.uuid("col"),
         width: 100  , 
+        margin: 20,
         widgets: []
     });
 
@@ -283,6 +298,7 @@ $(document).on("input change", "#inspector [data-field]", function(){
 
     const field = $(this).data("field");
     const value = $(this).val();
+    editor.state.isDirty = true;
 
     let item;
 
@@ -349,6 +365,8 @@ $(document).on("click", "#editor-tabs, #tab-details, #inspector", function(e){
 $(document).on("mousedown click input change", "#editor-tabs input, #editor-tabs select, #editor-tabs textarea, #editor-tabs button",
     function(e){
         e.stopPropagation();
+        editor.state.isDirty = true;
+
     }
 );
 
@@ -401,7 +419,9 @@ $(document).on(
     function(){
 
         const value = parseInt($(this).val(), 10);
-console.log("col-input modificato" , value);
+        editor.state.isDirty = true;
+
+//console.log("col-input modificato" , value);
         if(isNaN(value)) return;
 
         const columnId = editor.state.selectedId;
@@ -421,6 +441,8 @@ $(document).on("input change", "#inspector [data-column-field]", function(){
 
     const field = $(this).data("column-field");
     const type = $(this).attr("type");
+        editor.state.isDirty = true;
+
     let value = $(this).val();
 
     const columnId = editor.state.selectedId;
@@ -447,9 +469,9 @@ $(document).on("input change", '#inspector [data-section-field]', function(){
 
         const field = $(this).data("section-field");
         const value = $(this).val();
-
         const sectionId = editor.state.selectedId;
         const section = editor.findSectionById(sectionId);
+    editor.state.isDirty = true;
 
         if(!section) return;
 
@@ -464,6 +486,7 @@ $(document).on("input change", '#inspector [data-section-field]', function(){
 // data-upload-image    
 //=================================
 $(document).on("change", '#inspector input[data-upload-image="1"]', function(){
+    editor.state.isDirty = true;
 
     const file = this.files[0];
     if(!file) return;
@@ -568,4 +591,94 @@ $(document).on("click", ".accordion-title", function(){
         .toggleClass("open")
         .find(".accordion-content")
         .slideToggle(120);
+});
+
+//=================================
+//  Protezione extra (chiusura tab)
+//=================================
+window.addEventListener("beforeunload", function(e){
+
+    if(editor.state.isDirty){
+        e.preventDefault();
+        e.returnValue = "";
+    }
+});
+
+//=================================
+//  Salva sezione come template
+//=================================
+$(document).on("click", ".save-section-template", async function(e){
+    e.preventDefault();
+    e.stopPropagation();
+
+    const sectionId = $(this).closest(".canvas-section").data("id");
+    const section = editor.findSectionById(sectionId);
+
+    if(!section) return;
+
+    const name = prompt("Nome template sezione:");
+    if(!name) return;
+
+    const res = await fetch("/FB-JSON/api/save-section-template.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            name: name,
+            section: section
+        })
+    });
+
+    const data = await res.json();
+
+    if(!data.success){
+        alert("Errore salvataggio template: " + data.error);
+        return;
+    }
+
+    alert("Template sezione salvato");
+});
+
+//=================================
+//  Calica lista dei template
+//=================================
+$(document).on("click", ".add-template", async function(){
+
+    const res = await fetch("/FB-JSON/api/list-section-templates.php");
+    const data = await res.json();
+console.log('CLICCATO + TEMPLATE' , data);// FB: log
+
+    if(!data.success || !data.templates.length){
+        alert("Nessun template disponibile");
+        return;
+    }
+
+    let html = "<div class='template-picker'>";
+
+    data.templates.forEach(t => {
+        html += `
+            <div class="template-item" data-file="${t.file}">
+                📦 ${t.name}
+            </div>
+        `;
+    });
+
+    html += "</div>";
+
+    $("#template-modal .content").html(html);
+    $("#template-modal").show();
+});
+
+//🔴 4. Click su template → inserisci
+$(document).on("click", ".template-item", function(){
+
+    const file = $(this).data("file");
+
+    editor.insertSectionTemplate(file);
+
+    $("#template-modal").hide();
+});
+
+//⚫ 5. Chiudi modal
+$(document).on("click", ".close-template, #template-modal .overlay", function(){
+    $("#template-modal").hide();
 });

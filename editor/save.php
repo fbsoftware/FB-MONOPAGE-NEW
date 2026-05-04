@@ -123,7 +123,7 @@ function renderWidgetHTML(array $widget): string
 {
     $type  = $widget['type'] ?? '';
     $props = $widget['props'] ?? [];
-error_log('Rendering widget: ' . $type); 
+//error_log('Rendering widget: ' . $type); 
      switch ($type) {
         case 'text':
             $text  = $props['text'] ?? '';

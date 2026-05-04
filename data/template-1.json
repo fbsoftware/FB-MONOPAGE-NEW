@@ -1,9 +1,9 @@
 {
     "meta": {
         "tema": null,
-        "page": "new",
+        "page": "template-1",
         "version": "2.0",
-        "updated_at": "2026-04-27T16:55:50+02:00"
+        "updated_at": "2026-05-04T18:30:47+02:00"
     },
     "global": {
         "colors": {
@@ -24,33 +24,43 @@
     },
     "sections": [
         {
-            "id": "sec-1777055925041-731",
-            "background": "var(--color-primary)",
+            "id": "sec-1777912098886-15",
+            "background": "#ffffff    ",
             "padding": "20",
             "margin": "20",
             "columns": [
                 {
-                    "id": "col-1777055925041-374",
-                    "width": 45,
+                    "id": "col-1777912098886-438",
+                    "width": 50,
                     "widgets": [
                         {
-                            "id": "w1777055935456_1",
+                            "id": "w1777912162308_1",
+                            "type": "header",
+                            "props": {
+                                "text": "FAEL  Odv",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777912165966_2",
                             "type": "image",
                             "props": {
-                                "src": "assets\/images\/logo.png",
+                                "src": "assets\/images\/FAEL-logo-2025.png",
                                 "alt": "",
                                 "align": "center",
-                                "width": "100"
+                                "width": "177"
                             }
                         }
-                    ],
-                    "borderStyleColor": "var(--color-accent)",
-                    "border": 3,
-                    "radius": 10
+                    ]
                 }
             ]
         }
     ],
     "selectedType": "widget",
-    "selectedId": "w1777055935456_1"
+    "selectedId": "w1777912162308_1",
+    "isDirty": true
 }

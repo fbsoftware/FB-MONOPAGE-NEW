@@ -700,8 +700,6 @@ editor.uid = (function(){
 //=================================
 editor.renderWidgetPalette = function(){
 
-        console.log('PALETTE-prima:', editor.state);
-
             const $panel = $("#widgets-panel");
             $panel.empty();
 
@@ -844,7 +842,7 @@ groups[groupName].forEach(fieldName => {
     const value = widget.props && widget.props[fieldName] !== undefined
         ? widget.props[fieldName]
         : "";
-console.log("ACCORDION FIELD:", fieldName, "VALUE:", widget.props[fieldName]);
+//console.log("ACCORDION FIELD:", fieldName, "VALUE:", widget.props[fieldName]);
     const input = editor.renderInspectorInput(fieldName, field, value);
 
     html += `

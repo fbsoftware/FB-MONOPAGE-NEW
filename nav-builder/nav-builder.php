@@ -1,4 +1,4 @@
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="UTF-8">
@@ -41,6 +41,9 @@
             <div style="flex:1">
                 <button id="save-site-menu">Salva menu</button>
             </div>  
+            <div style="flex:1">
+                <button id="nav-exit"> ⬅ Esci</button>
+            </div> 
             
 
         </div> 

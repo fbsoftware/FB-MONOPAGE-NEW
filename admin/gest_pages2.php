@@ -9,25 +9,25 @@
     all'uso anche improprio di FB open template.
 ============================================================================= */
 require_once('init_admin.php');
-//print_r($_POST);//debug
+error_log("Dati passati=" . print_r($_POST, true));
 
 $azione = $_POST['submit'] ?? '';
 
 $selezionate = $_POST['sel'] ?? [];
 //$ordine = $_POST['ordine'] ?? [];
 //$titoli = $_POST['titolo'] ?? [];
-$newPage = trim($_POST['new_page'] ?? '');
+$newPage = trim($_POST['new_page'] ,'"');
 
 // modifica pagina
 if ($azione === 'modifica') {
-  $page = json_encode($selezionate);
+  $page = $selezionate[0];
   header("Location: /FB-JSON/editor/editor.php?page=" . urlencode($page));
 exit;
 }
 
 // nuova pagina
 if ($azione === 'nuovo') {
-  $page = json_encode($newPage);
+  $page = trim($newPage, '"');
   header("Location: /FB-JSON/editor/editor.php?page=" . urlencode($page));
 exit;
 }

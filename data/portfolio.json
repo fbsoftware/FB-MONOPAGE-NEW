@@ -1,0 +1,266 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "portfolio",
+        "version": "2.0",
+        "updated_at": "2026-05-04T17:41:31+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#ffffff",
+            "undefined": "#ffffff"
+        },
+        "typography": [],
+        "fonts": {
+            "heading-family": "Inter",
+            "heading-weight": "400",
+            "body-family": "Inter",
+            "body-weight": "400"
+        }
+    },
+    "sections": [
+        {
+            "id": "sec-1777906554783-950",
+            "background": "var(--color-secondary)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1777906554783-200",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1777907833233_1",
+                            "type": "header",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777908421397_1",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/fb-home.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "id": "w1777907836587_2",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777907839315_3",
+                            "type": "button",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600"
+                            }
+                        }
+                    ],
+                    "padding": 0,
+                    "margin": 0
+                },
+                {
+                    "id": "col-1777908706055-154",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1777908706055_755",
+                            "type": "header",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777908706055_211",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/fb-home.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "id": "w1777908706055_772",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777908706055_345",
+                            "type": "button",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600"
+                            }
+                        }
+                    ],
+                    "padding": 0,
+                    "margin": 0
+                },
+                {
+                    "id": "col-1777908804222-589",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1777908804222_341",
+                            "type": "header",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777908804222_348",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/fb-home.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "id": "w1777908804222_472",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777908804222_117",
+                            "type": "button",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600"
+                            }
+                        }
+                    ],
+                    "padding": 0,
+                    "margin": 0
+                },
+                {
+                    "id": "col-1777908714955-171",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1777908714955_465",
+                            "type": "header",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777908714955_155",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/fb-home.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "id": "w1777908714955_704",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777908714955_468",
+                            "type": "button",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600"
+                            }
+                        }
+                    ],
+                    "padding": 0,
+                    "margin": 0
+                }
+            ]
+        }
+    ],
+    "selectedType": "widget",
+    "selectedId": "w1777908706055_772",
+    "isDirty": true
+}

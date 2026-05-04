@@ -48,7 +48,7 @@ editor.columns = {
     defaultProps:{
       width: 100,
       padding: 20,  
-      margin: 0,
+      margin: 20,
       background: "transparent"  
       
     },
@@ -85,7 +85,7 @@ editor.columns = {
            data-id="${column.id}"
            style="width:${p.width ||100}%;
                   padding:${p.padding ||20}px;
-                  margin:${p.margin ||0}px;
+                  margin:${p.margin ||20}px;
                   background:${p.background ||'transparent'};">
       </div>
       `;
@@ -188,7 +188,7 @@ editor.renderColumnInspector = function(column){
                 type="number"
                 min="0"
                 max="100"
-                value="${column.margin ?? 0}"
+                value="${column.margin ?? 20}"
                 data-column-field="margin"
                 data-column-input="number"
             >
@@ -287,7 +287,7 @@ editor.renderColumn = function(column){
         .attr("data-id", column.id)
         .css("flex-basis", (column.width ?? 100) + "%")
         .css("padding", (column.padding ?? 0) + "px")
-        .css("margin", (column.margin ?? 0) + "px")
+        .css("margin", (column.margin ?? 20) + "px")
         .css("background", column.sfondoColor || "transparent")
         .css("border-width", (column.border ?? 0) + "px")
         .css("border-style", column.borderStyle || "solid")
@@ -299,9 +299,9 @@ editor.renderColumn = function(column){
     const $toolbar = $("<div>")
         .addClass("column-toolbar")
         .html(`
-            <button class="apps button">
-                <span class="material-symbols-outlined">apps</span>
-            </button>
+        <button class="duplicate-column button">
+            <span class="material-symbols-outlined">content_copy</span>
+        </button>
             <button class="delete-column button">
                 <span class="material-symbols-outlined">delete</span>
             </button>
@@ -401,3 +401,71 @@ editor.syncAllColumnsFromDOM = function(){
         editor.normalizeSectionWidths(section);
     });
 };
+
+//=================================
+// clonare colonna e widget
+//=================================
+editor.cloneColumn = function(column){
+
+    const clone = structuredClone
+        ? structuredClone(column)
+        : JSON.parse(JSON.stringify(column));
+
+    clone.id = editor.uid("col");
+
+    clone.widgets = (clone.widgets || []).map(widget => {
+        widget.id = editor.uid("w");
+        return widget;
+    });
+
+    return clone;
+};
+
+//=======================================
+//  clic duplicazione colonna
+//=======================================
+
+$(document).on("click", ".duplicate-column, .duplicate-column *", function(e){
+    e.preventDefault();
+    e.stopPropagation();
+
+    const $btn = $(this).closest(".duplicate-column");
+    const columnId = $btn.closest(".canvas-column").data("id");
+
+    console.log("CLICK DUPLICA COLONNA", columnId);
+
+    if(!columnId) return;
+
+    let foundSection = null;
+    let foundIndex = -1;
+
+    (editor.state.sections || []).forEach(section => {
+        const index = (section.columns || []).findIndex(col => col.id === columnId);
+
+        if(index !== -1){
+            foundSection = section;
+            foundIndex = index;
+        }
+    });
+
+    if(!foundSection || foundIndex === -1) return;
+
+    const originalColumn = foundSection.columns[foundIndex];
+
+    const newColumn = JSON.parse(JSON.stringify(originalColumn));
+    newColumn.id = "col-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+
+    newColumn.widgets = (newColumn.widgets || []).map(widget => {
+        widget.id = "w" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+        return widget;
+    });
+
+    foundSection.columns.splice(foundIndex + 1, 0, newColumn);
+
+    editor.state.selectedType = "column";
+    editor.state.selectedId = newColumn.id;
+    editor.state.isDirty = true;
+
+    editor.render();
+    editor.openColumnInspector(newColumn.id);
+});

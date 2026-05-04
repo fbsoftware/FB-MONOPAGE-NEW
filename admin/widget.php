@@ -11,7 +11,8 @@
 ============================================================================= */
 require_once('init_admin.php');
 
-echo "<div class=''>";
+echo "<div>";
 echo "<img src='images/logo/logo.png' alt='LOGO' title='logo'
 		style='display:block; margin-left: auto; margin-right: auto; margin-top:0em;'>";
 echo "</div>";
+?>
