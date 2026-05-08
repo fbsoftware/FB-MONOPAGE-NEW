@@ -3,7 +3,7 @@
         "tema": null,
         "page": "contatti",
         "version": "2.0",
-        "updated_at": "2026-04-16T23:07:22+02:00"
+        "updated_at": "2026-04-28T14:53:27+02:00"
     },
     "global": {
         "colors": {
@@ -25,8 +25,8 @@
     "sections": [
         {
             "id": "sec-1776354272005-138",
-            "background": "#ffffff    ",
-            "padding": "0",
+            "background": "var(--color-secondary)",
+            "padding": "20",
             "margin": "0",
             "columns": [
                 {
@@ -34,12 +34,32 @@
                     "width": 50,
                     "widgets": [
                         {
+                            "id": "w1777380640129_1",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "53"
+                            }
+                        },
+                        {
+                            "id": "w1776354285286_2",
+                            "type": "icon",
+                            "props": {
+                                "name": "home",
+                                "size": 48,
+                                "color": "#fbdc41",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
                             "id": "w1776373546925_1",
                             "type": "header",
                             "props": {
                                 "text": "Capossela",
                                 "level": "h2",
-                                "align": "center",
+                                "align": "right",
                                 "color": "#000000",
                                 "padding": 0,
                                 "margin": 0
@@ -57,18 +77,6 @@
                             }
                         },
                         {
-                            "id": "w1776354285286_2",
-                            "type": "icon",
-                            "props": {
-                                "name": "home",
-                                "size": 48,
-                                "color": "var(--color-primary)",
-                                "align": "center",
-                                "padding": 0,
-                                "margin": 0
-                            }
-                        },
-                        {
                             "id": "w1776354277474_1",
                             "type": "image",
                             "props": {
@@ -78,7 +86,8 @@
                                 "width": "150"
                             }
                         }
-                    ]
+                    ],
+                    "padding": 15
                 },
                 {
                     "id": "col-1776354272005-752",
@@ -100,6 +109,6 @@
             ]
         }
     ],
-    "selectedType": "section",
-    "selectedId": "sec-1776354272005-138"
+    "selectedType": "widget",
+    "selectedId": "w1776354285286_2"
 }

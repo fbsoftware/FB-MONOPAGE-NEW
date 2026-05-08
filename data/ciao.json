@@ -1,0 +1,98 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "ciao",
+        "version": "2.0",
+        "updated_at": "2026-05-02T18:45:34+02:00"
+    },
+    "global": {
+        "colors": [],
+        "typography": [],
+        "fonts": []
+    },
+    "sections": [
+        {
+            "id": "sec-1777738993619-288",
+            "background": "var(--color-primary)",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1777738993619-475",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1777739021221_1",
+                            "type": "header",
+                            "props": {
+                                "text": "C I A O",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777739732288_1",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777739742676_2",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600"
+                            }
+                        }
+                    ],
+                    "props": {
+                        "text": "C I A O"
+                    },
+                    "borderStyleColor": "var(--color-secondary)",
+                    "border": 2,
+                    "radius": 20,
+                    "sfondoColor": "#78d5e8"
+                },
+                {
+                    "id": "col-1777739027082-607",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1777740025036_1",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/fb-home.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "450"
+                            }
+                        }
+                    ],
+                    "border": 0,
+                    "radius": 0,
+                    "borderStyle": "dashed",
+                    "borderStyleColor": "var(--color-secondary)",
+                    "padding": 10
+                }
+            ]
+        }
+    ],
+    "selectedType": null,
+    "selectedId": null
+}

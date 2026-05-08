@@ -29,7 +29,7 @@ class bottoni_str_par
 			  
         public function btn()           //  bottoni gestione
           { 
-				//echo "<div class='f-flex fd-row jc-between toolbar-color'>";
+				echo "<div class='f-flex fd-row jc-between toolbar-color'>";
 				// immagine ampiezza = 1
                 echo "<div class='f-item'>";
 				if (file_exists("images/archivi/".$this->tabella.".png"))

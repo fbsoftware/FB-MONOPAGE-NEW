@@ -31,116 +31,110 @@ if (file_exists($layoutFile)) {
 
 <div id="tabs">
   <ul>
-    <li><a href="#widgets-panel">Elementi</a></li>
-    <li><a href="#widget-inspector">Dettagli</a></li>
-    <li><a href="#global">Global</a></li>
+    <li><a href="#widgets-panel">
+                <span class="material-symbols-outlined" 
+            style="font-size :30px !important;
+                    color:var(--color-text)">                    
+            widgets
+            </span>
+    
+    </a></li>
+    <li><a href="#widget-inspector">
+                <span class="material-symbols-outlined" 
+            style="font-size :30px !important;
+                    color:var(--color-text)">                    
+            edit
+            </span>
+    </a></li>
+    <li><a href="#global">                
+            <span class="material-symbols-outlined" 
+            style="font-size :30px !important;
+                    color:var(--color-text)">                    
+            settings
+            </span>
+            </a></li>
     </ul>
 
-
-            <!-- widgets ----------------------------------------------- -->
-    <div id="accordion">           
-            <h3 class="" aria-expanded="true" aria-selected="true">Widget</h3>
-            <div id="widgets-panel">  </div>
-
-            <!-- plugins ----------------------------------------------- 
-            <h3 class="">Plugin</h3>        
-            <div>
-                <ul class="widget-list">
-                    <?php foreach (glob('plugins/*.php') as $file): ?>
-                    <?php $name = basename($file, '.php'); ?>
-                    
-                    <div class="palette-widget" data-widget="<?= $name ?>" data-type="<?= $name ?>" data-kind="plugin">
-                        <?= ucfirst($name) ?>
-                    </div>
-                    <?php endforeach; ?>
-                </ul>
-            </div>  -->
-    </div> <!-- accordion -->
+    <div id="accordion">  
+        <!-- widgets ----------------------------------------------- -->
+        <div id="widgets-panel"></div>
         <!-- impostazioni globali---------------------------- -->
-      
-    <div id="global">
-     <h3 class="" aria-expanded="true" aria-selected="true">Global</h3>     
-                <!-- 🎨 COLORI -->
-                <section class="style-section">
-                    <label> 🎨 COLORI</label>
-                    <br><br>
+        <div id="global">
+        <h3 class="" aria-expanded="true" aria-selected="true">Global</h3>     
+                    <!-- 🎨 COLORI -->
+                    <section class="style-section">
+                        <label> 🎨 COLORI</label>
+                        <br><br>
 
-                    <div class="style-control" style="display: flex;">
-                        <label>Primary</label>
-                        <input type="color" value="#3366ff" data-global-color="primary">
+                        <div class="style-control" style="display: flex;">
+                            <label>Primary</label>
+                            <input type="color" value="#3366ff" data-global-color="primary">
+                            </div>
+                        <div class="style-control" style="display: flex;">
+                            <label>Secondary</label>
+                            <input type="color" value="#ff6633" data-global-color="secondary">              
+                            </div>
+                        <div class="style-control" style="display: flex;">
+                            <label>Accent</label>
+                            <input type="color" value="#ffa500" data-global-color="accent">
                         </div>
-                    <div class="style-control" style="display: flex;">
-                        <label>Secondary</label>
-                        <input type="color" value="#ff6633" data-global-color="secondary">              
+                        <div class="style-control" style="display: flex;">
+                            <label>Testo</label>
+                            <input type="color" value="#222222" data-global-color="text">
                         </div>
-                    <div class="style-control" style="display: flex;">
-                        <label>Accent</label>
-                        <input type="color" value="#ffa500" data-global-color="accent">
-                    </div>
-                    <div class="style-control" style="display: flex;">
-                        <label>Testo</label>
-                        <input type="color" value="#222222" data-global-color="text">
-                    </div>
-                    <div class="style-control" style="display: flex;">
-                        <label>Sfondo</label>
-                        <input type="color" value="#ffffff" data-global-color="bg">
-                </section>
+                        <div class="style-control" style="display: flex;">
+                            <label>Sfondo</label>
+                            <input type="color" value="#ffffff" data-global-color="bg">
+                    </section>
 
-                <!-- 🔤 TIPOGRAFIA -->
-                <section class="style-section">
-                     <label>🔤 TIPOGRAFIA</label>
-                    <br><br>
-                    <div class="style-group" style="display: flex;">
-                    <label>Font titoli</label>
-                    <select type="typography" data-global-font="heading-family">
-                        <option value="Inter">Inter</option>
-                        <option value="Montserrat">Montserrat</option>
-                        <option value="Poppins">Poppins</option>
-                        <option value="Roboto">Roboto</option>
-                    </select>
-                    </div>
-                    <div class="style-group" style="display: flex;">
-                    <label>Stile titoli</label>
-                    <select type="typography" data-global-font="heading-weight">
-                        <option value="400">Regular</option>
-                        <option value="600">Semi-bold</option>
-                        <option value="700">Bold</option>
-                    </select>
-                    </div>
+                    <!-- 🔤 TIPOGRAFIA -->
+                    <section class="style-section">
+                        <label>🔤 TIPOGRAFIA</label>
+                        <br><br>
+                        <div class="style-group" style="display: flex;">
+                        <label>Font titoli</label>
+                        <select type="typography" data-global-font="heading-family">
+                            <option value="Inter">Inter</option>
+                            <option value="Montserrat">Montserrat</option>
+                            <option value="Poppins">Poppins</option>
+                            <option value="Roboto">Roboto</option>
+                        </select>
+                        </div>
+                        <div class="style-group" style="display: flex;">
+                        <label>Stile titoli</label>
+                        <select type="typography" data-global-font="heading-weight">
+                            <option value="400">Regular</option>
+                            <option value="600">Semi-bold</option>
+                            <option value="700">Bold</option>
+                        </select>
+                        </div>
 
-                    <div class="style-group" style="display: flex;">
-                    <label>Font body</label>
-                    <select type="typography" data-global-font="body-family">
-                        <option value="Inter">Inter</option>
-                        <option value="Montserrat">Montserrat</option>
-                        <option value="Poppins">Poppins</option>
-                        <option value="Roboto">Roboto</option>
-                    </select>
-                    </div>
+                        <div class="style-group" style="display: flex;">
+                        <label>Font body</label>
+                        <select type="typography" data-global-font="body-family">
+                            <option value="Inter">Inter</option>
+                            <option value="Montserrat">Montserrat</option>
+                            <option value="Poppins">Poppins</option>
+                            <option value="Roboto">Roboto</option>
+                        </select>
+                        </div>
 
-                    <div class="style-group" style="display: flex;">
-                    <label>Stile body</label>
-                    <select type="typography" data-global-font="body-weight">
-                        <option value="400">Regular</option>
-                        <option value="500">Medium</option>
-                    </select>
-                    </div>
-                </section>
-        <!--SALVATAGGIO CONFIGURAZIONE  -->
-                <button id="saveSiteConfig" class="button2">💾 Salva Impostazioni</button>
-                <span id="siteConfigStatus"></span>
-            
-    </div> <!-- global -->
-
-
-
-
-  <!-- DETTAGLI -->
-  
-    <div id="inspector">
-        <h3 class="" aria-expanded="true" aria-selected="true">Dettagli</h3> 
-    </div><!-- elementi/dettagli -->
-     
+                        <div class="style-group" style="display: flex;">
+                        <label>Stile body</label>
+                        <select type="typography" data-global-font="body-weight">
+                            <option value="400">Regular</option>
+                            <option value="500">Medium</option>
+                        </select>
+                        </div>
+                    </section>
+            <!--SALVATAGGIO CONFIGURAZIONE  -->
+                    <button id="saveSiteConfig" class="button2">💾 Salva Impostazioni</button>
+                    <span id="siteConfigStatus"></span>
+                
+        </div> <!-- global -->
+        <!-- DETTAGLI -->
+        <div id="inspector"></div>
+    </div> <!-- accordion -->
 </div> <!-- tabs -->
 
 
@@ -156,19 +150,35 @@ if (file_exists($layoutFile)) {
                     <div style="flex:1">
                         <button id="save-layout">Pubblica</button>
                     </div> 
+                    <div style="flex:1">
+                        <button id="editor-exit"> ⬅️ Esci</button>
+                    </div> 
                 </div> 
 
 
         <div>
             <div id="site-menu-builder"></div>
             <div id="canvas" class="canvas"> </div>
-            <div style="display:flex; justify-content:center">
-            <button id="add-section" class="add-section-btn">➕ Sezione</button>
+                <div style="display:flex; justify-content:center">
+                    <button id="add-section" 
+                            class="add-section-btn button"
+                            style="border:1px solid black; margin:10px; border-radius:4px;    padding: 10px 15px;">➕ Sezione</button>
+                    <button class="add-template button"
+                            style="border:1px solid black; margin:10px; border-radius:4px;    padding: 10px 15px;">➕ Template</button>
+                </div>
             </div>
-        </div>
-       
-    </div>  
-   
+
+            <!--  modal per templates -->
+            <div id="template-modal" style="display:none;">
+                <div class="overlay"></div>
+                <div class="box">
+                    <h3>Template</h3>
+                    <div class="content"></div>
+                    <button class="close-template">Chiudi</button>
+                </div>
+            </div>
+        </div>  
+    </div> 
 </div> <!--#editor-->
 
 
@@ -177,6 +187,7 @@ window.EDITOR_CONFIG = {
     tema: null,
     page: "<?= $_GET['page'] ?? 'home' ?>"
 };
+// FB: render colonna completo
 
   // Carica configurazione globale
     <?php

@@ -30,8 +30,7 @@
 	 	"prefix": "fb-log",
 	 	"body":
 		[
-		"// FB: render colonna completo",
-	 		"console.log('$1');",
+			"console.log('$1');// FB: log",
 	 		"$2"
 	 	],
 	 	"description": "Log output to console"

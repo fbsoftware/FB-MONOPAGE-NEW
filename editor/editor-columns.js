@@ -45,48 +45,53 @@ editor.columns = {
     label:"Colonna",
     icon:"📝",
 
-    defaultProps:{
-      width: 100,
-      padding: 20,  
-      margin: 0,
-      background: "transparent"  
-      
-    },
-
     fields: {
       width: {
         type: "range",
         min: 10,
         max: 100,
-        label: "Larghezza"
+        label: "Larghezza",
+        group:"contenuto"
       },
-            padding: {
-        type: "range",
-        min: 10,
-        max: 100,
-        label: "Padding"
+        height: {
+        type: "number",
+        label: "Altezza",
+        group:"contenuto"
+      },  
+        padding: {
+        type: "number",
+        label: "Padding",
+        group: "stile"
       },
-            margin: {
-        type: "range",
-        min: 10,
-        max: 100,
-        label: "Margin"
+        margin: {
+        type: "number",
+        label: "Margin",
+        group: "stile"
       },
-            background: {
+        background: {
         type: "color",
-        label: "Sfondo"
-      }
+        label: "Sfondo",
+        group: "stile"
+      },
+        customCss: {
+        type:"textarea",
+        label:"CSS personalizzato",
+        group:"avanzate"
+    }
     },
 
     render(column){
-      const p = column.props;
+      const p = column;
+
       return `
       <div class="canvas-column"
            data-id="${column.id}"
            style="width:${p.width ||100}%;
-                  padding:${p.padding ||20}px;
-                  margin:${p.margin ||0}px;
-                  background:${p.background ||'transparent'};">
+            height:${p.height ||200}px;
+            padding:${p.padding ||20}px;
+            margin:${p.margin || 0}px;
+            background:${p.background ||'transparent'};
+            ${p.customCss}">
       </div>
       `;
     }
@@ -133,142 +138,7 @@ editor.openColumnInspector = function(Id){
         console.error("Colonna non trovata:", Id);
         return;
     }
-// console.log("COLONNA TROVATA");
     editor.renderColumnInspector(column);
-};
-
-//=================================
-// Render column in inspector
-//=================================
-editor.renderColumnInspector = function(column){
-
-    const $panel = $("#inspector");
-    $panel.empty();
-
-    const html = `
-        <div class="inspector">
-            <h3>Dettagli Colonna</h3>
-
-            <label for="col-width-range">Larghezza (%)</label>
-
-            <input
-                id="col-width-range"
-                type="range"
-                min="10"
-                max="100"
-                value="${column.width ?? 100}"
-                data-column-field="width"
-                data-column-input="range"
-            >
-
-            <input
-                id="col-width-number"
-                type="number"
-                min="10"
-                max="100"
-                value="${column.width ?? 100}"
-                data-column-field="width"
-                data-column-input="number"
-            >
-
-            <label for="col-padding">Padding px</label>
-            <input
-                id="col-padding"
-                type="number"
-                min="0"
-                max="100"
-                value="${column.padding ?? 0}"
-                data-column-field="padding"
-                data-column-input="number"
-            >
-
-            <label for="col-margin">Margin px</label>
-            <input
-                id="col-margin"
-                type="number"
-                min="0"
-                max="100"
-                value="${column.margin ?? 0}"
-                data-column-field="margin"
-                data-column-input="number"
-            >
-            <label for="col-sfondo">Colore sfondo</label>
-            <select
-                id="col-sfondo"
-                type="select"
-                data-column-field="sfondoColor"
-            >
-                <option value="var(--color-primary)" ${column.sfondoColor === "var(--color-primary)" ? "selected" : ""}>Primario</option>
-                <option value="var(--color-secondary)" ${column.sfondoColor === "var(--color-secondary)" ? "selected" : ""}>Secondario</option>
-                <option value="var(--color-accent)" ${column.sfondoColor === "var(--color-accent)" ? "selected" : ""}>Accent</option>
-                <option value="var(--color-text)" ${column.sfondoColor === "var(--color-text)" ? "selected" : ""}>Testo</option>
-                <option value="var(--color-bg)" ${column.sfondoColor === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
-            </select>
-
-            <input
-                id="col-sfondo-color-picker"
-                type="color"
-                value="${column.sfondoColor && column.sfondoColor.startsWith('#') ? column.sfondoColor : '#000000'}"
-                data-column-field="sfondoColor"
-            >
-
-                
-            <label for="col-border">Spessore bordo px</label>
-            <input
-                id="col-border"
-                type="number"
-                min="0"
-                max="10"
-                value="${column.border ?? 0}"
-                data-column-field="border"
-                data-column-input="number"
-            >
-
-            <label for="col-radius">Raggio bordo px</label>
-            <input
-                id="col-radius"
-                type="number"
-                min="0"
-                max="100"
-                value="${column.radius ?? 0}"
-                data-column-field="radius"
-                data-column-input="number"
-            >
-
-            <label for="col-border-style">Stile linea</label>
-            <select
-                id="col-border-style"
-                type="select"
-                data-column-field="borderStyle"
-            >
-                <option value="solid" ${column.borderStyle === "solid" ? "selected" : ""}>solido</option>
-                <option value="dashed" ${column.borderStyle === "dashed" ? "selected" : ""}>tratteggiato</option>
-                <option value="dotted" ${column.borderStyle === "dotted" ? "selected" : ""}>punteggiato</option>
-            </select>
-
-            <label for="col-border-color">Colore bordo</label>
-            <select
-                id="col-border-color"
-                type="select"
-                data-column-field="borderStyleColor"
-            >
-                <option value="var(--color-primary)" ${column.borderStyleColor === "var(--color-primary)" ? "selected" : ""}>Primario</option>
-                <option value="var(--color-secondary)" ${column.borderStyleColor === "var(--color-secondary)" ? "selected" : ""}>Secondario</option>
-                <option value="var(--color-accent)" ${column.borderStyleColor === "var(--color-accent)" ? "selected" : ""}>Accent</option>
-                <option value="var(--color-text)" ${column.borderStyleColor === "var(--color-text)" ? "selected" : ""}>Testo</option>
-                <option value="var(--color-bg)" ${column.borderStyleColor === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
-            </select>
-
-            <input
-                id="col-border-color-picker"
-                type="color"
-                value="${column.borderStyleColor && column.borderStyleColor.startsWith('#') ? column.borderStyleColor : '#000000'}"
-                data-column-field="borderStyleColor"
-            >
-        </div>
-    `;
-
-    $panel.html(html);
 };
 
 //=================================
@@ -286,19 +156,26 @@ editor.renderColumn = function(column){
         .addClass(`canvas-column ${selected}`)
         .attr("data-id", column.id)
         .css("flex-basis", (column.width ?? 100) + "%")
-        .css("padding", (column.padding ?? 0) + "px")
+        .css("height", (column.height ?? 200) + "px")
+        .css("padding", (column.padding ?? 20) + "px")
         .css("margin", (column.margin ?? 0) + "px")
-        .css("background", column.sfondoColor || "transparent")
-        .css("border-width", (column.border ?? 0) + "px")
-        .css("border-style", column.borderStyle || "solid")
-        .css("border-color", column.borderStyleColor || "#dddddd")
-        .css("border-radius", (column.radius ?? 0) + "px")
+        .css("background", column.background || "transparent")
         .css("flex-grow", 0)
         .css("flex-shrink", 0);
+        // customCss
+        if(column.customCss){
+        $column.attr(
+            "style",
+            ($column.attr("style") || "") + ";" + column.customCss
+        );
+    }
 
     const $toolbar = $("<div>")
         .addClass("column-toolbar")
         .html(`
+        <button class="duplicate-column button">
+            <span class="material-symbols-outlined">content_copy</span>
+        </button>
             <button class="delete-column button">
                 <span class="material-symbols-outlined">delete</span>
             </button>
@@ -398,3 +275,201 @@ editor.syncAllColumnsFromDOM = function(){
         editor.normalizeSectionWidths(section);
     });
 };
+
+//=================================
+// clonare colonna e widget
+//=================================
+editor.cloneColumn = function(column){
+
+    const clone = structuredClone
+        ? structuredClone(column)
+        : JSON.parse(JSON.stringify(column));
+
+    clone.id = editor.uid("col");
+
+    clone.widgets = (clone.widgets || []).map(widget => {
+        widget.id = editor.uid("w");
+        return widget;
+    });
+
+    return clone;
+};
+
+//=======================================
+//  clic duplicazione colonna
+//=======================================
+
+$(document).on("click", ".duplicate-column, .duplicate-column *", function(e){
+    e.preventDefault();
+    e.stopPropagation();
+
+    const $btn = $(this).closest(".duplicate-column");
+    const columnId = $btn.closest(".canvas-column").data("id");
+
+    console.log("CLICK DUPLICA COLONNA", columnId);
+
+    if(!columnId) return;
+
+    let foundSection = null;
+    let foundIndex = -1;
+
+    (editor.state.sections || []).forEach(section => {
+        const index = (section.columns || []).findIndex(col => col.id === columnId);
+
+        if(index !== -1){
+            foundSection = section;
+            foundIndex = index;
+        }
+    });
+
+    if(!foundSection || foundIndex === -1) return;
+
+    const originalColumn = foundSection.columns[foundIndex];
+
+    const newColumn = JSON.parse(JSON.stringify(originalColumn));
+    newColumn.id = "col-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
+
+    newColumn.widgets = (newColumn.widgets || []).map(widget => {
+        widget.id = "w" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+        return widget;
+    });
+
+    foundSection.columns.splice(foundIndex + 1, 0, newColumn);
+
+    editor.state.selectedType = "column";
+    editor.state.selectedId = newColumn.id;
+    editor.state.isDirty = true;
+
+    editor.render();
+    editor.openColumnInspector(newColumn.id);
+});
+
+//==================================
+// inspector generico per elementi
+//==================================
+editor.renderElementInspector = function(title, target, fields, dataAttr){
+
+    const $panel = $("#inspector");
+    $panel.empty();
+    if(!target){
+        $panel.html("<p>Elemento non trovato.</p>");
+        return;
+    }
+
+    if(!fields){
+        console.error("Fields mancanti per inspector:", title, target);
+        $panel.html("<p>Campi inspector mancanti.</p>");
+        return;
+    }
+    const groups = {
+        contenuto: [],
+        stile: [],
+        avanzate: []
+    };
+
+    console.log("renderElementInspector fields =", fields);
+Object.keys(fields).forEach(fieldName => {
+        const field = fields[fieldName];
+        const group = field.group || "contenuto";
+
+        if(!groups[group]) groups[group] = [];
+        groups[group].push(fieldName);
+    });
+
+    let first = true;
+    Object.keys(groups).forEach(groupName => {
+
+        if(!groups[groupName].length) return;
+
+        const isOpen = editor.state.openInspectorGroup === groupName;
+        const openClass = isOpen ? "open" : "";
+        const openStyle = isOpen ? "" : 'style="display:none;"';
+        first = false;
+
+let html = `
+    <div class="inspector-accordion ${openClass}">
+        <div class="accordion-title" data-group="${groupName}">
+            ${editor.inspectorGroups[groupName] || groupName}
+        </div>
+        <div class="accordion-content" ${openStyle}>
+`;
+
+        groups[groupName].forEach(fieldName => {
+
+            const field = fields[fieldName];
+            const value = target[fieldName] ?? "";
+
+            let input = editor.renderInspectorInput(fieldName, field, value);
+
+            input = input.replaceAll(
+                'data-field=',
+                `data-${dataAttr}-field=`
+            );
+
+            html += `
+                <div class="inspector-row">
+                    <label>${field.label}</label>
+                    ${input}
+                </div>
+            `;
+        });
+
+        html += `
+                </div>
+            </div>
+        `;
+
+        $panel.append(html);
+    });
+};
+
+//======================
+// dettagli per colonna
+//======================
+editor.renderColumnInspector = function(column){
+
+    editor.renderElementInspector(
+        "Dettagli Colonna",
+        column,
+        editor.columns.column.fields,
+        "column"
+    );
+};
+
+//========================
+//  handle colonne
+//========================
+$(document).on("input change", "#inspector [data-column-field]", function(e){
+
+    const tag = this.tagName.toLowerCase();
+    const field = $(this).data("column-field");
+
+    // Durante la scrittura nella textarea salvo solo il valore,
+    // ma non rifaccio il render.
+    if(tag === "textarea" && e.type === "input"){
+        const column = editor.findColumnById(editor.state.selectedId);
+        if(column){
+            column[field] = $(this).val();
+            editor.state.isDirty = true;
+        }
+        return;
+    }
+
+    let value = $(this).val();
+    const type = $(this).attr("type");
+
+    if(type === "number" || type === "range"){
+        value = parseInt(value, 10);
+        if(isNaN(value)) value = 0;
+    }
+
+    const column = editor.findColumnById(editor.state.selectedId);
+    if(!column) return;
+
+    column[field] = value;
+
+    editor.state.isDirty = true;
+
+    editor.render();
+    editor.openColumnInspector(column.id);
+});

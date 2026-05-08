@@ -43,7 +43,7 @@ html += `
 $(document).on("click", ".menu-item", function(e){
 
     if($(e.target).is("button")) return;
-
+editor.navState.isDirty = true;
     const page = $(this).data("page");
     if(!page) return;
 
@@ -56,7 +56,7 @@ $(document).on("click", ".menu-item", function(e){
 $(document).on("click", ".menu-delete", function(e){
     e.preventDefault();
     e.stopPropagation();
-
+editor.navState.isDirty = true;
     const index = parseInt($(this).data("index"), 10);
     if(isNaN(index)) return;
 
@@ -88,7 +88,7 @@ $(document).on("click", ".menu-delete", function(e){
 // Add a new page to the site menu
 //========================================================= 
 editor.addPageToMenu = function(title, page){
-
+editor.navState.isDirty = true;
     if(!editor.siteMenu) editor.siteMenu = [];
 
     editor.siteMenu.push({
@@ -104,7 +104,7 @@ editor.addPageToMenu = function(title, page){
 // Initialize jQuery UI sortable on the menu builder list
 //=========================================================
 editor.initSiteMenuSortable = function(){
-
+editor.navState.isDirty = true;
     if($(".menu-builder-list").data("ui-sortable")){
         $(".menu-builder-list").sortable("destroy");
     }
@@ -115,6 +115,7 @@ editor.initSiteMenuSortable = function(){
 
         update: function(){
             editor.syncSiteMenuOrderFromDOM();
+            editor.navState.isDirty = true;
             editor.renderSiteMenuBuilder();
         }
     });
@@ -126,7 +127,7 @@ editor.initSiteMenuSortable = function(){
 // Sync the order of the site menu from the DOM after sorting
 //=========================================================
 editor.syncSiteMenuOrderFromDOM = function(){
-
+editor.navState.isDirty = true;
     const oldMenu = [...editor.siteMenu];
     const newMenu = [];
 
@@ -147,7 +148,7 @@ editor.syncSiteMenuOrderFromDOM = function(){
 //=========================================================
 $(document).on("click", ".menu-right", function(e){
     e.stopPropagation();
-
+editor.navState.isDirty = true;
     const index = parseInt($(this).data("index"), 10);
     if(isNaN(index)) return;
 
@@ -164,7 +165,7 @@ $(document).on("click", ".menu-right", function(e){
 //=========================================================
 $(document).on("click", ".menu-left", function(e){
     e.stopPropagation();
-
+editor.navState.isDirty = true;
     const index = parseInt($(this).data("index"), 10);
     if(isNaN(index)) return;
 
@@ -202,7 +203,7 @@ editor.buildMenuHtml = function(items){
             html += "</li>";
         }
 
-        html += `<li><a href="${item.page}.html">${item.title}</a>`;
+        html += `<li><a href="${item.page}.html">${item.title} target="_blank"</a>`;
 
         prevLevel = level;
     });
@@ -250,6 +251,7 @@ console.log("Response from save-menu.php:", res);
 //=========================================================
 $(document).on("click", "#save-site-menu", function(){
     editor.saveSiteMenu();
+    editor.navState.isDirty = false;
 });
 
 
@@ -257,6 +259,7 @@ $(document).on("click", "#save-site-menu", function(){
 // Load the site menu structure from the server when the editor initializes
 //=========================================================
 editor.loadSiteMenu = async function(){
+    editor.navState.isDirty = true;
     try {
         const res = await fetch("/FB-JSON/api/load-menu.php");
         const data = await res.json();
@@ -294,7 +297,7 @@ editor.loadSiteMenu = async function(){
 // Load available pages from /data
 //=========================================================
 editor.loadAvailablePages = async function(){
-
+editor.navState.isDirty = true;
     try {
         const res = await fetch("/FB-JSON/api/list-pages.php");
         const data = await res.json();
@@ -319,7 +322,7 @@ editor.loadAvailablePages = async function(){
 // Render available pages list
 //=========================================================
 editor.renderAvailablePages = function(){
-
+editor.navState.isDirty = true;
     const $panel = $("#available-pages-panel");
     $panel.empty();
 
@@ -369,7 +372,7 @@ editor.renderAvailablePages = function(){
 $(document).on("click", ".add-page-to-menu", function(e){
     e.preventDefault();
     e.stopPropagation();
-
+editor.navState.isDirty = true;
     const page = $(this).data("page");
     const title = $(this).data("title");
 
@@ -390,7 +393,7 @@ $(document).on("click", ".add-page-to-menu", function(e){
 // Add a new page to the site menu
 //========================================================= 
 editor.addPageToMenu = function(title, page){
-
+editor.navState.isDirty = true;
     if(!editor.siteMenu) editor.siteMenu = [];
 
     editor.siteMenu.push({
@@ -401,3 +404,17 @@ editor.addPageToMenu = function(title, page){
 
     editor.renderSiteMenuBuilder();
 };
+
+//=========================================================
+// salvataggio
+//========================================================= 
+$(document).on("click", "#nav-exit", function(){
+
+    if(editor.navState.isDirty){
+        if(!confirm("Vuoi uscire senza salvare il menu?")){
+            return;
+        }
+    }
+
+    window.location.href = "/FB-JSON/admin/admin.php";
+});

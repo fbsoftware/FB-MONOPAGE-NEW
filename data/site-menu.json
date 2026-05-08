@@ -1,7 +1,7 @@
 [
     {
-        "title": "Home",
-        "page": "home",
+        "title": "Hero",
+        "page": "hero",
         "level": 0
     },
     {
@@ -20,13 +20,18 @@
         "level": 0
     },
     {
-        "title": "Test",
-        "page": "test",
-        "level": 1
+        "title": "Servizi",
+        "page": "servizi",
+        "level": 0
     },
     {
-        "title": "New",
-        "page": "new",
-        "level": 1
+        "title": "Portfolio",
+        "page": "portfolio",
+        "level": 0
+    },
+    {
+        "title": "Promo",
+        "page": "promo",
+        "level": 0
     }
 ]

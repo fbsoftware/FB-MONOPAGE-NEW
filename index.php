@@ -82,19 +82,20 @@ $pageContent = file_exists($pagePath)
             flex-direction: row; 
             align-items: center;
             width: 1240px; 
-            background: var(--color-bg); 
+            background: #cacaca; 
             padding: 10px;  
             height: 140px;
             ">
 
     <header class="header" >
-    <img src="assets/images/logo.png" alt="Logo di FB" class="logo" height="150px" 
-            style="padding: 20px;"   >
+        <img src="assets/images/logo.png" alt="Logo di FB" class="logo" height="150px" 
+                style="padding: 20px;"   >
     </header>
 
-    <nav>
-        <?php echo renderSiteMenuHTML(loadSiteMenu()); ?>
-    </nav>
+        <nav>
+            <?php echo renderSiteMenuHTML(loadSiteMenu()); ?>
+        </nav> 
+    
 </div>
     <section id="page-content">
         <?php echo $pageContent; ?>

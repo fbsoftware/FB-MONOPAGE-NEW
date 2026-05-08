@@ -1,0 +1,81 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "hero",
+        "version": "2.0",
+        "updated_at": "2026-05-05T23:51:20+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#ffffff",
+            "undefined": "#ffffff"
+        },
+        "typography": [],
+        "fonts": {
+            "heading-family": "Inter",
+            "heading-weight": "400",
+            "body-family": "Inter",
+            "body-weight": "400"
+        }
+    },
+    "sections": [
+        {
+            "id": "sec-1777655769127-517",
+            "background": "var(--color-primary)",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1777655769127-233",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1778017779680_1",
+                            "type": "header",
+                            "props": {
+                                "text": "Hero page",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "var(--color-bg)",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": ""
+                            }
+                        },
+                        {
+                            "id": "w1777828523167_2",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "var(--color-bg)",
+                                "padding": "23",
+                                "margin": "0",
+                                "customCss": ""
+                            }
+                        },
+                        {
+                            "id": "w1777655781262_1",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/mulinello.jpg",
+                                "alt": "",
+                                "align": "center",
+                                "width": "1159",
+                                "customCss": "",
+                                "imgCss": ""
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "selectedType": "widget",
+    "selectedId": "w1777828523167_2",
+    "isDirty": true
+}

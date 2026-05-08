@@ -18,15 +18,17 @@ editor.state = {
 
     sections: [],
     selectedType: null,
-    selectedId: null
+    selectedId: null,
+
+    isDirty : false 
 };
+
 //================================= 
 //  State genera Id
 //=================================
 editor.generateId = function(prefix) {
     return prefix + "-" + Date.now() + "-" + Math.floor(Math.random() * 1000);
 };
-
 
 //=================================
 //  Select element
