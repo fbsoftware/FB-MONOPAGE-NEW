@@ -6,6 +6,7 @@ function renderWidgetHTML(array $widget): string
     $type  = $widget['type'] ?? '';
     $props = $widget['props'] ?? [];
 
+
     switch ($type) {
         case 'text':
             $text  = $props['text'] ?? '';
@@ -250,6 +251,7 @@ editor.renderPageHTML = function(data){
 </html>
 
 };
+
 //============================================
 //  💾 6. esportare file index.html
 //============================================
@@ -261,3 +263,138 @@ function downloadHTML(html){
     a.download = "index.html";
     a.click();
 }
+
+//=================================
+// Render column in inspector
+//=================================
+editor.renderColumnInspector = function(column){
+
+    const $panel = $("#inspector");
+    $panel.empty();
+
+    const html = `
+        <div class="inspector">
+            <h3>Dettagli Colonna</h3>
+
+            <label for="col-width-range">Larghezza (%)</label>
+
+            <input
+                id="col-width-range"
+                type="range"
+                min="10"
+                max="100"
+                value="${column.width ?? 100}"
+                data-column-field="width"
+                data-column-input="range"
+            >
+
+            <input
+                id="col-width-number"
+                type="number"
+                min="10"
+                max="100"
+                value="${column.width ?? 100}"
+                data-column-field="width"
+                data-column-input="number"
+            >
+
+            <label for="col-padding">Padding px</label>
+            <input
+                id="col-padding"
+                type="number"
+                min="0"
+                max="100"
+                value="${column.padding ?? 0}"
+                data-column-field="padding"
+                data-column-input="number"
+            >
+
+            <label for="col-margin">Margin px</label>
+            <input
+                id="col-margin"
+                type="number"
+                min="0"
+                max="100"
+                value="${column.margin ?? 20}"
+                data-column-field="margin"
+                data-column-input="number"
+            >
+            <label for="col-sfondo">Colore sfondo</label>
+            <select
+                id="col-sfondo"
+                type="select"
+                data-column-field="sfondoColor"
+            >
+                <option value="var(--color-primary)" ${column.sfondoColor === "var(--color-primary)" ? "selected" : ""}>Primario</option>
+                <option value="var(--color-secondary)" ${column.sfondoColor === "var(--color-secondary)" ? "selected" : ""}>Secondario</option>
+                <option value="var(--color-accent)" ${column.sfondoColor === "var(--color-accent)" ? "selected" : ""}>Accent</option>
+                <option value="var(--color-text)" ${column.sfondoColor === "var(--color-text)" ? "selected" : ""}>Testo</option>
+                <option value="var(--color-bg)" ${column.sfondoColor === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
+            </select>
+
+            <input
+                id="col-sfondo-color-picker"
+                type="color"
+                value="${column.sfondoColor && column.sfondoColor.startsWith('#') ? column.sfondoColor : '#000000'}"
+                data-column-field="sfondoColor"
+            >
+
+                
+            <label for="col-border">Spessore bordo px</label>
+            <input
+                id="col-border"
+                type="number"
+                min="0"
+                max="10"
+                value="${column.border ?? 0}"
+                data-column-field="border"
+                data-column-input="number"
+            >
+
+            <label for="col-radius">Raggio bordo px</label>
+            <input
+                id="col-radius"
+                type="number"
+                min="0"
+                max="100"
+                value="${column.radius ?? 0}"
+                data-column-field="radius"
+                data-column-input="number"
+            >
+
+            <label for="col-border-style">Stile linea</label>
+            <select
+                id="col-border-style"
+                type="select"
+                data-column-field="borderStyle"
+            >
+                <option value="solid" ${column.borderStyle === "solid" ? "selected" : ""}>solido</option>
+                <option value="dashed" ${column.borderStyle === "dashed" ? "selected" : ""}>tratteggiato</option>
+                <option value="dotted" ${column.borderStyle === "dotted" ? "selected" : ""}>punteggiato</option>
+            </select>
+
+            <label for="col-border-color">Colore bordo</label>
+            <select
+                id="col-border-color"
+                type="select"
+                data-column-field="borderStyleColor"
+            >
+                <option value="var(--color-primary)" ${column.borderStyleColor === "var(--color-primary)" ? "selected" : ""}>Primario</option>
+                <option value="var(--color-secondary)" ${column.borderStyleColor === "var(--color-secondary)" ? "selected" : ""}>Secondario</option>
+                <option value="var(--color-accent)" ${column.borderStyleColor === "var(--color-accent)" ? "selected" : ""}>Accent</option>
+                <option value="var(--color-text)" ${column.borderStyleColor === "var(--color-text)" ? "selected" : ""}>Testo</option>
+                <option value="var(--color-bg)" ${column.borderStyleColor === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
+            </select>
+
+            <input
+                id="col-border-color-picker"
+                type="color"
+                value="${column.borderStyleColor && column.borderStyleColor.startsWith('#') ? column.borderStyleColor : '#000000'}"
+                data-column-field="borderStyleColor"
+            >
+        </div>
+    `;
+
+    $panel.html(html);
+};
+</input>

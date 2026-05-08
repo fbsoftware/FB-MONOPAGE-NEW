@@ -131,12 +131,14 @@ function renderWidgetHTML(array $widget): string
             $color = $props['color'] ?? 'inherit';
             $padding = isset($props['padding']) ? ((int)$props['padding'] . 'px') : '0px';
             $margin = isset($props['margin']) ? ((int)$props['margin'] . 'px') : '0px';
+            $customCss = $props['customCss'] ?? '';
 
             return '<div class="widget-text" 
                 style="text-align:' . h($align) . '; 
                 color:' . h($color) . ';
                 padding:' . h($padding) . ';
-                margin:' . h($margin) . ';">'
+                margin:' . h($margin) . ';
+                 ' . h($customCss) . '">'
                 . nl2br(h($text))
                 . '</div>';
 
@@ -144,8 +146,12 @@ function renderWidgetHTML(array $widget): string
             $text  = $props['text'] ?? '';
             $align = $props['align'] ?? 'left';
             $color = $props['color'] ?? 'inherit';
+            $customCss = $props['customCss'] ?? '';
 
-            return '<div class="widget-text" style="text-align:' . h($align) . ';color:' . h($color) . ';">'
+            return '<div class="widget-text" 
+                        style="text-align:' . h($align) . ';
+                        color:' . h($color) . ';
+                         ' . h($customCss) . '">'
                 . nl2br(h($text))
                 . '</div>';
 
@@ -156,6 +162,7 @@ function renderWidgetHTML(array $widget): string
             $color = $props['color'] ?? 'primary';
             $padding = isset($props['padding']) ? ((int)$props['padding'] . 'px') : '0px';
             $margin = isset($props['margin']) ? ((int)$props['margin'] . 'px') : '0px';
+            $customCss = $props['customCss'] ?? '';
 
             $allowed = ['h1','h2','h3','h4','h5','h6'];
             if (!in_array($level, $allowed, true)) {
@@ -164,7 +171,8 @@ function renderWidgetHTML(array $widget): string
 
             return '<div class="widget-header" style="text-align:' . h($align) . ';
                 padding:' . h($padding) . ';
-                margin:' . h($margin) . ';">'
+                margin:' . h($margin) . ';
+                 ' . h($customCss) . '">'
                 . '<' . $level . ' style="color:' . h($color) . ';">' . h($text) . '</' . $level . '>'
                 . '</div>';
 
@@ -179,8 +187,13 @@ function renderWidgetHTML(array $widget): string
             $padding = $props['padding'] ?? 20;
             $fontSize = $props['fontSize'] ?? 22;
             $fontWeight = $props['fontWeight'] ?? 600;
+            $customCss = $props['customCss'] ?? '';
+            $buttonCss = $props['buttonCss'] ?? '';
 
-            return '<div class="widget-button" style="text-align:' . h($align) . '; padding:' . h($padding) . 'px;  ">
+            return '<div class="widget-button" 
+                            style="text-align:' . h($align) . '; 
+                            padding:' . h($padding) . 'px;  
+                            ' . h($customCss) . '">
                 <a href="' . h($url) . '" style="
                     display:inline-block;
                     width:auto;
@@ -192,6 +205,7 @@ function renderWidgetHTML(array $widget): string
                     font-weight:' . h($fontWeight) . ';
                     color:' . h($color) . ';
                     cursor:pointer;
+                    ' . h($buttonCss) . '
                 ">
                     ' . h($text) . '
                 </a>
@@ -202,15 +216,26 @@ function renderWidgetHTML(array $widget): string
             $alt = $props['alt'] ?? '';
             $align = $props['align'] ?? 'left';
             $width = isset($props['width']) ? ((int)$props['width'] . 'px') : 'auto';
-
-            return '<div class="widget-image" style="justify-content:' . h($align) . ';align-items:' . h($align) . ';">'
-                . '<img src="' . h($src) . '" alt="' . h($alt) . '" style="width:' . h($width) . ';">'
+            $customCss = $props['customCss'] ?? '';
+            $imgCss = $props['imgCss'] ?? '';
+            return '<div class="widget-image" 
+                        style="justify-content:' . h($align) . ';
+                        align-items:' . h($align) . ';
+                        ' . h($customCss) . '">'
+                . '<img src="' . h($src) . '" 
+                        alt="' . h($alt) . '" 
+                        style="width:' . h($width) . ';
+                        ' . h($imgCss) . '">'
                 . '</div>';
 
         case 'spacer':
             $height = isset($props['height']) ? ((int)$props['height'] . 'px') : '40px';
+            $customCss = $props['customCss'] ?? '';
 
-            return '<div class="widget-spacer" style="height:' . h($height) . ';"></div>';
+            return '<div class="widget-spacer" 
+                        style="height:' . h($height) . ';
+                        ' . h($customCss) . '">
+                    </div>';
 
         case 'icon':
             $align = $props['align'] ?? 'center';
@@ -219,18 +244,22 @@ function renderWidgetHTML(array $widget): string
             $name = $props['name'] ?? 'home';
             $padding = isset($props['padding']) ? ((int)$props['padding'] . 'px') : '0px';
             $margin = isset($props['margin']) ? ((int)$props['margin'] . 'px') : '0px';
+            $customCss = $props['customCss'] ?? '';
+            $iconCss = $props['iconCss'] ?? '';
 
-            return '<div class="widget-icon" 
+             return '<div class="widget-icon" 
                 style="display:flex;
                     justify-content:' . h($align) . ';
                     align-items:' . h($align) . ';
                     padding:' . h($padding) . ';
-                    margin:' . h($margin) . ';">
+                    margin:' . h($margin) . ';
+                    ' . h($customCss) . '">
                 <span class="material-symbols-outlined" style="
                     font-size:' . h($size) . 'px!important;
                     color:' . h($color) . ';
                     padding:' . h($padding) . ';
-                    margin:' . h($margin) . ';">
+                    margin:' . h($margin) . ';
+                    ' . h($iconCss) . '">
                     ' . h($name) . '
                 </span>
             </div>';
@@ -242,6 +271,8 @@ function renderWidgetHTML(array $widget): string
             $align = $props['align'] ?? 'center';
             $padding = isset($props['padding']) ? (int)$props['padding'] : 0;
             $margin = isset($props['margin']) ? (int)$props['margin'] : 0;
+            $customCss = $props['customCss'] ?? '';
+            $videoCss = $props['videoCss'] ?? '';
 
             $videoId = getYoutubeVideoId($url);
 
@@ -252,19 +283,18 @@ function renderWidgetHTML(array $widget): string
             $ratioPadding = getVideoAspectRatioPadding($aspectRatio);
 
             return '
-                <div class="widget-video" style="
-                    text-align:' . h($align) . ';
-                    padding:' . h($padding) . 'px;
-                    margin:' . h($margin) . 'px;
-                ">
+                <div class="widget-video" 
+                        style="text-align:' . h($align) . ';
+                        padding:' . h($padding) . 'px;
+                        margin:' . h($margin) . 'px;
+                        ' . h($customCss) . ' ">
                     <div style="
                         position:relative;
                         width:100%;
                         max-width:100%;
                         padding-top:' . h($ratioPadding) . ';
                         overflow:hidden;
-                        border-radius:8px;
-                    ">
+                        border-radius:8px; ">
                         <iframe
                             src="https://www.youtube.com/embed/' . h($videoId) . '"
                             title="YouTube video player"
@@ -275,10 +305,11 @@ function renderWidgetHTML(array $widget): string
                                 width:100%;
                                 height:100%;
                                 border:0;
+                                ' . h($videoCss) . '
                             "
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen
-                        ></iframe>
+                            allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
             ';
@@ -289,25 +320,35 @@ function renderWidgetHTML(array $widget): string
             $padding = isset($props['padding']) ? ((int)$props['padding'] . 'px') : '0px';
             $margin = isset($props['margin']) ? ((int)$props['margin'] . 'px') : '0px';
             $height = isset($props['height']) ? ((int)$props['height'] . 'px') : '1px';
+            $lineaCss = $props['lineaCss'] ?? '';
+            $iconaCss = $props['iconaCss'] ?? '';
 
             return '<div class="widget-divider" 
-                style="display:flex;
-                    align-items: center;
-                    justify-content:center;
-                    align-items:' . h($align) . ';
-                    padding:' . h($padding) . ';
-                    margin:' . h($margin) . ';">
-                <div style="flex: 1; height:'. h($height).'; background:'. h($color).';"></div>
-                <div>
-                    <span class="material-symbols-outlined" style="
-                        font-size:' . h($size) . 'px!important;
-                        color:' . h($color) . ';
-                        padding:' . h($padding) . ';
-                        margin:' . h($margin) . ';">
-                        ' . h($name) . '
-                    </span>
-                </div>
-                <div style="flex: 1; height:'. h($height).'; background:'. h($color).';"></div>
+                        style="display:flex;
+                            align-items: center;
+                            justify-content:center;
+                            align-items:' . h($align) . ';
+                            padding:' . h($padding) . ';
+                            margin:' . h($margin) . ';">
+                        <div style="flex: 1; height:'. h($height).'; 
+                                background:'. h($color).';
+                                ' . h($lineaCss) . '">
+                        </div>
+                        <div>
+                            <span class="material-symbols-outlined" 
+                                style="font-size:' . h($size) . 'px!important;
+                                color:' . h($color) . ';
+                                padding:' . h($padding) . ';
+                                margin:' . h($margin) . ';
+                                ' . h($iconaCss) . '">
+                                ' . h($name) . '
+                            </span>
+                        </div>
+                        <div style="flex: 1; 
+                                height:'. h($height).'; 
+                                background:'. h($color).';
+                                ' . h($lineaCss) . '">
+                        </div>
             </div>';
         
         
@@ -318,20 +359,23 @@ function renderWidgetHTML(array $widget): string
 
 //***********************************
 // Render colonna in HTML pubblico
-//******************************     
+//***********************************     
 function renderColumnHTML(array $column): string
 {
-    $width = $column['width'] ?? 100;
+    $width     = $column['width'] ?? 100;
+    $padding   = isset($column['padding']) ? ((int)$column['padding'] . 'px') : '0px';
+    $margin    = isset($column['margin']) ? ((int)$column['margin'] . 'px') : '0px';
+    $background = $column['background'] ?? ($column['sfondoColor'] ?? 'transparent');
+    $customCss = $column['customCss'] ?? '';
+
     $widgets = $column['widgets'] ?? [];
 
-    $html = '<div class="page-column" style="flex-basis:' . h($width) . '%;
-                padding:' . (isset($column['padding']) ? (h((int)$column['padding']) . 'px') : '0px') . ';
-                margin:' . (isset($column['margin']) ? (h((int)$column['margin']) . 'px') : '0px') . ';
-                border:' . (isset($column['border']) ? (h((int)$column['border']) . 'px solid ' . h($column['borderColor'] ?? 'transparent')) : 'none') . ';
-                background:' . (isset($column['sfondoColor']) ? h($column['sfondoColor']) : 'transparent') . ';
-                border-radius:' . (isset($column['radius']) ? (h((int)$column['radius']) . 'px') : '0px') . ';
-                border-style:' . (isset($column['borderStyle']) ? h($column['borderStyle']) : 'solid') . ';
-                border-color:' . (isset($column['borderStyleColor']) ? h($column['borderStyleColor']) : 'transparent') . ';
+    $html = '<div class="page-column" style="
+        flex-basis:' . h($width) . '%;
+        padding:' . h($padding) . ';
+        margin:' . h($margin) . ';
+        background:' . h($background) . ';
+        ' . h($customCss) . '
     ">';
 
     foreach ($widgets as $widget) { 
@@ -345,15 +389,23 @@ function renderColumnHTML(array $column): string
 
 /************************************
  * Render sezione in HTML pubblico
- ************************************ */
+ ************************************/
 function renderSectionHTML(array $section): string
 {
     $background = $section['background'] ?? 'transparent';
     $padding    = isset($section['padding']) ? ((int)$section['padding'] . 'px') : '20px';
     $margin     = isset($section['margin']) ? ((int)$section['margin'] . 'px') : '0px';
+    $customCss  = $section['customCss'] ?? '';
+
     $columns    = $section['columns'] ?? [];
 
-    $html = '<section class="page-section" style="background:' . h($background) . ';padding:' . h($padding) . ';margin:' . h($margin) . ';">';
+    $html = '<section class="page-section" style="
+        background:' . h($background) . ';
+        padding:' . h($padding) . ';
+        margin:' . h($margin) . ';
+        ' . h($customCss) . '
+    ">';
+
     $html .= '<div class="page-columns">';
 
     foreach ($columns as $column) {
@@ -365,7 +417,6 @@ function renderSectionHTML(array $section): string
 
     return $html;
 }
-
 /*============================
  * Render pagina completa
  =============================*/

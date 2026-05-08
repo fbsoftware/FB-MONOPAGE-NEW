@@ -3,7 +3,7 @@
         "tema": null,
         "page": "page",
         "version": "2.0",
-        "updated_at": "2026-04-30T12:36:15+02:00"
+        "updated_at": "2026-05-05T19:13:48+02:00"
     },
     "global": {
         "colors": {
@@ -34,14 +34,6 @@
                     "width": 33,
                     "widgets": [
                         {
-                            "id": "w1777308286157_3",
-                            "type": "spacer",
-                            "props": {
-                                "text": "",
-                                "height": "143"
-                            }
-                        },
-                        {
                             "id": "w1777308266154_1",
                             "type": "icon",
                             "props": {
@@ -51,6 +43,19 @@
                                 "align": "center",
                                 "padding": 0,
                                 "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1777997822420_1",
+                            "type": "video",
+                            "props": {
+                                "url": "https:\/\/www.youtube.com\/watch?v=zqNTltOGh5c",
+                                "aspectRatio": "16:9",
+                                "align": "center",
+                                "padding": 20,
+                                "margin": 20,
+                                "customCss": "border:5px dotted red;",
+                                "videoCss": "border: 10px solid orange;"
                             }
                         }
                     ],
@@ -63,10 +68,35 @@
                 {
                     "id": "col-1777308040156-259",
                     "width": 33,
-                    "widgets": [],
+                    "widgets": [
+                        {
+                            "id": "w1777993925318_1",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/auto.jpg",
+                                "alt": "",
+                                "align": "center",
+                                "width": "300",
+                                "customCss": "border:3px dotted red;\nborder-radius:25px;",
+                                "imgCss": "margin:20px 0px;\nborder:3px solid red;\nborder-radius:10px;\nbox-shadow: 3px 6px 10px rgba(0,0,0,.6);"
+                            }
+                        },
+                        {
+                            "id": "w1777999242296_1",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "59",
+                                "customCss": "background:teal"
+                            }
+                        }
+                    ],
                     "sfondoColor": "var(--color-bg)",
                     "border": 1,
-                    "radius": 10
+                    "radius": 10,
+                    "props": {
+                        "customCss": "border:3px dotted red;\nborder-radius:25px;"
+                    }
                 },
                 {
                     "id": "col-1777302019997-49",
@@ -89,7 +119,8 @@
                                 "align": "center",
                                 "color": "var(--color-text)",
                                 "padding": 0,
-                                "margin": 0
+                                "margin": 0,
+                                "customCss": "border:2px solid red;\nborder-radius:20px;"
                             }
                         },
                         {
@@ -115,7 +146,8 @@
                                 "src": "assets\/images\/FAEL-logo-2025.png",
                                 "alt": "",
                                 "align": "center",
-                                "width": "150"
+                                "width": "150",
+                                "customCss": "border:2px solid red;\nborder-radius:20px;"
                             }
                         }
                     ],
@@ -136,7 +168,7 @@
             "columns": [
                 {
                     "id": "col-1775923311688-915",
-                    "width": 33,
+                    "width": 50,
                     "widgets": [
                         {
                             "id": "w1775923388041_1",
@@ -156,7 +188,8 @@
                                 "align": "left",
                                 "color": "#000000",
                                 "padding": 0,
-                                "margin": 0
+                                "margin": 0,
+                                "customCss": ""
                             }
                         },
                         {
@@ -187,45 +220,8 @@
                     }
                 },
                 {
-                    "id": "col-1775923175091-801",
-                    "width": 33,
-                    "border": 2,
-                    "borderStyleColor": "var(--color-accent)",
-                    "borderStyle": "solid",
-                    "radius": 15,
-                    "widgets": [
-                        {
-                            "id": "w1775923280008_1",
-                            "type": "header",
-                            "props": {
-                                "text": "Miles Davis",
-                                "level": "h2",
-                                "align": "center",
-                                "color": "var(--color-text)"
-                            }
-                        },
-                        {
-                            "id": "w1777307622679_7",
-                            "type": "video",
-                            "props": {
-                                "url": "https:\/\/www.youtube.com\/watch?v=zqNTltOGh5c&t=2s",
-                                "aspectRatio": "16:9",
-                                "align": "center",
-                                "padding": "0",
-                                "margin": "0"
-                            }
-                        }
-                    ],
-                    "padding": 20,
-                    "margin": 10,
-                    "props": {
-                        "url": "https:\/\/www.youtube.com\/watch?v=zqNTltOGh5c&t=2s"
-                    },
-                    "sfondoColor": "var(--color-bg)"
-                },
-                {
                     "id": "col-1775924935185-186",
-                    "width": 34,
+                    "width": 50,
                     "widgets": [
                         {
                             "id": "w1777307305835_3",
@@ -475,6 +471,7 @@
             ]
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1777308266154_1"
+    "selectedType": null,
+    "selectedId": null,
+    "isDirty": true
 }

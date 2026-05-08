@@ -3,12 +3,24 @@
         "tema": null,
         "page": "hero",
         "version": "2.0",
-        "updated_at": "2026-05-03T19:26:49+02:00"
+        "updated_at": "2026-05-05T23:51:20+02:00"
     },
     "global": {
-        "colors": [],
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#ffffff",
+            "undefined": "#ffffff"
+        },
         "typography": [],
-        "fonts": []
+        "fonts": {
+            "heading-family": "Inter",
+            "heading-weight": "400",
+            "body-family": "Inter",
+            "body-weight": "400"
+        }
     },
     "sections": [
         {
@@ -22,15 +34,16 @@
                     "width": 100,
                     "widgets": [
                         {
-                            "id": "w1777828520271_1",
+                            "id": "w1778017779680_1",
                             "type": "header",
                             "props": {
-                                "text": "Fly fishing",
-                                "level": "h1",
+                                "text": "Hero page",
+                                "level": "h2",
                                 "align": "center",
-                                "color": "var(--color-secondary)",
+                                "color": "var(--color-bg)",
                                 "padding": 0,
-                                "margin": "0"
+                                "margin": 0,
+                                "customCss": ""
                             }
                         },
                         {
@@ -40,8 +53,9 @@
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
                                 "align": "justify",
                                 "color": "var(--color-bg)",
-                                "padding": "0",
-                                "margin": "0"
+                                "padding": "23",
+                                "margin": "0",
+                                "customCss": ""
                             }
                         },
                         {
@@ -51,7 +65,9 @@
                                 "src": "assets\/images\/mulinello.jpg",
                                 "alt": "",
                                 "align": "center",
-                                "width": "1159"
+                                "width": "1159",
+                                "customCss": "",
+                                "imgCss": ""
                             }
                         }
                     ]
@@ -60,6 +76,6 @@
         }
     ],
     "selectedType": "widget",
-    "selectedId": "w1777828520271_1",
+    "selectedId": "w1777828523167_2",
     "isDirty": true
 }

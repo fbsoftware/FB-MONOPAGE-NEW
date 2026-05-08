@@ -411,77 +411,6 @@ editor.selectWidget = function(id){
     editor.openWidgetInspector(id);
 };
 
-//========================================
-//  larghezza colonna
-//========================================
-$(document).on(
-    "input change", '#inspector [data-column-field="width"]',
-    function(){
-
-        const value = parseInt($(this).val(), 10);
-        editor.state.isDirty = true;
-
-//console.log("col-input modificato" , value);
-        if(isNaN(value)) return;
-
-        const columnId = editor.state.selectedId;
-        const column = editor.findColumnById(columnId);
-
-        if(!column) return;
-
-        column.width = value;
-
-        $('#inspector [data-column-field="width"]').val(value);
-
-        editor.render();
-        editor.openColumnInspector(columnId);
-    }
-);
-$(document).on("input change", "#inspector [data-column-field]", function(){
-
-    const field = $(this).data("column-field");
-    const type = $(this).attr("type");
-        editor.state.isDirty = true;
-
-    let value = $(this).val();
-
-    const columnId = editor.state.selectedId;
-    const column = editor.findColumnById(columnId);
-
-    if(!column) return;
-
-    if(type === "number" || type === "range"){
-        value = parseInt(value, 10);
-        if(isNaN(value)) value = 0;
-    }
-
-    column[field] = value;
-
-    editor.render();
-    editor.openColumnInspector(columnId);
-});
-
-
-//========================================
-// EVENTO MODIFICA DETTAGLI SEZIONE
-//========================================
-$(document).on("input change", '#inspector [data-section-field]', function(){
-
-        const field = $(this).data("section-field");
-        const value = $(this).val();
-        const sectionId = editor.state.selectedId;
-        const section = editor.findSectionById(sectionId);
-    editor.state.isDirty = true;
-
-        if(!section) return;
-
-        section[field] = value;
-
-        editor.render();
-        editor.openSectionInspector(sectionId);
-    }
-);
-
 //=================================
 // data-upload-image    
 //=================================
@@ -645,12 +574,12 @@ $(document).on("click", ".add-template", async function(){
 
     const res = await fetch("/FB-JSON/api/list-section-templates.php");
     const data = await res.json();
-console.log('CLICCATO + TEMPLATE' , data);// FB: log
 
     if(!data.success || !data.templates.length){
         alert("Nessun template disponibile");
         return;
     }
+console.log('CLICCATO + TEMPLATE' , data);// FB: log
 
     let html = "<div class='template-picker'>";
 

@@ -1,9 +1,9 @@
 {
     "meta": {
         "tema": null,
-        "page": "template-1",
+        "page": "home",
         "version": "2.0",
-        "updated_at": "2026-05-05T23:37:33+02:00"
+        "updated_at": "2026-05-05T23:42:16+02:00"
     },
     "global": {
         "colors": {
@@ -24,17 +24,17 @@
     },
     "sections": [
         {
-            "id": "w1778016965131_1",
+            "id": "sec-1775572672506-689",
             "background": "var(--color-bg)",
             "padding": "20",
             "margin": "0",
             "columns": [
                 {
-                    "id": "w1778016965131_2",
+                    "id": "col-1775572672506-233",
                     "width": 25,
                     "widgets": [
                         {
-                            "id": "w1778016965131_3",
+                            "id": "w1775573149662_9",
                             "type": "header",
                             "props": {
                                 "text": "PHP",
@@ -44,7 +44,7 @@
                             }
                         },
                         {
-                            "id": "w1778016965131_4",
+                            "id": "w1775572891522_5",
                             "type": "image",
                             "props": {
                                 "src": "assets\/images\/classi.png",
@@ -55,7 +55,7 @@
                             }
                         },
                         {
-                            "id": "w1778016965131_5",
+                            "id": "w1775573363483_15",
                             "type": "spacer",
                             "props": {
                                 "text": "",
@@ -63,7 +63,7 @@
                             }
                         },
                         {
-                            "id": "w1778016965131_6",
+                            "id": "w1775577587559_1",
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
@@ -76,11 +76,11 @@
                     ]
                 },
                 {
-                    "id": "w1778016965131_7",
+                    "id": "col-1775572686799-104",
                     "width": 25,
                     "widgets": [
                         {
-                            "id": "w1778016965131_8",
+                            "id": "w1775572839076_2",
                             "type": "header",
                             "props": {
                                 "text": "jQUERY",
@@ -90,7 +90,7 @@
                             }
                         },
                         {
-                            "id": "w1778016965131_9",
+                            "id": "w1775572894095_6",
                             "type": "image",
                             "props": {
                                 "src": "assets\/images\/jquery.png",
@@ -101,7 +101,7 @@
                             }
                         },
                         {
-                            "id": "w1778016965131_10",
+                            "id": "w1775573369118_16",
                             "type": "spacer",
                             "props": {
                                 "text": "",
@@ -109,7 +109,7 @@
                             }
                         },
                         {
-                            "id": "w1778016965131_11",
+                            "id": "w1775573288877_12",
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
@@ -122,11 +122,11 @@
                     ]
                 },
                 {
-                    "id": "w1778016965131_12",
+                    "id": "col-1775572688975-409",
                     "width": 25,
                     "widgets": [
                         {
-                            "id": "w1778016965131_13",
+                            "id": "w1775572841448_3",
                             "type": "header",
                             "props": {
                                 "text": "Layout",
@@ -136,7 +136,7 @@
                             }
                         },
                         {
-                            "id": "w1778016965131_14",
+                            "id": "w1775572897254_7",
                             "type": "image",
                             "props": {
                                 "src": "assets\/images\/layout.png",
@@ -147,7 +147,7 @@
                             }
                         },
                         {
-                            "id": "w1778016965131_15",
+                            "id": "w1775573371191_17",
                             "type": "spacer",
                             "props": {
                                 "text": "",
@@ -155,7 +155,7 @@
                             }
                         },
                         {
-                            "id": "w1778016965131_16",
+                            "id": "w1775573291527_13",
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
@@ -168,11 +168,11 @@
                     ]
                 },
                 {
-                    "id": "w1778016965131_17",
+                    "id": "col-1775572696541-522",
                     "width": 25,
                     "widgets": [
                         {
-                            "id": "w1778016965131_18",
+                            "id": "w1775573205278_10",
                             "type": "header",
                             "props": {
                                 "text": "Traduzione",
@@ -182,7 +182,7 @@
                             }
                         },
                         {
-                            "id": "w1778016965131_19",
+                            "id": "w1775572900593_8",
                             "type": "image",
                             "props": {
                                 "src": "assets\/images\/traduci.png",
@@ -193,7 +193,7 @@
                             }
                         },
                         {
-                            "id": "w1778016965131_20",
+                            "id": "w1775573373681_18",
                             "type": "spacer",
                             "props": {
                                 "text": "",
@@ -201,7 +201,7 @@
                             }
                         },
                         {
-                            "id": "w1778016965131_21",
+                            "id": "w1775573293910_14",
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
@@ -217,6 +217,5 @@
         }
     ],
     "selectedType": null,
-    "selectedId": null,
-    "isDirty": true
+    "selectedId": null
 }

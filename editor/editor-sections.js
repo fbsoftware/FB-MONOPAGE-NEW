@@ -1,3 +1,106 @@
+//===============================================================
+// Sezioni - proprietà + campi di modifica
+//==============================================================
+editor.sections = {
+
+    section: {
+        label: "Sezione",
+        icon: "🧱",
+
+        defaultProps: {
+            background: "transparent",
+            padding: 20,
+            margin: 0,
+            customCss: ""
+        },
+
+        fields: {
+            background: {
+                type: "color",
+                label: "Sfondo",
+                group: "stile"
+            },
+
+            padding: {
+                type: "number",
+                label: "Padding px",
+                group: "stile"
+            },
+
+            margin: {
+                type: "number",
+                label: "Margin px",
+                group: "stile"
+            },
+
+            customCss: {
+                type: "textarea",
+                label: "CSS personalizzato",
+                group: "avanzate"
+            }
+        }
+    }
+};
+
+//=================================
+// RENDER INSPECTOR SEZIONI
+//=================================
+editor.renderSectionInspector = function(section){
+
+    if(!section) return;
+
+    editor.renderElementInspector(
+        "Sezione",
+        section,
+        editor.sections.section.fields,
+        "section"
+    );
+};
+
+//========================
+// handle sezioni
+//========================
+$(document).on("input change", "#inspector [data-section-field]:not(textarea)", function(e){
+
+    const field = $(this).data("section-field");
+    const type = $(this).attr("type");
+
+    let value = $(this).val();
+
+    if(type === "number" || type === "range"){
+        value = parseInt(value, 10);
+        if(isNaN(value)) value = 0;
+    }
+
+    const section = editor.findSectionById(editor.state.selectedId);
+    if(!section) return;
+
+    section[field] = value;
+
+    editor.state.isDirty = true;
+
+    editor.render();
+    editor.openSectionInspector(section.id);
+});
+
+//=================================
+// Handle textarea separately to avoid input lag
+//=================================
+$(document).on("blur", "#inspector textarea[data-section-field]", function(){
+
+    const field = $(this).data("section-field");
+    const value = $(this).val();
+
+    const section = editor.findSectionById(editor.state.selectedId);
+    if(!section) return;
+
+    section[field] = value;
+
+    editor.state.isDirty = true;
+
+    editor.render();
+    editor.openSectionInspector(section.id);
+});
 
 //=================================
 // ➕ SEZIONE
@@ -64,53 +167,6 @@ editor.openSectionInspector = function(sectionId){
 };
 
 //=================================
-//  RENDER INSPECTOR SEZIONI
-//=================================
-editor.renderSectionInspector = function(section){
-
-    const $panel = $("#inspector");
-    $panel.empty();
-
-    const html = `
-        <div class="inspector">
-            <h3>Sezione</h3>
-
-            <label for="sec-background">Sfondo</label>
-            <select id="sec-background" data-section-field="background">
-                <option value="var(--color-primary)" ${section.background === "var(--color-primary)" ? "selected" : ""}>Primario</option>
-                <option value="var(--color-secondary)" ${section.background === "var(--color-secondary)" ? "selected" : ""}>Secondario</option>
-                <option value="var(--color-accent)" ${section.background === "var(--color-accent)" ? "selected" : ""}>Accent</option>
-                <option value="var(--color-text)" ${section.background === "var(--color-text)" ? "selected" : ""}>Testo</option>
-                <option value="var(--color-bg)" ${section.background === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
-            </select>
-               <input
-                id="sec-background"
-                type="color"
-                value="${section.background}"
-                data-section-field="background"
-                >
-
-            <label for="sec-padding">Padding</label>
-            <input
-                id="sec-padding"
-                type="number"
-                value="${section.padding || "20"}"
-                data-section-field="padding"
-            >
-
-            <label for="sec-margin">Margin</label>
-            <input
-                id="sec-margin"
-                type="number"
-                value="${section.margin || "0"}"
-                data-section-field="margin"
-            >
-     </div>
-    `;
-
-    $panel.html(html);
-};
-//=================================
 // Render section
 //=================================
 editor.renderSection = function(section){
@@ -127,6 +183,12 @@ editor.renderSection = function(section){
         .css("background-color", section.background || "transparent")
         .css("padding", (section.padding ?? 20) + "px")
         .css("margin", (section.margin ?? 20) + "px");
+    if(section.customCss){
+        $section.attr(
+            "style",
+            ($section.attr("style") || "") + ";" + section.customCss
+        );
+}
 
     const $toolbar = $("<div>")
         .addClass("section-toolbar")

@@ -3,7 +3,7 @@
         "tema": null,
         "page": "chi-siamo",
         "version": "2.0",
-        "updated_at": "2026-05-04T18:18:45+02:00"
+        "updated_at": "2026-05-08T18:12:37+02:00"
     },
     "global": {
         "colors": {
@@ -25,144 +25,39 @@
     "sections": [
         {
             "id": "sec-1777393641804-152",
-            "background": "var(--color-primary)",
-            "padding": "20",
-            "margin": "0",
+            "background": "#ed5050",
+            "padding": 23,
+            "margin": 0,
             "columns": [
                 {
                     "id": "col-1777393641804-905",
                     "width": 100,
                     "widgets": [
                         {
-                            "id": "w1777393648689_1",
-                            "type": "image",
-                            "props": {
-                                "src": "assets\/images\/aereo-pec2.png",
-                                "alt": "",
-                                "align": "left",
-                                "width": "1150"
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "sec-1775151183180-400",
-            "background": "var(--color-primary)",
-            "padding": "20",
-            "margin": "0",
-            "columns": [
-                {
-                    "id": "w1777906286951_2",
-                    "width": 50,
-                    "widgets": [
-                        {
-                            "id": "w1777906286951_3",
+                            "id": "w1778192428244_1",
                             "type": "header",
                             "props": {
-                                "text": "Fontney",
-                                "level": "h1",
-                                "align": "right",
-                                "color": "var(--color-bg)",
-                                "padding": "29",
-                                "margin": 0
-                            }
-                        },
-                        {
-                            "id": "w1777906286951_4",
-                            "type": "text",
-                            "props": {
-                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
-                                "align": "right",
+                                "text": "Sezione",
+                                "level": "h2",
+                                "align": "center",
                                 "color": "#000000",
                                 "padding": 0,
-                                "margin": 0
-                            }
-                        },
-                        {
-                            "id": "w1777906286951_5",
-                            "type": "textarea",
-                            "props": {
-                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
-                                "align": "right",
-                                "color": "var(--color-text)",
-                                "fontSize": "16px",
-                                "fontWeight": "400"
+                                "margin": 0,
+                                "customCss": ""
                             }
                         }
                     ],
-                    "padding": 21
-                },
-                {
-                    "id": "col-1775238305328-834",
-                    "width": 50,
-                    "widgets": [
-                        {
-                            "id": "w1777393019800_1",
-                            "type": "image",
-                            "props": {
-                                "src": "assets\/images\/Fonteney-005.jpg",
-                                "alt": "",
-                                "align": "left",
-                                "width": "600"
-                            }
-                        }
-                    ]
+                    "customCss": "border:12px solid red;\nborder-radius:25px;\n",
+                    "background": "var(--color-secondary)",
+                    "padding": 14,
+                    "margin": 4
                 }
-            ]
-        },
-        {
-            "id": "sec-1777899199865-981",
-            "background": "var(--color-secondary)",
-            "padding": "20",
-            "margin": "0",
-            "columns": [
-                {
-                    "id": "col-1775151183180-736",
-                    "width": 100,
-                    "widgets": [
-                        {
-                            "id": "w1777393042595_2",
-                            "type": "header",
-                            "props": {
-                                "text": "Fontney",
-                                "level": "h1",
-                                "align": "right",
-                                "color": "var(--color-bg)",
-                                "padding": "29",
-                                "margin": 0
-                            }
-                        },
-                        {
-                            "id": "w1777388432894_2",
-                            "type": "text",
-                            "props": {
-                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
-                                "align": "right",
-                                "color": "#000000",
-                                "padding": 0,
-                                "margin": 0
-                            }
-                        },
-                        {
-                            "id": "w1777391495648_1",
-                            "type": "textarea",
-                            "props": {
-                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
-                                "align": "right",
-                                "color": "var(--color-text)",
-                                "fontSize": "16px",
-                                "fontWeight": "400"
-                            }
-                        }
-                    ],
-                    "padding": 21
-                }
-            ]
+            ],
+            "customCss": "border:12px solid black;\nborder-radius:25px;\n"
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1777393648689_1",
-    "isDirty": true
+    "selectedType": "section",
+    "selectedId": "sec-1777393641804-152",
+    "isDirty": true,
+    "openInspectorGroup": "stile"
 }

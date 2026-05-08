@@ -12,7 +12,8 @@ editor.widgets = {
             align: "center",    
             color:"#000000",
             padding:0,
-            margin:0  
+            margin:0  ,
+            customCss:""
         },
 
 fields:{
@@ -63,23 +64,34 @@ fields:{
         type:"number",
         label:"Margin px",
         group:"avanzate"
-    }
+    },
+
+    customCss: {
+    type: "textarea",
+    label: "CSS personalizzato",
+    group: "avanzate"
+}
 } ,  
 
         render: function(widget){
-            const tag = widget.props.level;
-            const col = widget.props.color;
-            const all = widget.props.align;
-            const p = widget.props.padding;
-            const m = widget.props.margin;  
-            return `
-            <div class="widget-header">
-                <${tag} style="text-align:${all} ; color:${col}; padding:${p}px; margin:${m}px; ">
-                    ${widget.props.text}
-                </${tag}>
-            </div>
-            `;
-        }
+
+    const p = widget.props || {};
+    const tag = p.level ?? "h2";
+
+    return `
+        <div class="widget-header">
+            <${tag} style="
+                text-align:${p.align ?? "left"};
+                color:${p.color ?? "#000"};
+                padding:${p.padding ?? 0}px;
+                margin:${p.margin ?? 0}px;
+                ${p.customCss ?? ""}
+            ">
+                ${p.text ?? ""}
+            </${tag}>
+        </div>
+    `;
+}
 
     },
     text: {   //-----------------------------------------------
@@ -92,7 +104,8 @@ fields:{
      align:"left",
      color:"#000000",
      padding:0,
-     margin:0
+     margin:0,
+     customCss:""
   },
 
 fields:{
@@ -103,18 +116,24 @@ fields:{
             justify:"Giustificato"} },
     color:{ type:"color", label:"Colore", group:"stile" },
     padding:{ type:"number", label:"Padding px", group:"avanzate" },
-    margin:{ type:"number", label:"Margin px", group:"avanzate" }
+    margin:{ type:"number", label:"Margin px", group:"avanzate" },
+        customCss: {
+    type: "textarea",
+    label: "CSS personalizzato",
+    group: "avanzate"
+}
 },
 
 render(widget){
     const p = widget.props || {};
 
     return `
-        <div  class="widget-text" style="text-align:${p.align ?? "left"};
-                                        color:${p.color ?? "#000"};
-                                        padding:${p.padding ?? 0}px;
-                                        margin:${p.margin ?? 0}px;
-        ">
+        <div  class="widget-text" 
+                        style="text-align:${p.align ?? "left"};
+                        color:${p.color ?? "#000"};
+                        padding:${p.padding ?? 0}px;
+                        margin:${p.margin ?? 0}px;
+                        ${p.customCss ?? ""}">
             ${p.text ?? ""}
         </div>
     `;
@@ -130,7 +149,8 @@ defaultProps:{
     align:"left",
     color:"var(--color-text)",
     fontSize:"16px",
-    fontWeight:"400"
+    fontWeight:"400",
+    customCss:""
 },
 
   fields:{
@@ -182,7 +202,12 @@ defaultProps:{
         }
     },
     link:{type:"text", label:"Link",group:"avanzate"},
-    image:{type:"text", label:"Immagine URL",group:"avanzate"}
+    image:{type:"text", label:"Immagine URL",group:"avanzate"},
+        customCss: {
+            type: "textarea",
+            label: "CSS personalizzato",
+            group: "avanzate"
+    }
 },
 
     render(widget){
@@ -195,6 +220,7 @@ defaultProps:{
             font-size:${p.fontSize || "16px"};
             font-weight:${p.fontWeight|| "400"};
             background:transparent;
+            ${p.customCss ?? ""}
         ">
             ${p.text || ""}
         </textarea>
@@ -210,7 +236,9 @@ defaultProps:{
         src: "",
         alt: "",
         align: "left",
-        width: 300
+        width: 300,
+        customCss:"",
+        imgCss:""
     },
 
     fields: {
@@ -242,7 +270,19 @@ defaultProps:{
             label: "Larghezza px",  
             group: "stile"
 
-        }
+        },
+    
+    customCss: {
+    type: "textarea",
+    label: "CSS div",
+    group: "avanzate"
+    },
+
+    imgCss: {
+    type: "textarea",
+    label: "CSS image",
+    group: "avanzate"
+    }
     },
 
     render(widget){
@@ -251,15 +291,20 @@ defaultProps:{
 
         if(!src){
             return `
-                <div class="widget-image-empty">
-                    Nessuna immagine selezionata
+                <div class="widget-image-empty"
+                     style="text-align:center; margin-top:10px;">
+                    <img src="https://dummyimage.com/200x200/cacaca/fff.png&text=dummy-image"
                 </div>
             `;
         }
 
         return `
-            <div class="widget-image" style="text-align:${p.align ?? "left"};">
-                <img src="${src}" alt="${p.alt ?? ""}" style="width:${p.width ?? 300}px;">
+            <div class="widget-image" 
+                style="text-align:${p.align ?? "left"};
+                ${p.customCss ?? ""}">
+                    <img src="${src}" alt="${p.alt ?? ""}" 
+                    style="width:${p.width ?? 300}px;
+                    ${p.imgCss ?? ""}"  >
             </div>
         `;
     }
@@ -279,7 +324,9 @@ defaultProps:{
             padd: 20,
             padding: 20,
             fontSize: "22px",
-            fontWeight: "600"
+            fontWeight: "600",
+            customCss:"",
+            buttonCss:""
         },
 
         fields: {
@@ -365,25 +412,42 @@ defaultProps:{
                     "600": "SemiBold",
                     "700": "Bold"
                 }
-            }
+            },
+
+        customCss: {
+        type: "textarea",
+        label: "CSS div",
+        group: "avanzate"
+        },
+        
+        buttonCss: {
+        type: "textarea",
+        label: "CSS button",
+        group: "avanzate"
+        }
         },
 
         render: function(widget){
-            return `
-                <div class="widget-button" style="
-                    text-align:${widget.props.align}; padding:${widget.props.padding}px;">
+            const p = widget.props || {};
 
-                    <a href="${widget.props.url}" style="
+            return `
+                <div class="widget-button" 
+                    style="text-align:${p.align}; 
+                    padding:${p.padding}px;
+                    ${p.customCss ?? ""}">
+
+                    <a href="${p.url}" style="
                         text-decoration:none;
-                        font-size:${widget.props.fontSize}px;
-                        font-weight:${widget.props.fontWeight};
-                        color:${widget.props.color};
+                        font-size:${p.fontSize}px;
+                        font-weight:${p.fontWeight};
+                        color:${p.color};
                         display:inline-block; 
                         width:auto;
-                        padding:${widget.props.padd}px;
-                        background-color:${widget.props.sfondo};
-                        border-radius:${widget.props.bordo}px; ">
-                        ${widget.props.text}
+                        padding:${p.padd}px;
+                        background-color:${p.sfondo};
+                        border-radius:${p.bordo}px; 
+                        ${p.buttonCss ?? ""}">
+                        ${p.text}
                     </a>
                     
                 </div>
@@ -397,7 +461,8 @@ defaultProps:{
 
         defaultProps: {
                 text: "",
-                height: "20"
+                height: "20",
+                customCss:""
         },
 
         fields:{
@@ -405,13 +470,21 @@ defaultProps:{
                 type:"number",
                 label:"Altezza px",
                 group:"stile" },
+            customCss: {
+                type: "textarea",
+                label: "CSS div",
+                group: "avanzate"
+                },
+        
 
        },  
 
         render: function(widget){
+            const p = widget.props || {};
             return `
-            <div class="widget-spacer" style="height:${widget.props.height}px">
-               
+            <div class="widget-spacer" 
+            style="height:${p.height}px;
+            ${p.customCss ?? ""}">
             </div>    
             `;
         }
@@ -427,7 +500,9 @@ defaultProps:{
         color: "var(--color-primary)",
         align: "center",
         padding: 0,
-        margin: 0
+        margin: 0,
+        customCss:"",
+        iconCss:""
     },
 
     fields: {
@@ -469,7 +544,18 @@ defaultProps:{
             type: "number",
             label: "Margin px",
             group: "stile"
-        }
+        },
+            customCss: {
+                type: "textarea",
+                label: "CSS div",
+                group: "avanzate"
+                },
+                
+            iconCss: {
+                type: "textarea",
+                label: "CSS icona",
+                group: "avanzate"
+                }
     },
 
     render(widget) {
@@ -480,11 +566,12 @@ defaultProps:{
                 text-align:${p.align ?? "center"};
                 padding:${p.padding ?? 0}px;
                 margin:${p.margin ?? 0}px;
-            ">
+                ${p.customCss ?? ""} ">
+
                 <span class="material-symbols-outlined" style="
                     font-size:${p.size ?? 48}px!important;
                     color:${p.color ?? "var(--color-primary)"};
-                ">
+                    ${p.iconCss ?? ""}">
                     ${p.name ?? "home"}
                 </span>
             </div>
@@ -500,7 +587,10 @@ defaultProps:{
         aspectRatio: "16:9",
         align: "center",
         padding: 20,
-        margin: 20
+        margin: 20,
+        customCss:"",
+        videoCss:""
+
     },
 
     fields: {
@@ -542,7 +632,19 @@ defaultProps:{
             type: "number",
             label: "Margin px",
             group: "stile"
-        }
+        },
+        customCss: {
+            type: "textarea",
+            label: "CSS div",
+            group: "avanzate"
+            },
+
+            videoCss: {
+            type: "textarea",
+            label: "CSS video",
+            group: "avanzate"
+            }
+
     },
 
     render(widget) {
@@ -551,16 +653,15 @@ defaultProps:{
 
         if (!videoId) {
             return `
-                <div class="widget-video" style="
-                    text-align:${p.align ?? "center"};
+                <div class="widget-video" 
+                    style="text-align:${p.align ?? "center"};
                     padding:${p.padding ?? 0}px;
                     margin:${p.margin ?? 0}px;
                 ">
                     <div style="
                         padding:20px;
                         border:1px dashed #ccc;
-                        border-radius:8px;
-                    ">
+                        border-radius:8px;   ">
                         Inserisci un URL YouTube valido
                     </div>
                 </div>
@@ -574,6 +675,7 @@ defaultProps:{
                 text-align:${p.align ?? "center"};
                 padding:${p.padding ?? 0}px;
                 margin:${p.margin ?? 0}px;
+                ${p.customCss ?? ""}
             ">
                 <div style="
                     position:relative;
@@ -582,6 +684,7 @@ defaultProps:{
                     padding-top:${ratio};
                     overflow:hidden;
                     border-radius:8px;
+                    ${p.videoCss ?? ""} 
                 ">
                     <iframe
                         src="https://www.youtube.com/embed/${videoId}"
@@ -613,7 +716,9 @@ defaultProps:{
         color: "var(--color-primary)",
         padding: 0,
         margin: 0,
-        height: 1
+        height: 1,
+        lineaCss:"",
+        iconaCss:""
         },
 
         fields:{
@@ -647,23 +752,43 @@ defaultProps:{
             type: "number",
             label: "Margin px",
             group: "stile"
-        }
+        },
+         lineaCss: {
+            type: "textarea",
+            label: "CSS linea",
+            group: "avanzate"
+            },
+
+            iconaCss: {
+            type: "textarea",
+            label: "CSS icona",
+            group: "avanzate"
+            }       
  }, 
         render: function(widget){
             const p = widget.props || {};
             return `
-            <div class="widget-divider" style="display: flex; 
-                                        flex-direction: row;
-                                        align-items: center; 
-                                        gap: 15px; 
-                                        margin: 20px 0;">
-                <div style="flex: 1; height: ${p.height ?? 1}px; background: ${resolveColor(p.color)};"></div>
+            <div class="widget-divider" 
+                    style="display: flex; 
+                    flex-direction: row;
+                    align-items: center; 
+                    gap: 15px; 
+                    margin: 20px 0;
+                    ${p.lineaCss ?? ""} ">
+                <div style="flex: 1; height: ${p.height ?? 1}px; 
+                    background: ${resolveColor(p.color)};
+                    ${p.lineaCss ?? ""} ">
+                </div>
                     <div><span class="material-symbols-outlined" style="
                     font-size:${p.size ?? 48}px!important;
-                    color:${p.color ?? "var(--color-primary)"};">
+                    color:${p.color ?? "var(--color-primary)"};
+                    ${p.iconCssaCss ?? ""} ">
                     ${p.name ?? "home"}
                     </span></div>
-                <div style="flex: 1; height: ${p.height ?? 1}px; background: ${resolveColor(p.color)};"></div>
+                <div style="flex: 1; height: ${p.height ?? 1}px; 
+                        background: ${resolveColor(p.color)};
+                        ${p.lineaCss ?? ""} ">
+                </div>
             </div>    
             `;
         }
@@ -891,6 +1016,15 @@ editor.renderInspectorInput = function(fieldName, field, value){
         `;
     }
 
+if(field.type === "range"){
+    input = `
+        <input type="range"
+               min="${field.min ?? 0}"
+               max="${field.max ?? 100}"
+               data-field="${fieldName}"
+               value="${value}">
+    `;
+}
     if(field.type === "color"){
         input = `
             <input type="color"

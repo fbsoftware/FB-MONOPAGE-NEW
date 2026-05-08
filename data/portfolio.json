@@ -3,7 +3,7 @@
         "tema": null,
         "page": "portfolio",
         "version": "2.0",
-        "updated_at": "2026-05-04T17:41:31+02:00"
+        "updated_at": "2026-05-05T23:45:49+02:00"
     },
     "global": {
         "colors": {
@@ -25,7 +25,7 @@
     "sections": [
         {
             "id": "sec-1777906554783-950",
-            "background": "var(--color-secondary)",
+            "background": "var(--color-bg)",
             "padding": "0",
             "margin": "0",
             "columns": [
@@ -260,7 +260,7 @@
             ]
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1777908706055_772",
+    "selectedType": "column",
+    "selectedId": "col-1777906554783-200",
     "isDirty": true
 }

@@ -151,7 +151,7 @@ if (file_exists($layoutFile)) {
                         <button id="save-layout">Pubblica</button>
                     </div> 
                     <div style="flex:1">
-                        <button id="editor-exit"> ⬅ Esci</button>
+                        <button id="editor-exit"> ⬅️ Esci</button>
                     </div> 
                 </div> 
 
@@ -160,8 +160,11 @@ if (file_exists($layoutFile)) {
             <div id="site-menu-builder"></div>
             <div id="canvas" class="canvas"> </div>
                 <div style="display:flex; justify-content:center">
-                    <button id="add-section" class="add-section-btn">➕ Sezione</button>
-                    <button class="add-template">➕ Template</button>
+                    <button id="add-section" 
+                            class="add-section-btn button"
+                            style="border:1px solid black; margin:10px; border-radius:4px;    padding: 10px 15px;">➕ Sezione</button>
+                    <button class="add-template button"
+                            style="border:1px solid black; margin:10px; border-radius:4px;    padding: 10px 15px;">➕ Template</button>
                 </div>
             </div>
 

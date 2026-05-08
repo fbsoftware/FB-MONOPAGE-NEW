@@ -1,0 +1,197 @@
+{
+    "type": "section",
+    "name": "promo",
+    "created_at": "2026-05-05T23:33:18+02:00",
+    "section": {
+        "id": "sec-1775572672506-689",
+        "background": "var(--color-bg)",
+        "padding": "20",
+        "margin": "0",
+        "columns": [
+            {
+                "id": "col-1775572672506-233",
+                "width": 25,
+                "widgets": [
+                    {
+                        "id": "w1775573149662_9",
+                        "type": "header",
+                        "props": {
+                            "text": "PHP",
+                            "level": "h2",
+                            "align": "center",
+                            "color": "#000000"
+                        }
+                    },
+                    {
+                        "id": "w1775572891522_5",
+                        "type": "image",
+                        "props": {
+                            "src": "assets\/images\/classi.png",
+                            "alt": "",
+                            "align": "center",
+                            "width": "150",
+                            "imageFile": "C:\\fakepath\\classi.png"
+                        }
+                    },
+                    {
+                        "id": "w1775573363483_15",
+                        "type": "spacer",
+                        "props": {
+                            "text": "",
+                            "height": "20"
+                        }
+                    },
+                    {
+                        "id": "w1775577587559_1",
+                        "type": "text",
+                        "props": {
+                            "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                            "align": "justify",
+                            "color": "#000000",
+                            "padding": "10",
+                            "margin": "10"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "col-1775572686799-104",
+                "width": 25,
+                "widgets": [
+                    {
+                        "id": "w1775572839076_2",
+                        "type": "header",
+                        "props": {
+                            "text": "jQUERY",
+                            "level": "h2",
+                            "align": "center",
+                            "color": "#000000"
+                        }
+                    },
+                    {
+                        "id": "w1775572894095_6",
+                        "type": "image",
+                        "props": {
+                            "src": "assets\/images\/jquery.png",
+                            "alt": "",
+                            "align": "center",
+                            "width": "150",
+                            "imageFile": "C:\\fakepath\\jquery.png"
+                        }
+                    },
+                    {
+                        "id": "w1775573369118_16",
+                        "type": "spacer",
+                        "props": {
+                            "text": "",
+                            "height": "20"
+                        }
+                    },
+                    {
+                        "id": "w1775573288877_12",
+                        "type": "text",
+                        "props": {
+                            "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                            "align": "justify",
+                            "color": "#000000",
+                            "padding": "10",
+                            "margin": "10"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "col-1775572688975-409",
+                "width": 25,
+                "widgets": [
+                    {
+                        "id": "w1775572841448_3",
+                        "type": "header",
+                        "props": {
+                            "text": "Layout",
+                            "level": "h2",
+                            "align": "center",
+                            "color": "#000000"
+                        }
+                    },
+                    {
+                        "id": "w1775572897254_7",
+                        "type": "image",
+                        "props": {
+                            "src": "assets\/images\/layout.png",
+                            "alt": "",
+                            "align": "center",
+                            "width": "150",
+                            "imageFile": "C:\\fakepath\\layout.png"
+                        }
+                    },
+                    {
+                        "id": "w1775573371191_17",
+                        "type": "spacer",
+                        "props": {
+                            "text": "",
+                            "height": "20"
+                        }
+                    },
+                    {
+                        "id": "w1775573291527_13",
+                        "type": "text",
+                        "props": {
+                            "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                            "align": "justify",
+                            "color": "#000000",
+                            "padding": "10",
+                            "margin": "10"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "col-1775572696541-522",
+                "width": 25,
+                "widgets": [
+                    {
+                        "id": "w1775573205278_10",
+                        "type": "header",
+                        "props": {
+                            "text": "Traduzione",
+                            "level": "h2",
+                            "align": "center",
+                            "color": "#000000"
+                        }
+                    },
+                    {
+                        "id": "w1775572900593_8",
+                        "type": "image",
+                        "props": {
+                            "src": "assets\/images\/traduci.png",
+                            "alt": "",
+                            "align": "center",
+                            "width": "111",
+                            "imageFile": "C:\\fakepath\\traduci.png"
+                        }
+                    },
+                    {
+                        "id": "w1775573373681_18",
+                        "type": "spacer",
+                        "props": {
+                            "text": "",
+                            "height": "20"
+                        }
+                    },
+                    {
+                        "id": "w1775573293910_14",
+                        "type": "text",
+                        "props": {
+                            "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                            "align": "justify",
+                            "color": "#000000",
+                            "padding": "10",
+                            "margin": "10"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
