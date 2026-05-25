@@ -28,7 +28,7 @@ echo "</div>";
 echo "<hr>";
 
 // lettura directory
-$path = $_SERVER['DOCUMENT_ROOT'] . "/FB-JSON/data/";
+$path = $_SERVER['DOCUMENT_ROOT'] . "/FB-MONOPAGE/data/";
 foreach (glob($path . "*.json") as $gx) {
     $array_file[] = basename($gx, ".json");
 }

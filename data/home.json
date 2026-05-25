@@ -3,7 +3,7 @@
         "tema": null,
         "page": "home",
         "version": "2.0",
-        "updated_at": "2026-05-25T16:34:30+02:00"
+        "updated_at": "2026-05-25T17:51:56+02:00"
     },
     "global": {
         "colors": {
@@ -94,7 +94,7 @@
             "height": 621
         }
     ],
-    "selectedType": "section",
-    "selectedId": "sec-1779719623802-660",
+    "selectedType": null,
+    "selectedId": null,
     "isDirty": true
 }
