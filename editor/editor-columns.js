@@ -344,92 +344,13 @@ $(document).on("click", ".duplicate-column, .duplicate-column *", function(e){
     editor.openColumnInspector(newColumn.id);
 });
 
-//==================================
-// inspector generico per elementi
-//==================================
-editor.renderElementInspector = function(title, target, fields, dataAttr){
-
-    const $panel = $("#inspector");
-    $panel.empty();
-    if(!target){
-        $panel.html("<p>Elemento non trovato.</p>");
-        return;
-    }
-
-    if(!fields){
-        console.error("Fields mancanti per inspector:", title, target);
-        $panel.html("<p>Campi inspector mancanti.</p>");
-        return;
-    }
-    const groups = {
-        contenuto: [],
-        stile: [],
-        avanzate: []
-    };
-
-    console.log("renderElementInspector fields =", fields);
-Object.keys(fields).forEach(fieldName => {
-        const field = fields[fieldName];
-        const group = field.group || "contenuto";
-
-        if(!groups[group]) groups[group] = [];
-        groups[group].push(fieldName);
-    });
-
-    let first = true;
-    Object.keys(groups).forEach(groupName => {
-
-        if(!groups[groupName].length) return;
-
-        const isOpen = editor.state.openInspectorGroup === groupName;
-        const openClass = isOpen ? "open" : "";
-        const openStyle = isOpen ? "" : 'style="display:none;"';
-        first = false;
-
-let html = `
-    <div class="inspector-accordion ${openClass}">
-        <div class="accordion-title" data-group="${groupName}">
-            ${editor.inspectorGroups[groupName] || groupName}
-        </div>
-        <div class="accordion-content" ${openStyle}>
-`;
-
-        groups[groupName].forEach(fieldName => {
-
-            const field = fields[fieldName];
-            const value = target[fieldName] ?? "";
-
-            let input = editor.renderInspectorInput(fieldName, field, value);
-
-            input = input.replaceAll(
-                'data-field=',
-                `data-${dataAttr}-field=`
-            );
-
-            html += `
-                <div class="inspector-row">
-                    <label>${field.label}</label>
-                    ${input}
-                </div>
-            `;
-        });
-
-        html += `
-                </div>
-            </div>
-        `;
-
-        $panel.append(html);
-    });
-};
-
 //======================
 // dettagli per colonna
 //======================
 editor.renderColumnInspector = function(column){
 
     editor.renderElementInspector(
-        "Dettagli Colonna",
+        "<h3 style='text-align:center; margin:10px;'>Dettagli Colonna</h3>",
         column,
         editor.columns.column.fields,
         "column"

@@ -2,39 +2,39 @@ var editor = editor || {};
 
 editor.init = function () {
 
+    console.log("INIT PARTITO");
+
     try {
+        console.log("PRIMA PALETTE");
         editor.renderWidgetPalette();
+        console.log("DOPO PALETTE");
     } catch (err) {
         console.error("ERRORE renderWidgetPalette:", err);
         return;
     }
 
-//=================================
-//editor.renderWidgetPalette();   // ← QUESTO CARICA I WIDGET NELLA PALETTE
-//console.log('palette-dopo');
-//=================================
-// Carica layout iniziale
-         if (window.INITIAL_LAYOUT && window.INITIAL_LAYOUT.sections) {
+    // Carica layout iniziale
+    if (window.INITIAL_LAYOUT && window.INITIAL_LAYOUT.sections) {
         editor.state = window.INITIAL_LAYOUT;
-
     } else {
-// Se non c'è un layout iniziale, creane uno di default
         editor.createSection();
     }
- // Popolo i dati globali da site-config.json
+
+    // Carica config globale
     if(window.SITE_CONFIG){
+        editor.applySiteConfigToForm(window.SITE_CONFIG);
+        editor.applyGlobalCssVariables(window.SITE_CONFIG);
+
         editor.state.global.colors = window.SITE_CONFIG.colors || {};
         editor.state.global.typography = window.SITE_CONFIG.typography || {};
-        editor.state.global.fonts  = window.SITE_CONFIG.fonts || {};
-        }
+    }
 
-    // Aggiorno updated_at
+    editor.bindSiteConfigSave();
+
     editor.state.meta.updated_at = new Date().toISOString();
 
     editor.render();
 };
-
-//::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 $(document).ready(function () {
     editor.init();

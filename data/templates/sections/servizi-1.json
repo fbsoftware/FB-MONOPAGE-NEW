@@ -1,29 +1,32 @@
 {
     "type": "section",
-    "name": "servizi",
-    "created_at": "2026-05-05T23:33:34+02:00",
+    "name": "servizi-1",
+    "created_at": "2026-05-11T18:50:12+02:00",
     "section": {
-        "id": "sec-1776099597675-825",
-        "background": "var(--color-bg)",
+        "id": "w1778017076028_1",
+        "background": "#ffffff",
         "padding": "20",
         "margin": "0",
         "columns": [
             {
-                "id": "col-1776099597675-440",
+                "id": "w1778017076028_2",
                 "width": 25,
                 "widgets": [
                     {
-                        "id": "wid-1776099597675-372",
+                        "id": "w1778017076028_3",
                         "type": "header",
                         "props": {
                             "text": "PHP",
                             "level": "h2",
                             "align": "center",
-                            "color": "#000000"
+                            "color": "#000000",
+                            "padding": 0,
+                            "margin": 0,
+                            "customCss": "padding-bottom:20px;"
                         }
                     },
                     {
-                        "id": "w1776099613528_1",
+                        "id": "w1778017076028_4",
                         "type": "icon",
                         "props": {
                             "name": "home",
@@ -31,38 +34,45 @@
                             "color": "#e66565",
                             "align": "center",
                             "padding": 0,
-                            "margin": 0
+                            "margin": 0,
+                            "customCss": "",
+                            "iconCss": "display:inline-flex;\nalign-items:center;\njustify-content:center;\n\nwidth:100px;\nheight:100px;\n\nborder-radius:50%;\n\nbackground:linear-gradient(135deg,#ff6600,#ff3300);\n\ncolor:white;\nfont-size:48\npx;\n\nbox-shadow:0 10px 30px rgba(0,0,0,.25);",
+                            "customClass": "zoom-hover"
                         }
                     },
                     {
-                        "id": "wid-1776099597675-555",
+                        "id": "w1778017076028_5",
                         "type": "text",
                         "props": {
                             "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
                             "align": "justify",
                             "color": "#000000",
                             "padding": "10",
-                            "margin": "10"
+                            "margin": "10",
+                            "customCss": ""
                         }
                     }
                 ]
             },
             {
-                "id": "col-1776099597675-179",
+                "id": "w1778017076028_6",
                 "width": 25,
                 "widgets": [
                     {
-                        "id": "wid-1776099597675-81",
+                        "id": "w1778017076028_7",
                         "type": "header",
                         "props": {
                             "text": "jQUERY",
                             "level": "h2",
                             "align": "center",
-                            "color": "#000000"
+                            "color": "#000000",
+                            "padding": 0,
+                            "margin": 0,
+                            "customCss": "padding-bottom:20px;"
                         }
                     },
                     {
-                        "id": "w1776099657777_2",
+                        "id": "w1778017076028_8",
                         "type": "icon",
                         "props": {
                             "name": "delete",
@@ -70,11 +80,14 @@
                             "color": "#3069c5",
                             "align": "center",
                             "padding": 0,
-                            "margin": 0
+                            "margin": 0,
+                            "customCss": "",
+                            "iconCss": "display:inline-flex;\nalign-items:center;\njustify-content:center;\n\nwidth:80px;\nheight:80px;\n\nborder-radius:50%;\n\nbackground:#ff6600;\ncolor:white;\n",
+                            "customClass": "zoom-hover"
                         }
                     },
                     {
-                        "id": "wid-1776099597675-933",
+                        "id": "w1778017076028_9",
                         "type": "text",
                         "props": {
                             "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
@@ -87,21 +100,24 @@
                 ]
             },
             {
-                "id": "col-1776099597675-171",
+                "id": "w1778017076028_10",
                 "width": 25,
                 "widgets": [
                     {
-                        "id": "wid-1776099597675-710",
+                        "id": "w1778017076028_11",
                         "type": "header",
                         "props": {
                             "text": "Layout",
                             "level": "h2",
                             "align": "center",
-                            "color": "#000000"
+                            "color": "#000000",
+                            "customCss": "padding-bottom:20px;",
+                            "padding": 0,
+                            "margin": 0
                         }
                     },
                     {
-                        "id": "w1776099662223_3",
+                        "id": "w1778017076028_12",
                         "type": "icon",
                         "props": {
                             "name": "shopping_cart",
@@ -109,11 +125,14 @@
                             "color": "#808212",
                             "align": "center",
                             "padding": 0,
-                            "margin": 0
+                            "margin": 0,
+                            "iconCss": "display:inline-flex;\nalign-items:center;\njustify-content:center;\n\nwidth:120px;\nheight:60px;\n\nborder-radius:16px;\n\nbackground:#ff6600;\ncolor:white;\n",
+                            "customCss": "",
+                            "customClass": "zoom-hover"
                         }
                     },
                     {
-                        "id": "wid-1776099597676-58",
+                        "id": "w1778017076028_13",
                         "type": "text",
                         "props": {
                             "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
@@ -126,33 +145,39 @@
                 ]
             },
             {
-                "id": "col-1776099597676-248",
+                "id": "col-1778517925959-816",
                 "width": 25,
                 "widgets": [
                     {
-                        "id": "wid-1776099597676-217",
+                        "id": "w1778517925959_87",
                         "type": "header",
                         "props": {
-                            "text": "Traduzione",
+                            "text": "Layout",
                             "level": "h2",
                             "align": "center",
-                            "color": "#000000"
-                        }
-                    },
-                    {
-                        "id": "w1776099664709_4",
-                        "type": "icon",
-                        "props": {
-                            "name": "search",
-                            "size": 48,
-                            "color": "#d07225",
-                            "align": "center",
+                            "color": "#000000",
+                            "customCss": "padding-bottom:20px;",
                             "padding": 0,
                             "margin": 0
                         }
                     },
                     {
-                        "id": "wid-1776099597676-242",
+                        "id": "w1778517925959_658",
+                        "type": "icon",
+                        "props": {
+                            "name": "search",
+                            "size": 48,
+                            "color": "#808212",
+                            "align": "center",
+                            "padding": 0,
+                            "margin": 0,
+                            "iconCss": "display:inline-flex;\nalign-items:center;\njustify-content:center;\n\nwidth:120px;\nheight:60px;\n\nborder-radius:16px;\nborder:3px solid #ff6600;\n\ncolor:#ff6600;\n",
+                            "customCss": "",
+                            "customClass": "zoom-hover"
+                        }
+                    },
+                    {
+                        "id": "w1778517925959_427",
                         "type": "text",
                         "props": {
                             "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",

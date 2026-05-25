@@ -1,18 +1,26 @@
 {
-    "colors":
-    {
-    "primary":"#3366ff",
-    "secondary":"#ff6633",
-    "accent":"#ffa500",
-    "text":"#222222",
-    "bg":"#ffffff",
-    "undefined":"#ffffff"
+    "colors": {
+        "primary": "#3366ff",
+        "secondary": "#ff6633",
+        "accent": "#ffa500",
+        "text": "#222222",
+        "bg": "#baf8fd"
     },
-    "fonts"
-    :{
-    "heading-family":"Inter",
-    "heading-weight":"400",
-    "body-family":"Inter",
-    "body-weight":"400"
+    "typography": {
+        "heading": {
+            "fontFamily": "Inter",
+            "weight": 400
+        },
+        "body": {
+            "fontFamily": "Inter",
+            "weight": 400
+        },
+        "sizes": {
+            "h1": 48,
+            "h2": 36,
+            "h3": 28,
+            "body": 16,
+            "small": 14
+        }
     }
-    }
+}

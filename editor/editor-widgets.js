@@ -13,7 +13,8 @@ editor.widgets = {
             color:"#000000",
             padding:0,
             margin:0  ,
-            customCss:""
+            customCss:"",
+            customClass:""
         },
 
 fields:{
@@ -43,16 +44,9 @@ fields:{
     },
 
     color:{
-        type:"select",
+        type:"color",
         label:"Colore",
         group:"stile",
-        options:{
-            "var(--color-primary)":"Primario",
-            "var(--color-secondary)":"Secondario",
-            "var(--color-accent)":"Accent",
-            "var(--color-text)":"Testo",
-            "var(--color-bg)":"Sfondo"
-        }
     },
     padding:{
         type:"number",
@@ -67,9 +61,15 @@ fields:{
     },
 
     customCss: {
-    type: "textarea",
-    label: "CSS personalizzato",
-    group: "avanzate"
+        type: "textarea",
+        label: "CSS personalizzato",
+        group: "avanzate"
+},
+
+    customClass: {
+        type: "text",
+        label: "Classe CSS",
+        group: "avanzate"
 }
 } ,  
 
@@ -85,8 +85,8 @@ fields:{
                 color:${p.color ?? "#000"};
                 padding:${p.padding ?? 0}px;
                 margin:${p.margin ?? 0}px;
-                ${p.customCss ?? ""}
-            ">
+                ${p.customCss ?? ""}"
+                class="${p.customClass || ''}">
                 ${p.text ?? ""}
             </${tag}>
         </div>
@@ -105,30 +105,37 @@ fields:{
      color:"#000000",
      padding:0,
      margin:0,
-     customCss:""
+     customCss:"",
+     customClass:""
   },
 
 fields:{
     text:{ type:"textarea", label:"Testo", group:"contenuto" },
-    align:{ type:"select", label:"Allineamento", group:"stile", options:{            left:"Sinistra",
+    align:{ type:"select", label:"Allineamento", group:"stile", 
+    options:{left:"Sinistra",
             center:"Centro",
             right:"Destra",
             justify:"Giustificato"} },
     color:{ type:"color", label:"Colore", group:"stile" },
     padding:{ type:"number", label:"Padding px", group:"avanzate" },
     margin:{ type:"number", label:"Margin px", group:"avanzate" },
-        customCss: {
-    type: "textarea",
-    label: "CSS personalizzato",
-    group: "avanzate"
-}
+    customCss: {
+        type: "textarea",
+        label: "CSS personalizzato",
+        group: "avanzate"
+        },
+    customClass: {
+        type: "text",
+        label: "Classe CSS",
+        group: "avanzate"
+        }
 },
 
 render(widget){
     const p = widget.props || {};
 
     return `
-        <div  class="widget-text" 
+        <div  class="widget-text ${p.customClass || ''}" 
                         style="text-align:${p.align ?? "left"};
                         color:${p.color ?? "#000"};
                         padding:${p.padding ?? 0}px;
@@ -150,7 +157,8 @@ defaultProps:{
     color:"var(--color-text)",
     fontSize:"16px",
     fontWeight:"400",
-    customCss:""
+    customCss:"",
+    customClass:""
 },
 
   fields:{
@@ -167,16 +175,9 @@ defaultProps:{
         }
     },
     color:{
-        type:"select",
+        type:"color",
         label:"Colore",
         group:"stile",
-        options:{
-            "var(--color-primary)":"Primario",
-            "var(--color-secondary)":"Secondario",
-            "var(--color-accent)":"Accent",
-            "var(--color-text)":"Testo",
-            "var(--color-bg)":"Sfondo"
-        }
     },
     fontSize:{
         type:"select",
@@ -207,6 +208,11 @@ defaultProps:{
             type: "textarea",
             label: "CSS personalizzato",
             group: "avanzate"
+    },
+    customClass: {
+        type: "text",
+        label: "Classe CSS",
+        group: "avanzate"
     }
 },
 
@@ -228,7 +234,7 @@ defaultProps:{
         `;
     }
     },
-    image: {
+    image: {    //-----------------------------------------------
     label: "Immagine",
     icon: "🖼️",
 
@@ -238,7 +244,8 @@ defaultProps:{
         align: "left",
         width: 300,
         customCss:"",
-        imgCss:""
+        imgCss:"",
+        customClass:""
     },
 
     fields: {
@@ -282,6 +289,11 @@ defaultProps:{
     type: "textarea",
     label: "CSS image",
     group: "avanzate"
+    },
+    customClass: {
+        type: "text",
+        label: "Classe CSS",
+        group: "avanzate"
     }
     },
 
@@ -291,7 +303,7 @@ defaultProps:{
 
         if(!src){
             return `
-                <div class="widget-image-empty"
+                <div class="widget-image-empty}"
                      style="text-align:center; margin-top:10px;">
                     <img src="https://dummyimage.com/200x200/cacaca/fff.png&text=dummy-image"
                 </div>
@@ -304,7 +316,7 @@ defaultProps:{
                 ${p.customCss ?? ""}">
                     <img src="${src}" alt="${p.alt ?? ""}" 
                     style="width:${p.width ?? 300}px;
-                    ${p.imgCss ?? ""}"  >
+                    ${p.imgCss ?? ""}" class="${p.customClass || ''}">
             </div>
         `;
     }
@@ -326,7 +338,8 @@ defaultProps:{
             fontSize: "22px",
             fontWeight: "600",
             customCss:"",
-            buttonCss:""
+            buttonCss:"",
+            customClass:""
         },
 
         fields: {
@@ -352,28 +365,14 @@ defaultProps:{
                 }
             },
             color: {
-                type: "select",
+                type: "color",
                 label: "Colore",
                 group: "stile",
-                options: {
-                    "var(--color-primary)": "Primario",
-                    "var(--color-secondary)": "Secondario",
-                    "var(--color-accent)": "Accent",
-                    "var(--color-text)": "Testo",
-                    "var(--color-bg)": "Sfondo"
-                }
             },
             sfondo: {
-                type: "select",
+                type: "color",
                 label: "Sfondo",
                 group: "stile",
-                options: {
-                    "var(--color-primary)": "Primario",
-                    "var(--color-secondary)": "Secondario",
-                    "var(--color-accent)": "Accent",
-                    "var(--color-text)": "Testo",
-                    "var(--color-bg)": "Sfondo"
-                }
             },
             bordo: {
                 type: "number",
@@ -424,6 +423,11 @@ defaultProps:{
         type: "textarea",
         label: "CSS button",
         group: "avanzate"
+        },
+        customClass: {
+            type: "text",
+            label: "Classe CSS",
+            group: "avanzate"
         }
         },
 
@@ -431,7 +435,7 @@ defaultProps:{
             const p = widget.props || {};
 
             return `
-                <div class="widget-button" 
+                <div class="widget-button ${p.customClass || ''}" 
                     style="text-align:${p.align}; 
                     padding:${p.padding}px;
                     ${p.customCss ?? ""}">
@@ -462,7 +466,8 @@ defaultProps:{
         defaultProps: {
                 text: "",
                 height: "20",
-                customCss:""
+                customCss:"",
+                customClass:""
         },
 
         fields:{
@@ -475,14 +480,18 @@ defaultProps:{
                 label: "CSS div",
                 group: "avanzate"
                 },
-        
+                customClass: {  
+                    type: "text",
+                    label: "Classe CSS",
+                    group: "avanzate"
+                }
 
        },  
 
         render: function(widget){
             const p = widget.props || {};
             return `
-            <div class="widget-spacer" 
+            <div class="widget-spacer ${p.customClass || ''}" 
             style="height:${p.height}px;
             ${p.customCss ?? ""}">
             </div>    
@@ -502,7 +511,8 @@ defaultProps:{
         padding: 0,
         margin: 0,
         customCss:"",
-        iconCss:""
+        iconCss:"",
+        customClass:""
     },
 
     fields: {
@@ -545,17 +555,23 @@ defaultProps:{
             label: "Margin px",
             group: "stile"
         },
-            customCss: {
-                type: "textarea",
-                label: "CSS div",
-                group: "avanzate"
-                },
-                
-            iconCss: {
-                type: "textarea",
-                label: "CSS icona",
-                group: "avanzate"
-                }
+        customCss: {
+            type: "textarea",
+            label: "CSS div",
+            group: "avanzate"
+            },
+            
+        iconCss: {
+            type: "textarea",
+            label: "CSS icona",
+            group: "avanzate"
+            },
+
+        customClass: {
+            type: "text",
+            label: "Classe CSS",
+            group: "avanzate"
+        }
     },
 
     render(widget) {
@@ -568,7 +584,7 @@ defaultProps:{
                 margin:${p.margin ?? 0}px;
                 ${p.customCss ?? ""} ">
 
-                <span class="material-symbols-outlined" style="
+                <span class="material-symbols-outlined ${p.customClass || ''}" style="
                     font-size:${p.size ?? 48}px!important;
                     color:${p.color ?? "var(--color-primary)"};
                     ${p.iconCss ?? ""}">
@@ -589,7 +605,8 @@ defaultProps:{
         padding: 20,
         margin: 20,
         customCss:"",
-        videoCss:""
+        videoCss:"",
+        customClass:""
 
     },
 
@@ -643,8 +660,12 @@ defaultProps:{
             type: "textarea",
             label: "CSS video",
             group: "avanzate"
-            }
-
+            },
+        customClass: {
+            type: "text",
+            label: "Classe CSS",
+            group: "avanzate"
+    } 
     },
 
     render(widget) {
@@ -671,7 +692,7 @@ defaultProps:{
         const ratio = editor.getAspectRatioPadding(p.aspectRatio || "16:9");
 
         return `
-            <div class="widget-video" style="
+            <div class="widget-video ${p.customClass || ''} " style="
                 text-align:${p.align ?? "center"};
                 padding:${p.padding ?? 0}px;
                 margin:${p.margin ?? 0}px;
@@ -718,7 +739,8 @@ defaultProps:{
         margin: 0,
         height: 1,
         lineaCss:"",
-        iconaCss:""
+        iconaCss:"",
+        customClass:""
         },
 
         fields:{
@@ -753,22 +775,26 @@ defaultProps:{
             label: "Margin px",
             group: "stile"
         },
-         lineaCss: {
+        lineaCss: {
             type: "textarea",
             label: "CSS linea",
             group: "avanzate"
             },
 
-            iconaCss: {
+        iconaCss: {
             type: "textarea",
             label: "CSS icona",
             group: "avanzate"
-            }       
+            } ,
+        customCss: {
+            type: "textarea",
+            label: "CSS div",
+            group: "avanzate"      
  }, 
         render: function(widget){
             const p = widget.props || {};
             return `
-            <div class="widget-divider" 
+            <div class="widget-divider ${p.customClass || ''}" 
                     style="display: flex; 
                     flex-direction: row;
                     align-items: center; 
@@ -793,9 +819,60 @@ defaultProps:{
             `;
         }
 
-    }  ,
-};
+    }  
+    },
+    richtext: {
+    label: "Testo avanzato",
+    icon: "📄",
 
+    defaultProps: {
+        html: "<p>Scrivi qui il testo...</p>",
+        padding: 0,
+        margin: 0,
+        customCss: ""
+    },
+
+    fields: {
+        html: {
+            type: "richtext",
+            label: "Testo",
+            group: "contenuto"
+        },
+
+        padding: {
+            type: "number",
+            label: "Padding px",
+            group: "stile"
+        },
+
+        margin: {
+            type: "number",
+            label: "Margin px",
+            group: "stile"
+        },
+
+        customCss: {
+            type: "textarea",
+            label: "CSS personalizzato",
+            group: "avanzate"
+        }
+    },
+
+    render(widget){
+        const p = widget.props || {};
+
+        return `
+            <div class="widget-richtext" style="
+                padding:${p.padding ?? 0}px;
+                margin:${p.margin ?? 0}px;
+                ${p.customCss ?? ""}
+            ">
+                ${p.html ?? ""}
+            </div>
+        `;
+    }
+}
+};
 //=================================
 // Apre pannello dettagli widget 
 //=================================
@@ -876,9 +953,6 @@ editor.createWidget = function(type){
 
     const newId = this.uid();
 
-    console.log("this.uid() =", newId);
-    console.log("typeof this.uid() =", typeof newId);
-
     return {
         id: newId,
         type: type,
@@ -914,29 +988,49 @@ function resolveColor(value) {
 }
 
 //==========================================
-// render pannello dettagli
+// render pannello dettagli widget
 //==========================================
 editor.renderInspector = function(widget, def){
 
     const $panel = $("#inspector");
     $panel.empty();
-//---
-widget.props = widget.props || {};
 
-Object.keys(def.defaultProps || {}).forEach(key => {
-    if(widget.props[key] === undefined){
-        widget.props[key] = def.defaultProps[key];
+    if(!widget || !def){
+        $panel.html("<p>Widget non trovato.</p>");
+        return;
     }
-});
-//---
+
+$panel.append(`
+    <div class="inspector-header">
+       <h3 style="text-align:center; margin:10px;">
+           ${def.label || "Widget"}
+       </h3>
+    </div>
+`);
+
+    widget.props = widget.props || {};
+
+    Object.keys(def.defaultProps || {}).forEach(key => {
+        if(widget.props[key] === undefined){
+            widget.props[key] = def.defaultProps[key];
+        }
+    });
+
     if(!def.fields) return;
 
-// prepara i gruppi
-        const groups = {
-        contenuto: [],
-        stile: [],
-        avanzate: []
-    };
+    const groupOrder = editor.inspectorGroupOrder || [
+        "contenuto",
+        "stile",
+        "immagini",
+        "overlay",
+        "avanzate"
+    ];
+
+    const groups = {};
+
+    groupOrder.forEach(groupName => {
+        groups[groupName] = [];
+    });
 
     Object.keys(def.fields).forEach(fieldName => {
         const field = def.fields[fieldName];
@@ -949,34 +1043,40 @@ Object.keys(def.defaultProps || {}).forEach(key => {
         groups[group].push(fieldName);
     });
 
-    Object.keys(groups).forEach(groupName => {
-        if(!groups[groupName].length) return;
+    groupOrder.forEach(groupName => {
 
-        let html = `
-            <div class="inspector-accordion">
+        if(!groups[groupName] || !groups[groupName].length) return;
+
+        const isOpen = editor.state.openInspectorGroup === groupName;
+        const openClass = isOpen ? "open" : "";
+        const openStyle = isOpen ? "" : 'style="display:none;"';
+
+ let       html = `
+            <div class="inspector-accordion ${openClass}">
                 <div class="accordion-title" data-group="${groupName}">
-                    ${editor.inspectorGroups[groupName] || groupName}
+                    ${editor.inspectorGroups?.[groupName] || groupName}
                 </div>
-                <div class="accordion-content">
+                <div class="accordion-content" ${openStyle}>
         `;
 
-groups[groupName].forEach(fieldName => {
+        groups[groupName].forEach(fieldName => {
 
-    const field = def.fields[fieldName];
+            const field = def.fields[fieldName];
 
-    const value = widget.props && widget.props[fieldName] !== undefined
-        ? widget.props[fieldName]
-        : "";
-//console.log("ACCORDION FIELD:", fieldName, "VALUE:", widget.props[fieldName]);
-    const input = editor.renderInspectorInput(fieldName, field, value);
+            const value =
+                widget.props && widget.props[fieldName] !== undefined
+                    ? widget.props[fieldName]
+                    : (def.defaultProps?.[fieldName] ?? "");
 
-    html += `
-        <div class="inspector-row">
-            <label>${field.label}</label>
-            ${input}
-        </div>
-    `;
-});
+            const input = editor.renderInspectorInput(fieldName, field, value);
+
+            html += `
+                <div class="inspector-row">
+                    <label>${field.label}</label>
+                    ${input}
+                </div>
+            `;
+        });
 
         html += `
                 </div>
@@ -987,51 +1087,167 @@ groups[groupName].forEach(fieldName => {
     });
 };
 
+
+//==================================
+// inspector generico per elementi
+//==================================
+editor.renderElementInspector = function(title, target, fields, dataAttr){
+
+    const $panel = $("#inspector");
+    $panel.empty();
+
+    if(!target){
+        $panel.html("<p>Elemento non trovato.</p>");
+        return;
+    }
+
+    if(!fields){
+        console.error("Fields mancanti per inspector:", title, target);
+        $panel.html("<p>Campi inspector mancanti.</p>");
+        return;
+    }
+
+    $panel.append(`
+    <div class="inspector-header">
+        ${title}
+    </div>
+`);
+
+    const groupOrder = editor.inspectorGroupOrder || [
+        "contenuto",
+        "stile",
+        "immagini",
+        "overlay",
+        "avanzate"
+    ];
+
+    const groups = {};
+
+    groupOrder.forEach(groupName => {
+        groups[groupName] = [];
+    });
+
+    Object.keys(fields).forEach(fieldName => {
+        const field = fields[fieldName];
+        const group = field.group || "contenuto";
+
+        if(!groups[group]){
+            groups[group] = [];
+        }
+
+        groups[group].push(fieldName);
+    });
+
+    groupOrder.forEach(groupName => {
+
+        if(!groups[groupName] || !groups[groupName].length) return;
+
+        const isOpen = editor.state.openInspectorGroup === groupName;
+        const openClass = isOpen ? "open" : "";
+        const openStyle = isOpen ? "" : 'style="display:none;"';
+
+        let html = `
+            <div class="inspector-accordion ${openClass}">
+                <div class="accordion-title" data-group="${groupName}">
+                    ${editor.inspectorGroups?.[groupName] || groupName}
+                </div>
+                <div class="accordion-content" ${openStyle}>
+        `;
+
+        groups[groupName].forEach(fieldName => {
+
+            const field = fields[fieldName];
+            const value = target[fieldName] ?? "";
+
+            let input = editor.renderInspectorInput(fieldName, field, value, dataAttr);
+
+            if(fieldName === "backgroundImage" && value){
+                input += `
+                    <button type="button"
+                            class="clear-section-bg-image"
+                            style="margin-top:8px;">
+                        Rimuovi immagine
+                    </button>
+                `;
+            }
+
+            html += `
+                <div class="inspector-row">
+                    <label>${field.label}</label>
+                    ${input}
+                </div>
+            `;
+        });
+
+        html += `
+                </div>
+            </div>
+        `;
+
+        $panel.append(html);
+    });
+};
 //================================= 
 // render input campo dettagli
 //=================================
-editor.renderInspectorInput = function(fieldName, field, value){
+editor.renderInspectorInput = function(fieldName, field, value, dataAttr){
 
     let input = "";
+
+    const attr = dataAttr
+        ? `data-${dataAttr}-field="${fieldName}"`
+        : `data-field="${fieldName}"`;
 
     if(field.type === "text"){
         input = `
             <input type="text"
-                   data-field="${fieldName}"
+                   ${attr}
                    value="${value}">
         `;
     }
 
     if(field.type === "textarea"){
         input = `
-            <textarea data-field="${fieldName}" rows="8">${value}</textarea>
+            <textarea ${attr} rows="8">${value}</textarea>
         `;
     }
 
     if(field.type === "number"){
         input = `
             <input type="number"
-                   data-field="${fieldName}"
+                   ${attr}
                    value="${value}">
         `;
     }
 
-if(field.type === "range"){
-    input = `
-        <input type="range"
-               min="${field.min ?? 0}"
-               max="${field.max ?? 100}"
-               data-field="${fieldName}"
-               value="${value}">
-    `;
-}
-    if(field.type === "color"){
+    if(field.type === "range"){
         input = `
-            <input type="color"
-                   data-field="${fieldName}"
+            <input type="range"
+                   min="${field.min ?? 0}"
+                   max="${field.max ?? 100}"
+                   step="${field.step ?? 1}"
+                   ${attr}
                    value="${value}">
         `;
     }
+
+if(field.type === "color"){
+    input = `
+        <select ${attr} class="color-select">
+            <option value="">Custom / nessuno</option>
+            <option value="var(--color-primary)" ${value === "var(--color-primary)" ? "selected" : ""}>Primario</option>
+            <option value="var(--color-secondary)" ${value === "var(--color-secondary)" ? "selected" : ""}>Secondario</option>
+            <option value="var(--color-accent)" ${value === "var(--color-accent)" ? "selected" : ""}>Accent</option>
+            <option value="var(--color-text)" ${value === "var(--color-text)" ? "selected" : ""}>Testo</option>
+            <option value="var(--color-bg)" ${value === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
+        </select>
+
+        <input type="color"
+               ${attr}
+               class="color-picker"
+               value="${value && value.startsWith("#") ? value : "#000000"}">
+    `;
+}
 
     if(field.type === "select"){
         let options = "";
@@ -1047,20 +1263,9 @@ if(field.type === "range"){
         });
 
         input = `
-            <select data-field="${fieldName}">
+            <select ${attr}>
                 ${options}
             </select>
-        `;
-    }
-
-    if(field.type === "image_upload"){
-        input = `
-            <input
-                type="file"
-                accept="image/*"
-                data-field="${fieldName}"
-                data-upload-image="1"
-            >
         `;
     }
 
@@ -1079,10 +1284,25 @@ if(field.type === "range"){
                 .html(html);
         }, 0);
     }
+    if(field.type === "richtext"){
+    input = `
+        <div class="richtext-toolbar">
+            <button type="button" data-rich-cmd="bold">B</button>
+            <button type="button" data-rich-cmd="italic">I</button>
+            <button type="button" data-rich-cmd="insertUnorderedList">• Lista</button>
+            <button type="button" data-rich-format="p">P</button>
+            <button type="button" data-rich-format="h2">H2</button>
+            <button type="button" data-rich-link="1">Link</button>
+            <button type="button" data-rich-image="1">Img</button>
+        </div>
 
-    if(field.type === "color"){
-        input = editor.renderInspectorColorField(fieldName, value);
-    }
+        <div class="richtext-editor"
+             contenteditable="true"
+             data-field="${fieldName}">
+            ${value}
+        </div>
+    `;
+}
 
     if(!input){
         input = `
@@ -1098,9 +1318,7 @@ if(field.type === "range"){
 // Render widget
 //================================= 
 editor.renderWidget = function(widget){
-
     const def = editor.widgets[widget.type];
-//console.log("RENDER WIDGET:", widget);
 
      const selected =
         editor.state.selectedType === "widget" &&
@@ -1113,6 +1331,9 @@ editor.renderWidget = function(widget){
     return `
         <div class="canvas-widget ${selected}" data-id="${widget.id}">
             <div class="widget-toolbar">
+                <button class="duplicate-widget button" title="Duplica widget">
+                    <span class="material-symbols-outlined">content_copy</span>
+                </button>
                 <button class="widget-delete button">
                     <span class="material-symbols-outlined">delete</span>
                 </button>
@@ -1140,7 +1361,7 @@ editor.getYoutubeVideoId = function(url) {
         const match = url.match(pattern);
         if (match && match[1]) {
 // FB: render colonna completo
-console.log('URL=',match[0], 'ID=', match[1]);
+//console.log('URL=',match[0], 'ID=', match[1]);
 
             return match[1];
         }
@@ -1230,3 +1451,108 @@ editor.renderInspectorColorField = function(fieldName, value){
             value="${pickerValue}">
     `;
 };
+
+//=================================
+//  clona widget
+//=================================
+editor.cloneWidget = function(widget){
+
+    const clone = JSON.parse(JSON.stringify(widget));
+
+    clone.id = editor.uid();
+
+    return clone;
+};
+
+//=================================
+//  comandi testo avanzato
+//=================================
+$(document).on("click", "[data-rich-cmd]", function(e){
+    e.preventDefault();
+
+    const cmd = $(this).data("rich-cmd");
+    document.execCommand(cmd, false, null);
+});
+// formati testo avanzato
+$(document).on("click", "[data-rich-format]", function(e){
+    e.preventDefault();
+
+    const tag = $(this).data("rich-format");
+    document.execCommand("formatBlock", false, tag);
+});
+// link
+$(document).on("click", "[data-rich-link]", function(e){
+    e.preventDefault();
+
+    const url = prompt("URL link:");
+    if(!url) return;
+
+    document.execCommand("createLink", false, url);
+});
+$(document).on("click", "[data-rich-image]", function(e){
+    e.preventDefault();
+
+    let url = prompt("URL o nome file immagine:");
+    if(!url) return;
+
+    url = url.trim();
+
+    if(
+        !url.startsWith("http://") &&
+        !url.startsWith("https://") &&
+        !url.startsWith("/")
+    ){
+        url = "/FB-JSON/assets/images/" + url;
+    }
+
+    const width = prompt("Larghezza immagine, es. 300px o 50%:", "300px");
+    const align = prompt("Allineamento: left, center, right", "center");
+
+    let style = `
+        width:${width};
+        max-width:100%;
+        height:auto;
+    `;
+
+    if(align === "center"){
+        style += `
+            display:block;
+            margin:10px auto;
+        `;
+    }
+
+    if(align === "left"){
+        style += `
+            display:block;
+            margin:10px 20px 10px 0;
+            float:left;
+        `;
+    }
+
+    if(align === "right"){
+        style += `
+            display:block;
+            margin:10px 0 10px 20px;
+            float:right;
+        `;
+    }
+
+    const html = `
+        <img src="${url}" style="${style}">
+    `;
+
+    document.execCommand("insertHTML", false, html);
+});
+//=================================
+//  aggiorna props testo avanzato
+//=================================
+$(document).on("input blur", ".richtext-editor", function(e){
+
+    const field = $(this).data("field");
+    const widget = editor.findWidgetById(editor.state.selectedId);
+
+    if(!widget) return;
+
+    widget.props[field] = $(this).html();
+    editor.state.isDirty = true;
+});

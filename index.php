@@ -97,10 +97,18 @@ $pageContent = file_exists($pagePath)
         </nav> 
     
 </div>
-    <section id="page-content">
-        <?php echo $pageContent; ?>
-    </section>
+<section id="page-content">
+    <?php echo $pageContent; ?>
+</section>
 
+<footer style="background: #cacaca; 
+                padding: 10px; 
+                text-align: center; 
+                font-size: 14px;
+                width: 1240px;
+                ">
+    &copy; 2026 FB. Tutti i diritti riservati.
+</footer>   
 </main>
 
 </body>

@@ -1,9 +1,9 @@
 {
     "meta": {
         "tema": null,
-        "page": "contatti",
+        "page": "art-vid",
         "version": "2.0",
-        "updated_at": "2026-04-28T14:53:27+02:00"
+        "updated_at": "2026-05-16T16:47:57+02:00"
     },
     "global": {
         "colors": {
@@ -11,10 +11,25 @@
             "secondary": "#ff6633",
             "accent": "#ffa500",
             "text": "#222222",
-            "bg": "#ffffff",
-            "undefined": "#ffffff"
+            "bg": "#baf8fd"
         },
-        "typography": [],
+        "typography": {
+            "heading": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "body": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "sizes": {
+                "h1": 48,
+                "h2": 36,
+                "h3": 28,
+                "body": 16,
+                "small": 14
+            }
+        },
         "fonts": {
             "heading-family": "Inter",
             "heading-weight": "400",
@@ -25,7 +40,7 @@
     "sections": [
         {
             "id": "sec-1776354272005-138",
-            "background": "var(--color-secondary)",
+            "background": "var(--color-bg)",
             "padding": "20",
             "margin": "0",
             "columns": [
@@ -38,19 +53,8 @@
                             "type": "spacer",
                             "props": {
                                 "text": "",
-                                "height": "53"
-                            }
-                        },
-                        {
-                            "id": "w1776354285286_2",
-                            "type": "icon",
-                            "props": {
-                                "name": "home",
-                                "size": 48,
-                                "color": "#fbdc41",
-                                "align": "center",
-                                "padding": 0,
-                                "margin": 0
+                                "height": "24",
+                                "customCss": ""
                             }
                         },
                         {
@@ -69,11 +73,12 @@
                             "id": "w1776373548310_2",
                             "type": "text",
                             "props": {
-                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.d possimus culpa sed quia libero ut dignissimos porro in dignissimos optio et maiores dicta. Qui natus enim sit exercitationem inventore ea tenetur veritatis aut officia doloremque est possimus accusamus. At harum officia qui magni odio nam dicta voluptatem hic nesciunt corrupti. Id cupiditate minus aut odit atque id amet consequatur eum deleniti fugiat.\n\nEt galisum maiores ex neque delectus et iusto voluptas non recusandae voluptatem sed officiis similique et minus quia ad quia animi. Qui mollitia suscipit qui saepe necessitatibus ut laudantium officia et dolores harum est dignissimos tempore est eaque autem. Est sunt laboriosam ut quia nemo eum voluptatibus distinctio.",
                                 "align": "right",
                                 "color": "#000000",
                                 "padding": 0,
-                                "margin": 0
+                                "margin": 0,
+                                "customCss": ""
                             }
                         },
                         {
@@ -104,11 +109,14 @@
                                 "margin": 20
                             }
                         }
-                    ]
+                    ],
+                    "height": 500
                 }
-            ]
+            ],
+            "height": 570
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1776354285286_2"
+    "selectedType": null,
+    "selectedId": null,
+    "isDirty": true
 }

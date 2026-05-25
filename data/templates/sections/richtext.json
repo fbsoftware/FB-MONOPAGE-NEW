@@ -1,0 +1,65 @@
+{
+    "type": "section",
+    "name": "richtext",
+    "created_at": "2026-05-25T15:01:20+02:00",
+    "section": {
+        "id": "sec-1778600560034-794",
+        "background": "var(--color-bg)",
+        "padding": "20",
+        "margin": 0,
+        "columns": [
+            {
+                "id": "col-1778600560034-375",
+                "width": 50,
+                "widgets": [
+                    {
+                        "id": "w1778709910371_1",
+                        "type": "header",
+                        "props": {
+                            "text": "Richtext",
+                            "level": "h2",
+                            "align": "center",
+                            "color": "#000000",
+                            "padding": 0,
+                            "margin": 0,
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1778600565096_1",
+                        "type": "richtext",
+                        "props": {
+                            "html": "\n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            \n            <h2>Scrivo il testo<\/h2><p><\/p><ul><li>Continuo a scrivere il testo.<\/li><li>terzo paragrafo.<\/li><\/ul><p><span style=\"font-size: 1em;\">Lorem ipsum dolor sit amet. Ut impedit porro eos tempora nesciunt aut doloribus omnis sit quos dolorem id autem beatae. Nam placeat iste ut galisum iste a<\/span><span style=\"font-size: 1em;\">luptas totam&nbsp;<\/span><span style=\"font-size: 1em;\">eos quibusdam numquam eum voluptatem eius et odio reiciendi.<br><\/span><\/p><img src=\"http:\/\/localhost\/FB-JSON\/assets\/images\/image.png\" style=\"\n        width:100px;\n        max-width:100%;\n        height:auto;\n    \n            display:block;\n            margin:10px 20px 10px 0;\n            float:left;\n        \"><p><span style=\"font-size: 1em;\">Questo è il testo che si dovrebbe affiancare all'immagine.<\/span><\/p>\n        \n        \n        ",
+                            "padding": "10",
+                            "margin": "0",
+                            "customCss": "Text-align:right;\n"
+                        }
+                    }
+                ],
+                "height": 333,
+                "padding": 15
+            },
+            {
+                "id": "col-1778601270618-360",
+                "width": 50,
+                "margin": 20,
+                "widgets": [
+                    {
+                        "id": "w1778601892794_2",
+                        "type": "image",
+                        "props": {
+                            "src": "assets\/images\/image.png",
+                            "alt": "",
+                            "align": "left",
+                            "width": 300,
+                            "customCss": "",
+                            "imgCss": "",
+                            "customClass": ""
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

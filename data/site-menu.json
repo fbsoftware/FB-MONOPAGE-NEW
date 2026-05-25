@@ -5,18 +5,13 @@
         "level": 0
     },
     {
-        "title": "Chi-siamo",
-        "page": "chi-siamo",
+        "title": "Art Vid",
+        "page": "art-vid",
         "level": 0
     },
     {
-        "title": "Contatti",
-        "page": "contatti",
-        "level": 0
-    },
-    {
-        "title": "Page",
-        "page": "page",
+        "title": "Art Img",
+        "page": "art-img",
         "level": 0
     },
     {
@@ -32,6 +27,41 @@
     {
         "title": "Promo",
         "page": "promo",
+        "level": 0
+    },
+    {
+        "title": "CTA",
+        "page": "CTA",
+        "level": 0
+    },
+    {
+        "title": "Page",
+        "page": "page",
+        "level": 0
+    },
+    {
+        "title": "Ciao",
+        "page": "ciao",
+        "level": 0
+    },
+    {
+        "title": "Richtext",
+        "page": "richtext",
+        "level": 0
+    },
+    {
+        "title": "Xyz",
+        "page": "xyz",
+        "level": 0
+    },
+    {
+        "title": "Qwe",
+        "page": "qwe",
+        "level": 0
+    },
+    {
+        "title": "Abc",
+        "page": "abc",
         "level": 0
     }
 ]

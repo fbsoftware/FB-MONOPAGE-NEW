@@ -16,6 +16,77 @@ $(document).on("click", function(e){
     editor.render();
 });
 
+//====================================
+//  core editor functions
+//====================================
+var editor = editor || {};
+
+// gruppi disponibili inspector
+    editor.inspectorGroups = {
+    contenuto: "Contenuto",
+    stile: "Stile",
+    avanzate: "Avanzate",
+    immagini: "Immagini",
+    overlay: "Overlay"
+};
+
+editor.inspectorGroupOrder = [
+    "contenuto",
+    "stile",
+    "immagini",
+    "overlay",
+    "avanzate"
+];
+
+// risolve path immagini
+    editor.resolveAssetUrl = function(path){
+    if(!path) return "";
+
+    if(
+        path.startsWith("http://") ||
+        path.startsWith("https://") ||
+        path.startsWith("/")
+    ){
+        return path;
+    }
+
+    return "/FB-JSON/" + path.replace(/^\/+/, "");
+};
+
+//=================================
+// Applica CSS variables globali
+//=================================
+editor.applyGlobalCssVariables = function(config){
+
+    if(!config || !config.colors) return;
+
+    const root = document.documentElement;
+
+    root.style.setProperty(
+        "--color-primary",
+        config.colors.primary || "#3366ff"
+    );
+
+    root.style.setProperty(
+        "--color-secondary",
+        config.colors.secondary || "#ff6633"
+    );
+
+    root.style.setProperty(
+        "--color-accent",
+        config.colors.accent || "#ffa500"
+    );
+
+    root.style.setProperty(
+        "--color-text",
+        config.colors.text || "#222222"
+    );
+
+    root.style.setProperty(
+        "--color-bg",
+        config.colors.bg || "#ffffff"
+    );
+};
 
 //=================================
 // Move section up
@@ -139,79 +210,114 @@ $(document).on("click", "#editor-exit", function(){
 
     window.location.href = "/FB-JSON/admin/admin.php";
 });
+
 //=================================
-//  Load site config
+// carica la configurazione globale (colori, font, ecc) da site-config.json
 //=================================
-editor.loadSiteConfig = function() {
+editor.applySiteConfigToForm = function(config){
+    $("#color-primary").val(config.colors?.primary ?? "#3366ff");
+    $("#color-secondary").val(config.colors?.secondary ?? "#ff6633");
+    $("#color-accent").val(config.colors?.accent ?? "#ffa500");
+    $("#color-text").val(config.colors?.text ?? "#222222");
+    $("#color-bg").val(config.colors?.bg ?? "#ffffff");
 
-$("#saveSiteConfig").on("click", function(){
+    $("#heading-family").val(config.typography?.heading?.fontFamily ?? "Inter");
+    $("#heading-weight").val(config.typography?.heading?.weight ?? 400);
 
-    const config = {
+    $("#body-family").val(config.typography?.body?.fontFamily ?? "Inter");
+    $("#body-weight").val(config.typography?.body?.weight ?? 400);
 
-        colors: {
-            primary: $("#color-primary").val(),
-            secondary: $("#color-secondary").val(),
-            accent: $("#color-accent").val(),
-            text: $("#color-text").val(),
-            bg: $("#color-bg").val()
-        },
-
-        typography: {
-
-            heading: {
-                fontFamily: $("#heading-family").val(),
-                weight: parseInt($("#heading-weight").val())
-            },
-
-            body: {
-                fontFamily: $("#body-family").val(),
-                weight: parseInt($("#body-weight").val())
-            },
-
-            sizes: {
-                h1: parseInt($("#font-h1").val()),
-                h2: parseInt($("#font-h2").val()),
-                h3: parseInt($("#font-h3").val()),
-                body: parseInt($("#font-body").val()),
-                small: parseInt($("#font-small").val())
-            }
-
-        }
-
-    };
-
-    fetch("save-site-config.php", {
-        method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify(config)
-    })
-    .then(res=>res.json())
-    .then(res=>{
-
-        if(res.ok){
-
-            $("#siteConfigStatus").text("✔ Salvato");
-
-            window.SITE_CONFIG = config;
-
-            editor.loadSiteConfig();
-
-            console.log("Configurazione aggiornata", config);
-
-        }
-
-    });
-
-});
+    $("#font-h1").val(config.typography?.sizes?.h1 ?? 48);
+    $("#font-h2").val(config.typography?.sizes?.h2 ?? 36);
+    $("#font-h3").val(config.typography?.sizes?.h3 ?? 28);
+    $("#font-body").val(config.typography?.sizes?.body ?? 16);
+    $("#font-small").val(config.typography?.sizes?.small ?? 14);
 };
 
+//=================================
+//  Bind site config save
+//=================================
+editor.bindSiteConfigSave = function(){
+
+    $("#saveSiteConfig").off("click").on("click", function(){
+
+        const config = {
+            colors: {
+                primary: $("#color-primary").val(),
+                secondary: $("#color-secondary").val(),
+                accent: $("#color-accent").val(),
+                text: $("#color-text").val(),
+                bg: $("#color-bg").val()
+            },
+
+            typography: {
+                heading: {
+                    fontFamily: $("#heading-family").val(),
+                    weight: parseInt($("#heading-weight").val(), 10)
+                },
+
+                body: {
+                    fontFamily: $("#body-family").val(),
+                    weight: parseInt($("#body-weight").val(), 10)
+                },
+
+                sizes: {
+                    h1: parseInt($("#font-h1").val(), 10),
+                    h2: parseInt($("#font-h2").val(), 10),
+                    h3: parseInt($("#font-h3").val(), 10),
+                    body: parseInt($("#font-body").val(), 10),
+                    small: parseInt($("#font-small").val(), 10)
+                }
+            }
+        };
+
+        fetch("/FB-JSON/editor/save-site-config.php", {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(config)
+        })
+        .then(res => res.json())
+        .then(res => {
+            editor.applyGlobalCssVariables(config);
+            if(res.ok){
+                $("#siteConfigStatus").text("✔ Salvato");
+
+                window.SITE_CONFIG = config;
+                editor.applySiteConfigToForm(config);
+                editor.applyGlobalCssVariables(config);
+                editor.render();
+
+                console.log("Configurazione aggiornata", config);
+                alert("Configurazione salvata!");
+            }
+        });
+    });
+};
+
+//=================================
+// Toolbar Cancella colonna
+//=================================
+$(document).on("click", ".delete-column, .delete-column *", function(e){
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const $btn = $(this).closest(".delete-column");
+    const colId = $btn.closest(".canvas-column").data("id");
+
+    console.log("DELETE-C", colId);
+
+    if(!colId) return;
+
+    editor.deleteColumn(colId);
+});
 
 //=================================
 // Selezione colonna
 //=================================
 $(document).on("click", ".canvas-column", function(e){
     e.stopPropagation();
- console.log("CLICCATA COLONNA");
+ //console.log("CLICCATA COLONNA");
 if($(e.target).closest(".canvas-widget").length) return;
     const id = $(this).data("id");
 
@@ -244,21 +350,6 @@ $(document).on("click", ".add-column", function(e){
     });
 
     editor.render();
-});
-
-//=================================
-//  Toolbar Cancella colonna
-//=================================
-$(document).on("click",".delete-column",function(e){
-
-    e.stopPropagation();
-
-    const colId = $(this)
-        .closest(".canvas-column")
-        .data("id");
-
-    editor.deleteColumn(colId);
-
 });
 
 
@@ -355,14 +446,20 @@ $(document).on("click", ".canvas-section", function(e){
 });
 
 //=============================================
-//  BLOCCHI VARI
+//  TABS
 //=============================================
-$(document).on("click", "#editor-tabs, #tab-details, #inspector", function(e){
-    e.stopPropagation();
+$("#tabs").on("tabsactivate", function(event, ui){
+
+    if(ui.newPanel.attr("id") === "global"){
+        editor.applySiteConfigToForm(window.SITE_CONFIG);
+    }
 });
 
-
-$(document).on("mousedown click input change", "#editor-tabs input, #editor-tabs select, #editor-tabs textarea, #editor-tabs button",
+//=================================
+//  setta lo stato s 'isDirty' a true 
+//  quando si modifica un campo nell'inspector
+//=================================
+$(document).on("mousedown click input change", "#editor-tabs input, #editor-tabs select, #editor-tabs textarea, #editor-tabs button", 
     function(e){
         e.stopPropagation();
         editor.state.isDirty = true;
@@ -471,7 +568,6 @@ editor.loadImages = async function(){
 //=================================
 // image-thumb click
 //=================================
-//console.log("HANDLER image-thumb caricato");
 $(document).on("click", ".image-thumb", function(e){
     e.preventDefault();
     e.stopPropagation();
@@ -479,19 +575,48 @@ $(document).on("click", ".image-thumb", function(e){
     const field = $(this).data("field");
     const value = $(this).data("value");
 
-    const widgetId = editor.state.selectedId;
-    const widget = editor.findWidgetById(widgetId);
+    const selectedType = editor.state.selectedType;
+    const selectedId = editor.state.selectedId;
 
-    console.log("selectedId", widgetId);
-    console.log("widget", widget);
+    console.log("selectedType", selectedType);
+    console.log("selectedId", selectedId);
     console.log("field", field, "value", value);
 
-    if(!widget) return;
+    if(selectedType === "widget"){
+        const widget = editor.findWidgetById(selectedId);
+        if(!widget) return;
 
-    widget.props[field] = value;
+        widget.props[field] = value;
 
-    editor.render();
-    editor.openInspector(widget, editor.widgets[widget.type]);
+        editor.state.isDirty = true;
+        editor.render();
+        editor.openInspector(widget, editor.widgets[widget.type]);
+        return;
+    }
+
+    if(selectedType === "section"){
+        const section = editor.findSectionById(selectedId);
+        if(!section) return;
+
+        section[field] = value;
+
+        editor.state.isDirty = true;
+        editor.render();
+        editor.openSectionInspector(section.id);
+        return;
+    }
+
+    if(selectedType === "column"){
+        const column = editor.findColumnById(selectedId);
+        if(!column) return;
+
+        column[field] = value;
+
+        editor.state.isDirty = true;
+        editor.render();
+        editor.openColumnInspector(column.id);
+        return;
+    }
 });
 
 //=================================
@@ -500,16 +625,6 @@ $(document).on("click", ".image-thumb", function(e){
 $(document).on("click", ".image-picker, .image-thumb, .image-thumb *", function(e){
     e.stopPropagation();
 });
-//=================================
-///  risolve path immagini
-//=================================
-editor.resolveAssetUrl = function(path){
-    if(!path) return "";
-    if(path.startsWith("http://") || path.startsWith("https://") || path.startsWith("/")){
-        return path;
-    }
-    return "/FB-JSON/" + path.replace(/^\/+/, "");
-};
 
 //=================================
 //  accordion inspector
@@ -610,4 +725,49 @@ $(document).on("click", ".template-item", function(){
 //⚫ 5. Chiudi modal
 $(document).on("click", ".close-template, #template-modal .overlay", function(){
     $("#template-modal").hide();
+});
+
+
+//=================================
+//  Duplica widget
+//=================================
+$(document).on("click", ".duplicate-widget, .duplicate-widget *", function(e){
+    e.preventDefault();
+    e.stopPropagation();
+
+    const widgetId = $(this)
+        .closest(".canvas-widget")
+        .data("id");
+
+    if(!widgetId) return;
+
+    let foundColumn = null;
+    let foundIndex = -1;
+
+    (editor.state.sections || []).forEach(section => {
+        (section.columns || []).forEach(column => {
+            const index = (column.widgets || []).findIndex(w => w.id === widgetId);
+
+            if(index !== -1){
+                foundColumn = column;
+                foundIndex = index;
+            }
+        });
+    });
+
+    if(!foundColumn || foundIndex === -1) return;
+
+    const original = foundColumn.widgets[foundIndex];
+    const clone = editor.cloneWidget(original);
+
+    foundColumn.widgets.splice(foundIndex + 1, 0, clone);
+
+    editor.state.selectedType = "widget";
+    editor.state.selectedId = clone.id;
+    editor.state.isDirty = true;
+
+    editor.render();
+
+    const def = editor.widgets[clone.type];
+    editor.openInspector(clone, def);
 });

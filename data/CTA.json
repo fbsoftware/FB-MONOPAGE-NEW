@@ -1,9 +1,9 @@
 {
     "meta": {
         "tema": null,
-        "page": "ciao",
+        "page": "CTA",
         "version": "2.0",
-        "updated_at": "2026-05-16T16:56:55+02:00"
+        "updated_at": "2026-05-16T16:52:36+02:00"
     },
     "global": {
         "colors": {
@@ -39,73 +39,75 @@
     },
     "sections": [
         {
-            "id": "sec-1777738993619-288",
+            "id": "sec-1778423770430-125",
             "background": "var(--color-bg)",
             "padding": "20",
-            "margin": "0",
+            "margin": 0,
             "columns": [
                 {
-                    "id": "col-1777739027082-607",
-                    "width": 50,
+                    "id": "col-1778423770430-416",
+                    "width": 33,
                     "widgets": [
                         {
-                            "id": "w1777740025036_1",
+                            "id": "w1778425040551_10",
+                            "type": "header",
+                            "props": {
+                                "text": "FAEL  Odv",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1778425040551_11",
                             "type": "image",
                             "props": {
-                                "src": "assets\/images\/fb-home.png",
+                                "src": "assets\/images\/FAEL-logo-2025.png",
                                 "alt": "",
                                 "align": "center",
-                                "width": "450",
-                                "customCss": "",
-                                "imgCss": "",
-                                "customClass": ""
+                                "width": "177"
                             }
                         }
-                    ],
-                    "border": 0,
-                    "radius": 0,
-                    "borderStyle": "dashed",
-                    "borderStyleColor": "var(--color-secondary)",
-                    "padding": 10
+                    ]
                 },
                 {
-                    "id": "w1778513797540_3",
-                    "width": 50,
+                    "id": "col-1778423775467-328",
+                    "width": 33,
                     "margin": 0,
                     "widgets": [
                         {
-                            "id": "w1778513797540_4",
+                            "id": "w1778423853300_1",
                             "type": "header",
                             "props": {
-                                "text": "Vuoi conoscere i nostri servizi?",
+                                "text": "C T A",
                                 "level": "h1",
                                 "align": "center",
                                 "color": "var(--color-primary)",
                                 "padding": 0,
                                 "margin": 0,
-                                "customCss": "padding-top:20px;",
-                                "customClass": ""
+                                "customCss": "padding-top:20px;"
                             }
                         },
                         {
-                            "id": "w1778513797540_5",
+                            "id": "w1778423897039_2",
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
                                 "align": "justify",
-                                "color": "var(--color-text)",
+                                "color": "#3366ff",
                                 "padding": "20",
                                 "margin": 0,
-                                "customCss": "padding-bottom:0;",
-                                "customClass": ""
+                                "customCss": "padding-bottom:0;"
                             }
                         },
                         {
-                            "id": "w1778513797540_6",
+                            "id": "w1778423905525_3",
                             "type": "button",
                             "props": {
                                 "text": "CERCA",
-                                "url": "http:\/\/localhost\/FB-JSON\/index.php?page=servizi",
+                                "url": "#",
                                 "align": "center",
                                 "color": "var(--color-bg)",
                                 "sfondo": "#ffa500",
@@ -115,19 +117,25 @@
                                 "fontSize": "22",
                                 "fontWeight": "600",
                                 "customCss": "",
-                                "buttonCss": "",
-                                "customClass": ""
+                                "buttonCss": ""
                             }
                         }
                     ],
                     "customCss": "border-radius:20px;\nborder-top:1px solid #3366ff;\nborder-right:2px solid #3366ff;\nborder-bottom:3px solid #3366ff;\nborder-left:4px solid #3366ff;",
-                    "height": 350,
-                    "background": "#fcfcfc"
+                    "height": 300,
+                    "background": "#ffffff"
+                },
+                {
+                    "id": "col-1778423778456-395",
+                    "width": 34,
+                    "margin": 0,
+                    "widgets": []
                 }
-            ]
+            ],
+            "customCss": "min-height:content;\n"
         }
     ],
-    "selectedType": "section",
-    "selectedId": "w1778513797540_1",
+    "selectedType": null,
+    "selectedId": null,
     "isDirty": true
 }

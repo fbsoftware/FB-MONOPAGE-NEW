@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="editor.css">
+<link rel="stylesheet" href="/FB-JSON/assets/css/editor.css">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
     <body>
@@ -58,82 +58,66 @@ if (file_exists($layoutFile)) {
     <div id="accordion">  
         <!-- widgets ----------------------------------------------- -->
         <div id="widgets-panel"></div>
+        <!-- DETTAGLI ----------------------------------------------- -->
+        <div id="inspector"></div>        
         <!-- impostazioni globali---------------------------- -->
         <div id="global">
-        <h3 class="" aria-expanded="true" aria-selected="true">Global</h3>     
-                    <!-- 🎨 COLORI -->
-                    <section class="style-section">
-                        <label> 🎨 COLORI</label>
-                        <br><br>
+            <label for="color-primary">Colore primario:</label>
+            <input id="color-primary" type="color">
+            <label for="color-secondary">Colore secondario:</label>
+            <input id="color-secondary" type="color">
+            <label for="color-accent">Colore accento:</label>
+            <input id="color-accent" type="color">
+            <label for="color-text">Colore testo:</label>
+            <input id="color-text" type="color">
+            <label for="color-bg">Colore sfondo:</label>    
+            <input id="color-bg" type="color">
 
-                        <div class="style-control" style="display: flex;">
-                            <label>Primary</label>
-                            <input type="color" value="#3366ff" data-global-color="primary">
-                            </div>
-                        <div class="style-control" style="display: flex;">
-                            <label>Secondary</label>
-                            <input type="color" value="#ff6633" data-global-color="secondary">              
-                            </div>
-                        <div class="style-control" style="display: flex;">
-                            <label>Accent</label>
-                            <input type="color" value="#ffa500" data-global-color="accent">
-                        </div>
-                        <div class="style-control" style="display: flex;">
-                            <label>Testo</label>
-                            <input type="color" value="#222222" data-global-color="text">
-                        </div>
-                        <div class="style-control" style="display: flex;">
-                            <label>Sfondo</label>
-                            <input type="color" value="#ffffff" data-global-color="bg">
-                    </section>
+            <label for="heading-family">Font heading:</label>
+            <select id="heading-family">
+                <option value="Inter">Inter</option>
+                <option value="Montserrat">Montserrat</option>
+                <option value="Poppins">Poppins</option>
+                <option value="Roboto">Roboto</option>
+            </select>
 
-                    <!-- 🔤 TIPOGRAFIA -->
-                    <section class="style-section">
-                        <label>🔤 TIPOGRAFIA</label>
-                        <br><br>
-                        <div class="style-group" style="display: flex;">
-                        <label>Font titoli</label>
-                        <select type="typography" data-global-font="heading-family">
-                            <option value="Inter">Inter</option>
-                            <option value="Montserrat">Montserrat</option>
-                            <option value="Poppins">Poppins</option>
-                            <option value="Roboto">Roboto</option>
-                        </select>
-                        </div>
-                        <div class="style-group" style="display: flex;">
-                        <label>Stile titoli</label>
-                        <select type="typography" data-global-font="heading-weight">
-                            <option value="400">Regular</option>
-                            <option value="600">Semi-bold</option>
-                            <option value="700">Bold</option>
-                        </select>
-                        </div>
+            <label for="heading-weight">Peso font heading:</label>
+            <select id="heading-weight">
+                <option value="400">Regular</option>
+                <option value="600">Semi-bold</option>
+                <option value="700">Bold</option>
+            </select>
 
-                        <div class="style-group" style="display: flex;">
-                        <label>Font body</label>
-                        <select type="typography" data-global-font="body-family">
-                            <option value="Inter">Inter</option>
-                            <option value="Montserrat">Montserrat</option>
-                            <option value="Poppins">Poppins</option>
-                            <option value="Roboto">Roboto</option>
-                        </select>
-                        </div>
+            <label for="body-family">Font body:</label>
+            <select id="body-family">
+                <option value="Inter">Inter</option>
+                <option value="Montserrat">Montserrat</option>
+                <option value="Poppins">Poppins</option>
+                <option value="Roboto">Roboto</option>
+            </select>
 
-                        <div class="style-group" style="display: flex;">
-                        <label>Stile body</label>
-                        <select type="typography" data-global-font="body-weight">
-                            <option value="400">Regular</option>
-                            <option value="500">Medium</option>
-                        </select>
-                        </div>
-                    </section>
-            <!--SALVATAGGIO CONFIGURAZIONE  -->
-                    <button id="saveSiteConfig" class="button2">💾 Salva Impostazioni</button>
-                    <span id="siteConfigStatus"></span>
-                
-        </div> <!-- global -->
-        <!-- DETTAGLI -->
-        <div id="inspector"></div>
+            <label for="body-weight">Peso font body:</label>
+            <select id="body-weight">
+                <option value="400">Regular</option>
+                <option value="500">Medium</option>
+                <option value="600">Semi-bold</option>
+                <option value="700">Bold</option>
+            </select>
+
+            <label for="font-h1">Dimensione H1:</label>
+            <input id="font-h1" type="number">
+            <label for="font-h2">Dimensione H2:</label>
+            <input id="font-h2" type="number">
+            <label for="font-h3">Dimensione H3:</label>
+            <input id="font-h3" type="number">
+            <label for="font-body">Dimensione testo:</label>
+            <input id="font-body" type="number">
+            <label for="font-small">Testo piccolo:</label>
+            <input id="font-small" type="number">
+            <br /><br />
+            <button id="saveSiteConfig">Salva config</button>
+            <div id="siteConfigStatus"></div>
+        </div>  <!-- global -->
     </div> <!-- accordion -->
 </div> <!-- tabs -->
 
@@ -187,32 +171,19 @@ window.EDITOR_CONFIG = {
     tema: null,
     page: "<?= $_GET['page'] ?? 'home' ?>"
 };
-// FB: render colonna completo
 
   // Carica configurazione globale
     <?php
-        $siteConfigFile = "site-config.json";
-        $siteConfig = [];
-        if(file_exists($siteConfigFile)){
-            $siteConfig = json_decode(file_get_contents($siteConfigFile), true);
-        }
-    ?>
-    window.SITE_CONFIG = <?= json_encode($siteConfig, JSON_PRETTY_PRINT) ?>;
+$siteConfigFile = __DIR__ . "/site-config.json";
+$siteConfig = [];
+if(file_exists($siteConfigFile)){
+    $siteConfig = json_decode(file_get_contents($siteConfigFile), true);
+}
+?>
+window.SITE_CONFIG = <?= json_encode($siteConfig, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) ?>;
 
 // Carica layout iniziale
 window.INITIAL_LAYOUT = <?= json_encode($layoutData) ?>;
-</script>
-
-
-<script>
-window.EDITOR_CONFIG = {
-    page: "<?= $page ?>"
-};
-
-window.INITIAL_LAYOUT = <?= json_encode($layoutData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) ?>;
-
-//console.log("EDITOR PAGE =", window.EDITOR_CONFIG.page);
-//console.log("INITIAL_LAYOUT =", window.INITIAL_LAYOUT);
 </script>
 
  <script>
@@ -232,24 +203,43 @@ window.INITIAL_LAYOUT = <?= json_encode($layoutData, JSON_PRETTY_PRINT | JSON_UN
         active: 0,  
         icons: { header: 'ui-icon-triangle-1-e', activeHeader: 'ui-icon-triangle-1-s' }
             });
-     $( function() {
-    $( "#tabs" ).tabs();
-  } );        
-  } );
+    });
+//=================================
+// Tabs laterali editor
+//=================================
+$(function(){
+
+    $("#tabs").tabs({
+        active: 0,
+
+        activate: function(event, ui){
+
+            // chiude sempre tutti i pannelli
+            $("#widgets-panel").hide();
+            $("#widget-inspector").hide();
+            $("#global").hide();
+
+            // apre solo quello selezionato
+            ui.newPanel.show();
+        }
+    });
+
+    // stato iniziale
+    $("#widgets-panel").show();
+    $("#widget-inspector").hide();
+    $("#global").hide();
+});
  </script>
 
-
+<script src="editor-core.js"></script>
 <script src="editor-utils.js"></script>
 <script src="editor-sections.js"></script>
 <script src="editor-columns.js"></script>
 <script src="editor-widgets.js"></script>
 <script src="editor-dragdrop.js"></script>
-<script src="editor-inspector.js"></script>
 <script src="editor-state.js"></script>
 <script src="editor-render.js"></script>        <!-- quì editor.render() definizione -->
-<script src="editor-core.js"></script>
-<script src="nav.js"></script>
 <script src="editor.js"></script>             <!-- quì editor.init() defin. + uso -->
-
+<script src="nav.js"></script>
 </body>
 </html>

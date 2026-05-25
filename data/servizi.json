@@ -3,7 +3,7 @@
         "tema": null,
         "page": "servizi",
         "version": "2.0",
-        "updated_at": "2026-05-05T23:38:01+02:00"
+        "updated_at": "2026-05-11T19:10:20+02:00"
     },
     "global": {
         "colors": {
@@ -24,27 +24,30 @@
     },
     "sections": [
         {
-            "id": "w1778017076028_1",
-            "background": "var(--color-bg)",
+            "id": "w1778519360336_1",
+            "background": "#ffffff",
             "padding": "20",
             "margin": "0",
             "columns": [
                 {
-                    "id": "w1778017076028_2",
+                    "id": "w1778519360336_2",
                     "width": 25,
                     "widgets": [
                         {
-                            "id": "w1778017076028_3",
+                            "id": "w1778519360336_3",
                             "type": "header",
                             "props": {
                                 "text": "PHP",
                                 "level": "h2",
                                 "align": "center",
-                                "color": "#000000"
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "padding-bottom:20px;"
                             }
                         },
                         {
-                            "id": "w1778017076028_4",
+                            "id": "w1778519360336_4",
                             "type": "icon",
                             "props": {
                                 "name": "home",
@@ -52,38 +55,45 @@
                                 "color": "#e66565",
                                 "align": "center",
                                 "padding": 0,
-                                "margin": 0
+                                "margin": 0,
+                                "customCss": "",
+                                "iconCss": "display:inline-flex;\nalign-items:center;\njustify-content:center;\n\nwidth:100px;\nheight:100px;\n\nborder-radius:50%;\n\nbackground:linear-gradient(135deg,#ff6600,#ff3300);\n\ncolor:white;\nfont-size:48\npx;\n\nbox-shadow:0 10px 30px rgba(0,0,0,.25);",
+                                "customClass": "zoom-hover"
                             }
                         },
                         {
-                            "id": "w1778017076028_5",
+                            "id": "w1778519360336_5",
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
                                 "align": "justify",
                                 "color": "#000000",
                                 "padding": "10",
-                                "margin": "10"
+                                "margin": "10",
+                                "customCss": ""
                             }
                         }
                     ]
                 },
                 {
-                    "id": "w1778017076028_6",
+                    "id": "w1778519360336_6",
                     "width": 25,
                     "widgets": [
                         {
-                            "id": "w1778017076028_7",
+                            "id": "w1778519360336_7",
                             "type": "header",
                             "props": {
                                 "text": "jQUERY",
                                 "level": "h2",
                                 "align": "center",
-                                "color": "#000000"
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "padding-bottom:20px;"
                             }
                         },
                         {
-                            "id": "w1778017076028_8",
+                            "id": "w1778519360336_8",
                             "type": "icon",
                             "props": {
                                 "name": "delete",
@@ -91,11 +101,14 @@
                                 "color": "#3069c5",
                                 "align": "center",
                                 "padding": 0,
-                                "margin": 0
+                                "margin": 0,
+                                "customCss": "",
+                                "iconCss": "display:inline-flex;\nalign-items:center;\njustify-content:center;\n\nwidth:80px;\nheight:80px;\n\nborder-radius:50%;\n\nbackground:#ff6600;\ncolor:white;\n",
+                                "customClass": "zoom-hover"
                             }
                         },
                         {
-                            "id": "w1778017076028_9",
+                            "id": "w1778519360336_9",
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
@@ -108,21 +121,24 @@
                     ]
                 },
                 {
-                    "id": "w1778017076028_10",
+                    "id": "w1778519360336_10",
                     "width": 25,
                     "widgets": [
                         {
-                            "id": "w1778017076028_11",
+                            "id": "w1778519360336_11",
                             "type": "header",
                             "props": {
                                 "text": "Layout",
                                 "level": "h2",
                                 "align": "center",
-                                "color": "#000000"
+                                "color": "#000000",
+                                "customCss": "padding-bottom:20px;",
+                                "padding": 0,
+                                "margin": 0
                             }
                         },
                         {
-                            "id": "w1778017076028_12",
+                            "id": "w1778519360336_12",
                             "type": "icon",
                             "props": {
                                 "name": "shopping_cart",
@@ -130,11 +146,14 @@
                                 "color": "#808212",
                                 "align": "center",
                                 "padding": 0,
-                                "margin": 0
+                                "margin": 0,
+                                "iconCss": "display:inline-flex;\nalign-items:center;\njustify-content:center;\n\nwidth:120px;\nheight:60px;\n\nborder-radius:16px;\n\nbackground:#ff6600;\ncolor:white;\n",
+                                "customCss": "",
+                                "customClass": "zoom-hover"
                             }
                         },
                         {
-                            "id": "w1778017076028_13",
+                            "id": "w1778519360336_13",
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
@@ -147,33 +166,39 @@
                     ]
                 },
                 {
-                    "id": "w1778017076028_14",
+                    "id": "w1778519360336_14",
                     "width": 25,
                     "widgets": [
                         {
-                            "id": "w1778017076028_15",
+                            "id": "w1778519360336_15",
                             "type": "header",
                             "props": {
-                                "text": "Traduzione",
+                                "text": "Layout",
                                 "level": "h2",
                                 "align": "center",
-                                "color": "#000000"
-                            }
-                        },
-                        {
-                            "id": "w1778017076028_16",
-                            "type": "icon",
-                            "props": {
-                                "name": "search",
-                                "size": 48,
-                                "color": "#d07225",
-                                "align": "center",
+                                "color": "#000000",
+                                "customCss": "padding-bottom:20px;",
                                 "padding": 0,
                                 "margin": 0
                             }
                         },
                         {
-                            "id": "w1778017076028_17",
+                            "id": "w1778519360336_16",
+                            "type": "icon",
+                            "props": {
+                                "name": "search",
+                                "size": 48,
+                                "color": "#808212",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0,
+                                "iconCss": "display:inline-flex;\nalign-items:center;\njustify-content:center;\n\nwidth:120px;\nheight:60px;\n\nborder-radius:16px;\nborder:3px solid #ff6600;\n\ncolor:#ff6600;\n",
+                                "customCss": "",
+                                "customClass": "zoom-hover"
+                            }
+                        },
+                        {
+                            "id": "w1778519360336_17",
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
@@ -186,9 +211,240 @@
                     ]
                 }
             ]
+        },
+        {
+            "id": "sec-1778514227930-511",
+            "background": "#ffffff    ",
+            "padding": 0,
+            "margin": 0,
+            "columns": [
+                {
+                    "id": "col-1778514227930-358",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1778514327334_1",
+                            "type": "divider",
+                            "props": {
+                                "name": "star",
+                                "size": 48,
+                                "color": "var(--color-secondary)",
+                                "padding": 0,
+                                "margin": 0,
+                                "height": "2",
+                                "lineaCss": "",
+                                "iconaCss": ""
+                            }
+                        }
+                    ],
+                    "height": 1,
+                    "padding": 19
+                }
+            ],
+            "height": 100
+        },
+        {
+            "id": "w1778519398844_18",
+            "background": "#ffffff",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "w1778519398844_19",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1778519398844_20",
+                            "type": "header",
+                            "props": {
+                                "text": "PHP",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "padding-bottom:20px;",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1778519398844_21",
+                            "type": "icon",
+                            "props": {
+                                "name": "home",
+                                "size": 48,
+                                "color": "#ff6600",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "padding-bottom:20px;",
+                                "iconCss": ".material-symbols-outlined{\n    font-size:48px;\n",
+                                "customClass": "zoom-hover"
+                            }
+                        },
+                        {
+                            "id": "w1778519398844_22",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10",
+                                "customCss": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "w1778519398844_23",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1778519398844_24",
+                            "type": "header",
+                            "props": {
+                                "text": "jQUERY",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "padding-bottom:20px;",
+                                "iconCss": "box-shadow:0 6px 20px rgba(0,0,0,.2);\n",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1778519398844_25",
+                            "type": "icon",
+                            "props": {
+                                "name": "home",
+                                "size": 48,
+                                "color": "#ff6600",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "iconCss": "box-shadow:0 6px 20px rgba(0,0,0,.2);\n",
+                                "customClass": "zoom-hover"
+                            }
+                        },
+                        {
+                            "id": "w1778519398844_26",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10",
+                                "customCss": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "w1778519398844_27",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1778519398844_28",
+                            "type": "header",
+                            "props": {
+                                "text": "Layout",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "customCss": "padding-bottom:20px;",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1778519398844_29",
+                            "type": "icon",
+                            "props": {
+                                "name": "shopping_cart",
+                                "size": 48,
+                                "color": "#ff6600",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "iconCss": "",
+                                "customClass": "zoom-hover"
+                            }
+                        },
+                        {
+                            "id": "w1778519398844_30",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10"
+                            }
+                        }
+                    ],
+                    "props": {
+                        "iconCss": "box-shadow:0 6px 20px rgba(0,0,0,.2);"
+                    }
+                },
+                {
+                    "id": "w1778519398844_31",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1778519398844_32",
+                            "type": "header",
+                            "props": {
+                                "text": "Traduzione",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "padding-bottom:20px;"
+                            }
+                        },
+                        {
+                            "id": "w1778519398844_33",
+                            "type": "icon",
+                            "props": {
+                                "name": "search",
+                                "size": 48,
+                                "color": "#ff6600",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "iconCss": "transition:.3s;\ncursor:pointer;\ntransform:scale(1.5);\n",
+                                "customClass": "zoom-hover"
+                            }
+                        },
+                        {
+                            "id": "w1778519398844_34",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10",
+                                "customCss": ""
+                            }
+                        }
+                    ],
+                    "props": {
+                        "iconCss": "display:inline-flex;\nalign-items:center;\njustify-content:center;\n\nwidth:80px;\nheight:80px;\n\nborder:3px solid red;\nborder-radius:50%;\n"
+                    }
+                }
+            ]
         }
     ],
-    "selectedType": "section",
-    "selectedId": "w1778017076028_1",
+    "selectedType": "widget",
+    "selectedId": "w1778519398844_21",
     "isDirty": true
 }

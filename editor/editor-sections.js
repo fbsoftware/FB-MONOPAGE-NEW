@@ -8,23 +8,32 @@ editor.sections = {
         icon: "🧱",
 
         defaultProps: {
+            anchor: "",
             background: "transparent",
+            backgroundImage: "",
+            backgroundPositionY: 50,
+            overlayColor: "#000000",
+            overlayOpacity: 0.4,
+            height: 400,
             padding: 20,
             margin: 0,
             customCss: ""
         },
 
         fields: {
-            background: {
-                type: "color",
-                label: "Sfondo",
-                group: "stile"
-            },
+    background:{ type:"color", label:"Colore", group:"stile" },
+    
 
             padding: {
                 type: "number",
                 label: "Padding px",
                 group: "stile"
+            },
+
+            anchor: {
+                type: "text",
+                label: "Anchor (ID)",
+                group: "avanzate"
             },
 
             margin: {
@@ -37,6 +46,41 @@ editor.sections = {
                 type: "textarea",
                 label: "CSS personalizzato",
                 group: "avanzate"
+            },
+            backgroundImage: {
+                type: "image_picker",
+                label: "Immagine sfondo",
+                group: "immagini"
+            },
+
+            overlayColor: {
+                type: "color",
+                label: "Colore overlay",
+                group: "overlay"
+            },
+
+            overlayOpacity: {
+                type: "range",
+                min: 0,
+                max: 1,
+                step: 0.1,
+                label: "Opacità overlay",
+                group: "overlay"
+            },
+                height: {
+                type: "range",
+                min: 100,
+                max: 900,
+                label: "Altezza sezione",
+                group: "stile"
+            },
+
+            backgroundPositionY: {
+                type: "range",
+                min: 0,
+                max: 100,
+                label: "Posizione verticale immagine",
+                group: "overlay"
             }
         }
     }
@@ -49,8 +93,12 @@ editor.renderSectionInspector = function(section){
 
     if(!section) return;
 
+    const bgImage = section.backgroundImage
+    ? `url('${editor.resolveAssetUrl(section.backgroundImage)}')`
+    : "none";
+
     editor.renderElementInspector(
-        "Sezione",
+        "<h3 style='text-align:center; margin:10px;'>Dettagli Sezione</h3>",
         section,
         editor.sections.section.fields,
         "section"
@@ -67,15 +115,41 @@ $(document).on("input change", "#inspector [data-section-field]:not(textarea)", 
 
     let value = $(this).val();
 
-    if(type === "number" || type === "range"){
+if(type === "number" || type === "range"){
+    const step = $(this).attr("step");
+
+    if(step && step.includes(".")){
+        value = parseFloat(value);
+    } else {
         value = parseInt(value, 10);
-        if(isNaN(value)) value = 0;
     }
+
+    if(isNaN(value)) value = 0;
+}
 
     const section = editor.findSectionById(editor.state.selectedId);
     if(!section) return;
 
     section[field] = value;
+
+    editor.state.isDirty = true;
+
+    editor.render();
+    editor.openSectionInspector(section.id);
+});
+
+//=================================
+// Rimuovi immagine sfondo sezione
+//=================================
+$(document).on("click", ".clear-section-bg-image", function(e){
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const section = editor.findSectionById(editor.state.selectedId);
+    if(!section) return;
+
+    section.backgroundImage = "";
 
     editor.state.isDirty = true;
 
@@ -177,18 +251,31 @@ editor.renderSection = function(section){
         ? "selected"
         : "";
 
+    const bgImage = section.backgroundImage
+        ? `url('${editor.resolveAssetUrl(section.backgroundImage)}')`
+        : "none";
+
     const $section = $("<div>")
         .addClass(`canvas-section ${selected}`)
         .attr("data-id", section.id)
+        .attr("id", section.anchor || "")
         .css("background-color", section.background || "transparent")
         .css("padding", (section.padding ?? 20) + "px")
-        .css("margin", (section.margin ?? 20) + "px");
+        .css("margin", (section.margin ?? 20) + "px")
+        .css("background-image", bgImage)
+        .css("background-size", "cover")
+        .css("background-position", "center")
+        .css("position", "relative")
+        .css("overflow", "hidden")
+        .css("height", (section.height ?? 400) + "px")
+        .css("background-position-y", (section.backgroundPositionY ?? 50) + "%");
+
     if(section.customCss){
         $section.attr(
             "style",
             ($section.attr("style") || "") + ";" + section.customCss
         );
-}
+    }
 
     const $toolbar = $("<div>")
         .addClass("section-toolbar")
@@ -212,6 +299,7 @@ editor.renderSection = function(section){
             <button class="add-column button">
                 <span class="material-symbols-outlined">add_column_right</span>
             </button>
+
             <button class="save-section-template button">
                 <span class="material-symbols-outlined">save</span>
             </button>
@@ -219,12 +307,28 @@ editor.renderSection = function(section){
 
     $section.prepend($toolbar);
 
-    const $columns = $("<div>").addClass("section-columns");
+    if(section.backgroundImage){
+        const $overlay = $("<div id='section.id'>")
+            .addClass("section-overlay")
+            .css("position", "absolute")
+            .css("inset", 0)
+            .css("background", section.overlayColor || "#000")
+            .css("opacity", section.overlayOpacity ?? 0.4)
+            .css("pointer-events", "none")
+            .css("z-index", 1);
 
-        section.columns.forEach(col => {
-            $columns.append(editor.renderColumn(col));
-        });
-   
+        $section.append($overlay);
+    }
+
+    const $columns = $("<div>")
+        .addClass("section-columns")
+        .css("position", "relative")
+        .css("z-index", 2);
+
+    (section.columns || []).forEach(col => {
+        $columns.append(editor.renderColumn(col));
+    });
+
     $section.append($columns);
 
     return $section;
@@ -236,7 +340,7 @@ editor.renderSection = function(section){
 
     const section = {
         id: editor.utils.uuid("sec"),
-        background: "#ffffff    ",
+        background: "#ffffff",
         padding: "20",
         margin: "20",
         columns: [
@@ -309,3 +413,18 @@ editor.insertSectionTemplate = async function(file){
     editor.state.selectedId = section.id;
     editor.openSectionInspector(section.id);
 };
+
+//=================================
+//  Editor Render - ricostruisce canvas
+//================================= 
+ editor.render = function () {
+  $('#canvas').empty();
+
+  editor.state.sections.forEach(section => {
+    $('#canvas').append(editor.renderSection(section));
+  });
+
+  editor.initSortableWidgets();
+  editor.initSortableColumns();
+};
+
