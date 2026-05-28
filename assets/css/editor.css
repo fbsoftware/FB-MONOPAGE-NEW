@@ -664,5 +664,19 @@ textarea{
     margin: 8px;
 }
 
-/* tabs */
-/*#tabs { display: none; } */
+/*  WIDGET NAVBAR  */
+.widget-navbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.widget-navbar a {
+    color: inherit;
+    text-decoration: none;
+    margin-right: 12px;
+}
+
+.widget-navbar a:hover {
+    text-decoration: underline;
+}

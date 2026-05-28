@@ -193,3 +193,19 @@ ul.site-menu  {
 .zoom-hover:hover{
     transform:scale(1.2);
 }
+/*  WIDGET NAVBAR  */
+.widget-navbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.widget-navbar a {
+    color: inherit;
+    text-decoration: none;
+    margin-right: 12px;
+}
+
+.widget-navbar a:hover {
+    text-decoration: underline;
+}

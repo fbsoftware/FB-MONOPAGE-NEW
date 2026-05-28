@@ -3,7 +3,7 @@
         "tema": null,
         "page": "home",
         "version": "2.0",
-        "updated_at": "2026-05-25T17:51:56+02:00"
+        "updated_at": "2026-05-28T16:47:45+02:00"
     },
     "global": {
         "colors": {
@@ -33,6 +33,85 @@
         "fonts": []
     },
     "sections": [
+        {
+            "id": "sec-1779809057877-941",
+            "background": "var(--color-bg)",
+            "padding": 0,
+            "margin": 0,
+            "columns": [
+                {
+                    "id": "col-1779812712718-279",
+                    "width": 50,
+                    "margin": 0,
+                    "widgets": [
+                        {
+                            "id": "w1779812712718_195",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/logo.png",
+                                "alt": "",
+                                "align": "left",
+                                "width": "200",
+                                "customCss": "padding:20px,",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1779809057877-74",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1779809084337_46",
+                            "type": "navbar",
+                            "props": {
+                                "1": "var(--color-bg)",
+                                "logoText": "FB Software",
+                                "background": "#ffffff",
+                                "color": "var(--color-text)",
+                                "padding": "20",
+                                "align": "right",
+                                "gap": "26",
+                                "fontSize": "20",
+                                "customCss": "font-weight:bold;",
+                                "items": [
+                                    {
+                                        "label": "Home",
+                                        "type": "anchor",
+                                        "target": "home"
+                                    },
+                                    {
+                                        "label": "Promozione",
+                                        "type": "anchor",
+                                        "target": "promo"
+                                    },
+                                    {
+                                        "label": "Portfolio",
+                                        "type": "anchor",
+                                        "target": "portfolio"
+                                    },
+                                    {
+                                        "label": "CTA",
+                                        "type": "anchor",
+                                        "target": "CTA"
+                                    },
+                                    {
+                                        "label": "GitHub",
+                                        "type": "url",
+                                        "target": "https:\/\/github.com"
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "height": 100
+                }
+            ],
+            "height": 101,
+            "anchor": "navbar"
+        },
         {
             "id": "w1779719631893_1",
             "background": "var(--color-primary)",
@@ -91,10 +170,463 @@
                 }
             ],
             "backgroundImage": "assets\/images\/mulinello.jpg",
-            "height": 621
+            "height": 621,
+            "anchor": "home"
+        },
+        {
+            "id": "w1779808786956_1",
+            "background": "var(--color-bg)",
+            "padding": 22,
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "w1779808786956_2",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1779808786956_3",
+                            "type": "header",
+                            "props": {
+                                "text": "PHP",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1779808786956_4",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/classi.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "150",
+                                "imageFile": "C:\\fakepath\\classi.png"
+                            }
+                        },
+                        {
+                            "id": "w1779808786956_5",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        },
+                        {
+                            "id": "w1779808786956_6",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "w1779808786956_7",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1779808786956_8",
+                            "type": "header",
+                            "props": {
+                                "text": "jQUERY",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1779808786956_9",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/jquery.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "150",
+                                "imageFile": "C:\\fakepath\\jquery.png"
+                            }
+                        },
+                        {
+                            "id": "w1779808786956_10",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        },
+                        {
+                            "id": "w1779808786956_11",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "w1779808786956_12",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1779808786956_13",
+                            "type": "header",
+                            "props": {
+                                "text": "Layout",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1779808786956_14",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/layout.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "150",
+                                "imageFile": "C:\\fakepath\\layout.png"
+                            }
+                        },
+                        {
+                            "id": "w1779808786956_15",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        },
+                        {
+                            "id": "w1779808786956_16",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "w1779808786956_17",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1779808786956_18",
+                            "type": "header",
+                            "props": {
+                                "text": "Traduzione",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000"
+                            }
+                        },
+                        {
+                            "id": "w1779808786956_19",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/traduci.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "111",
+                                "imageFile": "C:\\fakepath\\traduci.png"
+                            }
+                        },
+                        {
+                            "id": "w1779808786956_20",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20"
+                            }
+                        },
+                        {
+                            "id": "w1779808786956_21",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": "10"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "anchor": "promo"
+        },
+        {
+            "id": "w1779808790646_22",
+            "background": "var(--color-bg)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "w1779808790646_23",
+                    "width": 25,
+                    "widgets": [],
+                    "padding": 0,
+                    "margin": 15
+                },
+                {
+                    "id": "w1779808790646_24",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1779808790646_25",
+                            "type": "header",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1779808790646_26",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/fb-home.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "id": "w1779808790646_27",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1779808790646_28",
+                            "type": "button",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600"
+                            }
+                        }
+                    ],
+                    "padding": 0,
+                    "margin": 0
+                },
+                {
+                    "id": "w1779808790646_29",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1779808790646_30",
+                            "type": "header",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1779808790646_31",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/fb-home.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "id": "w1779808790646_32",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1779808790646_33",
+                            "type": "button",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600"
+                            }
+                        }
+                    ],
+                    "padding": 0,
+                    "margin": 0
+                },
+                {
+                    "id": "w1779808790646_34",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1779808790646_35",
+                            "type": "header",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1779808790646_36",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/fb-home.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "200"
+                            }
+                        },
+                        {
+                            "id": "w1779808790646_37",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#000000",
+                                "padding": "10",
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1779808790646_38",
+                            "type": "button",
+                            "props": {
+                                "text": "Sito FB-WP",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600"
+                            }
+                        }
+                    ],
+                    "padding": 0,
+                    "margin": 0
+                }
+            ],
+            "anchor": "portfolio"
+        },
+        {
+            "id": "w1779808892400_39",
+            "background": "var(--color-bg)",
+            "padding": "20",
+            "margin": 0,
+            "columns": [
+                {
+                    "id": "w1779808892400_40",
+                    "width": 33,
+                    "widgets": []
+                },
+                {
+                    "id": "w1779808892400_41",
+                    "width": 33,
+                    "margin": 0,
+                    "widgets": [
+                        {
+                            "id": "w1779808892400_42",
+                            "type": "header",
+                            "props": {
+                                "text": "C T A",
+                                "level": "h1",
+                                "align": "center",
+                                "color": "var(--color-primary)",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "padding-top:20px;"
+                            }
+                        },
+                        {
+                            "id": "w1779808892400_43",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "justify",
+                                "color": "#3366ff",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "padding-bottom:0;"
+                            }
+                        },
+                        {
+                            "id": "w1779808892400_44",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "var(--color-bg)",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": "18",
+                                "padding": "10",
+                                "fontSize": "22",
+                                "fontWeight": "600",
+                                "customCss": "",
+                                "buttonCss": ""
+                            }
+                        }
+                    ],
+                    "customCss": "border-radius:20px;\nborder-top:1px solid #3366ff;\nborder-right:2px solid #3366ff;\nborder-bottom:3px solid #3366ff;\nborder-left:4px solid #3366ff;",
+                    "height": 300
+                },
+                {
+                    "id": "w1779808892400_45",
+                    "width": 34,
+                    "margin": 0,
+                    "widgets": []
+                }
+            ],
+            "anchor": "CTA"
         }
     ],
-    "selectedType": null,
-    "selectedId": null,
+    "selectedType": "widget",
+    "selectedId": "w1779809084337_46",
     "isDirty": true
 }

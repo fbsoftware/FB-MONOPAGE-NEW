@@ -320,7 +320,7 @@ defaultProps:{
             </div>
         `;
     }
-},
+    },
     button: {   // -----------------------------------------------
 
         label: "Bottone",
@@ -821,8 +821,8 @@ defaultProps:{
 
     }  
     },
-    richtext: {
-    label: "Testo avanzato",
+    richtext: {  //-----------------------------------------------
+    label: "Richtext",
     icon: "📄",
 
     defaultProps: {
@@ -871,7 +871,127 @@ defaultProps:{
             </div>
         `;
     }
-}
+    },
+    navbar: {  //-----------------------------------------------
+    label: "Navbar",
+    icon: "📚",
+
+    defaultProps: {
+        align: "right",
+        gap: 20,
+        color: "#000000",
+        fontSize: 16,
+        padding: 10,
+        customCss:"",
+            items: [
+        { label: "Home", type: "anchor", target: "home" },
+        { label: "Promo", type: "anchor", target: "promo" },
+        { label: "Portfolio", type: "anchor", target: "portfolio" },
+        { label: "CTA", type: "anchor", target: "CTA" }
+        ]
+    },
+
+    fields: {
+        align: {
+            type: "select",
+            label: "Allineamento",
+            options: {
+                left: "Sinistra",
+                center: "Centro",
+                right: "Destra"
+            },
+            group: "stile"
+        },
+
+        gap: {
+            type: "number",
+            label: "Spazio voci",
+            group: "stile"
+        },
+
+        color: {
+            type: "color",
+            label: "Colore link",
+            group: "stile"
+        },
+
+        fontSize: {
+            type: "number",
+            label: "Dimensione testo",
+            group: "stile"
+        },
+
+        padding: {
+            type: "number",
+            label: "Padding",
+            group: "stile"
+        },
+        customCss: {
+            type: "textarea",
+            label: "CSS personalizzato",
+            group: "avanzate"
+        },
+        items: {
+            type: "textarea",
+            label: "Voci menu JSON",
+            group: "contenuto"
+        }
+    },
+
+    render(widget) {
+        const p = widget.props || {};
+
+        const align = p.align ?? "right";
+        const gap = parseInt(p.gap ?? 20, 10);
+        const color = p.color ?? "#000000";
+        const fontSize = parseInt(p.fontSize ?? 16, 10);
+        const padding = parseInt(p.padding ?? 10, 10);
+
+        let justify = "flex-end";
+
+        if (align === "left") justify = "flex-start";
+        if (align === "center") justify = "center";
+
+        const items = p.items || [];
+        const links = items.map(item => {
+        const label = item.label || "Voce";
+        const type = item.type || "anchor";
+        const target = item.target || "";
+
+    let href = "#";
+
+    if (type === "anchor") {
+        href = "#" + target.replace(/^#/, "");
+    }
+
+    if (type === "page") {
+        href = "pages/" + target.replace(/\.html$/, "") + ".html";
+    }
+
+    if (type === "url") {
+        href = target;
+    }
+  return `
+        <a href="${href}" style="color:${color};">
+            ${label}
+        </a>
+    `;
+}).join("");
+
+return `
+    <nav class="widget-navbar" style="
+        display:flex;
+        justify-content:${justify};
+        align-items:center;
+        gap:${gap}px;
+        padding:${padding}px;
+        font-size:${fontSize}px;
+    ">
+        ${links}
+    </nav>
+`;
+    }
+},
 };
 //=================================
 // Apre pannello dettagli widget 
@@ -886,7 +1006,7 @@ editor.openWidgetInspector = function(id){
     editor.renderInspector(widget, def);
 };
 
- //=================================
+//=================================
 // editor widget uid
 //=================================
 editor.uid = (function(){
@@ -1058,26 +1178,28 @@ $panel.append(`
                 </div>
                 <div class="accordion-content" ${openStyle}>
         `;
+groups[groupName].forEach(fieldName => {
 
-        groups[groupName].forEach(fieldName => {
+    const field = def.fields[fieldName];
 
-            const field = def.fields[fieldName];
+    let value =
+        widget.props && widget.props[fieldName] !== undefined
+            ? widget.props[fieldName]
+            : (def.defaultProps?.[fieldName] ?? "");
 
-            const value =
-                widget.props && widget.props[fieldName] !== undefined
-                    ? widget.props[fieldName]
-                    : (def.defaultProps?.[fieldName] ?? "");
+    if (fieldName === "items" && Array.isArray(value)) {
+        value = JSON.stringify(value, null, 2);
+    }
 
-            const input = editor.renderInspectorInput(fieldName, field, value);
+    const input = editor.renderInspectorInput(fieldName, field, value);
 
-            html += `
-                <div class="inspector-row">
-                    <label>${field.label}</label>
-                    ${input}
-                </div>
-            `;
-        });
-
+    html += `
+        <div class="inspector-row">
+            <label>${field.label}</label>
+            ${input}
+        </div>
+    `;
+});
         html += `
                 </div>
             </div>

@@ -10,16 +10,17 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="/FB-JSON/assets/css/editor.css">
+<link rel="stylesheet" href="/FB-MONOPAGE/assets/css/editor.css">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
     <body>
 
 <?php
+require_once dirname(__DIR__) . '/config/app.php';
 $page = $_GET['page'] ?? 'home';
 $page = preg_replace('/[^a-zA-Z0-9\-_]/', '', $page);
 
-$layoutFile = dirname(__DIR__) . "/data/{$page}.json";
+$layoutFile = APP_ROOT . "/data/{$page}.json";
 $layoutData = null;
 
 if (file_exists($layoutFile)) {

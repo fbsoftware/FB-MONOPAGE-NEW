@@ -371,10 +371,78 @@ function renderWidgetHTML(array $widget): string
                 margin:' . h($margin) . ';
                 ' . h($customCss) . '
             ">' . $html . '</div>';        
-                
+        case 'navbar':
+            return renderNavbarWidgetHTML($widget);        
         default:
             return '<div class="widget-unknown">Widget non supportato: ' . h($type) . '</div>';
     }
+}
+
+//------------------------------------------
+// Render widget navbar in HTML pubblico
+//------------------------------------------
+function renderNavbarWidgetHTML($widget)
+{
+    $p = $widget['props'] ?? [];
+
+    $align = $p['align'] ?? 'right';
+    $gap = intval($p['gap'] ?? 20);
+    $color = $p['color'] ?? '#000000';
+    $fontSize = intval($p['fontSize'] ?? 16);
+    $padding = intval($p['padding'] ?? 10);
+
+    $justify = 'flex-end';
+
+    if ($align === 'left') {
+        $justify = 'flex-start';
+    }
+
+    if ($align === 'center') {
+        $justify = 'center';
+    }
+
+$items = $p['items'] ?? [];
+$links = '';
+
+foreach ($items as $item) {
+
+    $label = $item['label'] ?? 'Voce';
+    $type = $item['type'] ?? 'anchor';
+    $target = $item['target'] ?? '';
+
+    $href = '#';
+
+    if ($type === 'anchor') {
+        $href = '#' . ltrim($target, '#');
+    }
+
+    if ($type === 'page') {
+        $href = preg_replace('/\.html$/', '', $target) . '.html';
+    }
+
+    if ($type === 'url') {
+        $href = $target;
+    }
+
+    $links .= '
+        <a href="' . h($href) . '" style="color:' . h($color) . ';">
+            ' . h($label) . '
+        </a>
+    ';
+}
+
+return '
+    <nav class="widget-navbar" style="
+        display:flex;
+        justify-content:' . h($justify) . ';
+        align-items:center;
+        gap:' . $gap . 'px;
+        padding:' . $padding . 'px;
+        font-size:' . $fontSize . 'px;
+    ">
+        ' . $links . '
+    </nav>
+';
 }
 
 //***********************************
@@ -422,7 +490,7 @@ function renderSectionHTML(array $section): string
     $columns    = $section['columns'] ?? [];
     $height     = isset($section['height']) ? ((int)$section['height'] . 'px') : 'auto';
     $backgroundPositionY = isset($section['backgroundPositionY']) ? ((int)$section['backgroundPositionY'] . '%') : '50%';
-
+    $anchor = $section['anchor'] ?? '';
     $bgStyle = '';
 
 if($backgroundImage){
@@ -435,7 +503,7 @@ if($backgroundImage){
     ";
 }
 
-    $html = '<section class="page-section" style="
+    $html = '<section class="page-section" id="' . h($anchor) . '" style="
     background:' . h($background) . ';
     padding:' . h($padding) . ';
     margin:' . h($margin) . ';

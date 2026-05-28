@@ -381,7 +381,6 @@ $(document).on("click", ".widget-delete", function(e){
     editor.render();
 
 });
-
 //===============================
 //  3️⃣ Gestione modifica valori 
 //===============================
@@ -389,6 +388,7 @@ $(document).on("input change", "#inspector [data-field]", function(){
 
     const field = $(this).data("field");
     const value = $(this).val();
+
     editor.state.isDirty = true;
 
     let item;
@@ -405,11 +405,28 @@ $(document).on("input change", "#inspector [data-field]", function(){
 
     if (!item.props) item.props = {};
 
+    // Caso speciale: navbar.items è JSON
+if (field === "items") {
+
+    if (!$(this).is("textarea")) {
+        return;
+    }
+
+    try {
+        item.props[field] = JSON.parse(value);
+    } catch (e) {
+        console.warn("JSON voci menu non valido", value, e);
+        return;
+    }
+
+    editor.render();
+    return;
+}
+
     item.props[field] = value;
 
     editor.render(); // refresh canvas
 });
-
 //=======================================
 //  valori globali
 //=======================================

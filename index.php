@@ -72,12 +72,16 @@ $pageContent = file_exists($pagePath)
 <head>
     <meta charset="UTF-8">
     <title>Sito di FB</title>
-    <link rel="stylesheet" href="/FB-JSON/assets/css/site.css">
+    <link rel="stylesheet" href="/FB-MONOPAGE/assets/css/site.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 </head>
 <body>
 
 <main>
+<?php
+require_once __DIR__ . '/config/app.php';
+?>
+<!-- Header e menu 
 <div style="display: flex; 
             flex-direction: row; 
             align-items: center;
@@ -97,6 +101,7 @@ $pageContent = file_exists($pagePath)
         </nav> 
     
 </div>
+-->
 <section id="page-content">
     <?php echo $pageContent; ?>
 </section>
