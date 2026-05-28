@@ -1,6 +1,9 @@
 * {
     box-sizing: border-box;
 }
+html {
+    scroll-behavior: smooth;
+}
 :root {
   /* 🎨 Colori */
   --color-primary: #3366ff;
@@ -61,11 +64,10 @@ ul {
 /*========================  */
 .canvas-section {
     position: relative;
-    overflow: hidden;
     border: 1px dashed #ddd;
     transition: 0.2s;
     min-height: 200px;
-    margin-bottom: 20px;
+  /*  margin-bottom: 20px;*/
     display: flex;
 }
 
@@ -105,6 +107,10 @@ main{
     margin-bottom:20px;
     width:1240px;
     
+}
+.page-section,
+.canvas-section {
+    scroll-margin-top: 90px;
 }
 .page-columns{
     display:flex;

@@ -883,7 +883,7 @@ defaultProps:{
         fontSize: 16,
         padding: 10,
         customCss:"",
-            items: [
+        items: [
         { label: "Home", type: "anchor", target: "home" },
         { label: "Promo", type: "anchor", target: "promo" },
         { label: "Portfolio", type: "anchor", target: "portfolio" },
@@ -932,8 +932,8 @@ defaultProps:{
             group: "avanzate"
         },
         items: {
-            type: "textarea",
-            label: "Voci menu JSON",
+            type: "menuItems",
+            label: "Voci menu",
             group: "contenuto"
         }
     },
@@ -986,7 +986,9 @@ return `
         gap:${gap}px;
         padding:${padding}px;
         font-size:${fontSize}px;
-    ">
+        ${p.customCss ?? ""};
+    " >
+
         ${links}
     </nav>
 `;
@@ -1187,10 +1189,13 @@ groups[groupName].forEach(fieldName => {
             ? widget.props[fieldName]
             : (def.defaultProps?.[fieldName] ?? "");
 
-    if (fieldName === "items" && Array.isArray(value)) {
-        value = JSON.stringify(value, null, 2);
-    }
+        if (field.type === "textarea" && Array.isArray(value)) {
+            value = JSON.stringify(value, null, 2);
+        }
 
+        if (field.type === "menuItems" && !Array.isArray(value)) {
+            value = def.defaultProps?.[fieldName] ?? [];
+        }
     const input = editor.renderInspectorInput(fieldName, field, value);
 
     html += `
@@ -1353,23 +1358,23 @@ editor.renderInspectorInput = function(fieldName, field, value, dataAttr){
         `;
     }
 
-if(field.type === "color"){
-    input = `
-        <select ${attr} class="color-select">
-            <option value="">Custom / nessuno</option>
-            <option value="var(--color-primary)" ${value === "var(--color-primary)" ? "selected" : ""}>Primario</option>
-            <option value="var(--color-secondary)" ${value === "var(--color-secondary)" ? "selected" : ""}>Secondario</option>
-            <option value="var(--color-accent)" ${value === "var(--color-accent)" ? "selected" : ""}>Accent</option>
-            <option value="var(--color-text)" ${value === "var(--color-text)" ? "selected" : ""}>Testo</option>
-            <option value="var(--color-bg)" ${value === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
-        </select>
+    if(field.type === "color"){
+        input = `
+            <select ${attr} class="color-select">
+                <option value="">Custom / nessuno</option>
+                <option value="var(--color-primary)" ${value === "var(--color-primary)" ? "selected" : ""}>Primario</option>
+                <option value="var(--color-secondary)" ${value === "var(--color-secondary)" ? "selected" : ""}>Secondario</option>
+                <option value="var(--color-accent)" ${value === "var(--color-accent)" ? "selected" : ""}>Accent</option>
+                <option value="var(--color-text)" ${value === "var(--color-text)" ? "selected" : ""}>Testo</option>
+                <option value="var(--color-bg)" ${value === "var(--color-bg)" ? "selected" : ""}>Sfondo</option>
+            </select>
 
-        <input type="color"
-               ${attr}
-               class="color-picker"
-               value="${value && value.startsWith("#") ? value : "#000000"}">
-    `;
-}
+            <input type="color"
+                ${attr}
+                class="color-picker"
+                value="${value && value.startsWith("#") ? value : "#000000"}">
+        `;
+    }
 
     if(field.type === "select"){
         let options = "";
@@ -1398,14 +1403,63 @@ if(field.type === "color"){
                 Loading...
             </div>
         `;
-
-        setTimeout(async () => {
-            const html = await editor.renderImagePicker(fieldName, value);
-            $("#inspector")
-                .find(`[data-image-picker="${fieldName}"]`)
-                .html(html);
-        }, 0);
     }
+
+    if(field.type === "menuItems")    {
+    let items = value;
+
+    if (!Array.isArray(items)) {
+        items = [];
+    }
+
+    let html = `
+        <div class="menu-items-editor" data-field="${fieldName}">
+    `;
+
+    items.forEach((item, index) => {
+        html += `
+            <div class="menu-item-row" data-index="${index}" style="border:1px solid #ddd; padding:8px; margin-bottom:8px;">
+                
+                <input type="text"
+                    data-menu-item-field="label"
+                    value="${item.label ?? ""}"
+                    placeholder="Label">
+
+                <select data-menu-item-field="type">
+                    <option value="anchor" ${item.type === "anchor" ? "selected" : ""}>Anchor</option>
+                    <option value="page" ${item.type === "page" ? "selected" : ""}>Pagina</option>
+                    <option value="url" ${item.type === "url" ? "selected" : ""}>URL</option>
+                </select>
+
+                <input type="text"
+                    data-menu-item-field="target"
+                    value="${item.target ?? ""}"
+                    placeholder="Target">
+
+                <button type="button" data-menu-item-delete>Elimina</button>
+            </div>
+        `;
+    });
+
+html += `
+    <div class="menu-item-new" style="border:1px dashed #aaa; padding:8px; margin-top:10px;">
+        <input type="text" data-menu-new-field="label" placeholder="Label">
+
+        <select data-menu-new-field="type">
+            <option value="anchor">Anchor</option>
+            <option value="page">Pagina</option>
+            <option value="url">URL</option>
+        </select>
+
+        <input type="text" data-menu-new-field="target" placeholder="Target">
+
+        <button type="button" data-menu-item-add>Aggiungi</button>
+    </div>
+`;
+
+    return html;
+}
+
     if(field.type === "richtext"){
     input = `
         <div class="richtext-toolbar">
@@ -1426,6 +1480,15 @@ if(field.type === "color"){
     `;
 }
 
+        setTimeout(async () => {
+            const html = await editor.renderImagePicker(fieldName, value);
+            $("#inspector")
+                .find(`[data-image-picker="${fieldName}"]`)
+                .html(html);
+        }, 0);
+    
+
+
     if(!input){
         input = `
             <div class="inspector-error">
@@ -1436,6 +1499,7 @@ if(field.type === "color"){
 
     return input;
 };
+
 //=================================
 // Render widget
 //================================= 

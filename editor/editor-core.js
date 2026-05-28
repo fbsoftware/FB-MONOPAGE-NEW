@@ -427,6 +427,74 @@ if (field === "items") {
 
     editor.render(); // refresh canvas
 });
+
+//=======================================
+//  Gestione modifica voci menu (navbar)
+//=======================================
+$(document).on("input change", ".menu-item-row [data-menu-item-field]", function(){
+
+    const widget = editor.findWidgetById(editor.state.selectedId);
+    if (!widget || widget.type !== "navbar") return;
+
+    const index = parseInt($(this).closest(".menu-item-row").attr("data-index"), 10);
+    const field = $(this).attr("data-menu-item-field");
+    const value = $(this).val();
+
+    widget.props.items[index][field] = value;
+
+    editor.state.isDirty = true;
+    editor.render();
+});
+
+//=======================================
+//  Gestione cancellazione voce menu (navbar)
+//=======================================
+$(document).on("click", ".menu-item-row [data-menu-item-delete]", function(){
+
+    const widget = editor.findWidgetById(editor.state.selectedId);
+    if (!widget || widget.type !== "navbar") return;
+
+    const index = parseInt($(this).closest(".menu-item-row").attr("data-index"), 10);
+
+    widget.props.items.splice(index, 1);
+
+    editor.state.isDirty = true;
+    editor.render();
+    editor.renderInspector(widget, editor.widgets[widget.type]);
+});
+//=======================================
+//  Gestione aggiunta voce menu (navbar)
+//=======================================
+$(document).on("click", "[data-menu-item-add]", function(){
+
+    const widget = editor.findWidgetById(editor.state.selectedId);
+    if (!widget || widget.type !== "navbar") return;
+
+    if (!widget.props) widget.props = {};
+    if (!Array.isArray(widget.props.items)) widget.props.items = [];
+
+    const $box = $(this).closest(".menu-item-new");
+
+    const label = $box.find('[data-menu-new-field="label"]').val();
+    const type = $box.find('[data-menu-new-field="type"]').val();
+    const target = $box.find('[data-menu-new-field="target"]').val();
+
+    if (!label || !target) {
+        alert("Inserisci almeno Label e Target");
+        return;
+    }
+
+    widget.props.items.push({
+        label: label,
+        type: type,
+        target: target
+    });
+
+    editor.state.isDirty = true;
+    editor.render();
+    editor.renderInspector(widget, editor.widgets[widget.type]);
+});
+
 //=======================================
 //  valori globali
 //=======================================

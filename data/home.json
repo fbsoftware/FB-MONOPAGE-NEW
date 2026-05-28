@@ -3,7 +3,7 @@
         "tema": null,
         "page": "home",
         "version": "2.0",
-        "updated_at": "2026-05-28T16:47:45+02:00"
+        "updated_at": "2026-05-28T18:17:17+02:00"
     },
     "global": {
         "colors": {
@@ -75,7 +75,7 @@
                                 "align": "right",
                                 "gap": "26",
                                 "fontSize": "20",
-                                "customCss": "font-weight:bold;",
+                                "customCss": "font-weight:regular;",
                                 "items": [
                                     {
                                         "label": "Home",
@@ -98,11 +98,12 @@
                                         "target": "CTA"
                                     },
                                     {
-                                        "label": "GitHub",
-                                        "type": "url",
-                                        "target": "https:\/\/github.com"
+                                        "label": "piu",
+                                        "type": "anchor",
+                                        "target": "piu"
                                     }
-                                ]
+                                ],
+                                "sticky": true
                             }
                         }
                     ],

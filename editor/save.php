@@ -390,6 +390,7 @@ function renderNavbarWidgetHTML($widget)
     $color = $p['color'] ?? '#000000';
     $fontSize = intval($p['fontSize'] ?? 16);
     $padding = intval($p['padding'] ?? 10);
+    $customCss = $p['customCss'] ?? '';
 
     $justify = 'flex-end';
 
@@ -401,48 +402,49 @@ function renderNavbarWidgetHTML($widget)
         $justify = 'center';
     }
 
-$items = $p['items'] ?? [];
-$links = '';
+    $items = $p['items'] ?? [];
+    $links = '';
 
-foreach ($items as $item) {
+    foreach ($items as $item) {
 
-    $label = $item['label'] ?? 'Voce';
-    $type = $item['type'] ?? 'anchor';
-    $target = $item['target'] ?? '';
+        $label = $item['label'] ?? 'Voce';
+        $type = $item['type'] ?? 'anchor';
+        $target = $item['target'] ?? '';
 
-    $href = '#';
+        $href = '#';
 
-    if ($type === 'anchor') {
-        $href = '#' . ltrim($target, '#');
+        if ($type === 'anchor') {
+            $href = '#' . ltrim($target, '#');
+        }
+
+        if ($type === 'page') {
+            $href = preg_replace('/\.html$/', '', $target) . '.html';
+        }
+
+        if ($type === 'url') {
+            $href = $target;
+        }
+
+        $links .= '
+            <a href="' . h($href) . '" style="color:' . h($color) . ';">
+                ' . h($label) . '
+            </a>
+        ';
     }
 
-    if ($type === 'page') {
-        $href = preg_replace('/\.html$/', '', $target) . '.html';
-    }
-
-    if ($type === 'url') {
-        $href = $target;
-    }
-
-    $links .= '
-        <a href="' . h($href) . '" style="color:' . h($color) . ';">
-            ' . h($label) . '
-        </a>
+    return '
+        <nav class="widget-navbar" style="
+            display:flex;
+            justify-content:' . h($justify) . ';
+            align-items:center;
+            gap:' . $gap . 'px;
+            padding:' . $padding . 'px;
+            font-size:' . $fontSize . 'px;
+            ' . $customCss . '
+        ">
+            ' . $links . '
+        </nav>
     ';
-}
-
-return '
-    <nav class="widget-navbar" style="
-        display:flex;
-        justify-content:' . h($justify) . ';
-        align-items:center;
-        gap:' . $gap . 'px;
-        padding:' . $padding . 'px;
-        font-size:' . $fontSize . 'px;
-    ">
-        ' . $links . '
-    </nav>
-';
 }
 
 //***********************************
