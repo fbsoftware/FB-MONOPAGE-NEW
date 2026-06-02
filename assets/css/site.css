@@ -59,6 +59,21 @@ ul {
   gap: 20px;
 }
 
+/*  WIDGET GALLERY  */
+.widget-gallery-item img,
+.widget-gallery-image {
+    height: 180px;
+    object-fit: cover;
+    display:block;
+    width:100%;
+    transition: transform .25s ease, opacity .25s ease;
+}
+
+.widget-gallery-item img:hover,
+.widget-gallery-image:hover {
+    transform: scale(1.03);
+    opacity: .9;
+}
 /*========================  */
 /*  SEZIONE                 */
 /*========================  */
@@ -67,7 +82,6 @@ ul {
     border: 1px dashed #ddd;
     transition: 0.2s;
     min-height: 200px;
-  /*  margin-bottom: 20px;*/
     display: flex;
 }
 
@@ -105,13 +119,10 @@ main{
 }
 .page-section{
     margin-bottom:20px;
-    width:1240px;
+    width:100wv;
     
 }
-.page-section,
-.canvas-section {
-    scroll-margin-top: 90px;
-}
+
 .page-columns{
     display:flex;
     gap:10px;
@@ -215,3 +226,42 @@ ul.site-menu  {
 .widget-navbar a:hover {
     text-decoration: underline;
 }
+
+/*  BACK TO TOP  */
+#back-to-top {
+
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--color-accent);
+
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 24px;
+
+    text-decoration: none;
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all .3s ease;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+

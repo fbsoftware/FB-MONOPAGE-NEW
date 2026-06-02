@@ -1,3 +1,0 @@
-libFB_1_2_0
-================================================================================
-27/4/2019	Ridenominato programmi per eliminare punti e trattini.

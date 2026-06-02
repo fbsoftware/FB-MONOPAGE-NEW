@@ -365,7 +365,7 @@ input[type="range"] {
 }
 
 select{
-    width:50px;
+    width:150px;
     margin-bottom: 10px;
 }
 /*--  SEZIONE SEPARATORE  -*/
@@ -386,9 +386,9 @@ span.icon {
     font-size: 20px;
     color: #e56161;
 }
-
-option:hover {
-    opacity: 50%;
+#widget-inspector{
+padding:0px;
+margin:0;
 }
 
 /*  pannello proprietà widget  */
@@ -423,9 +423,11 @@ textarea{
     margin-bottom:0px;
 }
 
-.inspector-row label{
+.inspector-row label,
+.inspector-row input{
     display:block;
     font-size:12px;
+    width:12em;
     margin-bottom:3px;
 }
 #inspector .inspector {
@@ -583,6 +585,7 @@ textarea{
     font-weight: 600;
     cursor: pointer;
     background: black;
+    color: white;
 }
 
 .accordion-title::before {
@@ -597,20 +600,11 @@ textarea{
 .accordion-content {
     display: none;
     padding: 10px;
+    background: #222;
 }
 
 .inspector-accordion.open .accordion-content {
     display: block;
-}
-
-.inspector-row {
-    margin-bottom: 10px;
-}
-
-.inspector-row label {
-    display: block;
-    font-size: 12px;
-    margin-bottom: 4px;
 }
 
 /*  templates   */
@@ -679,4 +673,19 @@ textarea{
 
 .widget-navbar a:hover {
     text-decoration: underline;
+}
+#siteConfigStatus   {
+    margin: 10px;
+    font-size: 18px;
+    color: #ffff00;
+}
+
+/*  WIDGET GALLERY  */
+.widget-gallery-item img {
+    transition: transform .25s ease, opacity .25s ease;
+}
+
+.widget-gallery-item img:hover {
+    transform: scale(1.03);
+    opacity: .9;
 }

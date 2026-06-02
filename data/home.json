@@ -3,7 +3,7 @@
         "tema": null,
         "page": "home",
         "version": "2.0",
-        "updated_at": "2026-05-28T18:17:17+02:00"
+        "updated_at": "2026-05-28T21:05:59+02:00"
     },
     "global": {
         "colors": {
@@ -64,7 +64,7 @@
                     "width": 50,
                     "widgets": [
                         {
-                            "id": "w1779809084337_46",
+                            "id": "w1779986228744_1",
                             "type": "navbar",
                             "props": {
                                 "1": "var(--color-bg)",
@@ -75,7 +75,7 @@
                                 "align": "right",
                                 "gap": "26",
                                 "fontSize": "20",
-                                "customCss": "font-weight:regular;",
+                                "customCss": "font-weight:bold;",
                                 "items": [
                                     {
                                         "label": "Home",
@@ -98,12 +98,16 @@
                                         "target": "CTA"
                                     },
                                     {
-                                        "label": "piu",
+                                        "label": "Artimg",
                                         "type": "anchor",
-                                        "target": "piu"
+                                        "target": "artimg"
+                                    },
+                                    {
+                                        "label": "Artvid",
+                                        "type": "anchor",
+                                        "target": "artvid"
                                     }
-                                ],
-                                "sticky": true
+                                ]
                             }
                         }
                     ],
@@ -173,6 +177,51 @@
             "backgroundImage": "assets\/images\/mulinello.jpg",
             "height": 621,
             "anchor": "home"
+        },
+        {
+            "id": "w1779993442843_1",
+            "background": "var(--color-primary)",
+            "padding": "20",
+            "margin": 0,
+            "columns": [
+                {
+                    "id": "w1779993442843_2",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1779993442843_3",
+                            "type": "header",
+                            "props": {
+                                "text": "Promozioni",
+                                "level": "h2",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1779993442843_4",
+                            "type": "text",
+                            "props": {
+                                "text": "In quest'area vengono elencate tutte le promozioni in corso.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 100
+                }
+            ],
+            "height": 126,
+            "customCss": "haight:120px !important;\n",
+            "anchor": "promo"
         },
         {
             "id": "w1779808786956_1",
@@ -365,24 +414,62 @@
                     ]
                 }
             ],
-            "anchor": "promo"
+            "anchor": ""
+        },
+        {
+            "id": "w1779993631251_5",
+            "background": "var(--color-primary)",
+            "padding": "20",
+            "margin": 0,
+            "columns": [
+                {
+                    "id": "w1779993631251_6",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1779993631251_7",
+                            "type": "header",
+                            "props": {
+                                "text": "Portfolio",
+                                "level": "h2",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1779993631251_8",
+                            "type": "text",
+                            "props": {
+                                "text": "In questa sezione sono elencate le attività in Portfolio.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 100
+                }
+            ],
+            "height": 126,
+            "customCss": "haight:120px !important;\n",
+            "anchor": "portfolio"
         },
         {
             "id": "w1779808790646_22",
             "background": "var(--color-bg)",
             "padding": "0",
-            "margin": "0",
+            "margin": 0,
             "columns": [
                 {
-                    "id": "w1779808790646_23",
-                    "width": 25,
-                    "widgets": [],
-                    "padding": 0,
-                    "margin": 15
-                },
-                {
                     "id": "w1779808790646_24",
-                    "width": 25,
+                    "width": 33,
                     "widgets": [
                         {
                             "id": "w1779808790646_25",
@@ -393,7 +480,9 @@
                                 "align": "center",
                                 "color": "#000000",
                                 "padding": 0,
-                                "margin": 0
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
                             }
                         },
                         {
@@ -439,7 +528,7 @@
                 },
                 {
                     "id": "w1779808790646_29",
-                    "width": 25,
+                    "width": 33,
                     "widgets": [
                         {
                             "id": "w1779808790646_30",
@@ -496,7 +585,7 @@
                 },
                 {
                     "id": "w1779808790646_34",
-                    "width": 25,
+                    "width": 34,
                     "widgets": [
                         {
                             "id": "w1779808790646_35",
@@ -507,7 +596,9 @@
                                 "align": "center",
                                 "color": "#000000",
                                 "padding": 0,
-                                "margin": 0
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
                             }
                         },
                         {
@@ -517,7 +608,10 @@
                                 "src": "assets\/images\/fb-home.png",
                                 "alt": "",
                                 "align": "center",
-                                "width": "200"
+                                "width": "200",
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": ""
                             }
                         },
                         {
@@ -544,7 +638,10 @@
                                 "padd": 20,
                                 "padding": 20,
                                 "fontSize": "22px",
-                                "fontWeight": "600"
+                                "fontWeight": "600",
+                                "customCss": "",
+                                "buttonCss": "",
+                                "customClass": ""
                             }
                         }
                     ],
@@ -553,6 +650,51 @@
                 }
             ],
             "anchor": "portfolio"
+        },
+        {
+            "id": "w1779993821994_9",
+            "background": "var(--color-primary)",
+            "padding": "20",
+            "margin": 0,
+            "columns": [
+                {
+                    "id": "w1779993821994_10",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1779993821994_11",
+                            "type": "header",
+                            "props": {
+                                "text": "C T A",
+                                "level": "h2",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1779993821994_12",
+                            "type": "text",
+                            "props": {
+                                "text": "Questa sezione contiene una CTA Call To Action",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 100
+                }
+            ],
+            "height": 126,
+            "customCss": "haight:120px !important;\n",
+            "anchor": "CTA"
         },
         {
             "id": "w1779808892400_39",
@@ -624,10 +766,273 @@
                     "widgets": []
                 }
             ],
-            "anchor": "CTA"
+            "anchor": ""
+        },
+        {
+            "id": "w1779994099867_22",
+            "background": "var(--color-primary)",
+            "padding": "20",
+            "margin": 0,
+            "columns": [
+                {
+                    "id": "w1779994099867_23",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1779994099867_24",
+                            "type": "header",
+                            "props": {
+                                "text": "Articolo con immagine",
+                                "level": "h2",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1779994099867_25",
+                            "type": "text",
+                            "props": {
+                                "text": "Articolo con video",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 100
+                }
+            ],
+            "height": 126,
+            "customCss": "haight:120px !important;\n",
+            "anchor": "artimg"
+        },
+        {
+            "id": "w1779994092303_16",
+            "background": "var(--color-bg)",
+            "padding": "20",
+            "margin": 0,
+            "columns": [
+                {
+                    "id": "w1779994092303_17",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1779994092303_18",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/Fonteney-005.jpg",
+                                "alt": "",
+                                "align": "left",
+                                "width": "539",
+                                "customCss": "",
+                                "imgCss": "padding-right:25px;"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "w1779994092303_19",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1779994092303_20",
+                            "type": "header",
+                            "props": {
+                                "text": "Abazia di Fontney",
+                                "level": "h2",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": "0",
+                                "margin": 0,
+                                "customCss": "padding:20px 0px;",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1779994092303_21",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.\nAd quia adipisci ut velit amet est adipisci culpa vel sapiente facere aut rerum expedita. Ut magni expedita nam autem quibusdam et dignissimos numquam qui nihil voluptatem est quis sunt qui minus voluptatum?\n\nNon sunt maxime ut molestiae inventore ea quam nulla eum commodi consectetur et blanditiis dicta qui odit ipsa! Eum voluptatem autem et consectetur consequuntur est voluptas similique hic ipsam voluptates eum quaerat eveniet. Ut deserunt laudantium nam ipsam deleniti 33 voluptates dignissimos sit dignissimos deserunt et perspiciatis incidunt. Vel possimus totam 33 maxime velit qui omnis alias.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": ""
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "sec-1779987290413-274",
+            "background": "var(--color-bg)",
+            "padding": 0,
+            "margin": 0,
+            "columns": [],
+            "height": 108,
+            "customCss": "min-height:60px;"
+        },
+        {
+            "id": "w1779994680622_1",
+            "background": "var(--color-primary)",
+            "padding": "20",
+            "margin": 0,
+            "columns": [
+                {
+                    "id": "w1779994680622_2",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1779994680622_3",
+                            "type": "header",
+                            "props": {
+                                "text": "Articolo con video",
+                                "level": "h2",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1779994680622_4",
+                            "type": "text",
+                            "props": {
+                                "text": "In quest'area viene mostrato un articolo corredato di video.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 100
+                }
+            ],
+            "height": 126,
+            "customCss": "haight:120px !important;\n",
+            "anchor": "artvid"
+        },
+        {
+            "id": "w1779994787977_5",
+            "background": "var(--color-bg)",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "w1779994787977_6",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1779994787977_7",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "24",
+                                "customCss": ""
+                            }
+                        },
+                        {
+                            "id": "w1779994787977_8",
+                            "type": "header",
+                            "props": {
+                                "text": "Capossela",
+                                "level": "h2",
+                                "align": "right",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0
+                            }
+                        },
+                        {
+                            "id": "w1779994787977_9",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.d possimus culpa sed quia libero ut dignissimos porro in dignissimos optio et maiores dicta. Qui natus enim sit exercitationem inventore ea tenetur veritatis aut officia doloremque est possimus accusamus. At harum officia qui magni odio nam dicta voluptatem hic nesciunt corrupti. Id cupiditate minus aut odit atque id amet consequatur eum deleniti fugiat.\n\nEt galisum maiores ex neque delectus et iusto voluptas non recusandae voluptatem sed officiis similique et minus quia ad quia animi. Qui mollitia suscipit qui saepe necessitatibus ut laudantium officia et dolores harum est dignissimos tempore est eaque autem. Est sunt laboriosam ut quia nemo eum voluptatibus distinctio.",
+                                "align": "right",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": ""
+                            }
+                        },
+                        {
+                            "id": "w1779994787977_10",
+                            "type": "image",
+                            "props": {
+                                "src": "\/assets\/images\/image.png",
+                                "alt": "",
+                                "align": "center",
+                                "width": "150"
+                            }
+                        }
+                    ],
+                    "padding": 15
+                },
+                {
+                    "id": "w1779994787977_11",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1779994787977_12",
+                            "type": "video",
+                            "props": {
+                                "url": "https:\/\/www.youtube.com\/watch?v=OWwqSj_VULQ",
+                                "aspectRatio": "4:3",
+                                "align": "left",
+                                "padding": 20,
+                                "margin": 20
+                            }
+                        }
+                    ],
+                    "height": 500
+                }
+            ],
+            "height": 570
+        },
+        {
+            "id": "w1779995078804_1",
+            "background": "var(--color-secondary)",
+            "padding": "20",
+            "margin": 0,
+            "columns": [
+                {
+                    "id": "w1779995078804_2",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1779995078804_3",
+                            "type": "text",
+                            "props": {
+                                "text": "FBsoftware    -    FB-MONOPAGE",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 100
+                }
+            ],
+            "height": 101
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1779809084337_46",
+    "selectedType": "section",
+    "selectedId": "w1779995078804_1",
     "isDirty": true
 }

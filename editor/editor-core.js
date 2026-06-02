@@ -7,7 +7,10 @@ $(document).on("click", function(e){
         $(e.target).closest(".canvas-widget").length ||
         $(e.target).closest(".canvas-column").length ||
         $(e.target).closest(".canvas-section").length ||
-        $(e.target).closest("#inspector").length
+        $(e.target).closest("#widget-inspector").length ||
+        $(e.target).closest("#widgets-panel").length ||
+        $(e.target).closest("#global").length ||
+        $(e.target).closest("#tabs").length
     ){
         return;
     }
@@ -38,7 +41,34 @@ editor.inspectorGroupOrder = [
     "avanzate"
 ];
 
+editor.galleryFolders = [];
+
+editor.loadGalleryFolders = function(){
+
+    $.getJSON(
+        window.FB_APP.appUrl + "/api/list-galleries.php",
+        { t: Date.now() }
+    ).done(function(res){
+
+        console.log("GALLERY FOLDERS", res);
+
+        if(res.success){
+            editor.galleryFolders = res.folders;
+
+            if(editor.state.selectedType === "widget"){
+                const widget = editor.findWidgetById(editor.state.selectedId);
+
+                if(widget && widget.type === "gallery"){
+                    editor.openWidgetInspector(widget.id);
+                }
+            }
+        }
+    });
+};
+
+//=================================
 // risolve path immagini
+//=================================
     editor.resolveAssetUrl = function(path){
     if(!path) return "";
 
@@ -50,7 +80,9 @@ editor.inspectorGroupOrder = [
         return path;
     }
 
-    return "/FB-JSON/" + path.replace(/^\/+/, "");
+    const appUrl = window.FB_APP?.appUrl || "";
+
+    return appUrl + "/" + path.replace(/^\/+/, "");
 };
 
 //=================================
@@ -208,7 +240,7 @@ $(document).on("click", "#editor-exit", function(){
         if(!ok) return;
     }
 
-    window.location.href = "/FB-JSON/admin/admin.php";
+    window.location.href = "APP_URL/admin/admin.php";
 });
 
 //=================================
@@ -317,7 +349,7 @@ $(document).on("click", ".delete-column, .delete-column *", function(e){
 //=================================
 $(document).on("click", ".canvas-column", function(e){
     e.stopPropagation();
- //console.log("CLICCATA COLONNA");
+console.log("CLICCATA COLONNA");
 if($(e.target).closest(".canvas-widget").length) return;
     const id = $(this).data("id");
 
@@ -384,8 +416,7 @@ $(document).on("click", ".widget-delete", function(e){
 //===============================
 //  3️⃣ Gestione modifica valori 
 //===============================
-$(document).on("input change", "#inspector [data-field]", function(){
-
+$(document).on("input change", "#widget-inspector [data-field]", function(){
     const field = $(this).data("field");
     const value = $(this).val();
 
@@ -496,6 +527,58 @@ $(document).on("click", "[data-menu-item-add]", function(){
 });
 
 //=======================================
+//  Gestione spostamento voce menu su (navbar)
+//=======================================
+$(document).on("click", "[data-menu-item-up]", function(){
+
+    const widget = editor.findWidgetById(editor.state.selectedId);
+    if (!widget || widget.type !== "navbar") return;
+
+    const index = parseInt(
+        $(this).closest(".menu-item-row").attr("data-index"),
+        10
+    );
+
+    if (index <= 0) return;
+
+    const items = widget.props.items;
+
+    [items[index - 1], items[index]] =
+    [items[index], items[index - 1]];
+
+    editor.state.isDirty = true;
+
+    editor.render();
+    editor.renderInspector(widget, editor.widgets[widget.type]);
+});
+
+//=======================================
+//  Gestione spostamento voce menu giù (navbar)
+//=======================================
+$(document).on("click", "[data-menu-item-down]", function(){
+
+    const widget = editor.findWidgetById(editor.state.selectedId);
+    if (!widget || widget.type !== "navbar") return;
+
+    const index = parseInt(
+        $(this).closest(".menu-item-row").attr("data-index"),
+        10
+    );
+
+    const items = widget.props.items;
+
+    if (index >= items.length - 1) return;
+
+    [items[index + 1], items[index]] =
+    [items[index], items[index + 1]];
+
+    editor.state.isDirty = true;
+
+    editor.render();
+    editor.renderInspector(widget, editor.widgets[widget.type]);
+});
+
+//=======================================
 //  valori globali
 //=======================================
 editor.globals = {
@@ -552,22 +635,19 @@ $(document).on("mousedown click input change", "#editor-tabs input, #editor-tabs
     }
 );
 
-//========================================
-//  Blocca direttamente l'input inspector
-//========================================
-$(document).on("mousedown click", "#inspector, #inspector *",
-    function(e){
-        e.stopPropagation();
-    }
-);
-
+//=================================
+//  Apri il tab dei dettagli
+//=================================
+editor.openDetailsTab = function(){
+    $("#tabs").tabs("option", "active", 1); // cambia in 2 se Dettagli è il terzo tab
+    $("#widget-inspector").show();
+};
 //=============================================
 // SELEZIONE / DESELEZIONE CENTRALIZZATA
 //=============================================
-editor.clearSelection = function(){
-    editor.state.selectedType = null;
-    editor.state.selectedId = null;
-};
+editor.clearSelection = function(){ 
+    editor.state.selectedType = null; 
+    editor.state.selectedId = null; };
 
 editor.selectSection = function(id){
     editor.clearSelection();
@@ -575,6 +655,7 @@ editor.selectSection = function(id){
     editor.state.selectedId = id;
     editor.render();
     editor.openSectionInspector(id);
+    editor.openDetailsTab();
 };
 
 editor.selectColumn = function(id){
@@ -583,6 +664,7 @@ editor.selectColumn = function(id){
     editor.state.selectedId = id;
     editor.render();
     editor.openColumnInspector(id);
+    editor.openDetailsTab();
 };
 
 editor.selectWidget = function(id){
@@ -591,8 +673,8 @@ editor.selectWidget = function(id){
     editor.state.selectedId = id;
     editor.render();
     editor.openWidgetInspector(id);
+    editor.openDetailsTab();
 };
-
 //=================================
 // data-upload-image    
 //=================================

@@ -358,25 +358,13 @@ editor.renderColumnInspector = function(column){
 };
 
 //========================
-//  handle colonne
+// handle colonne
 //========================
-$(document).on("input change", "#inspector [data-column-field]", function(e){
+$(document).on("input change", "[data-column-field]", function(e){
 
-    const tag = this.tagName.toLowerCase();
     const field = $(this).data("column-field");
-
-    // Durante la scrittura nella textarea salvo solo il valore,
-    // ma non rifaccio il render.
-    if(tag === "textarea" && e.type === "input"){
-        const column = editor.findColumnById(editor.state.selectedId);
-        if(column){
-            column[field] = $(this).val();
-            editor.state.isDirty = true;
-        }
-        return;
-    }
-
     let value = $(this).val();
+
     const type = $(this).attr("type");
 
     if(type === "number" || type === "range"){
@@ -392,5 +380,4 @@ $(document).on("input change", "#inspector [data-column-field]", function(e){
     editor.state.isDirty = true;
 
     editor.render();
-    editor.openColumnInspector(column.id);
 });

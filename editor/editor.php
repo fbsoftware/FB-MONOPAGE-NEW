@@ -16,11 +16,16 @@
     <body>
 
 <?php
+
 require_once dirname(__DIR__) . '/config/app.php';
+
 $page = $_GET['page'] ?? 'home';
 $page = preg_replace('/[^a-zA-Z0-9\-_]/', '', $page);
 
 $layoutFile = APP_ROOT . "/data/{$page}.json";
+
+
+
 $layoutData = null;
 
 if (file_exists($layoutFile)) {
@@ -60,7 +65,7 @@ if (file_exists($layoutFile)) {
         <!-- widgets ----------------------------------------------- -->
         <div id="widgets-panel"></div>
         <!-- DETTAGLI ----------------------------------------------- -->
-        <div id="inspector"></div>        
+        <div id="widget-inspector"></div>        
         <!-- impostazioni globali---------------------------- -->
         <div id="global">
             <label for="color-primary">Colore primario:</label>
@@ -166,7 +171,12 @@ if (file_exists($layoutFile)) {
     </div> 
 </div> <!--#editor-->
 
-
+<script>
+window.FB_APP = {
+    appUrl: "<?= APP_URL ?>",
+    assetsUrl: "<?= ASSETS_URL ?>"
+};
+</script>
 <script>
 window.EDITOR_CONFIG = {
     tema: null,
@@ -226,7 +236,7 @@ $(function(){
     });
 
     // stato iniziale
-    $("#widgets-panel").show();
+    $("#widgets-panel").hide();
     $("#widget-inspector").hide();
     $("#global").hide();
 });

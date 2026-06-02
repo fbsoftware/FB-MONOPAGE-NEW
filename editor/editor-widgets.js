@@ -994,11 +994,106 @@ return `
 `;
     }
 },
+    gallery: {  //-----------------------------------------------
+    label: "Gallery",
+    icon: "🖼️",
+
+    defaultProps: {
+        folder: "portfolio",
+        columns: 3,
+        gap: 16,
+        radius: 8
+        
+    },
+
+    fields: {
+        folder: {
+            type: "galleryFolderSelect",
+            label: "Cartella gallery",
+            group: "contenuto"
+        },
+
+        columns: {
+            type: "number",
+            label: "Colonne",
+            group: "stile"
+        },
+
+        gap: {
+            type: "number",
+            label: "Gap px",
+            group: "stile"
+        },
+
+        radius: {
+            type: "number",
+            label: "Radius px",
+            group: "stile"
+        },
+        height: {
+            type: "number",
+            label: "Altezza immagini px",
+            group: "stile"
+        }
+    },
+
+    render(widget) {
+        const p = widget.props || {};
+        const columns = parseInt(p.columns ?? 3, 10);
+        const gap = parseInt(p.gap ?? 16, 10);
+        const radius = parseInt(p.radius ?? 8, 10);
+        const height = parseInt(p.height ?? 180, 10);
+
+    // Recupera immagini dalla cartella specificata  
+    const folder = p.folder || "portfolio";
+
+let images = editor.getGalleryImages(folder);
+
+if (!images.length) {
+    editor.loadGalleryImages(folder);
+
+    return `
+        <div class="widget-gallery-empty">
+            Caricamento gallery: ${folder}...
+        </div>
+    `;
+}
+        const items = images.map(src => `
+            <div class="widget-gallery-item">
+                <img src="${src}" style="
+                    width:100%;
+                    display:block;
+                    border-radius:${radius}px;
+                    height:180px;
+                    object-fit:cover;  
+                    height:${height}px;     
+                ">
+            </div>
+        `).join("");
+
+        return `
+            <div class="widget-gallery" style="
+                display:grid;
+                grid-template-columns:repeat(${columns}, 1fr);
+                gap:${gap}px;
+            ">
+                ${items}
+            </div>
+        `;
+    }
+},
 };
 //=================================
 // Apre pannello dettagli widget 
 //=================================
 editor.openWidgetInspector = function(id){
+
+console.log("OPEN WIDGET INSPECTOR", id);
+$("#widget-inspector").show();
+console.log(
+    "widget-inspector trovato:",
+    $("#widget-inspector").length
+);
 
     const widget = editor.findWidgetById(id);
     if (!widget) return;
@@ -1114,7 +1209,10 @@ function resolveColor(value) {
 //==========================================
 editor.renderInspector = function(widget, def){
 
-    const $panel = $("#inspector");
+$("#tabs > div").each(function(i){
+    console.log(i, this.id);
+});
+    const $panel = $("#widget-inspector");
     $panel.empty();
 
     if(!widget || !def){
@@ -1124,8 +1222,8 @@ editor.renderInspector = function(widget, def){
 
 $panel.append(`
     <div class="inspector-header">
-       <h3 style="text-align:center; margin:10px;">
-           ${def.label || "Widget"}
+       <h3 style="text-align:center; margin:10px; background: #222222; padding: 10px; margin: 0;">         
+       ${def.label || "Widget"}
        </h3>
     </div>
 `);
@@ -1193,6 +1291,34 @@ groups[groupName].forEach(fieldName => {
             value = JSON.stringify(value, null, 2);
         }
 
+/*        if (field.type === "galleryFolderSelect") {
+
+    console.log("galleryFolderSelect", fieldName, value, editor.galleryFolders);
+
+    const folders = editor.galleryFolders || [];
+
+    if (!folders.length) {
+        return `
+            <select data-field="${fieldName}">
+                <option value="${value}">${value || "Nessuna cartella trovata"}</option>
+            </select>
+        `;
+    }
+
+    let html = `<select data-field="${fieldName}">`;
+
+    folders.forEach(folder => {
+        html += `
+            <option value="${folder}" ${value === folder ? "selected" : ""}>
+                ${folder}
+            </option>
+        `;
+    });
+
+    html += `</select>`;
+
+    return html;
+}*/
         if (field.type === "menuItems" && !Array.isArray(value)) {
             value = def.defaultProps?.[fieldName] ?? [];
         }
@@ -1220,7 +1346,7 @@ groups[groupName].forEach(fieldName => {
 //==================================
 editor.renderElementInspector = function(title, target, fields, dataAttr){
 
-    const $panel = $("#inspector");
+    const $panel = $("#widget-inspector");
     $panel.empty();
 
     if(!target){
@@ -1436,6 +1562,8 @@ editor.renderInspectorInput = function(fieldName, field, value, dataAttr){
                     value="${item.target ?? ""}"
                     placeholder="Target">
 
+                <button type="button" data-menu-item-up>↑</button>
+                <button type="button" data-menu-item-down>↓</button>
                 <button type="button" data-menu-item-delete>Elimina</button>
             </div>
         `;
@@ -1454,11 +1582,12 @@ html += `
         <input type="text" data-menu-new-field="target" placeholder="Target">
 
         <button type="button" data-menu-item-add>Aggiungi</button>
+
     </div>
 `;
 
     return html;
-}
+    }
 
     if(field.type === "richtext"){
     input = `
@@ -1478,11 +1607,28 @@ html += `
             ${value}
         </div>
     `;
-}
+    }
+    if (field.type === "galleryFolderSelect") {
+console.log("galleryFolderSelect", fieldName, value, editor.galleryFolders);
+        const folders = editor.galleryFolders || [];
 
+        let html = `<select data-field="${fieldName}">`;
+
+        folders.forEach(folder => {
+            html += `
+                <option value="${folder}" ${value === folder ? "selected" : ""}>
+                    ${folder}
+                </option>
+            `;
+        });
+
+        html += `</select>`;
+
+        return html;
+}
         setTimeout(async () => {
             const html = await editor.renderImagePicker(fieldName, value);
-            $("#inspector")
+            $("#widget-inspector")
                 .find(`[data-image-picker="${fieldName}"]`)
                 .html(html);
         }, 0);
@@ -1688,7 +1834,7 @@ $(document).on("click", "[data-rich-image]", function(e){
         !url.startsWith("https://") &&
         !url.startsWith("/")
     ){
-        url = "/FB-JSON/assets/images/" + url;
+        url = "/FB-MONOPAGE/assets/images/" + url;
     }
 
     const width = prompt("Larghezza immagine, es. 300px o 50%:", "300px");
@@ -1742,3 +1888,52 @@ $(document).on("input blur", ".richtext-editor", function(e){
     widget.props[field] = $(this).html();
     editor.state.isDirty = true;
 });
+
+
+editor.galleryImagesCache = {};
+
+editor.getGalleryImages = function(folder){
+    return editor.galleryImagesCache[folder] || [];
+};
+
+//=================================
+//  carica immagini per gallery
+//================================= 
+editor.loadGalleryImages = function(folder){
+    return $.getJSON(window.FB_APP.appUrl + "/api/list-gallery-images.php", {
+        folder: folder,
+        t: Date.now()
+    }).done(function(res){
+        console.log("GALLERY API", res);
+
+        if(res.success){
+            editor.galleryImagesCache[folder] = res.images;
+            editor.render();
+        }
+    });
+};
+
+//=================================
+//  cartelle gallery
+//=================================
+editor.loadGalleryFolders = function(){
+
+    $.getJSON(window.FB_APP.appUrl + "/api/list-galleries.php", { t: Date.now() })
+        .done(function(res){
+
+        //    console.log("GALLERY FOLDERS", res);
+
+            if(res.success){
+                editor.galleryFolders = res.folders;
+                editor.render();
+
+                if(editor.state.selectedType === "widget"){
+                    const widget = editor.findWidgetById(editor.state.selectedId);
+
+                    if(widget && widget.type === "gallery"){
+                        editor.openWidgetInspector(widget.id);
+                    }
+                }
+            }
+        });
+};

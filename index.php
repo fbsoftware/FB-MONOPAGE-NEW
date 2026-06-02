@@ -81,39 +81,32 @@ $pageContent = file_exists($pagePath)
 <?php
 require_once __DIR__ . '/config/app.php';
 ?>
-<!-- Header e menu 
-<div style="display: flex; 
-            flex-direction: row; 
-            align-items: center;
-            width: 1240px; 
-            background: #cacaca; 
-            padding: 10px;  
-            height: 140px;
-            ">
-
-    <header class="header" >
-        <img src="assets/images/logo.png" alt="Logo di FB" class="logo" height="150px" 
-                style="padding: 20px;"   >
-    </header>
-
-        <nav>
-            <?php echo renderSiteMenuHTML(loadSiteMenu()); ?>
-        </nav> 
-    
-</div>
--->
 <section id="page-content">
     <?php echo $pageContent; ?>
 </section>
 
-<footer style="background: #cacaca; 
-                padding: 10px; 
-                text-align: center; 
-                font-size: 14px;
-                width: 1240px;
-                ">
-    &copy; 2026 FB. Tutti i diritti riservati.
-</footer>   
+<!-- Torna su in alto -->
+<a id="back-to-top" href="#">↑</a>
+<script>
+//=======================================
+//  Back to top button
+//=======================================   
+window.addEventListener("load", function() {
+
+    const btn = document.getElementById("back-to-top");
+
+    window.addEventListener("scroll", function() {
+
+        if (window.scrollY > 300) {
+            btn.classList.add("visible");
+        } else {
+            btn.classList.remove("visible");
+        }
+
+    });
+
+});
+</script>
 </main>
 
 </body>

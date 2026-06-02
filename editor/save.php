@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 0);
+error_reporting(E_ALL);
+require_once dirname(__DIR__) . '/config/app.php';
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -58,8 +61,20 @@ if (file_put_contents($jsonPath, $json) === false) {
 }
 
 $htmlPath = $pagesDir . '/' . $page . '.html';
-$html = renderPageHTML($data);
-
+//
+//$html = renderPageHTML($data);
+try {
+    $html = renderPageHTML($data);
+} catch (Throwable $e) {
+    echo json_encode([
+        'success' => false,
+        'error' => 'Errore render HTML: ' . $e->getMessage(),
+        'file' => $e->getFile(),
+        'line' => $e->getLine()
+    ]);
+    exit;
+}
+//--------------------------------
 if (file_put_contents($htmlPath, $html) === false) {
     echo json_encode([
         'success' => false,
@@ -74,13 +89,19 @@ echo json_encode([
     'html' => 'pages/' . $page . '.html'
 ]);
 
+set_error_handler(function($severity, $message, $file, $line) {
+    throw new ErrorException($message, 0, $severity, $file, $line);
+});
 
-
-/** * Escape HTML */
+//=================================
+// Escape HTML 
+//=================================
 function h($value) {
     return htmlspecialchars((string)$value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
-
+//=================================
+// Funzioni di rendering HTML video
+//=================================
 function getYoutubeVideoId(string $url): string
 {
     if ($url === '') {
@@ -103,6 +124,9 @@ function getYoutubeVideoId(string $url): string
     return '';
 }
 
+//=================================
+// Calcola padding per aspect ratio video
+//=================================
 function getVideoAspectRatioPadding(string $ratio): string
 {
     switch ($ratio) {
@@ -123,7 +147,6 @@ function renderWidgetHTML(array $widget): string
 {
     $type  = $widget['type'] ?? '';
     $props = $widget['props'] ?? [];
-//error_log('Rendering widget: ' . $type); 
      switch ($type) {
         case 'text':
             $text  = $props['text'] ?? '';
@@ -372,10 +395,13 @@ function renderWidgetHTML(array $widget): string
                 ' . h($customCss) . '
             ">' . $html . '</div>';        
         case 'navbar':
-            return renderNavbarWidgetHTML($widget);        
+            return renderNavbarWidgetHTML($widget);   
+        case 'gallery':
+            return renderGalleryWidgetHTML($widget);                 
         default:
-            return '<div class="widget-unknown">Widget non supportato: ' . h($type) . '</div>';
-    }
+                return '<div class="widget-unknown">Widget non supportato: ' . h($type) . '</div>';
+        }
+
 }
 
 //------------------------------------------
@@ -447,6 +473,64 @@ function renderNavbarWidgetHTML($widget)
     ';
 }
 
+//------------------------------------------
+// Render widget gallery in HTML pubblico
+//------------------------------------------
+function renderGalleryWidgetHTML($widget)
+{ 
+    $p = $widget['props'] ?? [];
+    $folder = trim($p['folder'] ?? 'portfolio', '/');
+     $columns = intval($p['columns'] ?? 3);
+     $gap = intval($p['gap'] ?? 16);
+     $radius = intval($p['radius'] ?? 8);
+     $height = isset($p['height']) ? ((int)$p['height'] . 'px') : 'auto';
+
+    $galleryDir = APP_ROOT . '/assets/galleries/' . $folder;
+
+    $images = [];
+
+    if (is_dir($galleryDir)) {
+
+        $files = scandir($galleryDir);
+        sort($files);
+
+        foreach ($files as $file) {
+
+            if ($file === '.' || $file === '..') {
+                continue;
+            }
+
+            $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+            if (in_array($ext, ['jpg', 'jpeg', 'png', 'webp', 'gif'])) {
+                $images[] = ASSETS_URL . '/galleries/' . $folder . '/' . $file;
+            }
+        }
+    }
+
+    $html = '';
+
+    foreach ($images as $src) {
+        $html .= '
+            <div class="widget-gallery-item">
+                <img src="' . h($src) . '" style="
+                    border-radius:' . $radius . 'px;
+                    width:100%;
+                    height:' . h($height) . '; " >
+            </div>
+        ';
+    }
+
+    return '
+        <div class="widget-gallery" style="
+            display:grid;
+            grid-template-columns:repeat(' . $columns . ', 1fr);
+            gap:' . $gap . 'px;
+        ">
+            ' . $html . '
+        </div>
+    ';
+}
 //***********************************
 // Render colonna in HTML pubblico
 //***********************************     
@@ -495,15 +579,15 @@ function renderSectionHTML(array $section): string
     $anchor = $section['anchor'] ?? '';
     $bgStyle = '';
 
-if($backgroundImage){
-    $bgStyle .= "
-        background-image:url('" . h($backgroundImage) . "');
-        background-size:cover;
-        background-position:center ' . h($backgroundPositionY) . ';
-        position:relative;
-        overflow:hidden;
-    ";
-}
+    if($backgroundImage){
+        $bgStyle .= "
+            background-image:url('" . h($backgroundImage) . "');
+            background-size:cover;
+            background-position:center ' . h($backgroundPositionY) . ';
+            position:relative;
+            overflow:hidden;
+        ";
+    }
 
     $html = '<section class="page-section" id="' . h($anchor) . '" style="
     background:' . h($background) . ';
@@ -555,7 +639,7 @@ function renderPageHTML(array $data): string
 //============================
 function resolveAssetUrl(string $path): string
 {
-    $baseUrl = '/FB-JSON';
+    $baseUrl = '/FB-MONOPAGE';
 
     if ($path === '') return '';
     if (preg_match('#^https?://#', $path)) return $path;

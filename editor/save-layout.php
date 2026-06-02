@@ -12,7 +12,7 @@ if(!$json){
 $tema = $json["meta"]["tema"] ?? "default";
 $page = $json["meta"]["page"] ?? "pagina";
 
-$file = "FB-JSON/data/".$page.".json";
+$file = "APP_ROOT/data/".$page.".json";
 
 
 file_put_contents($path, json_encode($json, JSON_PRETTY_PRINT));

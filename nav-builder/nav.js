@@ -221,7 +221,7 @@ editor.buildMenuHtml = function(items){
 editor.saveSiteMenu = async function(){
 
     try {
-        const res = await fetch("/FB-JSON/api/save-menu.php", 
+        const res = await fetch("/FB-MONOPAGE/api/save-menu.php", 
         {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -261,7 +261,7 @@ $(document).on("click", "#save-site-menu", function(){
 editor.loadSiteMenu = async function(){
     editor.navState.isDirty = true;
     try {
-        const res = await fetch("/FB-JSON/api/load-menu.php");
+        const res = await fetch("/FB-MONOPAGE/api/load-menu.php");
         const data = await res.json();
  
          if(data.success && data.menu && data.menu.length){
@@ -416,5 +416,5 @@ $(document).on("click", "#nav-exit", function(){
         }
     }
 
-    window.location.href = "/FB-JSON/admin/admin.php";
+    window.location.href = "/FB-MONOPAGE/admin/admin.php";
 });

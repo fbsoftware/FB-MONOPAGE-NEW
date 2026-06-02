@@ -105,39 +105,6 @@ editor.renderSectionInspector = function(section){
     );
 };
 
-//========================
-// handle sezioni
-//========================
-$(document).on("input change", "#inspector [data-section-field]:not(textarea)", function(e){
-
-    const field = $(this).data("section-field");
-    const type = $(this).attr("type");
-
-    let value = $(this).val();
-
-if(type === "number" || type === "range"){
-    const step = $(this).attr("step");
-
-    if(step && step.includes(".")){
-        value = parseFloat(value);
-    } else {
-        value = parseInt(value, 10);
-    }
-
-    if(isNaN(value)) value = 0;
-}
-
-    const section = editor.findSectionById(editor.state.selectedId);
-    if(!section) return;
-
-    section[field] = value;
-
-    editor.state.isDirty = true;
-
-    editor.render();
-    editor.openSectionInspector(section.id);
-});
-
 //=================================
 // Rimuovi immagine sfondo sezione
 //=================================
@@ -157,23 +124,21 @@ $(document).on("click", ".clear-section-bg-image", function(e){
     editor.openSectionInspector(section.id);
 });
 
-//=================================
-// Handle textarea separately to avoid input lag
-//=================================
-$(document).on("blur", "#inspector textarea[data-section-field]", function(){
+//========================
+// Handle sezioni
+//========================
+$(document).on("input change", "[data-section-field]", function(e){
 
     const field = $(this).data("section-field");
     const value = $(this).val();
 
     const section = editor.findSectionById(editor.state.selectedId);
-    if(!section) return;
+    if (!section) return;
 
     section[field] = value;
-
     editor.state.isDirty = true;
 
     editor.render();
-    editor.openSectionInspector(section.id);
 });
 
 //=================================
@@ -386,7 +351,7 @@ editor.normalizeSectionWidths = function(section){
 //=================================
 editor.insertSectionTemplate = async function(file){
 
-    const res = await fetch("/FB-JSON/data/templates/sections/" + file);
+    const res = await fetch("/FB-MONOPAGE/data/templates/sections/" + file);
     const data = await res.json();
 
     if(!data.section) return;
