@@ -59,6 +59,21 @@ ul {
   gap: 20px;
 }
 
+/*  WIDGET GALLERY  */
+.widget-gallery-item img,
+.widget-gallery-image {
+    height: 180px;
+    object-fit: cover;
+    display:block;
+    width:100%;
+    transition: transform .25s ease, opacity .25s ease;
+}
+
+.widget-gallery-item img:hover,
+.widget-gallery-image:hover {
+    transform: scale(1.03);
+    opacity: .9;
+}
 /*========================  */
 /*  SEZIONE                 */
 /*========================  */
@@ -67,7 +82,6 @@ ul {
     border: 1px dashed #ddd;
     transition: 0.2s;
     min-height: 200px;
-  /*  margin-bottom: 20px;*/
     display: flex;
 }
 
@@ -105,13 +119,10 @@ main{
 }
 .page-section{
     margin-bottom:20px;
-    width:1240px;
+    width:100wv;
     
 }
-.page-section,
-.canvas-section {
-    scroll-margin-top: 90px;
-}
+
 .page-columns{
     display:flex;
     gap:10px;
@@ -214,4 +225,160 @@ ul.site-menu  {
 
 .widget-navbar a:hover {
     text-decoration: underline;
+}
+
+/*  BACK TO TOP  */
+#back-to-top {
+
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--color-accent);
+
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 24px;
+
+    text-decoration: none;
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: all .3s ease;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* LIGHTBOX BASE */
+.gallery-lightbox-overlay {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.85);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:99999;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-lightbox-overlay.visible {
+    opacity:1;
+    pointer-events:auto;
+}
+
+.gallery-lightbox-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius:8px;
+}
+
+/* Cursore puntatore per le immagini cliccabili della gallery */
+.gallery-lightbox-trigger {
+    cursor: pointer;
+}
+
+/* slider  */
+/* ==========================
+   WIDGET IMAGE SLIDER
+   ========================== */
+
+.widget-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.widget-slider .slider-slides {
+    position: relative;
+    width: 100%;
+}
+
+.widget-slider .slide {
+    display: none;
+    width: 100%;
+}
+
+.widget-slider .slide.active {
+    display: block;
+}
+
+.widget-slider .prev,
+.widget-slider .next {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+
+    transform: translateY(-50%);
+
+    width: 42px;
+    height: 42px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+
+    font-size: 24px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.widget-slider .prev {
+    left: 12px;
+}
+
+.widget-slider .next {
+    right: 12px;
+}
+
+.widget-slider .slider-dots {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 14px;
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.widget-slider .dot {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    cursor: pointer;
+}
+
+.widget-slider .dot.active {
+    background: #fff;
 }

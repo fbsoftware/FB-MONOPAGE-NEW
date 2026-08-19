@@ -1,4 +1,6 @@
 <?php
+require_once 'FB-EDITOR/config/app.php';
+
 function h($value) {
     return htmlspecialchars((string)$value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
@@ -72,49 +74,61 @@ $pageContent = file_exists($pagePath)
 <head>
     <meta charset="UTF-8">
     <title>Sito di FB</title>
-    <link rel="stylesheet" href="/FB-MONOPAGE/assets/css/site.css">
+    <link rel="stylesheet" href="/FB-MONOPAGE-NEW/assets/css/site.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    if(!document.querySelector('.gallery-lightbox-overlay')){
+        const overlay = document.createElement('div');
+        overlay.className = 'gallery-lightbox-overlay';
+        overlay.innerHTML = '<img src="" alt="Immagine gallery">';
+        document.body.appendChild(overlay);
+
+        overlay.addEventListener('click', () => overlay.classList.remove('visible'));
+    }
+
+    document.querySelectorAll('.gallery-lightbox-trigger').forEach(img => {
+        img.addEventListener('click', e => {
+            const src = e.currentTarget.dataset.src;
+            const overlay = document.querySelector('.gallery-lightbox-overlay');
+            overlay.querySelector('img').src = src;
+            overlay.classList.add('visible');
+        });
+    });
+});
+</script>
 </head>
 <body>
 
 <main>
-<?php
-require_once __DIR__ . '/config/app.php';
-?>
-<!-- Header e menu 
-<div style="display: flex; 
-            flex-direction: row; 
-            align-items: center;
-            width: 1240px; 
-            background: #cacaca; 
-            padding: 10px;  
-            height: 140px;
-            ">
 
-    <header class="header" >
-        <img src="assets/images/logo.png" alt="Logo di FB" class="logo" height="150px" 
-                style="padding: 20px;"   >
-    </header>
-
-        <nav>
-            <?php echo renderSiteMenuHTML(loadSiteMenu()); ?>
-        </nav> 
-    
-</div>
--->
 <section id="page-content">
     <?php echo $pageContent; ?>
 </section>
 
-<footer style="background: #cacaca; 
-                padding: 10px; 
-                text-align: center; 
-                font-size: 14px;
-                width: 1240px;
-                ">
-    &copy; 2026 FB. Tutti i diritti riservati.
-</footer>   
-</main>
+<!-- Torna su in alto -->
+<a id="back-to-top" href="#">↑</a>
+<script>
+//=======================================
+//  Back to top button
+//=======================================   
+window.addEventListener("load", function() {
 
+    const btn = document.getElementById("back-to-top");
+
+    window.addEventListener("scroll", function() {
+
+        if (window.scrollY > 300) {
+            btn.classList.add("visible");
+        } else {
+            btn.classList.remove("visible");
+        }
+
+    });
+
+});
+</script>
+</main>
+<script src="/FB-MONOPAGE-NEW/assets/js/site-slider.js"></script>
 </body>
 </html>

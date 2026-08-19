@@ -1,0 +1,65 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "QWE",
+        "version": "2.0",
+        "updated_at": "2026-07-15T17:03:30+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#baf8fd"
+        },
+        "typography": {
+            "heading": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "body": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "sizes": {
+                "h1": 48,
+                "h2": 36,
+                "h3": 28,
+                "body": 16,
+                "small": 14
+            }
+        },
+        "fonts": []
+    },
+    "sections": [
+        {
+            "id": "sec-1784125948977-686",
+            "background": "#ffffff",
+            "padding": "20",
+            "margin": "20",
+            "columns": [
+                {
+                    "id": "col-1784125948977-893",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1784125958831_1",
+                            "type": "slider",
+                            "props": {
+                                "folder": "portfolio",
+                                "height": "300",
+                                "interval": "2000",
+                                "showArrows": true,
+                                "showDots": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "selectedType": "section",
+    "selectedId": "sec-1784125948977-686",
+    "isDirty": true
+}

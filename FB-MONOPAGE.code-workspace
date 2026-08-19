@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../FB-MONOPAGE"
+		},
+		{
+			"path": "../FB-JSON"
+		},
+		{
+			"path": "../FB-EDITOR"
+		},
+		{
+			"path": "."
+		}
+	]
+}

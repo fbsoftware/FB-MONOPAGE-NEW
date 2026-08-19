@@ -1,0 +1,34 @@
+{
+    "type": "section",
+    "name": "footer",
+    "created_at": "2026-05-28T21:04:20+02:00",
+    "section": {
+        "id": "sec-1779994931096-496",
+        "background": "#ffffff",
+        "padding": "20",
+        "margin": "20",
+        "columns": [
+            {
+                "id": "col-1779994931096-306",
+                "width": 100,
+                "widgets": [
+                    {
+                        "id": "w1779994943589_1",
+                        "type": "text",
+                        "props": {
+                            "text": "FBsoftware    -    FB-MONOPAGE",
+                            "align": "center",
+                            "color": "#000000",
+                            "padding": 0,
+                            "margin": 0,
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    }
+                ],
+                "height": 100
+            }
+        ],
+        "height": 101
+    }
+}
