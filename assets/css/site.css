@@ -382,3 +382,50 @@ ul.site-menu  {
 .widget-slider .dot.active {
     background: #fff;
 }
+
+/* ==========================
+   HERO SLIDER
+   ========================== */
+.widget-hero-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.widget-hero-slider .hero-slide {
+    display: none;
+    position: relative;
+    width: 100%;
+}
+
+.widget-hero-slider .hero-slide.active {
+    display: block;
+}
+
+.widget-hero-slider .hero-slide-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.widget-hero-slider .hero-slide-content {
+    max-width: 800px;
+    padding: 30px;
+
+    text-align: center;
+    color: white;
+}
+
+.widget-hero-slider .hero-slide-title {
+    margin: 0 0 15px;
+    color: inherit;
+}
+
+.widget-hero-slider .hero-slide-text {
+    font-size: 18px;
+}

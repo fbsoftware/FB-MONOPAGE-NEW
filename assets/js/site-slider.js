@@ -1,9 +1,13 @@
-(function () {slideimage
+(function () {
+    
+console.log("SITE SLIDER JS CARICATO");
 
     function initSlider(slider) {
 
         if (!slider) return;
-
+console.log(    "WIDGET SLIDER TROVATI:",
+    document.querySelectorAll(".widget-slider").length
+);
         const slides = Array.from(
             slider.querySelectorAll(".slide")
         );
@@ -115,9 +119,14 @@
         showSlide(current);
     }
 
-    document.addEventListener(
+ document.addEventListener(
         "DOMContentLoaded",
         function () {
+
+            console.log(
+                "WIDGET SLIDER TROVATI:",
+                document.querySelectorAll(".widget-slider").length
+            );
 
             document
                 .querySelectorAll(".widget-slider")

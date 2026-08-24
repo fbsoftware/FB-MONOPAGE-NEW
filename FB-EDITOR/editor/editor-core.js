@@ -1061,9 +1061,9 @@ editor.toBoolean = function(value, defaultValue = false) {
     );
 };
 
-/// ==========================
+// ================================
 // Inizializza comportamento slider
-// ==========================
+// ================================
 editor.initSliderWidget = function(slider) {
 
     if (!slider) return;
@@ -1191,4 +1191,163 @@ editor.initAllSliders = function() {
             editor.initSliderWidget(slider);
         });
 };
+//==================================================
+// Aggiorna titolo/testo delle slide Hero
+//==================================================
+$(document).on(
+    "input change",
+    "[data-hero-slide-field]",
+    function () {
 
+        const widget = editor.findWidgetById(
+            editor.state.selectedId
+        );
+
+        if (!widget || widget.type !== "heroSlide") {
+            return;
+        }
+
+        const index = parseInt(
+            $(this).attr("data-slide-index"),
+            10
+        );
+
+        const field = $(this).attr(
+            "data-hero-slide-field"
+        );
+
+        const value = $(this).val();
+
+        if (!Array.isArray(widget.props.slides)) {
+            widget.props.slides = [];
+        }
+
+        if (!widget.props.slides[index]) {
+            console.error(
+                "Slide non trovata:",
+                index
+            );
+            return;
+        }
+
+        widget.props.slides[index][field] = value;
+
+        editor.state.isDirty = true;
+
+        console.log(
+            "HERO SLIDE UPDATE:",
+            index,
+            field,
+            value,
+            widget.props.slides[index]
+        );
+    }
+);
+
+//==================================================
+// Funzionamento slide Hero
+//==================================================
+console.log("SITE HERO SLIDER JS CARICATO");
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const sliderList =
+        document.querySelectorAll(".widget-slider");
+
+    console.log(
+        "SLIDER TROVATI:",
+        sliderList.length
+    );
+
+    sliderList.forEach(function(slider) {
+
+        const slides = Array.from(
+            slider.querySelectorAll(".slide")
+        );
+
+        const dots = Array.from(
+            slider.querySelectorAll(".dot")
+        );
+
+        const nextBtn = slider.querySelector(".next");
+        const prevBtn = slider.querySelector(".prev");
+
+        console.log(
+            "SLIDE TROVATE:",
+            slides.length,
+            "INTERVAL:",
+            slider.dataset.interval
+        );
+
+        if (!slides.length) return;
+
+        let current = 0;
+
+        function showSlide(index) {
+
+            if (index >= slides.length) {
+                index = 0;
+            }
+
+            if (index < 0) {
+                index = slides.length - 1;
+            }
+
+            slides.forEach(function(slide, i) {
+                slide.classList.toggle(
+                    "active",
+                    i === index
+                );
+            });
+
+            dots.forEach(function(dot, i) {
+                dot.classList.toggle(
+                    "active",
+                    i === index
+                );
+            });
+
+            current = index;
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener("click", function() {
+                showSlide(current + 1);
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener("click", function() {
+                showSlide(current - 1);
+            });
+        }
+
+        dots.forEach(function(dot) {
+
+            dot.addEventListener("click", function() {
+
+                const index = parseInt(
+                    dot.dataset.slide,
+                    10
+                );
+
+                if (!Number.isNaN(index)) {
+                    showSlide(index);
+                }
+            });
+        });
+
+        const interval = parseInt(
+            slider.dataset.interval || "5000",
+            10
+        );
+
+        if (slides.length > 1 && interval > 0) {
+            setInterval(function() {
+                showSlide(current + 1);
+            }, interval);
+        }
+
+        showSlide(0);
+    });
+});

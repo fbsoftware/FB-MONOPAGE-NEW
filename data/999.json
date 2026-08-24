@@ -3,7 +3,7 @@
         "tema": null,
         "page": "999",
         "version": "2.0",
-        "updated_at": "2026-08-19T18:59:40+02:00"
+        "updated_at": "2026-08-24T16:42:18+02:00"
     },
     "global": {
         "colors": {
@@ -34,301 +34,55 @@
     },
     "sections": [
         {
-            "id": "sec-1785315979890-307",
-            "background": "#ffffff",
-            "padding": "20",
-            "margin": "20",
-            "columns": [
-                {
-                    "id": "col-1786631524247-277",
-                    "width": 47,
-                    "margin": 20,
-                    "widgets": [
-                        {
-                            "id": "w1787158068752_3",
-                            "type": "header",
-                            "props": {
-                                "text": "Titolo ---",
-                                "level": "h2",
-                                "align": "center",
-                                "color": "#000000",
-                                "padding": 0,
-                                "margin": 0,
-                                "customCss": "",
-                                "customClass": ""
-                            }
-                        },
-                        {
-                            "id": "w1786631528762_1",
-                            "type": "navbar",
-                            "props": {
-                                "align": "center",
-                                "gap": 20,
-                                "color": "#000000",
-                                "fontSize": 16,
-                                "padding": 10,
-                                "customCss": "",
-                                "customClass": "",
-                                "items": [
-                                    {
-                                        "label": "Home",
-                                        "type": "anchor",
-                                        "target": "home"
-                                    },
-                                    {
-                                        "label": "Promo",
-                                        "type": "anchor",
-                                        "target": "promo"
-                                    },
-                                    {
-                                        "label": "Portfolio",
-                                        "type": "anchor",
-                                        "target": "portfolio"
-                                    },
-                                    {
-                                        "label": "CTA",
-                                        "type": "anchor",
-                                        "target": "CTA"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "id": "w1786631535048_3",
-                            "type": "text",
-                            "props": {
-                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
-                                "align": "left",
-                                "color": "#000000",
-                                "padding": 0,
-                                "margin": 0,
-                                "customCss": "",
-                                "customClass": ""
-                            }
-                        }
-                    ]
-                },
-                {
-                    "id": "col-1787157663785-429",
-                    "width": 51,
-                    "margin": 20,
-                    "widgets": [
-                        {
-                            "id": "wid-1787158301984-247",
-                            "type": "header",
-                            "props": {
-                                "text": "Titolo ---",
-                                "level": "h2",
-                                "align": "center",
-                                "color": "var(--color-accent)",
-                                "padding": 0,
-                                "margin": 0,
-                                "customCss": "",
-                                "customClass": ""
-                            }
-                        },
-                        {
-                            "id": "w1787157663785_267",
-                            "type": "navbar",
-                            "props": {
-                                "align": "center",
-                                "gap": 20,
-                                "color": "#000000",
-                                "fontSize": 16,
-                                "padding": 10,
-                                "customCss": "",
-                                "customClass": "",
-                                "items": [
-                                    {
-                                        "label": "Home",
-                                        "type": "anchor",
-                                        "target": "home"
-                                    },
-                                    {
-                                        "label": "Promo",
-                                        "type": "anchor",
-                                        "target": "promo"
-                                    },
-                                    {
-                                        "label": "Portfolio",
-                                        "type": "anchor",
-                                        "target": "portfolio"
-                                    },
-                                    {
-                                        "label": "CTA",
-                                        "type": "anchor",
-                                        "target": "CTA"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "id": "w1787158079489_4",
-                            "type": "header",
-                            "props": {
-                                "text": "Titolo ---",
-                                "level": "h2",
-                                "align": "center",
-                                "color": "var(--color-secondary)",
-                                "padding": 0,
-                                "margin": 0,
-                                "customCss": "",
-                                "customClass": ""
-                            }
-                        },
-                        {
-                            "id": "w1787157663785_380",
-                            "type": "text",
-                            "props": {
-                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
-                                "align": "left",
-                                "color": "#000000",
-                                "padding": 0,
-                                "margin": 0,
-                                "customCss": "",
-                                "customClass": ""
-                            }
-                        }
-                    ]
-                }
-            ],
-            "height": "270"
-        },
-        {
             "id": "sec-1787158301984-161",
             "background": "#ffffff",
             "padding": "20",
             "margin": "20",
             "columns": [
                 {
-                    "id": "col-1787158301984-673",
-                    "width": 47,
+                    "id": "col-1787324929541-965",
+                    "width": 100,
                     "margin": 20,
                     "widgets": [
                         {
-                            "id": "wid-1787158301984-53",
-                            "type": "navbar",
+                            "id": "w1787324935825_1",
+                            "type": "heroSlide",
                             "props": {
-                                "align": "center",
-                                "gap": 20,
-                                "color": "#000000",
-                                "fontSize": 16,
-                                "padding": 10,
-                                "customCss": "",
-                                "customClass": "",
-                                "items": [
+                                "folder": "hero-slider",
+                                "height": 500,
+                                "interval": "5000",
+                                "showArrows": true,
+                                "showDots": true,
+                                "slides": [
                                     {
-                                        "label": "Home",
-                                        "type": "anchor",
-                                        "target": "home"
+                                        "image": "\/FB-MONOPAGE-NEW\/assets\/galleries\/hero-slider\/aereo-pec2.png",
+                                        "title": "Aereo-pec.it",
+                                        "text": "testo-1"
                                     },
                                     {
-                                        "label": "Promo",
-                                        "type": "anchor",
-                                        "target": "promo"
+                                        "image": "\/FB-MONOPAGE-NEW\/assets\/galleries\/hero-slider\/flyfishing1.jpg",
+                                        "title": "Flyfishing",
+                                        "text": "testo-2."
                                     },
                                     {
-                                        "label": "Portfolio",
-                                        "type": "anchor",
-                                        "target": "portfolio"
-                                    },
-                                    {
-                                        "label": "CTA",
-                                        "type": "anchor",
-                                        "target": "CTA"
+                                        "image": "\/FB-MONOPAGE-NEW\/assets\/galleries\/hero-slider\/mulinello.jpg",
+                                        "title": "Mulinello",
+                                        "text": "testo-3."
                                     }
-                                ]
-                            }
-                        },
-                        {
-                            "id": "wid-1787158301984-254",
-                            "type": "text",
-                            "props": {
-                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
-                                "align": "left",
-                                "color": "#000000",
-                                "padding": 0,
-                                "margin": 0,
-                                "customCss": "",
-                                "customClass": ""
+                                ],
+                                "customClass": "",
+                                "customCss": ""
                             }
                         }
-                    ]
-                },
-                {
-                    "id": "col-1787158301984-262",
-                    "width": 51,
-                    "margin": 20,
-                    "widgets": [
-                        {
-                            "id": "wid-1787158301984-363",
-                            "type": "navbar",
-                            "props": {
-                                "align": "center",
-                                "gap": 20,
-                                "color": "#000000",
-                                "fontSize": 16,
-                                "padding": 10,
-                                "customCss": "",
-                                "customClass": "",
-                                "items": [
-                                    {
-                                        "label": "Home",
-                                        "type": "anchor",
-                                        "target": "home"
-                                    },
-                                    {
-                                        "label": "Promo",
-                                        "type": "anchor",
-                                        "target": "promo"
-                                    },
-                                    {
-                                        "label": "Portfolio",
-                                        "type": "anchor",
-                                        "target": "portfolio"
-                                    },
-                                    {
-                                        "label": "CTA",
-                                        "type": "anchor",
-                                        "target": "CTA"
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "id": "wid-1787158301984-182",
-                            "type": "header",
-                            "props": {
-                                "text": "Titolo ---",
-                                "level": "h2",
-                                "align": "center",
-                                "color": "var(--color-primary)",
-                                "padding": 0,
-                                "margin": 0,
-                                "customCss": "",
-                                "customClass": ""
-                            }
-                        },
-                        {
-                            "id": "wid-1787158301984-80",
-                            "type": "text",
-                            "props": {
-                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
-                                "align": "left",
-                                "color": "#000000",
-                                "padding": 0,
-                                "margin": 0,
-                                "customCss": "",
-                                "customClass": ""
-                            }
-                        }
-                    ]
+                    ],
+                    "background": "var(--color-secondary)",
+                    "height": 550
                 }
             ],
             "height": "900"
         }
     ],
     "selectedType": "widget",
-    "selectedId": "wid-1787158301984-247",
+    "selectedId": "w1787324935825_1",
     "isDirty": true
 }
