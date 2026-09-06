@@ -716,184 +716,7 @@ editor.widgets.image = {
         `;
     }
 };
-//==================================================
-// WIDGET: HERO SLIDE
-//==================================================
-editor.widgets.heroSlide = {
 
-    label: "Hero Slider",
-    icon: "🖼️",
-
-    defaultProps: {
-        folder: "portfolio",
-        height: 500,
-        interval: 5000,
-        showArrows: true,
-        showDots: true,
-
-        slides: [],
-
-        customClass: "",
-        customCss: ""
-    },
-
-    fields: {
-
-        folder: {
-            type: "galleryFolderSelect",
-            label: "Cartella immagini",
-            group: "contenuto"
-        },
-
-        slides: {
-            type: "heroSlides",
-            label: "Contenuti slide",
-            group: "contenuto"
-        },
-
-        height: {
-            type: "number",
-            label: "Altezza slider px",
-            group: "stile"
-        },
-
-        interval: {
-            type: "number",
-            label: "Intervallo autoplay ms",
-            group: "stile"
-        },
-
-        showArrows: {
-            type: "checkbox",
-            label: "Mostra frecce",
-            group: "stile"
-        },
-
-        showDots: {
-            type: "checkbox",
-            label: "Mostra indicatori",
-            group: "stile"
-        },
-
-        customClass: {
-            type: "text",
-            label: "Classe CSS",
-            group: "avanzate"
-        },
-
-        customCss: {
-            type: "textarea",
-            label: "CSS personalizzato",
-            group: "avanzate"
-        }
-    },
-
-render(widget) {
-
-    const p = widget.props || {};
-
-    const height = parseInt(p.height ?? 500, 10);
-
-    const showArrows = editor.toBoolean(
-        p.showArrows,
-        true
-    );
-
-    const showDots = editor.toBoolean(
-        p.showDots,
-        true
-    );
-
-    const slides = Array.isArray(p.slides)
-        ? p.slides
-        : [];
-
-    if (!slides.length) {
-        return `
-            <div class="widget-hero-slide-empty">
-                Nessuna slide disponibile
-            </div>
-        `;
-    }
-
-    const slidesHtml = slides.map((slide, index) => {
-
-        const image = slide.image || "";
-        const title = slide.title || "";
-        const text = slide.text || "";
-
-        return `
-            <div class="slide hero-slide ${index === 0 ? "active" : ""}">
-
-                <img
-                    src="${image}"
-                    alt=""
-                    style="
-                        width:100%;
-                        height:${height}px;
-                        object-fit:cover;
-                        display:block;
-                    "
-                >
-
-                <div class="hero-slide-overlay">
-                    <div class="hero-slide-content">
-
-                        ${title
-                            ? `<h2 class="hero-slide-title">${title}</h2>`
-                            : ""
-                        }
-
-                        ${text
-                            ? `<div class="hero-slide-text">${text}</div>`
-                            : ""
-                        }
-
-                    </div>
-                </div>
-
-            </div>
-        `;
-    }).join("");
-
-    const arrows = showArrows
-        ? `
-            <button type="button" class="prev">❮</button>
-            <button type="button" class="next">❯</button>
-        `
-        : "";
-
-    const dots = showDots
-        ? `
-            <div class="slider-dots">
-                ${slides.map((_, index) => `
-                    <button
-                        type="button"
-                        class="dot ${index === 0 ? "active" : ""}"
-                        data-slide="${index}">
-                    </button>
-                `).join("")}
-            </div>
-        `
-        : "";
-
-    return `
-        <div
-            class="widget-slider widget-hero-slider ${p.customClass || ""}"
-            data-widget-id="${widget.id}"
-            data-interval="${p.interval ?? 5000}"
-            style="${p.customCss || ""}"
-        >
-            <div class="slider-slides">
-                ${slidesHtml}
-            </div>
-
-            ${arrows}
-            ${dots}
-        </div>
-    `;
-}
-};
 
     
 
@@ -1785,32 +1608,21 @@ editor.getGalleryImages = function(folder) {
     return editor.galleryAssets[folder] || [];
 };
 
-//==================================================
 // Carica immagini via PHP per il folder selezionato
-//==================================================
 editor.loadGalleryImages = function(folder) {
+    if (!folder) return;
 
-    if (!folder) {
-        return Promise.resolve();
-    }
-
-    return fetch(
-        `${window.FB_APP.appUrl}/FB-EDITOR/api/list-gallery-images.php?folder=${folder}&t=${Date.now()}`
-    )
-    .then(r => r.json())
-    .then(data => {
-
-        if (!data.success) return;
-
-        editor.galleryAssets[folder] = data.images;
-    })
-    .catch(err => {
-        console.error(
-            "Errore caricamento immagini gallery:",
-            err
-        );
-    });
+    fetch(`${window.FB_APP.appUrl}/FB-EDITOR/api/list-gallery-images.php?folder=${folder}&t=${Date.now()}`)
+        .then(r => r.json())
+        .then(data => {
+            if (!data.success) return;
+            // Salva nella cache unica
+            editor.galleryAssets[folder] = data.images;
+            editor.render(); // Aggiorna il canvas
+        })
+        .catch(err => console.error("Errore caricamento immagini gallery:", err));
 };
+
 //=========================
 // Inizializza immagini della gallery al caricamento del widget
 //=========================
@@ -1830,20 +1642,6 @@ $(document).on("change", "#inspector [data-field='folder']", function() {
     if (!widget) return;
 
     widget.props.folder = folder;
-    if (widget.type === "heroSlide") {
-
-    editor.loadGalleryImages(value)
-        .then(() => {
-
-            editor.syncHeroSlidesFromFolder(widget);
-
-            editor.render();
-
-            editor.openWidgetInspector(widget.id);
-        });
-
-    return;
-}
     editor.loadGalleryImages(folder); // Aggiorna il canvas
 });
 
@@ -2303,6 +2101,10 @@ html += `
 
     return html;
     }
+    if (field.type === "checkbox") {
+        const checked = value ? 'checked' : '';
+        return `<input type="checkbox" data-field="${fieldName}" ${checked}>`;
+    }
     if(field.type === "richtext"){
     input = `
         <div class="richtext-toolbar">
@@ -2344,82 +2146,15 @@ html += `
             ${checked}
         >
     `;
-    }
-    if (field.type === "heroSlides") {
+}
+        setTimeout(async () => {
+            const html = await editor.renderImagePicker(fieldName, value);
+            $("#widget-inspector")
+                .find(`[data-image-picker="${fieldName}"]`)
+                .html(html);
+        }, 0);
+    
 
-    const slides = Array.isArray(value)
-        ? value
-        : [];
-
-    let html = `
-        <div class="hero-slides-editor">
-    `;
-
-    if (!slides.length) {
-        html += `
-            <div class="inspector-info">
-                Nessun contenuto slide ancora associato.
-            </div>
-        `;
-    }
-
-    slides.forEach((slide, index) => {
-
-        html += `
-            <div class="hero-slide-editor-item"
-                 data-slide-index="${index}">
-
-                <strong>
-                    Slide ${index + 1}
-                </strong>
-
-                <label>
-                    Immagine
-                </label>
-
-                <input
-                    type="text"
-                    value="${slide.image || ""}"
-                    data-hero-slide-field="image"
-                    data-slide-index="${index}"
-                    readonly
-                >
-
-                <label>
-                    Titolo
-                </label>
-
-                <input
-                    type="text"
-                    value="${slide.title || ""}"
-                    data-hero-slide-field="title"
-                    data-slide-index="${index}"
-                >
-
-                <label>
-                    Testo
-                </label>
-
-                <textarea
-                    data-hero-slide-field="text"
-                    data-slide-index="${index}"
-                >${slide.text || ""}</textarea>
-
-            </div>
-        `;
-    });
-
-    html += `</div>`;
-
-    return html;
-    }
-        
-    setTimeout(async () => {
-        const html = await editor.renderImagePicker(fieldName, value);
-        $("#widget-inspector")
-            .find(`[data-image-picker="${fieldName}"]`)
-            .html(html);
-    }, 0);
 
     if(!input){
         input = `
@@ -2431,6 +2166,7 @@ html += `
 
     return input;
 };
+
 //=================================
 // Render widget
 //================================= 
@@ -2687,86 +2423,15 @@ editor.getAssetsByFolder = async function(folder) {
         return [];
     }
 };
-//========================================
-// Open widget inspector
-//========================================
-editor.openWidgetInspector = async function(id){
 
+//========================================
+// open widget inspetor
+//========================================
+editor.openWidgetInspector = function(id) {
     const widget = editor.findWidgetById(id);
     if (!widget) return;
 
-    if (widget.type === "heroSlide") {
+    editor.renderInspector(widget, editor.widgets[widget.type]);
 
-        const folder = widget.props?.folder || "";
-
-        if (folder) {
-
-            const images = editor.getGalleryImages(folder);
-
-            // Se la cache non contiene ancora immagini,
-            // aspetta il caricamento
-            if (!images.length) {
-                await editor.loadGalleryImages(folder);
-            }
-
-            editor.syncHeroSlidesFromFolder(widget);
-        }
-    }
-
-    editor.renderInspector(
-        widget,
-        editor.widgets[widget.type]
-    );
 };
 
-
-//==================================================
-// Sync immagini folder -> props.slides Hero Slider
-//==================================================
-editor.syncHeroSlidesFromFolder = function(widget) {
-
-    if (!widget || widget.type !== "heroSlide") {
-        return;
-    }
-
-    const p = widget.props || {};
-    const folder = p.folder || "";
-
-    if (!folder) return;
-
-    const images = editor.getGalleryImages(folder) || [];
-
-    if (!images.length) {
-        editor.loadGalleryImages(folder);
-        return;
-    }
-
-    const oldSlides = Array.isArray(p.slides)
-        ? p.slides
-        : [];
-
-    const oldMap = {};
-
-    oldSlides.forEach(slide => {
-        if (slide.image) {
-            oldMap[slide.image] = slide;
-        }
-    });
-
-    p.slides = images.map(src => {
-
-        if (oldMap[src]) {
-            return oldMap[src];
-        }
-
-        return {
-            image: src,
-            title: "",
-            text: ""
-        };
-    });
-
-    widget.props = p;
-
-    editor.state.isDirty = true;
-};
