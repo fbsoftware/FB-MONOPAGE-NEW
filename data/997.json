@@ -1,9 +1,9 @@
 {
     "meta": {
         "tema": null,
-        "page": "999",
+        "page": "997",
         "version": "2.0",
-        "updated_at": "2026-09-05T17:37:15+02:00"
+        "updated_at": "2026-09-06T14:37:40+02:00"
     },
     "global": {
         "colors": {
@@ -34,18 +34,37 @@
     },
     "sections": [
         {
-            "id": "sec-1787158301984-161",
-            "background": "#ffffff",
-            "padding": "0",
+            "id": "sec-1788623941730-846",
+            "background": "var(--color-primary)",
+            "padding": "20",
             "margin": "0",
             "columns": [
                 {
-                    "id": "col-1787324929541-965",
-                    "width": 100,
-                    "margin": 0,
+                    "id": "col-1788623941730-570",
+                    "width": 17,
                     "widgets": [
                         {
-                            "id": "w1788281026593_2",
+                            "id": "w1788624111439_2",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/logo.png",
+                                "alt": "",
+                                "align": "left",
+                                "width": "150",
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 200
+                },
+                {
+                    "id": "col-1788624082840-618",
+                    "width": 82,
+                    "widgets": [
+                        {
+                            "id": "w1788624100606_1",
                             "type": "navbar",
                             "props": {
                                 "align": "right",
@@ -53,7 +72,7 @@
                                 "color": "#000000",
                                 "fontSize": 16,
                                 "padding": 10,
-                                "customCss": "",
+                                "customCss": "margin-top:50px;",
                                 "customClass": "",
                                 "items": [
                                     {
@@ -78,47 +97,65 @@
                                     }
                                 ]
                             }
-                        },
+                        }
+                    ],
+                    "height": 200
+                }
+            ],
+            "height": "115"
+        },
+        {
+            "id": "sec-1788624418469-582",
+            "background": "var(--color-primary)",
+            "padding": "20",
+            "margin": "",
+            "columns": [
+                {
+                    "id": "col-1788624418469-849",
+                    "width": 100,
+                    "widgets": [
                         {
-                            "id": "w1787324935825_1",
+                            "id": "w1788624505502_9",
                             "type": "heroSlide",
                             "props": {
-                                "folder": "hero-slider",
-                                "height": "434",
-                                "interval": "5000",
+                                "folder": "varie",
+                                "height": 500,
+                                "interval": 5000,
                                 "showArrows": false,
                                 "showDots": false,
                                 "slides": [
                                     {
-                                        "image": "\/FB-MONOPAGE-NEW\/assets\/galleries\/hero-slider\/aereo-pec2.png",
-                                        "title": "Aereo-pec.it",
-                                        "text": "testo-1"
+                                        "image": "\/FB-MONOPAGE-NEW\/assets\/galleries\/varie\/1000011196.jpg",
+                                        "title": "",
+                                        "text": ""
                                     },
                                     {
-                                        "image": "\/FB-MONOPAGE-NEW\/assets\/galleries\/hero-slider\/flyfishing1.jpg",
-                                        "title": "Flyfishing",
-                                        "text": "testo-2."
+                                        "image": "\/FB-MONOPAGE-NEW\/assets\/galleries\/varie\/1000011197.jpg",
+                                        "title": "",
+                                        "text": ""
                                     },
                                     {
-                                        "image": "\/FB-MONOPAGE-NEW\/assets\/galleries\/hero-slider\/mulinello.jpg",
-                                        "title": "Mulinello",
-                                        "text": "testo-3."
+                                        "image": "\/FB-MONOPAGE-NEW\/assets\/galleries\/varie\/1000016167.jpg",
+                                        "title": "",
+                                        "text": ""
+                                    },
+                                    {
+                                        "image": "\/FB-MONOPAGE-NEW\/assets\/galleries\/varie\/1000016169.jpg",
+                                        "title": "",
+                                        "text": ""
                                     }
                                 ],
                                 "customClass": "",
                                 "customCss": ""
                             }
                         }
-                    ],
-                    "background": "var(--color-primary)",
-                    "height": 485,
-                    "padding": 0
+                    ]
                 }
             ],
-            "height": "900"
+            "height": "620"
         }
     ],
-    "selectedType": "column",
-    "selectedId": "col-1787324929541-965",
+    "selectedType": null,
+    "selectedId": null,
     "isDirty": true
 }

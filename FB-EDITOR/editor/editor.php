@@ -53,6 +53,15 @@ if (file_exists($layoutFile)) {
             edit
             </span>
     </a></li>
+<li>
+    <a href="#structure-panel">
+        <span class="material-symbols-outlined"
+              style="font-size:30px !important;
+                     color:var(--color-text)">
+            account_tree
+        </span>
+    </a>
+</li>
     <li><a href="#global">                
             <span class="material-symbols-outlined" 
             style="font-size :30px !important;
@@ -63,11 +72,15 @@ if (file_exists($layoutFile)) {
     </ul>
 
     <div id="accordion">  
-        <!-- widgets ----------------------------------------------- -->
+    <!-- WIDGETS ------------------------------- -->
         <div id="widgets-panel"></div>
-        <!-- DETTAGLI ----------------------------------------------- -->
+    <!-- DETTAGLI ------------------------------ -->
         <div id="widget-inspector"></div>        
-        <!-- impostazioni globali---------------------------- -->
+    <!-- STRUTTURA ---------------------------- -->
+        <div id="structure-panel">
+            <div id="page-structure"></div>
+        </div>
+    <!-- GLOBALI  ---------------------------- -->
         <div id="global">
             <label for="color-primary">Colore primario:</label>
             <input id="color-primary" type="color">
@@ -199,29 +212,13 @@ window.INITIAL_LAYOUT = <?= json_encode($layoutData) ?>;
 </script>
 
  <script>
-  $( function() {
-    $( "#accordion" ).accordion({
-        header: "h3",
-        heightStyle: 'content',   
-        collapsible: true,
-        active: 0,  
-        icons: { header: 'ui-icon-triangle-1-e', activeHeader: 'ui-icon-triangle-1-s' }
-            });
-            
-    $( ".accordion" ).accordion({
-        header: "h3",
-        heightStyle: 'content',  
-        collapsible: true,
-        active: 0,  
-        icons: { header: 'ui-icon-triangle-1-e', activeHeader: 'ui-icon-triangle-1-s' }
-            });
-    });
 //=================================
 // Tabs laterali editor
 //=================================
 $(function(){
 
     $("#tabs").tabs({
+
         active: 0,
 
         activate: function(event, ui){
@@ -229,6 +226,7 @@ $(function(){
             // chiude sempre tutti i pannelli
             $("#widgets-panel").hide();
             $("#widget-inspector").hide();
+            $("#structure-panel").hide();
             $("#global").hide();
 
             // apre solo quello selezionato
@@ -236,10 +234,12 @@ $(function(){
         }
     });
 
-    // stato iniziale
+    // stato iniziale: tutti chiusi
     $("#widgets-panel").hide();
     $("#widget-inspector").hide();
+    $("#structure-panel").hide();
     $("#global").hide();
+
 });
  </script>
 

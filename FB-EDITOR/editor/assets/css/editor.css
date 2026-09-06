@@ -476,7 +476,7 @@ textarea{
 .column-toolbar,
 .section-toolbar{
     position:absolute;
-    top:0px;
+    top:-10px;
     left:0;
     background:pink;
     display:none;
@@ -865,4 +865,56 @@ textarea{
 
 .widget-hero-slider .hero-slide-text {
     font-size: 18px;
+}
+
+
+
+.canvas-section,
+.canvas-column,
+.canvas-widget {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+.section-toolbar,
+.column-toolbar,
+.widget-toolbar {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 999999 !important;
+}
+
+/*  STRUTTURA PAGINA  */
+#page-structure {
+    padding: 10px;
+}
+
+.structure-row {
+    padding: 6px 8px;
+    margin-bottom: 3px;
+}
+
+.structure-section-row {
+    font-weight: bold;
+}
+
+.structure-column {
+    margin-left: 15px;
+}
+
+.structure-column-row {
+    font-weight: 600;
+}
+
+.structure-widget-row {
+    margin-left: 15px;
+}
+
+.structure-row {
+    cursor: pointer;
+}
+
+.structure-row:hover {
+    background: rgba(128, 128, 128, 0.15);
 }
