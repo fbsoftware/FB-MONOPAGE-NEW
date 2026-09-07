@@ -818,3 +818,32 @@ textarea{
 .widget-drag-handle:active {
     cursor: grabbing;
 }
+
+/* indipendent-scroll */    
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+#editor {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#tabs {
+    width: 320px;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-shrink: 0;
+}
+
+.canvas-panel {
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
