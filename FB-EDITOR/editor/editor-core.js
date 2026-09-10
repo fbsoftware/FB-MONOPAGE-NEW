@@ -195,7 +195,7 @@ $(document).on("click", "#save-layout", function(){
 
     console.log("SALVATAGGIO:", editor.state);
 
-    fetch("/FB-MONOPAGE-NEW/save.php", {
+    fetch(window.APP_URL + "/save.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(editor.state)
@@ -312,7 +312,7 @@ editor.bindSiteConfigSave = function(){
             }
         };
 
-        fetch("/FB-MONOPAGE-NEW/editor/save-site-config.php", {
+        fetch(window.APP_URL + "/editor/save-site-config.php", {
             method: "POST",
             headers: {"Content-Type":"application/json"},
             body: JSON.stringify(config)
@@ -730,7 +730,7 @@ $(document).on("change", '#inspector input[data-upload-image="1"]', function(){
 //=================================
 editor.loadImages = async function(){
 
-    const res = await fetch("/FB-MONOPAGE-NEW/FB-EDITOR/api/list-images.php");
+    const res = await fetch(window.APP_URL + "/FB-EDITOR/api/list-images.php");
     const data = await res.json();
 
     if(!data.success){
@@ -840,8 +840,7 @@ $(document).on("click", ".save-section-template", async function(e){
     const name = prompt("Nome template sezione:");
     if(!name) return;
 
-    const res = await fetch("/FB-MONOPAGE-NEW/FB-EDITOR/api/save-section-template.php", {
-        method: "POST",
+const res = await fetch(window.APP_URL + "/FB-EDITOR/api/save-section-template.php", {        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             name: name,
@@ -864,8 +863,7 @@ $(document).on("click", ".save-section-template", async function(e){
 //=================================
 $(document).on("click", ".add-template", async function(){
 
-    const res = await fetch("/FB-MONOPAGE-NEW/FB-EDITOR/api/list-section-templates.php");
-    const data = await res.json();
+const res = await fetch(window.APP_URL + "/FB-EDITOR/api/list-section-templates.php");    const data = await res.json();
 
     if(!data.success || !data.templates.length){
         alert("Nessun template disponibile");
@@ -1061,7 +1059,7 @@ editor.toBoolean = function(value, defaultValue = false) {
     );
 };
 
-/// ==========================
+// ==========================
 // Inizializza comportamento slider
 // ==========================
 editor.initSliderWidget = function(slider) {

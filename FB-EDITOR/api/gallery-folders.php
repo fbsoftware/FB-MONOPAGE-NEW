@@ -2,7 +2,7 @@
 require_once dirname(__DIR__) . '/config/app.php';
 header('Content-Type: application/json');
 
-// Cartella root del sito (FB-MONOPAGE-NEW), non editor
+// Cartella root del sito , non editor
 $baseDir = '../../assets/galleries';
 
 $folders = [];

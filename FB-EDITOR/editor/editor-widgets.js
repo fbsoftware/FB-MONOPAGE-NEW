@@ -2352,8 +2352,7 @@ $(document).on("click", "[data-rich-image]", function(e){
         !url.startsWith("https://") &&
         !url.startsWith("/")
     ){
-        url = "/FB-MONOPAGE-NEW/assets/images/" + url;
-    }
+        url = window.APP_URL + "/assets/images/" + url;    }
 
     const width = prompt("Larghezza immagine, es. 300px o 50%:", "300px");
     const align = prompt("Allineamento: left, center, right", "center");

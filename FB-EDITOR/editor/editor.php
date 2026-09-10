@@ -15,7 +15,7 @@ require_once '../config/app.php';
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="/FB-MONOPAGE-NEW/FB-EDITOR/editor/assets/css/editor.css">
+<link rel="stylesheet" href="<?= APP_URL ?>/FB-EDITOR/editor/assets/css/editor.css">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
     <body>
@@ -258,7 +258,9 @@ $(function(){
     $("#global").hide();
 });
  </script>
-
+<script>
+window.APP_URL = <?= json_encode(APP_URL) ?>;
+</script>
 <script src="editor-core.js"></script>
 <script src="editor-utils.js"></script>
 <script src="editor-sections.js"></script>

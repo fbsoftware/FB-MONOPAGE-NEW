@@ -354,8 +354,7 @@ editor.normalizeSectionWidths = function(section){
 //=================================
 editor.insertSectionTemplate = async function(file){
 
-    const res = await fetch("/FB-MONOPAGE-NEW/FB-EDITOR/templates/" + file);
-    const data = await res.json();
+const res = await fetch(window.APP_URL + "/FB-EDITOR/templates/" + file);    const data = await res.json();
 
     if(!data.section) return;
 

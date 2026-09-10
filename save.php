@@ -833,7 +833,7 @@ function renderPageHTML(array $data): string
 //============================
 function resolveAssetUrl(string $path): string
 {
-    $baseUrl = '/FB-MONOPAGE-NEW'; // path pubblico del sito
+    $baseUrl = APP_URL; // path pubblico del sito
 
     if ($path === '') return '';
     if (preg_match('#^https?://#', $path)) return $path;

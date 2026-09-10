@@ -221,7 +221,7 @@ editor.buildMenuHtml = function(items){
 editor.saveSiteMenu = async function(){
 
     try {
-        const res = await fetch("/FB-MONOPAGE-NEW/api/save-menu.php", 
+        const res = await fetch(window.APP_URL + "/api/save-menu.php", 
         {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -261,7 +261,7 @@ $(document).on("click", "#save-site-menu", function(){
 editor.loadSiteMenu = async function(){
     editor.navState.isDirty = true;
     try {
-        const res = await fetch("/FB-MONOPAGE-NEW/api/load-menu.php");
+        const res = await fetch(window.APP_URL + "/api/load-menu.php");        
         const data = await res.json();
  
          if(data.success && data.menu && data.menu.length){
@@ -299,7 +299,7 @@ editor.loadSiteMenu = async function(){
 editor.loadAvailablePages = async function(){
 editor.navState.isDirty = true;
     try {
-        const res = await fetch("/FB-MONOPAGE-NEW/api/list-pages.php");
+        const res = await fetch(window.APP_URL + "/api/list-pages.php");
         const data = await res.json();
 
         if(data.success && Array.isArray(data.pages)){
@@ -416,5 +416,4 @@ $(document).on("click", "#nav-exit", function(){
         }
     }
 
-    window.location.href = "/FB-MONOPAGE-NEW/admin/admin.php";
-});
+window.location.href = window.APP_URL + "/admin/admin.php";});
