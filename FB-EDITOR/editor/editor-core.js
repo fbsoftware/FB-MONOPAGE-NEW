@@ -1192,3 +1192,123 @@ editor.initAllSliders = function() {
         });
 };
 
+//=================================
+//  RENDER STRUTTURA PAGINA
+//=================================
+editor.renderPageStructure = function () {
+
+    const $container = $("#page-structure");
+
+    if (!$container.length) {
+        return;
+    }
+
+    const sections = editor.state?.sections || [];
+
+    if (!sections.length) {
+        $container.html(
+            '<div class="structure-empty">Nessuna sezione</div>'
+        );
+        return;
+    }
+
+    let html = "";
+
+    sections.forEach(function(section, sectionIndex) {
+
+        html += `
+            <div class="structure-section">
+
+                <div class="structure-row structure-section-row"
+                     data-structure-type="section"
+                     data-structure-id="${section.id}">
+                     Sezione ${sectionIndex + 1}
+                </div>
+        `;
+
+        const columns = section.columns || [];
+
+        columns.forEach(function(column, columnIndex) {
+
+            html += `
+                <div class="structure-row structure-column-row"
+                     data-structure-type="column"
+                     data-structure-id="${column.id}">
+                     Colonna ${columnIndex + 1}
+                </div>
+            `;
+
+            const widgets = column.widgets || [];
+
+            widgets.forEach(function(widget) {
+
+                const def = editor.widgets[widget.type];
+
+                const label =
+                    def?.label ||
+                    widget.type ||
+                    "Widget";
+
+                html += `
+                    <div class="structure-row structure-widget-row"
+                         data-structure-type="widget"
+                         data-structure-id="${widget.id}">
+                         ${label}
+                    </div>
+                `;
+            });
+
+            html += `
+                </div>
+            `;
+        });
+
+        html += `
+            </div>
+        `;
+    });
+
+    $container.html(html);
+};
+
+
+//=================================
+// Selezione dalla struttura pagina
+//=================================
+$(document).on(
+    "click",
+    "#page-structure [data-structure-type]",
+    function (event) {
+
+        event.stopPropagation();
+
+        const type = $(this).attr("data-structure-type");
+        const id = $(this).attr("data-structure-id");
+
+        console.log(
+            "STRUTTURA SELECT:",
+            type,
+            id
+        );
+
+        editor.state.selectedType = type;
+        editor.state.selectedId = id;
+
+        editor.render();
+
+        if (type === "widget") {
+            editor.openWidgetInspector(id);
+        }
+
+        if (type === "column") {
+            editor.openColumnInspector(id);
+        }
+
+        if (type === "section") {
+            editor.openSectionInspector(id);
+        }
+
+        // apre automaticamente il tab Dettagli
+        $("#tabs > ul > li").eq(1).find("a").trigger("click");
+    }
+);

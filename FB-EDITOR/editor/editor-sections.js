@@ -394,4 +394,5 @@ editor.insertSectionTemplate = async function(file){
   editor.initSortableWidgets();
   editor.initSortableColumns();
   editor.initAllSliders();
+  editor.renderPageStructure();
 };

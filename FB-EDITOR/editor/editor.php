@@ -53,6 +53,16 @@ if (file_exists($layoutFile)) {
             edit
             </span>
     </a></li>
+<li>
+    <a href="#structure-panel">
+        <span class="material-symbols-outlined"
+              style="font-size:30px !important;
+                     color:var(--color-text)">
+            account_tree
+        </span>
+    </a>
+</li>
+
     <li><a href="#global">                
             <span class="material-symbols-outlined" 
             style="font-size :30px !important;
@@ -66,7 +76,11 @@ if (file_exists($layoutFile)) {
         <!-- widgets ----------------------------------------------- -->
         <div id="widgets-panel"></div>
         <!-- DETTAGLI ----------------------------------------------- -->
-        <div id="widget-inspector"></div>        
+        <div id="widget-inspector"></div>  
+        <!-- struttura pagina --------------------------------------- -->
+        <div id="structure-panel">
+            <div id="page-structure"></div>
+        </div>
         <!-- impostazioni globali---------------------------- -->
         <div id="global">
             <label for="color-primary">Colore primario:</label>
@@ -229,6 +243,7 @@ $(function(){
             // chiude sempre tutti i pannelli
             $("#widgets-panel").hide();
             $("#widget-inspector").hide();
+            $("#structure-panel").hide();
             $("#global").hide();
 
             // apre solo quello selezionato
@@ -239,6 +254,7 @@ $(function(){
     // stato iniziale
     $("#widgets-panel").hide();
     $("#widget-inspector").hide();
+    $("#structure-panel").hide();
     $("#global").hide();
 });
  </script>
