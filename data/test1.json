@@ -1,0 +1,217 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "test1",
+        "version": "2.0",
+        "updated_at": "2026-09-10T12:28:28+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#baf8fd"
+        },
+        "typography": {
+            "heading": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "body": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "sizes": {
+                "h1": 48,
+                "h2": 36,
+                "h3": 28,
+                "body": 16,
+                "small": 14
+            }
+        },
+        "fonts": []
+    },
+    "sections": [
+        {
+            "id": "sec-1788973202926-893",
+            "background": "#ffffff",
+            "padding": "20",
+            "margin": "20",
+            "columns": [
+                {
+                    "id": "col-1788973202926-825",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1788973218907_1",
+                            "type": "header",
+                            "props": {
+                                "text": "Titolo ---",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1788973220914_2",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1788973471849_2",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/Fonteney-005.jpg",
+                                "alt": "",
+                                "align": "center",
+                                "width": 300,
+                                "customCss": "padding: 20px 0",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1788973467901_1",
+                            "type": "textarea",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
+                                "align": "left",
+                                "color": "var(--color-text)",
+                                "fontSize": "16px",
+                                "fontWeight": "400",
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1789035815751_1",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 648
+                }
+            ],
+            "height": "700"
+        },
+        {
+            "id": "sec-1789036008241-199",
+            "background": "#ffffff",
+            "padding": "20",
+            "margin": "20",
+            "columns": [
+                {
+                    "id": "col-1789036008241-876",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "wid-1789036008241-96",
+                            "type": "header",
+                            "props": {
+                                "text": "Titolo ---",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "wid-1789036008241-680",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "wid-1789036008241-590",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/Fonteney-005.jpg",
+                                "alt": "",
+                                "align": "center",
+                                "width": 300,
+                                "customCss": "padding: 20px 0",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "wid-1789036008241-529",
+                            "type": "textarea",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
+                                "align": "left",
+                                "color": "var(--color-text)",
+                                "fontSize": "16px",
+                                "fontWeight": "400",
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "wid-1789036008241-560",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1789036024848_2",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/auto.jpg",
+                                "alt": "",
+                                "align": "left",
+                                "width": 300,
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 875
+                }
+            ],
+            "height": "900"
+        }
+    ],
+    "selectedType": "widget",
+    "selectedId": "w1789036024848_2",
+    "isDirty": true
+}
