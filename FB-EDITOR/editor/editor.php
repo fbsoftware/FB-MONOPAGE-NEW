@@ -149,14 +149,16 @@ if (file_exists($layoutFile)) {
     <div class="canvas-panel">
                 <div style="flex:2">&nbsp;</div>
                 <div style="display: flex; gap: 250px; justify-content: space-between; margin-bottom: 20px;">
-                    <div style="flex:7">     
+                    <div style="flex:5">     
                         <h2 style="text-align:center">Layout del tema: <span style="color: black"><?=$tema?></span> pagina: <span style="color: black"><?=$page?></span></h2>  
                     </div>
                     <div style="flex:1">
-                        <button id="save-layout">Pubblica</button>
+                        <button id="save-layout" class="top-action-btn"> 
+                        <span class="material-symbols-outlined">publish</span>Pubblica</button>
                     </div> 
                     <div style="flex:1">
-                        <button id="editor-exit"> ⬅️ Esci</button>
+                        <button id="editor-exit" class="top-action-btn">
+                         <span class="material-symbols-outlined">logout</span>Esci</button>
                     </div> 
                 </div> 
 

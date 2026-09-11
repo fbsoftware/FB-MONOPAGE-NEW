@@ -103,21 +103,37 @@ function h($value) {
 //=================================
 function getYoutubeVideoId(string $url): string
 {
+    $url = trim($url);
+
     if ($url === '') {
         return '';
     }
 
+    // Accetta direttamente il solo ID YouTube
+    if (preg_match('/^[A-Za-z0-9_-]{11}$/', $url)) {
+        return $url;
+    }
+
     $patterns = [
+
         '/youtube\.com\/watch\?v=([^&]+)/',
+
         '/youtu\.be\/([^?&]+)/',
+
         '/youtube\.com\/embed\/([^?&]+)/',
+
         '/youtube\.com\/shorts\/([^?&]+)/'
+
     ];
 
     foreach ($patterns as $pattern) {
+
         if (preg_match($pattern, $url, $matches)) {
+
             return $matches[1] ?? '';
+
         }
+
     }
 
     return '';

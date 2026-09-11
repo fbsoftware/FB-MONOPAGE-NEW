@@ -6,68 +6,6 @@ var editor = editor || {};
 editor.widgets = editor.widgets || {};
 
 // ==================================================
-// WIDGET RICHTEXT
-// ==================================================
-editor.widgets.richtext = {
-
-    label: "Richtext",
-    icon: "📄",
-
-    defaultProps: {
-        html: "<p>Scrivi qui il testo...</p>",
-        padding: 0,
-        margin: 0,
-        customCss: "",
-        customClass:""
-    },
-
-    fields: {
-        html: {
-            type: "richtext",
-            label: "Testo",
-            group: "contenuto"
-        },
-
-        padding: {
-            type: "number",
-            label: "Padding px",
-            group: "stile"
-        },
-
-        margin: {
-            type: "number",
-            label: "Margin px",
-            group: "stile"
-        },
-
-        customCss: {
-            type: "textarea",
-            label: "CSS personalizzato",
-            group: "avanzate"
-        },        
-        customClass: {
-            type: "text",
-            label: "Classe CSS",
-            group: "avanzate"
-    }
-    },
-
-    render(widget) {
-
-        const p = widget.props || {};
-
-        return `
-            <div class="widget-richtext ${p.customClass}" style="
-                padding:${p.padding ?? 0}px;
-                margin:${p.margin ?? 0}px;
-                ${p.customCss ?? ""}
-            ">
-                ${p.html ?? ""}
-            </div>
-        `;
-    }
-};
-// ==================================================
 // WIDGET NAVBAR
 // ==================================================
 editor.widgets.navbar = {
@@ -236,158 +174,7 @@ editor.widgets.navbar = {
         `;
     }
 };
-// ==================================================
-// WIDGET IMAGESLIDE
-// ==================================================
-editor.widgets.imageSlide = {
 
-    label: "Slider",
-    icon: "🎞️",
-
-    defaultProps: {
-        folder: "portfolio",
-        height: 400,
-        interval: 5000,
-        showArrows: true,
-        showDots: true,
-        customCss: "",
-        customClass: ""
-    },
-
-    fields: {
-
-        folder: {
-            type: "galleryFolderSelect",
-            label: "Cartella immagini",
-            group: "contenuto"
-        },
-
-        height: {
-            type: "number",
-            label: "Altezza slider px",
-            group: "stile"
-        },
-
-        interval: {
-            type: "number",
-            label: "Intervallo autoplay ms",
-            group: "stile"
-        },
-
-        showArrows: {
-            type: "checkbox",
-            label: "Mostra frecce",
-            group: "stile"
-        },
-
-        showDots: {
-            type: "checkbox",
-            label: "Mostra indicatori",
-            group: "stile"
-        },
-        
-        customCss: {
-            type: "textarea",
-            label: "CSS personalizzato",
-            group: "avanzate"
-    },
-
-        customClass: {
-            type: "text",
-            label: "Classe CSS",
-            group: "avanzate"
-    }
-    },
-
-    render(widget) {
-
-        const p = widget.props || {};
-
-        const folder = p.folder || "portfolio";
-        const height = parseInt(p.height ?? 400, 10);
-        const interval = parseInt(p.interval ?? 5000, 10);
-
-        const showArrows = editor.toBoolean(
-            p.showArrows,
-            true
-        );
-
-        const showDots = editor.toBoolean(
-            p.showDots,
-            true
-        );
-
-        const images = editor.getGalleryImages(folder);
-
-        if (!images.length) {
-
-            /*
-             * Usa la funzione già funzionante della Gallery.
-             * Non creiamo una seconda cache.
-             */
-            editor.loadGalleryImages(folder);
-
-            return `
-                <div class="widget-slider-empty">
-                    Caricamento slider: ${folder}...
-                </div>
-            `;
-        }
-
-        const slides = images.map((src, index) => `
-            <div class="slide ${index === 0 ? "active" : ""}  style=">
-                <img
-                    src="${src}"
-                    alt=""
-                    style=" 
-                        width:100%;
-                        height:${height}px;
-                        display:block;
-                        object-fit:cover;
-                                            "
-                >
-            </div>
-        `).join("");
-
-        const arrows = showArrows
-            ? `
-                <button type="button" class="prev">❮</button>
-                <button type="button" class="next">❯</button>
-            `
-            : "";
-
-        const dots = showDots
-            ? `
-                <div class="slider-dots">
-                    ${images.map((src, index) => `
-                        <button
-                            type="button"
-                            class="dot ${index === 0 ? "active" : ""}"
-                            data-slide="${index}"
-                            aria-label="Immagine ${index + 1}">
-                        </button>
-                    `).join("")}
-                </div>
-            `
-            : "";
-
-        return `
-            <div
-                class="widget-slider  ${p.customClass || ''}"
-                data-widget-id="${widget.id}"
-                data-interval="${interval}"
-                style = "${p.customCss ?? ""}";
-            >
-                <div class="slider-slides">
-                    ${slides}
-                </div>
-
-                ${arrows}
-                ${dots}
-            </div>
-        `;
-    }
-    };
 // ==================================================
 // WIDGET HEADER
 // ==================================================
@@ -627,6 +414,68 @@ defaultProps:{
     }
     };
 // ==================================================
+// WIDGET RICHTEXT
+// ==================================================
+editor.widgets.richtext = {
+
+    label: "Richtext",
+    icon: "📄",
+
+    defaultProps: {
+        html: "<p>Scrivi qui il testo...</p>",
+        padding: 0,
+        margin: 0,
+        customCss: "",
+        customClass:""
+    },
+
+    fields: {
+        html: {
+            type: "richtext",
+            label: "Testo",
+            group: "contenuto"
+        },
+
+        padding: {
+            type: "number",
+            label: "Padding px",
+            group: "stile"
+        },
+
+        margin: {
+            type: "number",
+            label: "Margin px",
+            group: "stile"
+        },
+
+        customCss: {
+            type: "textarea",
+            label: "CSS personalizzato",
+            group: "avanzate"
+        },        
+        customClass: {
+            type: "text",
+            label: "Classe CSS",
+            group: "avanzate"
+    }
+    },
+
+    render(widget) {
+
+        const p = widget.props || {};
+
+        return `
+            <div class="widget-richtext ${p.customClass}" style="
+                padding:${p.padding ?? 0}px;
+                margin:${p.margin ?? 0}px;
+                ${p.customCss ?? ""}
+            ">
+                ${p.html ?? ""}
+            </div>
+        `;
+    }
+};
+// ==================================================
 // WIDGET IMAGE
 // ==================================================
 editor.widgets.image = {
@@ -716,30 +565,357 @@ editor.widgets.image = {
         `;
     }
 };
+// ==================================================
+// WIDGET GALLERY
+// ==================================================
+editor.widgets.gallery = {
+        label: "Gallery",
+    icon: "🖼️",
+    defaultProps: {
+        folder: "portfolio",
+        columns: 3,
+        gap: 16,
+        radius: 8,
+        height: 180
+    },
+    fields: {
+        folder: { type: "galleryFolderSelect", label: "Cartella gallery", group: "contenuto" },
+        columns: { type: "number", label: "Colonne", group: "stile" },
+        gap: { type: "number", label: "Gap px", group: "stile" },
+        radius: { type: "number", label: "Radius px", group: "stile" },
+        height: { type: "number", label: "Altezza immagine px", group: "stile" }
+    },
+    render(widget) {
+        const p = widget.props || {};
+        const folder = p.folder || "portfolio";
+        const columns = parseInt(p.columns ?? 3, 10);
+        const gap = parseInt(p.gap ?? 16, 10);
+        const radius = parseInt(p.radius ?? 8, 10);
+        const height = parseInt(p.height ?? 180, 10);
 
+        // Legge immagini dalla cache
+        const images = editor.getGalleryImages(folder);
 
-    
+        if (!images.length) {
+            // Carica immagini se cache vuota
+            editor.loadGalleryImages(folder);
+            return `<div class="widget-gallery-empty">Caricamento gallery: ${folder}...</div>`;
+        }
 
-console.log(
-    "WIDGET REGISTRATI:",
-    Object.keys(editor.widgets)
-);
+        const items = images.map(src => `
+            <div class="widget-gallery-item">
+                <img src="${src}" data-src="${src}" class="gallery-lightbox-trigger" style="
+                    width:100%;
+                    display:block;
+                    border-radius:${radius}px;
+                    height:${height}px;
+                    object-fit:cover;
+                ">
+            </div>
+        `).join("");
 
+        return `
+            <div class="widget-gallery" style="
+                display:grid;
+                grid-template-columns:repeat(${columns}, 1fr);
+                gap:${gap}px;
+            ">
+                ${items}
+            </div>
+        `;
+    }
+    }
+// ==================================================
+// WIDGET IMAGESLIDE
+// ==================================================
+editor.widgets.imageSlide = {
 
+    label: "Slider",
+    icon: "🎞️",
 
+    defaultProps: {
+        folder: "portfolio",
+        height: 400,
+        interval: 5000,
+        showArrows: true,
+        showDots: true,
+        customCss: "",
+        customClass: ""
+    },
 
+    fields: {
 
+        folder: {
+            type: "galleryFolderSelect",
+            label: "Cartella immagini",
+            group: "contenuto"
+        },
 
-/*   
-editor.widgets = {
+        height: {
+            type: "number",
+            label: "Altezza slider px",
+            group: "stile"
+        },
 
-   
-image: {    //-----------------------------------------------
+        interval: {
+            type: "number",
+            label: "Intervallo autoplay ms",
+            group: "stile"
+        },
 
+        showArrows: {
+            type: "checkbox",
+            label: "Mostra frecce",
+            group: "stile"
+        },
+
+        showDots: {
+            type: "checkbox",
+            label: "Mostra indicatori",
+            group: "stile"
+        },
+        
+        customCss: {
+            type: "textarea",
+            label: "CSS personalizzato",
+            group: "avanzate"
+    },
+
+        customClass: {
+            type: "text",
+            label: "Classe CSS",
+            group: "avanzate"
+    }
+    },
+
+    render(widget) {
+
+        const p = widget.props || {};
+
+        const folder = p.folder || "portfolio";
+        const height = parseInt(p.height ?? 400, 10);
+        const interval = parseInt(p.interval ?? 5000, 10);
+
+        const showArrows = editor.toBoolean(
+            p.showArrows,
+            true
+        );
+
+        const showDots = editor.toBoolean(
+            p.showDots,
+            true
+        );
+
+        const images = editor.getGalleryImages(folder);
+
+        if (!images.length) {
+
+            /*
+             * Usa la funzione già funzionante della Gallery.
+             * Non creiamo una seconda cache.
+             */
+            editor.loadGalleryImages(folder);
+
+            return `
+                <div class="widget-slider-empty">
+                    Caricamento slider: ${folder}...
+                </div>
+            `;
+        }
+
+        const slides = images.map((src, index) => `
+            <div class="slide ${index === 0 ? "active" : ""}  style=">
+                <img
+                    src="${src}"
+                    alt=""
+                    style=" 
+                        width:100%;
+                        height:${height}px;
+                        display:block;
+                        object-fit:cover;
+                                            "
+                >
+            </div>
+        `).join("");
+
+        const arrows = showArrows
+            ? `
+                <button type="button" class="prev">❮</button>
+                <button type="button" class="next">❯</button>
+            `
+            : "";
+
+        const dots = showDots
+            ? `
+                <div class="slider-dots">
+                    ${images.map((src, index) => `
+                        <button
+                            type="button"
+                            class="dot ${index === 0 ? "active" : ""}"
+                            data-slide="${index}"
+                            aria-label="Immagine ${index + 1}">
+                        </button>
+                    `).join("")}
+                </div>
+            `
+            : "";
+
+        return `
+            <div
+                class="widget-slider  ${p.customClass || ''}"
+                data-widget-id="${widget.id}"
+                data-interval="${interval}"
+                style = "${p.customCss ?? ""}";
+            >
+                <div class="slider-slides">
+                    ${slides}
+                </div>
+
+                ${arrows}
+                ${dots}
+            </div>
+        `;
+    }
+    };
+// ==================================================
+// WIDGET VIDEO
+// ==================================================
+editor.widgets.video = {    
+    label: "Video",
+    icon: "🎥",
+
+    defaultProps: {
+        url: "",
+        aspectRatio: "16:9",
+        align: "center",
+        padding: 20,
+        margin: 20,
+        customCss:"",
+        videoCss:"",
+        customClass:""
 
     },
-    button: {   // -----------------------------------------------
 
+    fields: {
+        url: {
+            type: "text",
+            label: "URL YouTube",
+            group: "contenuto"
+        },
+
+        aspectRatio: {
+            type: "select",
+            label: "Formato",
+            group: "stile",
+            options: {
+                "16:9": "16:9",
+                "4:3": "4:3",
+                "1:1": "1:1"
+            }
+        },
+
+        align: {
+            type: "select",
+            label: "Allineamento",
+                group: "stile",
+            options: {
+                left: "Sinistra",
+                center: "Centro",
+                right: "Destra"
+            }
+        },
+
+        padding: {
+            type: "number",
+            label: "Padding px",
+            group: "stile"
+        },
+
+        margin: {
+            type: "number",
+            label: "Margin px",
+            group: "stile"
+        },
+        customCss: {
+            type: "textarea",
+            label: "CSS div",
+            group: "avanzate"
+            },
+
+            videoCss: {
+            type: "textarea",
+            label: "CSS video",
+            group: "avanzate"
+            },
+        customClass: {
+            type: "text",
+            label: "Classe CSS",
+            group: "avanzate"
+    } 
+    },
+
+    render(widget) {
+        const p = widget.props || {};
+        const videoId = editor.getYoutubeVideoId(p.url || "");
+
+        if (!videoId) {
+            return `
+                <div class="widget-video" 
+                    style="text-align:${p.align ?? "center"};
+                    padding:${p.padding ?? 0}px;
+                    margin:${p.margin ?? 0}px;
+                ">
+                    <div style="
+                        padding:20px;
+                        border:1px dashed #ccc;
+                        border-radius:8px;   ">
+                        Inserisci un URL YouTube valido
+                    </div>
+                </div>
+            `;
+        }
+
+        const ratio = editor.getAspectRatioPadding(p.aspectRatio || "16:9");
+
+        return `
+            <div class="widget-video ${p.customClass || ''} " style="
+                text-align:${p.align ?? "center"};
+                padding:${p.padding ?? 0}px;
+                margin:${p.margin ?? 0}px;
+                ${p.customCss ?? ""}
+            ">
+                <div style="
+                    position:relative;
+                    width:100%;
+                    max-width:100%;
+                    padding-top:${ratio};
+                    overflow:hidden;
+                    border-radius:8px;
+                    ${p.videoCss ?? ""} 
+                ">
+                    <iframe
+                        src="https://www.youtube.com/embed/${videoId}"
+                        title="YouTube video player"
+                        style="
+                            position:absolute;
+                            top:0;
+                            left:0;
+                            width:100%;
+                            height:100%;
+                            border:0;
+                        "
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+            </div>
+        `;
+    }
+    };  
+// ==================================================
+// WIDGET BUTTON
+// ==================================================
+editor.widgets.button = {    
         label: "Bottone",
         icon: "🔘",
 
@@ -874,9 +1050,11 @@ image: {    //-----------------------------------------------
                 </div>
             `;
         }
-    },
-    spacer: {   //-----------------------------------------------
-
+ };     
+// ==================================================
+// WIDGET SPACER
+// ==================================================
+editor.widgets.spacer = { 
         label: "Spaziatore",
         icon: "🔘",
 
@@ -914,9 +1092,11 @@ image: {    //-----------------------------------------------
             </div>    
             `;
         }
-
-    }  ,
-    icon: {     //-----------------------------------------------
+ };
+// ==================================================
+// WIDGET ICON
+// ==================================================
+editor.widgets.icon = { 
     label: "Icona",
     icon: "⭐",
 
@@ -1010,141 +1190,11 @@ image: {    //-----------------------------------------------
             </div>
         `;
     }
-    },
-    video: {    //-----------------------------------------------
-    label: "Video",
-    icon: "🎥",
-
-    defaultProps: {
-        url: "",
-        aspectRatio: "16:9",
-        align: "center",
-        padding: 20,
-        margin: 20,
-        customCss:"",
-        videoCss:"",
-        customClass:""
-
-    },
-
-    fields: {
-        url: {
-            type: "text",
-            label: "URL YouTube",
-            group: "contenuto"
-        },
-
-        aspectRatio: {
-            type: "select",
-            label: "Formato",
-            group: "stile",
-            options: {
-                "16:9": "16:9",
-                "4:3": "4:3",
-                "1:1": "1:1"
-            }
-        },
-
-        align: {
-            type: "select",
-            label: "Allineamento",
-                group: "stile",
-            options: {
-                left: "Sinistra",
-                center: "Centro",
-                right: "Destra"
-            }
-        },
-
-        padding: {
-            type: "number",
-            label: "Padding px",
-            group: "stile"
-        },
-
-        margin: {
-            type: "number",
-            label: "Margin px",
-            group: "stile"
-        },
-        customCss: {
-            type: "textarea",
-            label: "CSS div",
-            group: "avanzate"
-            },
-
-            videoCss: {
-            type: "textarea",
-            label: "CSS video",
-            group: "avanzate"
-            },
-        customClass: {
-            type: "text",
-            label: "Classe CSS",
-            group: "avanzate"
-    } 
-    },
-
-    render(widget) {
-        const p = widget.props || {};
-        const videoId = editor.getYoutubeVideoId(p.url || "");
-
-        if (!videoId) {
-            return `
-                <div class="widget-video" 
-                    style="text-align:${p.align ?? "center"};
-                    padding:${p.padding ?? 0}px;
-                    margin:${p.margin ?? 0}px;
-                ">
-                    <div style="
-                        padding:20px;
-                        border:1px dashed #ccc;
-                        border-radius:8px;   ">
-                        Inserisci un URL YouTube valido
-                    </div>
-                </div>
-            `;
-        }
-
-        const ratio = editor.getAspectRatioPadding(p.aspectRatio || "16:9");
-
-        return `
-            <div class="widget-video ${p.customClass || ''} " style="
-                text-align:${p.align ?? "center"};
-                padding:${p.padding ?? 0}px;
-                margin:${p.margin ?? 0}px;
-                ${p.customCss ?? ""}
-            ">
-                <div style="
-                    position:relative;
-                    width:100%;
-                    max-width:100%;
-                    padding-top:${ratio};
-                    overflow:hidden;
-                    border-radius:8px;
-                    ${p.videoCss ?? ""} 
-                ">
-                    <iframe
-                        src="https://www.youtube.com/embed/${videoId}"
-                        title="YouTube video player"
-                        style="
-                            position:absolute;
-                            top:0;
-                            left:0;
-                            width:100%;
-                            height:100%;
-                            border:0;
-                        "
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen
-                    ></iframe>
-                </div>
-            </div>
-        `;
-    }
-    },
-    divider: {   //-----------------------------------------------
-
+};
+// ==================================================
+// WIDGET DIVIDER
+// ==================================================
+editor.widgets.divider = { 
         label: "Divisore",
         icon: "🧱",
 
@@ -1207,7 +1257,8 @@ image: {    //-----------------------------------------------
             type: "textarea",
             label: "CSS div",
             group: "avanzate"      
- }, 
+ } 
+     },
         render: function(widget){
             const p = widget.props || {};
             return `
@@ -1236,367 +1287,12 @@ image: {    //-----------------------------------------------
             `;
         }
 
-    }  
-    },
-    richtext: {  //-----------------------------------------------
-    label: "Richtext",
-    icon: "📄",
+    }; 
 
-    defaultProps: {
-        html: "<p>Scrivi qui il testo...</p>",
-        padding: 0,
-        margin: 0,
-        customCss: ""
-    },
-
-    fields: {
-        html: {
-            type: "richtext",
-            label: "Testo",
-            group: "contenuto"
-        },
-        padding: {
-            type: "number",
-            label: "Padding px",
-            group: "stile"
-        },
-        margin: {
-            type: "number",
-            label: "Margin px",
-            group: "stile"
-        },
-        customCss: {
-            type: "textarea",
-            label: "CSS personalizzato",
-            group: "avanzate"
-        }
-    },
-
-    render(widget){
-        const p = widget.props || {};
-
-        return `
-            <div class="widget-richtext" style="
-                padding:${p.padding ?? 0}px;
-                margin:${p.margin ?? 0}px;
-                ${p.customCss ?? ""}
-            ">
-                ${p.html ?? ""}
-            </div>
-        `;
-    }
-    },
-    navbar: {  //-----------------------------------------------
-    label: "Navbar",
-    icon: "📚",
-
-    defaultProps: {
-        align: "right",
-        gap: 20,
-        color: "#000000",
-        fontSize: 16,
-        padding: 10,
-        customCss:"",
-        items: [
-        { label: "Home", type: "anchor", target: "home" },
-        { label: "Promo", type: "anchor", target: "promo" },
-        { label: "Portfolio", type: "anchor", target: "portfolio" },
-        { label: "CTA", type: "anchor", target: "CTA" }
-        ]
-    },
-
-    fields: {
-        align: {
-            type: "select",
-            label: "Allineamento",
-            options: {
-                left: "Sinistra",
-                center: "Centro",
-                right: "Destra"
-            },
-            group: "stile"
-        },
-        gap: {
-            type: "number",
-            label: "Spazio voci",
-            group: "stile"
-        },
-        color: {
-            type: "color",
-            label: "Colore link",
-            group: "stile"
-        },
-        fontSize: {
-            type: "number",
-            label: "Dimensione testo",
-            group: "stile"
-        },
-        padding: {
-            type: "number",
-            label: "Padding",
-            group: "stile"
-        },
-        customCss: {
-            type: "textarea",
-            label: "CSS personalizzato",
-            group: "avanzate"
-        },
-        items: {
-            type: "menuItems",
-            label: "Voci menu",
-            group: "contenuto"
-        }
-    },
-
-    render(widget) {
-        const p = widget.props || {};
-
-        const align = p.align ?? "right";
-        const gap = parseInt(p.gap ?? 20, 10);
-        const color = p.color ?? "#000000";
-        const fontSize = parseInt(p.fontSize ?? 16, 10);
-        const padding = parseInt(p.padding ?? 10, 10);
-
-        let justify = "flex-end";
-
-        if (align === "left") justify = "flex-start";
-        if (align === "center") justify = "center";
-
-        const items = p.items || [];
-        const links = items.map(item => {
-        const label = item.label || "Voce";
-        const type = item.type || "anchor";
-        const target = item.target || "";
-
-    let href = "#";
-
-    if (type === "anchor") {
-        href = "#" + target.replace(/^#/, "");
-    }
-
-    if (type === "page") {
-        href = "pages/" + target.replace(/\.html$/, "") + ".html";
-    }
-
-    if (type === "url") {
-        href = target;
-    }
-  return `
-        <a href="${href}" style="color:${color};">
-            ${label}
-        </a>
-    `;
-}).join("");
-
-return `
-    <nav class="widget-navbar" style="
-        display:flex;
-        justify-content:${justify};
-        align-items:center;
-        gap:${gap}px;
-        padding:${padding}px;
-        font-size:${fontSize}px;
-        ${p.customCss ?? ""};
-    " >
-
-        ${links}
-    </nav>
-`;
-    }
-    },
-    gallery : {   //-----------------------------------------------
-    label: "Gallery",
-    icon: "🖼️",
-    defaultProps: {
-        folder: "portfolio",
-        columns: 3,
-        gap: 16,
-        radius: 8,
-        height: 180
-    },
-    fields: {
-        folder: { type: "galleryFolderSelect", label: "Cartella gallery", group: "contenuto" },
-        columns: { type: "number", label: "Colonne", group: "stile" },
-        gap: { type: "number", label: "Gap px", group: "stile" },
-        radius: { type: "number", label: "Radius px", group: "stile" },
-        height: { type: "number", label: "Altezza immagine px", group: "stile" }
-    },
-    render(widget) {
-        const p = widget.props || {};
-        const folder = p.folder || "portfolio";
-        const columns = parseInt(p.columns ?? 3, 10);
-        const gap = parseInt(p.gap ?? 16, 10);
-        const radius = parseInt(p.radius ?? 8, 10);
-        const height = parseInt(p.height ?? 180, 10);
-
-        // Legge immagini dalla cache
-        const images = editor.getGalleryImages(folder);
-
-        if (!images.length) {
-            // Carica immagini se cache vuota
-            editor.loadGalleryImages(folder);
-            return `<div class="widget-gallery-empty">Caricamento gallery: ${folder}...</div>`;
-        }
-
-        const items = images.map(src => `
-            <div class="widget-gallery-item">
-                <img src="${src}" data-src="${src}" class="gallery-lightbox-trigger" style="
-                    width:100%;
-                    display:block;
-                    border-radius:${radius}px;
-                    height:${height}px;
-                    object-fit:cover;
-                ">
-            </div>
-        `).join("");
-
-        return `
-            <div class="widget-gallery" style="
-                display:grid;
-                grid-template-columns:repeat(${columns}, 1fr);
-                gap:${gap}px;
-            ">
-                ${items}
-            </div>
-        `;
-    }
-    },
-    imageSlide : {   //-----------------------------------------------
-    label: "Slider",
-    icon: "🎞️",
-
-    defaultProps: {
-        folder: "portfolio",
-        height: 400,
-        interval: 5000,
-        showArrows: true,
-        showDots: true
-    },
-
-    fields: {
-
-        folder: {
-            type: "galleryFolderSelect",
-            label: "Cartella immagini",
-            group: "contenuto"
-        },
-
-        height: {
-            type: "number",
-            label: "Altezza slider px",
-            group: "stile"
-        },
-
-        interval: {
-            type: "number",
-            label: "Intervallo autoplay ms",
-            group: "stile"
-        },
-
-        showArrows: {
-            type: "checkbox",
-            label: "Mostra frecce",
-            group: "stile"
-        },
-
-        showDots: {
-            type: "checkbox",
-            label: "Mostra indicatori",
-            group: "stile"
-        }
-    },
-
-    render(widget) {
-
-        const p = widget.props || {};
-
-        const folder = p.folder || "portfolio";
-        const height = parseInt(p.height ?? 400, 10);
-        const interval = parseInt(p.interval ?? 5000, 10);
-
-        const showArrows = editor.toBoolean(
-            p.showArrows,
-            true
-        );
-
-        const showDots = editor.toBoolean(
-            p.showDots,
-            true
-        );
-
-        const images = editor.getGalleryImages(folder);
-
-        if (!images.length) {
-
-
-            editor.loadGalleryImages(folder);
-
-            return `
-                <div class="widget-slider-empty">
-                    Caricamento slider: ${folder}...
-                </div>
-            `;
-        }
-
-        const slides = images.map((src, index) => `
-            <div class="slide ${index === 0 ? "active" : ""}">
-                <img
-                    src="${src}"
-                    alt=""
-                    style="
-                        width:100%;
-                        height:${height}px;
-                        display:block;
-                        object-fit:cover;
-                    "
-                >
-            </div>
-        `).join("");
-
-        const arrows = showArrows
-            ? `
-                <button type="button" class="prev">❮</button>
-                <button type="button" class="next">❯</button>
-            `
-            : "";
-
-        const dots = showDots
-            ? `
-                <div class="slider-dots">
-                    ${images.map((src, index) => `
-                        <button
-                            type="button"
-                            class="dot ${index === 0 ? "active" : ""}"
-                            data-slide="${index}"
-                            aria-label="Immagine ${index + 1}">
-                        </button>
-                    `).join("")}
-                </div>
-            `
-            : "";
-
-        return `
-            <div
-                class="widget-slider"
-                data-widget-id="${widget.id}"
-                data-interval="${interval}"
-            >
-                <div class="slider-slides">
-                    ${slides}
-                </div>
-
-                ${arrows}
-                ${dots}
-            </div>
-        `;
-    }
-    }
-};
-*/
-
-
-
-
+console.log(
+    "WIDGET REGISTRATI:",
+    Object.keys(editor.widgets)
+);
 
 // ==========================
 // WIDGET GALLERY DEFINITIVO
@@ -2208,27 +1904,43 @@ editor.renderWidget = function(widget){
 //  URL YouTube -> video ID
 //=================================
 editor.getYoutubeVideoId = function(url) {
+
     if (!url) return "";
 
+    url = String(url).trim();
+
+    // Accetta direttamente il solo ID YouTube
+    if (/^[A-Za-z0-9_-]{11}$/.test(url)) {
+        return url;
+    }
+
     const patterns = [
+
         /youtube\.com\/watch\?v=([^&]+)/,
+
         /youtu\.be\/([^?&]+)/,
+
         /youtube\.com\/embed\/([^?&]+)/,
+
         /youtube\.com\/shorts\/([^?&]+)/
+
     ];
 
     for (const pattern of patterns) {
+
         const match = url.match(pattern);
+
         if (match && match[1]) {
-// FB: render colonna completo
 
             return match[1];
+
         }
+
     }
 
     return "";
-};
 
+};
 //=================================
 //  aspett ratio -> padding
 //=================================

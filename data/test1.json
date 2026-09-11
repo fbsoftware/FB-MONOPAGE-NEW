@@ -3,7 +3,7 @@
         "tema": null,
         "page": "test1",
         "version": "2.0",
-        "updated_at": "2026-09-10T17:56:00+02:00"
+        "updated_at": "2026-09-11T20:57:26+02:00"
     },
     "global": {
         "colors": {
@@ -33,6 +33,122 @@
         "fonts": []
     },
     "sections": [
+        {
+            "id": "sec-1789142007492-282",
+            "background": "#ffffff",
+            "padding": "20",
+            "margin": "20",
+            "columns": [
+                {
+                    "id": "col-1789142007492-114",
+                    "width": 49,
+                    "widgets": [
+                        {
+                            "id": "w1789053201026_2",
+                            "type": "navbar",
+                            "props": {
+                                "align": "right",
+                                "gap": 20,
+                                "color": "#000000",
+                                "fontSize": 16,
+                                "padding": 10,
+                                "customCss": "",
+                                "customClass": "",
+                                "items": [
+                                    {
+                                        "label": "Home",
+                                        "type": "anchor",
+                                        "target": "home"
+                                    },
+                                    {
+                                        "label": "Promo",
+                                        "type": "anchor",
+                                        "target": "promo"
+                                    },
+                                    {
+                                        "label": "Portfolio",
+                                        "type": "anchor",
+                                        "target": "portfolio"
+                                    },
+                                    {
+                                        "label": "CTA",
+                                        "type": "anchor",
+                                        "target": "CTA"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": "w1789144480779_4",
+                            "type": "video",
+                            "props": {
+                                "url": "zwK1lx8WK0o",
+                                "aspectRatio": "16:9",
+                                "align": "center",
+                                "padding": 20,
+                                "margin": 20,
+                                "customCss": "",
+                                "videoCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 200
+                },
+                {
+                    "id": "col-1789146893181-607",
+                    "width": 43,
+                    "margin": 20,
+                    "widgets": [
+                        {
+                            "id": "w1789146899252_1",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600",
+                                "customCss": "",
+                                "buttonCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1789152703806_1",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "60",
+                                "customCss": "background: pink;",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1789153002466_1",
+                            "type": "icon",
+                            "props": {
+                                "name": "delete",
+                                "size": 48,
+                                "color": "var(--color-primary)",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "iconCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ]
+                }
+            ],
+            "height": "450"
+        },
         {
             "id": "sec-1788973202926-893",
             "background": "#ffffff",
@@ -186,18 +302,24 @@
                             }
                         },
                         {
-                            "id": "wid-1789036008241-529",
-                            "type": "textarea",
+                            "id": "w1789143269695_1",
+                            "type": "gallery",
                             "props": {
-                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
-                                "align": "left",
-                                "color": "var(--color-text)",
-                                "fontSize": "16px",
-                                "fontWeight": "400",
-                                "customCss": "",
-                                "customClass": ""
+                                "folder": "varie",
+                                "columns": "2",
+                                "gap": 16,
+                                "radius": 8,
+                                "height": 180
                             }
-                        },
+                        }
+                    ],
+                    "height": 875
+                },
+                {
+                    "id": "col-1789053192604-767",
+                    "width": 100,
+                    "margin": 20,
+                    "widgets": [
                         {
                             "id": "wid-1789036008241-560",
                             "type": "text",
@@ -223,48 +345,18 @@
                                 "imgCss": "",
                                 "customClass": ""
                             }
-                        }
-                    ],
-                    "height": 875
-                },
-                {
-                    "id": "col-1789053192604-767",
-                    "width": 100,
-                    "margin": 20,
-                    "widgets": [
+                        },
                         {
-                            "id": "w1789053201026_2",
-                            "type": "navbar",
+                            "id": "wid-1789036008241-529",
+                            "type": "textarea",
                             "props": {
-                                "align": "right",
-                                "gap": 20,
-                                "color": "#000000",
-                                "fontSize": 16,
-                                "padding": 10,
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
+                                "align": "left",
+                                "color": "var(--color-text)",
+                                "fontSize": "16px",
+                                "fontWeight": "400",
                                 "customCss": "",
-                                "customClass": "",
-                                "items": [
-                                    {
-                                        "label": "Home",
-                                        "type": "anchor",
-                                        "target": "home"
-                                    },
-                                    {
-                                        "label": "Promo",
-                                        "type": "anchor",
-                                        "target": "promo"
-                                    },
-                                    {
-                                        "label": "Portfolio",
-                                        "type": "anchor",
-                                        "target": "portfolio"
-                                    },
-                                    {
-                                        "label": "CTA",
-                                        "type": "anchor",
-                                        "target": "CTA"
-                                    }
-                                ]
+                                "customClass": ""
                             }
                         }
                     ]
@@ -274,6 +366,6 @@
         }
     ],
     "selectedType": "widget",
-    "selectedId": "w1789053101539_1",
+    "selectedId": "w1789153002466_1",
     "isDirty": true
 }
