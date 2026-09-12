@@ -847,3 +847,42 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
 }
+/* struttura     */
+.structure-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border: 1px dashed #ddd;
+    margin-bottom: 20px;
+}
+/* pannello struttura */
+#structure-panel,
+#page-structure {
+    background: #222;
+    color: #ddd;
+}
+
+/* tutte le righe della struttura */
+#page-structure .structure-row {
+    background: #222;
+    color: #ddd;
+}
+/* bottoni pubblica ed esci */
+.top-action-btn {
+    min-width: 105px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 14px;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.top-action-btn .material-symbols-outlined {
+    font-size: 20px;
+}

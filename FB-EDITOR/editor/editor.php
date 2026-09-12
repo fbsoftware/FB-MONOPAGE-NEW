@@ -15,7 +15,7 @@ require_once '../config/app.php';
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="/FB-MONOPAGE-NEW/FB-EDITOR/editor/assets/css/editor.css">
+<link rel="stylesheet" href="<?= APP_URL ?>/FB-EDITOR/editor/assets/css/editor.css">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
     <body>
@@ -53,6 +53,16 @@ if (file_exists($layoutFile)) {
             edit
             </span>
     </a></li>
+<li>
+    <a href="#structure-panel">
+        <span class="material-symbols-outlined"
+              style="font-size:30px !important;
+                     color:var(--color-text)">
+            account_tree
+        </span>
+    </a>
+</li>
+
     <li><a href="#global">                
             <span class="material-symbols-outlined" 
             style="font-size :30px !important;
@@ -66,7 +76,11 @@ if (file_exists($layoutFile)) {
         <!-- widgets ----------------------------------------------- -->
         <div id="widgets-panel"></div>
         <!-- DETTAGLI ----------------------------------------------- -->
-        <div id="widget-inspector"></div>        
+        <div id="widget-inspector"></div>  
+        <!-- struttura pagina --------------------------------------- -->
+        <div id="structure-panel">
+            <div id="page-structure"></div>
+        </div>
         <!-- impostazioni globali---------------------------- -->
         <div id="global">
             <label for="color-primary">Colore primario:</label>
@@ -135,14 +149,16 @@ if (file_exists($layoutFile)) {
     <div class="canvas-panel">
                 <div style="flex:2">&nbsp;</div>
                 <div style="display: flex; gap: 250px; justify-content: space-between; margin-bottom: 20px;">
-                    <div style="flex:7">     
+                    <div style="flex:5">     
                         <h2 style="text-align:center">Layout del tema: <span style="color: black"><?=$tema?></span> pagina: <span style="color: black"><?=$page?></span></h2>  
                     </div>
                     <div style="flex:1">
-                        <button id="save-layout">Pubblica</button>
+                        <button id="save-layout" class="top-action-btn"> 
+                        <span class="material-symbols-outlined">publish</span>Pubblica</button>
                     </div> 
                     <div style="flex:1">
-                        <button id="editor-exit"> ⬅️ Esci</button>
+                        <button id="editor-exit" class="top-action-btn">
+                         <span class="material-symbols-outlined">logout</span>Esci</button>
                     </div> 
                 </div> 
 
@@ -229,6 +245,7 @@ $(function(){
             // chiude sempre tutti i pannelli
             $("#widgets-panel").hide();
             $("#widget-inspector").hide();
+            $("#structure-panel").hide();
             $("#global").hide();
 
             // apre solo quello selezionato
@@ -239,10 +256,13 @@ $(function(){
     // stato iniziale
     $("#widgets-panel").hide();
     $("#widget-inspector").hide();
+    $("#structure-panel").hide();
     $("#global").hide();
 });
  </script>
-
+<script>
+window.APP_URL = <?= json_encode(APP_URL) ?>;
+</script>
 <script src="editor-core.js"></script>
 <script src="editor-utils.js"></script>
 <script src="editor-sections.js"></script>

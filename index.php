@@ -74,7 +74,7 @@ $pageContent = file_exists($pagePath)
 <head>
     <meta charset="UTF-8">
     <title>Sito di FB</title>
-    <link rel="stylesheet" href="/FB-MONOPAGE-NEW/assets/css/site.css">
+    <link rel="stylesheet" href="<?= APP_URL ?>/assets/css/site.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -129,6 +129,6 @@ window.addEventListener("load", function() {
 });
 </script>
 </main>
-<script src="/FB-MONOPAGE-NEW/assets/js/site-slider.js"></script>
+<script src="<?= ASSETS_URL ?>/js/site-slider.js"></script>
 </body>
 </html>
