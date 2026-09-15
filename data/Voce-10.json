@@ -1,9 +1,9 @@
 {
     "meta": {
         "tema": null,
-        "page": "abc",
+        "page": "Voce-10",
         "version": "2.0",
-        "updated_at": "2026-07-13T15:56:45+02:00"
+        "updated_at": "2026-09-15T17:32:15+02:00"
     },
     "global": {
         "colors": {
@@ -34,34 +34,35 @@
     },
     "sections": [
         {
-            "id": "sec-1783517256863-908",
+            "id": "sec-1789486291442-928",
             "background": "#ffffff",
             "padding": "20",
             "margin": "20",
             "columns": [
                 {
-                    "id": "col-1783517256864-684",
+                    "id": "col-1789486291442-882",
                     "width": 100,
                     "widgets": [
                         {
-                            "id": "w1783950933249_1",
-                            "type": "slider",
+                            "id": "w1789486300167_1",
+                            "type": "image",
                             "props": {
-                                "folder": "varie",
-                                "height": 400,
-                                "interval": 5000,
-                                "showArrows": "on",
-                                "showDots": "on"
+                                "src": "assets\/images\/image.png",
+                                "alt": "",
+                                "align": "left",
+                                "width": 300,
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": ""
                             }
                         }
                     ],
-                    "height": 408
+                    "height": 250
                 }
-            ],
-            "height": "515"
+            ]
         }
     ],
     "selectedType": "widget",
-    "selectedId": "w1783950933249_1",
+    "selectedId": "w1789486300167_1",
     "isDirty": true
 }

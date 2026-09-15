@@ -3,7 +3,7 @@
         "tema": null,
         "page": "test1",
         "version": "2.0",
-        "updated_at": "2026-09-11T20:57:26+02:00"
+        "updated_at": "2026-09-12T17:51:32+02:00"
     },
     "global": {
         "colors": {
@@ -116,16 +116,6 @@
                                 "fontWeight": "600",
                                 "customCss": "",
                                 "buttonCss": "",
-                                "customClass": ""
-                            }
-                        },
-                        {
-                            "id": "w1789152703806_1",
-                            "type": "spacer",
-                            "props": {
-                                "text": "",
-                                "height": "60",
-                                "customCss": "background: pink;",
                                 "customClass": ""
                             }
                         },
@@ -365,7 +355,7 @@
             "height": "900"
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1789153002466_1",
+    "selectedType": null,
+    "selectedId": null,
     "isDirty": true
 }

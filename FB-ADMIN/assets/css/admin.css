@@ -1,0 +1,172 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+
+/* =================================
+   LAYOUT
+================================= */
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =================================
+   SIDEBAR
+================================= */
+
+.admin-sidebar {
+    width: 240px;
+    min-height: 100vh;
+
+    background: #222;
+    color: #ddd;
+
+    flex-shrink: 0;
+}
+
+.admin-logo {
+    padding: 22px 20px;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    border-bottom: 1px solid #444;
+}
+
+
+/* =================================
+   MENU
+================================= */
+
+.admin-menu {
+    padding: 10px 0;
+}
+
+.admin-menu-item {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 20px;
+
+    color: #ddd;
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.admin-menu-item:hover {
+    background: #333;
+    color: #fff;
+}
+
+.admin-menu-item.active {
+    background: #444;
+    color: #fff;
+}
+
+.admin-menu-item .material-symbols-outlined {
+    font-size: 22px;
+}
+
+
+/* =================================
+   SOTTOMENU
+================================= */
+
+.admin-submenu-item {
+    display: block;
+
+    padding: 9px 20px 9px 53px;
+
+    color: #bbb;
+    text-decoration: none;
+}
+
+.admin-submenu-item:hover {
+    background: #333;
+    color: #fff;
+}
+
+
+/* =================================
+   CONTENUTO
+================================= */
+
+.admin-content {
+    flex: 1;
+
+    padding: 30px;
+
+    background: #fff;
+}
+
+.admin-content h1 {
+    margin-top: 0;
+}
+/* =================================
+   GESTIONE PAGINE
+================================= */
+
+.pages-toolbar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.pages-table {
+    width: 100%;
+    max-width: 800px;
+}
+
+.pages-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+
+    min-height: 42px;
+    padding: 6px 12px;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.pages-header {
+    background: #333;
+    color: #fff;
+    font-weight: bold;
+}
+
+.pages-row:not(.pages-header):nth-child(odd) {
+    background: #f3f3f3;
+}
+.menu-item {
+    display: flex;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 8px;
+    align-items: center;
+    padding: 6px 0;
+}
+
+.menu-item span {
+    font-weight: 500;
+}
+
+.menu-item small {
+    opacity: .7;
+}
+
+.menu-item button {
+    width: 100px;
+} 

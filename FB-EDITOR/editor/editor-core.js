@@ -214,6 +214,7 @@ $(document).on("click", "#save-layout", function(){
         console.log("SAVE RESULT:", res);
 
         if(res.success){
+            editor.state.isDirty = false;
             alert("Salvato!");
         } else {
             alert("Errore: " + res.error);
@@ -224,7 +225,7 @@ $(document).on("click", "#save-layout", function(){
         alert("Errore salvataggio: " + err.message);
     });
 });
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 //================================
 // SAVE / PUBBLICA
 //================================
@@ -236,11 +237,15 @@ const html = editor.renderPageHTML(editor.state.page);
 downloadHTML(html);
 
 })
-
 //===========================================
 //  EXIT da editor
 //===========================================
-$(document).on("click", "#editor-exit", function(){
+$(document).on("click", "#editor-exit", function(event){
+
+    event.preventDefault();
+
+    console.log("CLICK EXIT");
+    console.log("APP_URL =", window.APP_URL);
 
     if(editor.state.isDirty){
 
@@ -249,9 +254,9 @@ $(document).on("click", "#editor-exit", function(){
         if(!ok) return;
     }
 
-    window.location.href = "APP_URL/admin/admin.php";
+    window.location.href =
+        window.APP_URL + "/FB-ADMIN/admin.php";
 });
-
 //=================================
 // carica la configurazione globale (colori, font, ecc) da site-config.json
 //=================================
@@ -824,46 +829,102 @@ window.addEventListener("beforeunload", function(e){
         e.returnValue = "";
     }
 });
-
-//=================================
+///=================================
 //  Salva sezione come template
 //=================================
 $(document).on("click", ".save-section-template", async function(e){
+
     e.preventDefault();
     e.stopPropagation();
 
-    const sectionId = $(this).closest(".canvas-section").data("id");
+    const sectionId = $(this)
+        .closest(".canvas-section")
+        .data("id");
+
     const section = editor.findSectionById(sectionId);
 
     if(!section) return;
 
-    const name = prompt("Nome template sezione:");
+let defaultName = "";
+
+// Nuovo template
+if (
+    window.EDITOR_CONFIG.template === "new" &&
+    window.EDITOR_CONFIG.templateName
+) {
+    defaultName = window.EDITOR_CONFIG.templateName;
+}
+
+// Template esistente in modifica
+else if (
+    window.EDITOR_CONFIG.template &&
+    window.EDITOR_CONFIG.template !== "new"
+) {
+    defaultName = window.EDITOR_CONFIG.template;
+}
+
+const name = prompt(
+    "Nome template sezione:",
+    defaultName
+);
+
     if(!name) return;
 
-const res = await fetch(window.APP_URL + "/FB-EDITOR/api/save-section-template.php", {        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            name: name,
-            section: section
-        })
-    });
+    async function saveTemplate(overwrite = false){
 
-    const data = await res.json();
+        const res = await fetch(
+            window.APP_URL +
+            "/FB-EDITOR/api/save-section-template.php",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    section: section,
+                    overwrite: overwrite
+                })
+            }
+        );
 
-    if(!data.success){
-        alert("Errore salvataggio template: " + data.error);
+        return await res.json();
+    }
+
+    let data = await saveTemplate(false);
+
+    if(data.exists === true){
+
+        const ok = confirm(
+            'Il template "' +
+            name +
+            '" esiste già.\nVuoi sovrascriverlo?'
+        );
+
+        if(!ok) return;
+
+        data = await saveTemplate(true);
+    }
+
+    if(data.success === true){
+
+        alert("Template sezione salvato");
         return;
     }
 
-    alert("Template sezione salvato");
+    alert(
+        "Errore salvataggio template: " +
+        (data.error || "errore sconosciuto")
+    );
 });
 
 //=================================
-//  Calica lista dei template
+//  Carica lista dei template
 //=================================
 $(document).on("click", ".add-template", async function(){
 
-const res = await fetch(window.APP_URL + "/FB-EDITOR/api/list-section-templates.php");    const data = await res.json();
+const res = await fetch(window.APP_URL + "/FB-EDITOR/api/list-section-templates.php");    
+const data = await res.json();
 
     if(!data.success || !data.templates.length){
         alert("Nessun template disponibile");

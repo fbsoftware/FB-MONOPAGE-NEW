@@ -21,17 +21,94 @@ require_once '../config/app.php';
     <body>
 
 <?php
-$tema = '';
-$page = $_GET['page'] ?? 'home';
-$page = preg_replace('/[^a-zA-Z0-9\-_]/', '', $page);
 
-$layoutFile = "../../data/{$page}.json";
+$tema = '';
+
+$template = $_GET['template'] ?? null;
+$templateName = $_GET['name'] ?? null;
+$page = $_GET['page'] ?? null;
+
+if ($template) {
+
+    $template = preg_replace('/[^a-zA-Z0-9\-_]/', '', $template);
+
+    $layoutFile = "../templates/{$template}.json";
+
+} else {
+
+    $page = $page ?: 'home';
+    $page = preg_replace('/[^a-zA-Z0-9\-_]/', '', $page);
+
+    $layoutFile = "../../data/{$page}.json";
+}
 
 $layoutData = null;
 
 if (file_exists($layoutFile)) {
-    $layoutData = json_decode(file_get_contents($layoutFile), true);
+
+    $layoutData = json_decode(
+        file_get_contents($layoutFile),
+        true
+    );
+
+    // =========================================
+    // TEMPLATE: converte la singola sezione
+    // in una pagina temporanea
+    // =========================================
+    if ($template && isset($layoutData['section'])) {
+
+    $section = $layoutData['section'];
+
+    $layoutData = [
+
+        'meta' => [
+            'tema' => null,
+            'page' => null,
+            'version' => '2.0'
+        ],
+
+        'global' => [
+            'colors' => [
+                'primary'   => '#3366ff',
+                'secondary' => '#ff6633',
+                'accent'    => '#ffa500',
+                'text'      => '#222222',
+                'bg'        => '#baf8fd'
+            ],
+
+            'typography' => [
+                'heading' => [
+                    'fontFamily' => 'Inter',
+                    'weight' => 400
+                ],
+
+                'body' => [
+                    'fontFamily' => 'Inter',
+                    'weight' => 400
+                ],
+
+                'sizes' => [
+                    'h1' => 48,
+                    'h2' => 36,
+                    'h3' => 28,
+                    'body' => 16,
+                    'small' => 14
+                ]
+            ],
+
+            'fonts' => []
+        ],
+
+        'sections' => [
+            $section
+        ],
+
+        'selectedType' => 'section',
+        'selectedId'   => $section['id'] ?? null,
+        'isDirty'      => false
+    ];
 }
+};
 ?>
 
 <div id="editor">
@@ -149,9 +226,38 @@ if (file_exists($layoutFile)) {
     <div class="canvas-panel">
                 <div style="flex:2">&nbsp;</div>
                 <div style="display: flex; gap: 250px; justify-content: space-between; margin-bottom: 20px;">
-                    <div style="flex:5">     
-                        <h2 style="text-align:center">Layout del tema: <span style="color: black"><?=$tema?></span> pagina: <span style="color: black"><?=$page?></span></h2>  
-                    </div>
+<div style="flex:5">
+
+    <?php if ($template): ?>
+
+        <h2 style="text-align:center">
+            Template:
+            <span style="color:black">
+                <?= htmlspecialchars(
+                    $template === 'new' && $templateName
+                        ? $templateName
+                        : $template
+                ) ?>
+            </span>
+        </h2>
+
+    <?php else: ?>
+
+        <h2 style="text-align:center">
+            Layout del tema:
+            <span style="color:black">
+                <?= htmlspecialchars($tema) ?>
+            </span>
+
+            pagina:
+            <span style="color:black">
+                <?= htmlspecialchars($page) ?>
+            </span>
+        </h2>
+
+    <?php endif; ?>
+
+</div>
                     <div style="flex:1">
                         <button id="save-layout" class="top-action-btn"> 
                         <span class="material-symbols-outlined">publish</span>Pubblica</button>
@@ -197,7 +303,9 @@ window.FB_APP = {
 <script>
 window.EDITOR_CONFIG = {
     tema: null,
-    page: "<?= $_GET['page'] ?? 'home' ?>"
+    page: <?= json_encode($page) ?>,
+    template: <?= json_encode($template) ?>,
+    templateName: <?= json_encode($templateName) ?>
 };
 
   // Carica configurazione globale

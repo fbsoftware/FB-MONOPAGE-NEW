@@ -1869,6 +1869,21 @@ html += `
 editor.renderWidget = function(widget){
     const def = editor.widgets[widget.type];
 
+    if (!def || typeof def.render !== "function") {
+
+        console.error(
+            "WIDGET NON RICONOSCIUTO:",
+            widget.type,
+            widget
+        );
+
+        return `
+            <div class="canvas-widget">
+                Widget non riconosciuto: ${widget.type}
+            </div>
+        `;
+    }
+
      const selected =
         editor.state.selectedType === "widget" &&
         widget.id === editor.state.selectedId

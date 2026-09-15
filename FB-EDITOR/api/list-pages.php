@@ -1,38 +1,30 @@
 <?php
-header('Content-Type: application/json');
 
-$rootDir = dirname(__DIR__);
-$dataDir = $rootDir . '/data';
+require_once dirname(__DIR__, 2) . '/FB-EDITOR/config/app.php';
 
-if (!is_dir($dataDir)) {
-    echo json_encode([
-        'success' => false,
-        'error' => 'Cartella data non trovata'
-    ]);
-    exit;
-}
+header('Content-Type: application/json; charset=utf-8');
 
-$files = scandir($dataDir);
 $pages = [];
 
-foreach ($files as $file) {
-    if ($file === '.' || $file === '..') continue;
+foreach (glob(DATA_DIR . '/*.json') as $file) {
 
-    if (pathinfo($file, PATHINFO_EXTENSION) !== 'json') continue;
+    $name = basename($file, '.json');
 
-    if ($file === 'site-menu.json') continue;
-
-    $slug = pathinfo($file, PATHINFO_FILENAME);
+    // escludi file tecnici
+    if ($name === 'site-menu') {
+        continue;
+    }
 
     $pages[] = [
-        'title' => ucwords(str_replace(['-', '_'], ' ', $slug)),
-        'page' => $slug,
-        'file' => $file
+        "title" => ucwords(str_replace(["-", "_"], " ", $name)),
+        "page"  => $name,
+        "file"  => basename($file)
     ];
 }
 
 echo json_encode([
-    'success' => true,
-    'pages' => $pages
+    "success" => true,
+    "pages" => $pages
 ]);
+
 exit;

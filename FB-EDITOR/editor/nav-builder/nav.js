@@ -416,4 +416,5 @@ $(document).on("click", "#nav-exit", function(){
         }
     }
 
-window.location.href = window.APP_URL + "/admin/admin.php";});
+window.location.href = window.APP_URL + "/FB-ADMIN/admin.php";
+});

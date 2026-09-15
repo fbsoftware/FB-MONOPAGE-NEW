@@ -1,4 +1,10 @@
 <?php
+
+require_once dirname(__DIR__, 2) . '/FB-EDITOR/config/app.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -27,7 +33,8 @@ if (!is_dir($dataDir)) {
     mkdir($dataDir, 0777, true);
 }
 
-$menuPath = $rootDir . '/data/site-menu.json';
+//$menuPath = $rootDir . '/data/site-menu.json';
+$menuPath = DATA_DIR . '/site-menu.json';
 $json = json_encode($data['menu'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
 if (file_put_contents($menuPath, $json) === false) {
