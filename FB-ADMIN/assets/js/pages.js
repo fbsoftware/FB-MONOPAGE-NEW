@@ -5,7 +5,7 @@ async function loadPages() {
     if (!container) return;
 
     const response = await fetch(
-        window.APP_URL + "/FB-ADMIN/api/list-pages.php"
+        window.APP_URL + "/FB-EDITOR/api/list-pages.php"
     );
 
     const data = await response.json();
@@ -21,28 +21,33 @@ async function loadPages() {
             <div class="pages-row pages-header">
                 <div>Scelta</div>
                 <div>Pagina</div>
+                <div>Slug</div>
             </div>
     `;
 
-    data.pages.forEach(function (page) {
+data.pages.forEach(page => {
 
-        html += `
-            <div class="pages-row">
+html += `
+    <div class="page-row">
 
-                <div>
-                    <input
-                        type="radio"
-                        name="selected-page"
-                        value="${page}">
-                </div>
+        <input 
+            type="radio"
+            name="selected-page"
+            class="page-radio"
+            value="${page.page}">
 
-                <div>
-                    ${page}
-                </div>
+        <span class="page-title">
+            ${page.title}
+        </span>
 
-            </div>
-        `;
-    });
+        <span class="page-slug">
+            ${page.page}
+        </span>
+
+    </div>
+`;
+
+});
 
     html += `</div>`;
 

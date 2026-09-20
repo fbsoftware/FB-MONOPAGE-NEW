@@ -8,12 +8,67 @@ editor.widgets = editor.widgets || {};
 // ==================================================
 // WIDGET NAVBAR
 // ==================================================
+
+// ==================================================
+// CARICA MENU SITO PER NAVBAR
+// ==================================================
+
+editor.siteMenuForNavbar = null;
+
+editor.loadSiteMenuForNavbar = async function(){
+
+    try {
+
+        const res = await fetch(
+            window.APP_URL + "/data/site-menu.json"
+        );
+
+        if(!res.ok){
+            throw new Error(
+                "Errore HTTP " + res.status
+            );
+        }
+
+        const data = await res.json();
+
+        if(!Array.isArray(data)){
+            throw new Error(
+                "Formato site-menu.json non valido"
+            );
+        }
+
+        editor.siteMenuForNavbar = data;
+
+        console.log(
+            "MENU SITO CARICATO PER NAVBAR:",
+            editor.siteMenuForNavbar
+        );
+
+        editor.render();
+
+    }
+    catch(err){
+
+        console.error(
+            "Errore caricamento menu sito Navbar:",
+            err
+        );
+
+        editor.siteMenuForNavbar = [];
+
+        editor.render();
+
+    }
+
+};
+// ==================================================
 editor.widgets.navbar = {
 
     label: "Navbar",
     icon: "📚",
 
     defaultProps: {
+        source: "manual",
         align: "right",
         gap: 20,
         color: "#000000",
@@ -47,6 +102,20 @@ editor.widgets.navbar = {
     },
 
     fields: {
+        source: {
+
+            type: "select",
+
+            label: "Origine menu",
+
+            options: {
+                manual: "Manuale",
+                site: "Menu sito"
+            },
+
+            group: "contenuto"
+
+        },
         align: {
             type: "select",
             label: "Allineamento",
@@ -120,9 +189,36 @@ editor.widgets.navbar = {
             justify = "center";
         }
 
-        const items = Array.isArray(p.items)
-            ? p.items
-            : [];
+let items = [];
+
+if (p.source === "site") {
+
+    // Il menu non è ancora stato caricato
+    if (editor.siteMenuForNavbar === null) {
+
+        editor.loadSiteMenuForNavbar();
+
+    } else {
+
+        items = editor.siteMenuForNavbar.map(item => {
+
+            return {
+                label: item.title || "Voce",
+                type: item.type || "anchor",
+                target: item.target || ""
+            };
+
+        });
+
+    }
+
+} else {
+
+    items = Array.isArray(p.items)
+        ? p.items
+        : [];
+
+}
 
         const links = items
             .map(item => {
@@ -138,13 +234,14 @@ editor.widgets.navbar = {
                 }
 
                 if (type === "page") {
-                    href =
-                        "pages/" +
-                        target.replace(/\.html$/, "") +
-                        ".html";
-                }
+                href =
+                    window.APP_URL +
+                    "/PAGES/" +
+                    target.replace(/\.html$/, "") +
+                    ".html";
+            }
 
-                if (type === "url") {
+                if (type === "external" || type === "url") {
                     href = target;
                 }
 
@@ -1518,6 +1615,7 @@ $panel.append(`
 groups[groupName].forEach(fieldName => {
 
     const field = def.fields[fieldName];
+console.log("FIELD INSPECTOR:", fieldName, field);
 
     let value =
         widget.props && widget.props[fieldName] !== undefined
@@ -1785,8 +1883,7 @@ html += `
         <select data-menu-new-field="type">
             <option value="anchor">Anchor</option>
             <option value="page">Pagina</option>
-            <option value="url">URL</option>
-        </select>
+            <option value="external">Link esterno</option>        </select>
 
         <input type="text" data-menu-new-field="target" placeholder="Target">
 

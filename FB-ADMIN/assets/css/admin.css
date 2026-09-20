@@ -143,9 +143,20 @@ body {
 }
 
 .pages-header {
+    display: grid;
+    grid-template-columns: 80px 180px 1fr;
+    gap: 10px;
+    align-items: center;
+
     background: #333;
-    color: #fff;
+    color: white;
+
+    padding: 6px 0;
     font-weight: bold;
+}
+
+.pages-header div:first-child {
+    padding-left: 10px;
 }
 
 .pages-row:not(.pages-header):nth-child(odd) {
@@ -170,3 +181,24 @@ body {
 .menu-item button {
     width: 100px;
 } 
+/* riga deele pagine */
+.page-row {
+    display: grid;
+    grid-template-columns: 80px 180px 1fr;
+    align-items: center;
+    gap: 10px;
+
+    padding: 6px 0;
+}
+
+.page-row input[type="radio"] {
+    margin: 0;
+}
+
+.page-title {
+    font-weight: bold;
+}
+
+.page-slug {
+    color: #555;
+}

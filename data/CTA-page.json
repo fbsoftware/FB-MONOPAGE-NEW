@@ -3,7 +3,7 @@
         "tema": null,
         "page": "CTA-page",
         "version": "2.0",
-        "updated_at": "2026-09-13T15:23:14+02:00"
+        "updated_at": "2026-09-20T16:44:07+02:00"
     },
     "global": {
         "colors": {
@@ -43,6 +43,42 @@
                     "id": "col-1789305731592-988",
                     "width": 50,
                     "widgets": [
+                        {
+                            "id": "w1789651502505_1",
+                            "type": "navbar",
+                            "props": {
+                                "source": "manual",
+                                "align": "right",
+                                "gap": 20,
+                                "color": "#000000",
+                                "fontSize": 16,
+                                "padding": 10,
+                                "customCss": "",
+                                "customClass": "",
+                                "items": [
+                                    {
+                                        "label": "Home",
+                                        "type": "anchor",
+                                        "target": "home"
+                                    },
+                                    {
+                                        "label": "Promo",
+                                        "type": "anchor",
+                                        "target": "promo"
+                                    },
+                                    {
+                                        "label": "Portfolio",
+                                        "type": "anchor",
+                                        "target": "portfolio"
+                                    },
+                                    {
+                                        "label": "CTA",
+                                        "type": "anchor",
+                                        "target": "CTA"
+                                    }
+                                ]
+                            }
+                        },
                         {
                             "id": "w1789305745218_1",
                             "type": "header",
@@ -90,7 +126,7 @@
             ]
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1789305765730_3",
+    "selectedType": "section",
+    "selectedId": "sec-1789305731592-365",
     "isDirty": true
 }

@@ -102,9 +102,9 @@ function renderAvailablePages(){
 
 adminAvailablePages.forEach(page => {
 
-    const presente = adminSiteMenu.some(
-        item => item.page === page.page
-    );
+const presente = adminSiteMenu.some(
+    item => item.target === page.page
+);
 
     html += `
         <div class="available-page-item">
@@ -150,34 +150,44 @@ console.log("RENDER SITE MENU:", adminSiteMenu);
 
 adminSiteMenu.forEach((item, index) => {
 
-    html += `
-        <div class="menu-item">
+html += `
+    <div class="menu-item">
 
-            <span style="width: 100px; display: inline-block; overflow: hidden; text-overflow: ellipsis;">
-                ${item.title}
-            </span>
+        <span class="menu-title">
+            ${item.title}
+        </span>
 
-            <small style="width: 100px; display: inline-block; overflow: hidden; text-overflow: ellipsis;">
-                ${item.page}
-            </small>
+        <small class="menu-type">
+            ${item.type}
+        </small>
 
-            <button
-                class="menu-move-up"
-                data-index="${index}">
-                ↑
-            </button>
+        <small class="menu-target">
+            ${item.target}
+        </small>
 
-            <button
-                class="menu-move-down"
-                data-index="${index}">
-                ↓
-            </button>
+<button
+    class="menu-move-up"
+    data-index="${index}">
+    ↑
+</button>
 
-            <button
-                class="menu-delete-item"
-                data-index="${index}">
-                Rimuovi
-            </button>
+<button
+    class="menu-move-down"
+    data-index="${index}">
+    ↓
+</button>
+
+<button
+    class="menu-edit-item"
+    data-index="${index}">
+    Modifica
+</button>
+
+<button
+    class="menu-delete-item"
+    data-index="${index}">
+    Rimuovi
+</button>
 
         </div>
     `;
@@ -210,7 +220,8 @@ document.addEventListener(
         adminSiteMenu.push({
 
             title: btn.dataset.title,
-            page: btn.dataset.page,
+            type: "page",
+            target: btn.dataset.page,
             level: 0
 
         });
@@ -351,6 +362,96 @@ document.addEventListener(
             return;
 
         saveMenu();
+
+    }
+);
+
+//---------------------------------------------------------
+// Modifica titolo voce menu
+//---------------------------------------------------------
+document.addEventListener(
+    "click",
+    function(e){
+
+        const btn = e.target.closest(".menu-edit-item");
+
+        if(!btn) return;
+
+
+        const index = Number(btn.dataset.index);
+
+        const item = adminSiteMenu[index];
+
+
+        const nuovoTitolo = prompt(
+            "Titolo voce menu:",
+            item.title
+        );
+
+        if(!nuovoTitolo) return;
+
+
+        let sceltaTipo = prompt(
+            "Tipo voce:\n\n" +
+            "1 = Pagina\n" +
+            "2 = Anchor\n" +
+            "3 = Link esterno",
+
+            item.type === "anchor"
+                ? "2"
+                : item.type === "external"
+                    ? "3"
+                    : "1"
+        );
+
+
+        if(!sceltaTipo) return;
+
+
+        let nuovoTipo;
+
+        switch(sceltaTipo){
+
+            case "2":
+                nuovoTipo = "anchor";
+                break;
+
+            case "3":
+                nuovoTipo = "external";
+                break;
+
+            default:
+                nuovoTipo = "page";
+        }
+
+
+        item.title = nuovoTitolo;
+        item.type = nuovoTipo;
+
+
+        //=================================================
+        // TARGET
+        //=================================================
+
+        if(nuovoTipo !== "page"){
+
+            const nuovoTarget = prompt(
+                "Destinazione:",
+                item.target || ""
+            );
+
+            if(nuovoTarget === null) return;
+
+            item.target = nuovoTarget;
+
+        }
+
+
+        // elimina eventuale vecchio campo
+        delete item.page;
+
+
+        renderSiteMenu();
 
     }
 );

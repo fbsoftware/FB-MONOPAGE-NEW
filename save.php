@@ -424,10 +424,10 @@ function renderWidgetHTML(array $widget): string
 
 }
 
-
 //------------------------------------------
 // Render widget navbar in HTML pubblico
 //------------------------------------------
+
 function renderNavbarWidgetHTML($widget)
 {
     $p = $widget['props'] ?? [];
@@ -449,35 +449,97 @@ function renderNavbarWidgetHTML($widget)
         $justify = 'center';
     }
 
-    $items = $p['items'] ?? [];
+
+    //=================================================
+    // SORGENTE DEL MENU
+    //=================================================
+
+    $source = $p['source'] ?? 'manual';
+
+    if ($source === 'site') {
+
+        $menuPath = __DIR__ . '/data/site-menu.json';
+        if (file_exists($menuPath)) {
+
+            $json = file_get_contents($menuPath);
+            $siteMenu = json_decode($json, true);
+
+            $items = is_array($siteMenu)
+                ? $siteMenu
+                : [];
+
+        } else {
+
+            $items = [];
+
+        }
+
+    } else {
+
+        $items = $p['items'] ?? [];
+
+    }
+
+
+    //=================================================
+    // RENDER VOCI
+    //=================================================
+
     $links = '';
 
     foreach ($items as $item) {
 
-        $label = $item['label'] ?? 'Voce';
+        $label = $item['label']
+            ?? $item['title']
+            ?? 'Voce';
+
         $type = $item['type'] ?? 'anchor';
+
         $target = $item['target'] ?? '';
 
         $href = '#';
 
+
+        // Anchor
         if ($type === 'anchor') {
+
             $href = '#' . ltrim($target, '#');
+
         }
 
+
+        // Pagina
         if ($type === 'page') {
-            $href = preg_replace('/\.html$/', '', $target) . '.html';
+
+            $page = preg_replace(
+                '/\.html$/',
+                '',
+                $target
+            );
+
+            $href = '/FB-MONOPAGE-NEW/PAGES/' . $page . '.html';
+
         }
 
-        if ($type === 'url') {
+
+        // Link esterno
+        if ($type === 'external' || $type === 'url') {
+
             $href = $target;
+
         }
+
 
         $links .= '
-            <a href="' . h($href) . '" style="color:' . h($color) . ';">
+            <a
+                href="' . h($href) . '"
+                style="color:' . h($color) . ';"
+            >
                 ' . h($label) . '
             </a>
         ';
     }
+
 
     return '
         <nav class="widget-navbar" style="
