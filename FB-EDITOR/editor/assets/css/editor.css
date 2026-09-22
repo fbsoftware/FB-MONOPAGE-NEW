@@ -125,6 +125,11 @@ display: none !important;
 .canvas-panel {
     border: 0px;
     width: 1240px;
+    padding:0 10px;
+    flex: 1;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .hint {
@@ -841,12 +846,6 @@ body {
     flex-shrink: 0;
 }
 
-.canvas-panel {
-    flex: 1;
-    height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
 /* struttura     */
 .structure-section {
     display: flex;

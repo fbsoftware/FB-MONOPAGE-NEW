@@ -2,20 +2,43 @@
 // Editor Widgets - proprietà + campi di modifica
 //============================================================== 
 var editor = editor || {};
-
+console.log("FILE NAVBAR WIDGET CARICATO - VERSIONE TEST");
 editor.widgets = editor.widgets || {};
 
 // ==================================================
 // WIDGET NAVBAR
 // ==================================================
 
-// ==================================================
-// CARICA MENU SITO PER NAVBAR
-// ==================================================
 
 editor.siteMenuForNavbar = null;
 
+// ==================================================
+// CONVERTI MENU SITO IN VOCI NAVBAR
+// ==================================================
+editor.convertSiteMenuToNavbarItems = function(menu){
+
+    if(!Array.isArray(menu)){
+        return [];
+    }
+
+    return menu.map(item => {
+
+        return {
+            label: item.title || "Voce",
+            type: item.type || "anchor",
+            target: item.target || ""
+        };
+
+    });
+
+};
+
+// ==================================================
+// CARICA MENU SITO PER NAVBAR
+// ==================================================
 editor.loadSiteMenuForNavbar = async function(){
+
+ //alert("ENTRATO loadSiteMenuForNavbar");
 
     try {
 
@@ -39,8 +62,13 @@ editor.loadSiteMenuForNavbar = async function(){
 
         editor.siteMenuForNavbar = data;
 
-        console.log(
-            "MENU SITO CARICATO PER NAVBAR:",
+        if(editor.currentNavbarWidget){
+            editor.currentNavbarWidget.props.items =
+            editor.convertSiteMenuToNavbarItems(data);
+            editor.state.isDirty = true;
+        }
+
+        const tree = editor.buildMenuTree(
             editor.siteMenuForNavbar
         );
 
@@ -61,6 +89,70 @@ editor.loadSiteMenuForNavbar = async function(){
     }
 
 };
+
+console.log("NAVBAR JS CARICATO");
+
+// ==================================================
+// Costruisce la gerarchia del menu dai livelli
+// ==================================================
+editor.buildMenuTree = function(items)
+{
+    const root = [];
+    const stack = [];
+
+    items.forEach(item => {
+
+        const level = Math.max(
+            0,
+            Number(item.level ?? 0)
+        );
+
+        const node = {
+            ...item,
+            children: []
+        };
+
+        if(level === 0){
+
+            root.push(node);
+
+            stack[0] = node;
+
+            // elimina eventuali livelli superiori
+            stack.length = 1;
+
+            return;
+        }
+
+        // Trova il genitore al livello precedente
+        const parent = stack[level - 1];
+
+        if(parent){
+
+            parent.children.push(node);
+
+        } else {
+
+            // Livello non valido:
+            // lo riportiamo alla radice
+            root.push(node);
+
+        }
+
+        stack[level] = node;
+
+        // elimina eventuali livelli superiori
+        stack.length = level + 1;
+
+    });
+
+    return root;
+
+};
+console.log("BUILD MENU TREE: FUNZIONE DEFINITA");
+
+// ==================================================
+// WIDGET NAVBAR
 // ==================================================
 editor.widgets.navbar = {
 
@@ -170,8 +262,15 @@ editor.widgets.navbar = {
     },
 
     render(widget) {
+console.log("NAVBAR WIDGET:", widget);
+editor.currentNavbarWidget = widget;
 
         const p = widget.props || {};
+
+console.log(
+    "NAVBAR RENDER ITEMS:",
+    widget.props.items
+);
 
         const align = p.align ?? "right";
         const gap = parseInt(p.gap ?? 20, 10);
@@ -193,26 +292,19 @@ let items = [];
 
 if (p.source === "site") {
 
-    // Il menu non è ancora stato caricato
     if (editor.siteMenuForNavbar === null) {
 
         editor.loadSiteMenuForNavbar();
 
     } else {
 
-        items = editor.siteMenuForNavbar.map(item => {
-
-            return {
-                label: item.title || "Voce",
-                type: item.type || "anchor",
-                target: item.target || ""
-            };
-
-        });
-
+        items = editor.convertSiteMenuToNavbarItems(
+            editor.siteMenuForNavbar
+        );
     }
+}
 
-} else {
+else {
 
     items = Array.isArray(p.items)
         ? p.items
@@ -1615,7 +1707,15 @@ $panel.append(`
 groups[groupName].forEach(fieldName => {
 
     const field = def.fields[fieldName];
-console.log("FIELD INSPECTOR:", fieldName, field);
+
+        // Nasconde le voci menu quando la sorgente è Menu sito
+        if(
+            widget.type === "navbar" &&
+            fieldName === "items" &&
+            widget.props?.source === "site"
+        ){
+            return;
+        }
 
     let value =
         widget.props && widget.props[fieldName] !== undefined
@@ -1846,7 +1946,7 @@ editor.renderInspectorInput = function(fieldName, field, value, dataAttr){
     }
 
     let html = `
-        <div class="menu-items-editor" data-field="${fieldName}">
+        <div class="menu-items-editor">
     `;
 
     items.forEach((item, index) => {

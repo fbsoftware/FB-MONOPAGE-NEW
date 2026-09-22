@@ -222,7 +222,6 @@ editor.renderSection = function(section){
     const bgImage = section.backgroundImage
         ? `url('${editor.resolveAssetUrl(section.backgroundImage)}')`
         : "none";
-//console.log("SECTION:", section.id, "ANCHOR:", section.anchor, section);
     const $section = $("<div id='" + section.anchor + "'>")
         .addClass(`canvas-section ${selected}`)
         .attr("data-id", section.id)

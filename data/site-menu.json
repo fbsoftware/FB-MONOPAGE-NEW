@@ -1,20 +1,20 @@
 [
     {
-        "title": "Test1-page",
-        "type": "page",
-        "target": "test1",
-        "level": 0
-    },
-    {
         "title": "Test2-anchor",
         "type": "anchor",
         "target": "contatti",
         "level": 0
     },
     {
+        "title": "Test1-page",
+        "type": "page",
+        "target": "test1",
+        "level": 1
+    },
+    {
         "title": "Voce 9",
         "type": "external",
         "target": "https:\/\/www.faustobresciani.it",
-        "level": 0
+        "level": 2
     }
 ]

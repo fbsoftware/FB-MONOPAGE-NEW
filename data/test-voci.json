@@ -3,7 +3,7 @@
         "tema": null,
         "page": "test-voci",
         "version": "2.0",
-        "updated_at": "2026-09-20T16:44:40+02:00"
+        "updated_at": "2026-09-22T17:55:11+02:00"
     },
     "global": {
         "colors": {
@@ -44,10 +44,10 @@
                     "width": 50,
                     "widgets": [
                         {
-                            "id": "w1789833188521_1",
+                            "id": "w1790092368837_1",
                             "type": "navbar",
                             "props": {
-                                "source": "site",
+                                "source": "manual",
                                 "align": "right",
                                 "gap": 20,
                                 "color": "#000000",
@@ -75,6 +75,11 @@
                                         "label": "CTA",
                                         "type": "anchor",
                                         "target": "CTA"
+                                    },
+                                    {
+                                        "label": "Nuova voce",
+                                        "type": "anchor",
+                                        "target": "NEW"
                                     }
                                 ]
                             }
@@ -84,7 +89,7 @@
             ]
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1789833188521_1",
+    "selectedType": null,
+    "selectedId": null,
     "isDirty": true
 }

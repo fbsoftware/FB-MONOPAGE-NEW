@@ -33,7 +33,6 @@ if (!is_dir($dataDir)) {
     mkdir($dataDir, 0777, true);
 }
 
-//$menuPath = $rootDir . '/data/site-menu.json';
 $menuPath = DATA_DIR . '/site-menu.json';
 $json = json_encode($data['menu'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 

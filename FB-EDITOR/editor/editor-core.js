@@ -73,8 +73,6 @@ editor.loadGalleryFolders = function(){
         );
 };
 
-//console.log("CORE: chiamo loadGalleryFolders");
-//editor.loadGalleryFolders();
 //=================================
 // risolve path immagini
 //=================================
@@ -187,7 +185,7 @@ $(document).on("click", ".duplicate", function(e){
 
 });
 
-///================================
+//================================
 // SAVE: BOTTONE PUBBLICA
 //================================
 $(document).on("click", "#save-layout", function(){
@@ -434,6 +432,12 @@ $(document).on("input change", "#widget-inspector [data-field]", function(){
     const field = $(this).data("field");
     const value = $(this).val();
 
+    // Il contenitore delle voci menu non è un campo
+    // gestito dall'handler generico.
+    if ($(this).hasClass("menu-items-editor")) {
+        return;
+    }
+    
     editor.state.isDirty = true;
 
     let item;

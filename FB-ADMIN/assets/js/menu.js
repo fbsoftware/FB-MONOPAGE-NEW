@@ -11,8 +11,6 @@ let adminAvailablePages = [];
 //---------------------------------------------------------
 async function loadMenu(){
 
-    console.log("MENU VIEW CARICATA");
-
     await loadAvailablePages();
     await loadSiteMenu();
 
@@ -34,20 +32,15 @@ async function loadAvailablePages(){
     //const data = await res.json();
     const text = await res.text();
 
-console.log("RISPOSTA LIST-PAGES:", text);
+    const data = JSON.parse(text);
 
-const data = JSON.parse(text);
-
-console.log("PAGINE:", data);
-
-    if(data.success && Array.isArray(data.pages)){
-        adminAvailablePages = data.pages;
-    } else {
-        adminAvailablePages = [];
-    }
+        if(data.success && Array.isArray(data.pages)){
+            adminAvailablePages = data.pages;
+        } else {
+            adminAvailablePages = [];
+        }
 
 }
-
 
 //---------------------------------------------------------
 // Carica menu salvato
@@ -59,15 +52,12 @@ async function loadSiteMenu(){
     );
 
     const data = await res.json();
-    console.log("MENU:", data);
 
 if(data.success && Array.isArray(data.menu)){
 
     adminSiteMenu = data.menu;
-    console.log("ADMIN SITE MENU DOPO ASSEGNAZIONE:", adminSiteMenu);
 
     console.log(
-        "MENU CARICATO:",
         adminSiteMenu
     );
 
@@ -135,7 +125,6 @@ const presente = adminSiteMenu.some(
 // Render menu attuale
 //---------------------------------------------------------
 function renderSiteMenu(){
-console.log("RENDER SITE MENU:", adminSiteMenu);
     const box = document.querySelector(
         "#site-menu-builder"
     );
@@ -164,6 +153,24 @@ html += `
         <small class="menu-target">
             ${item.target}
         </small>
+
+        <span class="menu-level">
+            ${item.level ?? 0}
+        </span>
+
+    <button
+        type="button"
+        class="menu-level-down"
+        data-index="${index}">
+        −
+    </button>
+
+    <button
+        type="button"
+        class="menu-level-up"
+        data-index="${index}">
+        +
+    </button>
 
 <button
     class="menu-move-up"
@@ -194,7 +201,6 @@ html += `
 
 });
 
-//console.log("HTML MENU:", html);
     box.innerHTML = html;
 
 }
@@ -208,10 +214,7 @@ document.addEventListener(
 
         const btn = e.target.closest(".menu-add-page");
 
-        console.log("BTN TROVATO:", btn);
-
         if(!btn) {
-            console.log("ESCO DAL RETURN");
             return;
         }
 
@@ -450,6 +453,61 @@ document.addEventListener(
         // elimina eventuale vecchio campo
         delete item.page;
 
+
+        renderSiteMenu();
+
+    }
+);
+//---------------------------------------------------------
+// Diminuisci livello voce menu
+//---------------------------------------------------------
+document.addEventListener(
+    "click",
+    function(e){
+
+        const btn = e.target.closest(".menu-level-down");
+
+        if(!btn) return;
+
+        const index = Number(btn.dataset.index);
+
+        const item = adminSiteMenu[index];
+
+        if(!item) return;
+
+        const level = Number(item.level ?? 0);
+
+        if(level > 0){
+
+            item.level = level - 1;
+
+        }
+
+        renderSiteMenu();
+
+    }
+);
+
+//---------------------------------------------------------
+// Aumenta livello voce menu
+//---------------------------------------------------------
+document.addEventListener(
+    "click",
+    function(e){
+
+        const btn = e.target.closest(".menu-level-up");
+
+        if(!btn) return;
+
+        const index = Number(btn.dataset.index);
+
+        const item = adminSiteMenu[index];
+
+        if(!item) return;
+
+        const level = Number(item.level ?? 0);
+
+        item.level = level + 1;
 
         renderSiteMenu();
 
