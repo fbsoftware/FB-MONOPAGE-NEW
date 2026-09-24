@@ -1,20 +1,32 @@
 [
     {
-        "title": "Test2-anchor",
-        "type": "anchor",
-        "target": "contatti",
-        "level": 0
-    },
-    {
         "title": "Test1-page",
         "type": "page",
         "target": "test1",
+        "level": 0
+    },
+    {
+        "title": "Test2-anchor",
+        "type": "anchor",
+        "target": "contatti",
         "level": 1
+    },
+    {
+        "title": "CTA Page",
+        "type": "page",
+        "target": "CTA-page",
+        "level": 2
     },
     {
         "title": "Voce 9",
         "type": "external",
         "target": "https:\/\/www.faustobresciani.it",
         "level": 2
+    },
+    {
+        "title": "Voce 9",
+        "type": "page",
+        "target": "voce-9",
+        "level": 0
     }
 ]

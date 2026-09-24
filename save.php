@@ -424,9 +424,9 @@ function renderWidgetHTML(array $widget): string
 
 }
 
-//------------------------------------------
+// ------------------------------------------
 // Render widget navbar in HTML pubblico
-//------------------------------------------
+// ------------------------------------------
 
 function renderNavbarWidgetHTML($widget)
 {
@@ -434,6 +434,8 @@ function renderNavbarWidgetHTML($widget)
 
     $align = $p['align'] ?? 'right';
     $gap = intval($p['gap'] ?? 20);
+    $orientation = $p['orientation'] ?? 'horizontal';
+error_log("NAVBAR PHP ORIENTATION = " . $orientation);
     $color = $p['color'] ?? '#000000';
     $fontSize = intval($p['fontSize'] ?? 16);
     $padding = intval($p['padding'] ?? 10);
@@ -450,15 +452,16 @@ function renderNavbarWidgetHTML($widget)
     }
 
 
-    //=================================================
+    // =================================================
     // SORGENTE DEL MENU
-    //=================================================
+    // =================================================
 
     $source = $p['source'] ?? 'manual';
 
     if ($source === 'site') {
 
         $menuPath = __DIR__ . '/data/site-menu.json';
+
         if (file_exists($menuPath)) {
 
             $json = file_get_contents($menuPath);
@@ -471,79 +474,216 @@ function renderNavbarWidgetHTML($widget)
         } else {
 
             $items = [];
-
         }
 
     } else {
 
         $items = $p['items'] ?? [];
-
     }
 
 
-    //=================================================
-    // RENDER VOCI
-    //=================================================
+    // =================================================
+    // COSTRUISCE ALBERO DEL MENU
+    // =================================================
 
-    $links = '';
+    $buildMenuTree = function($items) {
 
-    foreach ($items as $item) {
+        $root = [];
+        $stack = [];
 
-        $label = $item['label']
-            ?? $item['title']
-            ?? 'Voce';
+        foreach ($items as $item) {
 
-        $type = $item['type'] ?? 'anchor';
-
-        $target = $item['target'] ?? '';
-
-        $href = '#';
-
-
-        // Anchor
-        if ($type === 'anchor') {
-
-            $href = '#' . ltrim($target, '#');
-
-        }
-
-
-        // Pagina
-        if ($type === 'page') {
-
-            $page = preg_replace(
-                '/\.html$/',
-                '',
-                $target
+            $level = max(
+                0,
+                intval($item['level'] ?? 0)
             );
 
-            $href = '/FB-MONOPAGE-NEW/PAGES/' . $page . '.html';
+            $node = $item;
+            $node['children'] = [];
 
+            if ($level === 0) {
+
+                $root[] = $node;
+
+                $index = count($root) - 1;
+
+                $stack[0] = &$root[$index];
+
+                $stack = array_slice($stack, 0, 1);
+
+                unset($node);
+
+                continue;
+            }
+
+            if (isset($stack[$level - 1])) {
+
+                $stack[$level - 1]['children'][] = $node;
+
+                $index = count(
+                    $stack[$level - 1]['children']
+                ) - 1;
+
+                $stack[$level] =
+                    &$stack[$level - 1]['children'][$index];
+
+                $stack = array_slice(
+                    $stack,
+                    0,
+                    $level + 1
+                );
+
+            } else {
+
+                // Livello non valido:
+                // riportiamo la voce alla radice
+
+                $root[] = $node;
+
+                $index = count($root) - 1;
+
+                $stack[0] = &$root[$index];
+
+                $stack = array_slice($stack, 0, 1);
+            }
+
+            unset($node);
+        }
+error_log("NAVBAR PHP CLASS = " . $orientationClass);    
+
+        return $root;
+    };
+
+
+    $menuTree = $buildMenuTree($items);
+
+
+    // =================================================
+    // RENDER RICORSIVO DEL MENU
+    // =================================================
+
+    $renderMenuTree = function($nodes) use (
+        &$renderMenuTree,
+        $color
+    ) {
+
+        $html = '';
+
+        foreach ($nodes as $item) {
+
+            $label = $item['label']
+                ?? $item['title']
+                ?? 'Voce';
+
+            $type = $item['type'] ?? 'anchor';
+            $target = $item['target'] ?? '';
+
+            $href = '#';
+
+
+            // -----------------------------------------
+            // Anchor
+            // -----------------------------------------
+
+            if ($type === 'anchor') {
+
+                $href = '#' . ltrim($target, '#');
+            }
+
+
+            // -----------------------------------------
+            // Pagina
+            // -----------------------------------------
+
+            if ($type === 'page') {
+
+                $page = preg_replace(
+                    '/\.html$/',
+                    '',
+                    $target
+                );
+
+                $href =
+                    '/FB-MONOPAGE-NEW/PAGES/' .
+                    $page .
+                    '.html';
+            }
+
+
+            // -----------------------------------------
+            // Link esterno
+            // -----------------------------------------
+
+            if (
+                $type === 'external' ||
+                $type === 'url'
+            ) {
+
+                $href = $target;
+            }
+
+
+            $html .= '
+                <li class="navbar-item">
+
+                    <a
+                        href="' . h($href) . '"
+                        style="color:' . h($color) . ';"
+                    >
+                        ' . h($label) . '
+                    </a>
+            ';
+
+
+            // -----------------------------------------
+            // Eventuali figli
+            // -----------------------------------------
+
+            if (
+                !empty($item['children']) &&
+                is_array($item['children'])
+            ) {
+
+                $html .= '
+                    <ul class="navbar-submenu">
+                        ' .
+                        $renderMenuTree(
+                            $item['children']
+                        ) .
+                    '
+                    </ul>
+                ';
+            }
+
+
+            $html .= '
+                </li>
+            ';
         }
 
-
-        // Link esterno
-        if ($type === 'external' || $type === 'url') {
-
-            $href = $target;
-
-        }
+        return $html;
+    };
 
 
-        $links .= '
-            <a
-                href="' . h($href) . '"
-                style="color:' . h($color) . ';"
-            >
-                ' . h($label) . '
-            </a>
-        ';
-    }
+    // =================================================
+    // HTML FINALE
+    // =================================================
 
+    $links = '
+        <ul class="navbar-menu">
+            ' .
+            $renderMenuTree($menuTree) .
+            '
+        </ul>
+    ';
+    $orientationClass =
+        $orientation === 'vertical'
+            ? 'vertical'
+            : 'horizontal';
 
     return '
-        <nav class="widget-navbar" style="
-            display:flex;
+        <nav class="widget-navbar ' . h($orientationClass) . '" style="
+            display:flex; 
             justify-content:' . h($justify) . ';
             align-items:center;
             gap:' . $gap . 'px;
@@ -555,7 +695,6 @@ function renderNavbarWidgetHTML($widget)
         </nav>
     ';
 }
-
 //------------------------------------------
 // Render widget gallery in HTML pubblico
 //------------------------------------------

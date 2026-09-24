@@ -3,7 +3,7 @@
         "tema": null,
         "page": "test-voci",
         "version": "2.0",
-        "updated_at": "2026-09-22T17:55:11+02:00"
+        "updated_at": "2026-09-24T18:13:57+02:00"
     },
     "global": {
         "colors": {
@@ -44,10 +44,11 @@
                     "width": 50,
                     "widgets": [
                         {
-                            "id": "w1790092368837_1",
+                            "id": "w1790264875760_1",
                             "type": "navbar",
                             "props": {
-                                "source": "manual",
+                                "source": "site",
+                                "orientation": "horizontal",
                                 "align": "right",
                                 "gap": 20,
                                 "color": "#000000",
@@ -57,29 +58,34 @@
                                 "customClass": "",
                                 "items": [
                                     {
-                                        "label": "Home",
-                                        "type": "anchor",
-                                        "target": "home"
+                                        "label": "Test1-page",
+                                        "type": "page",
+                                        "target": "test1",
+                                        "level": 0
                                     },
                                     {
-                                        "label": "Promo",
+                                        "label": "Test2-anchor",
                                         "type": "anchor",
-                                        "target": "promo"
+                                        "target": "contatti",
+                                        "level": 1
                                     },
                                     {
-                                        "label": "Portfolio",
-                                        "type": "anchor",
-                                        "target": "portfolio"
+                                        "label": "CTA Page",
+                                        "type": "page",
+                                        "target": "CTA-page",
+                                        "level": 2
                                     },
                                     {
-                                        "label": "CTA",
-                                        "type": "anchor",
-                                        "target": "CTA"
+                                        "label": "Voce 9",
+                                        "type": "external",
+                                        "target": "https:\/\/www.faustobresciani.it",
+                                        "level": 2
                                     },
                                     {
-                                        "label": "Nuova voce",
-                                        "type": "anchor",
-                                        "target": "NEW"
+                                        "label": "Voce 9",
+                                        "type": "page",
+                                        "target": "voce-9",
+                                        "level": 0
                                     }
                                 ]
                             }
@@ -89,7 +95,7 @@
             ]
         }
     ],
-    "selectedType": null,
-    "selectedId": null,
+    "selectedType": "widget",
+    "selectedId": "w1790264875760_1",
     "isDirty": true
 }

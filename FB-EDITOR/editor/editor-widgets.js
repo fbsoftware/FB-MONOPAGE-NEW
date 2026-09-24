@@ -26,13 +26,13 @@ editor.convertSiteMenuToNavbarItems = function(menu){
         return {
             label: item.title || "Voce",
             type: item.type || "anchor",
-            target: item.target || ""
+            target: item.target || "",
+            level: Number(item.level ?? 0)
         };
 
     });
 
 };
-
 // ==================================================
 // CARICA MENU SITO PER NAVBAR
 // ==================================================
@@ -161,6 +161,7 @@ editor.widgets.navbar = {
 
     defaultProps: {
         source: "manual",
+        orientation: "horizontal",
         align: "right",
         gap: 20,
         color: "#000000",
@@ -206,7 +207,15 @@ editor.widgets.navbar = {
             },
 
             group: "contenuto"
-
+            },
+        orientation: {
+            type: "select",
+            label: "Orientamento",
+            options: {
+                horizontal: "Orizzontale",
+                vertical: "Verticale"
+            },
+            group: "stile"
         },
         align: {
             type: "select",
@@ -262,21 +271,17 @@ editor.widgets.navbar = {
     },
 
     render(widget) {
-console.log("NAVBAR WIDGET:", widget);
 editor.currentNavbarWidget = widget;
 
         const p = widget.props || {};
-
-console.log(
-    "NAVBAR RENDER ITEMS:",
-    widget.props.items
-);
-
         const align = p.align ?? "right";
+        const orientation = p.orientation ?? "horizontal";
+        const flexDirection = orientation === "vertical" ? "column" : "row";
         const gap = parseInt(p.gap ?? 20, 10);
         const color = p.color ?? "#000000";
         const fontSize = parseInt(p.fontSize ?? 16, 10);
         const padding = parseInt(p.padding ?? 10, 10);
+        const orientationClass = orientation === "vertical" ? "vertical" : "horizontal";
 
         let justify = "flex-end";
 
@@ -302,6 +307,7 @@ if (p.source === "site") {
             editor.siteMenuForNavbar
         );
     }
+
 }
 
 else {
@@ -312,45 +318,80 @@ else {
 
 }
 
-        const links = items
-            .map(item => {
+    const menuTree = editor.buildMenuTree(items);
 
-                const label = item.label || "Voce";
-                const type = item.type || "anchor";
-                const target = item.target || "";
+            console.log("NAVBAR ITEMS:", items);
+            console.log("NAVBAR MENU TREE:", menuTree);
 
-                let href = "#";
+    const renderMenuTree = function(nodes){
 
-                if (type === "anchor") {
-                    href = "#" + target.replace(/^#/, "");
-                }
+    return nodes.map(item => {
 
-                if (type === "page") {
-                href =
-                    window.APP_URL +
-                    "/PAGES/" +
-                    target.replace(/\.html$/, "") +
-                    ".html";
-            }
+        const label = item.label || "Voce";
+        const type = item.type || "anchor";
+        const target = item.target || "";
 
-                if (type === "external" || type === "url") {
-                    href = target;
-                }
+        let href = "#";
 
-                return `
-                    <a
-                        href="${href}"
-                        style="color:${color};"
-                    >
-                        ${label}
-                    </a>
-                `;
-            })
-            .join("");
+        if(type === "anchor"){
+            href = "#" + target.replace(/^#/, "");
+        }
+
+        if(type === "page"){
+            href =
+                "pages/" +
+                target.replace(/\.html$/, "") +
+                ".html";
+        }
+
+        if(type === "external" || type === "url"){
+            href = target;
+        }
+
+        const children = Array.isArray(item.children)
+            ? item.children
+            : [];
+
+        let html = `
+            <li class="navbar-item">
+                <a
+                    href="${href}"
+                    style="color:${color};"
+                >
+                    ${label}
+                </a>
+        `;
+
+        if(children.length){
+
+            html += `
+                <ul class="navbar-submenu">
+                    ${renderMenuTree(children)}
+                </ul>
+            `;
+
+        }
+
+        html += `
+            </li>
+        `;
+
+        return html;
+
+    }).join("");
+};
+
+const links = `
+    <ul class="navbar-menu">
+        ${renderMenuTree(menuTree)}
+    </ul>
+`;
 
         return `
-            <nav class="widget-navbar ${p.customClass}" style="
+            <nav class="widget-navbar ${orientationClass} ${p.customClass}" 
+                style="
                 display:flex;
+                flex-direction:${flexDirection};
                 justify-content:${justify};
                 align-items:center;
                 gap:${gap}px;
@@ -362,7 +403,7 @@ else {
             </nav>
         `;
     }
-};
+    };
 
 // ==================================================
 // WIDGET HEADER

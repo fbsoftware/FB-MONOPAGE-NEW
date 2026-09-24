@@ -474,6 +474,11 @@ $(document).on("input change", "#widget-inspector [data-field]", function(){
 
     item.props[field] = value;
 
+                                console.log(
+                                    "PROPRIETA' NAVBAR:",
+                                    item.props
+                                );
+
     editor.render(); // refresh canvas
 });
 
