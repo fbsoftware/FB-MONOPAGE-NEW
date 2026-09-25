@@ -164,12 +164,34 @@ body {
 }
 .menu-item {
     display: flex;
-    grid-template-columns: 1fr auto auto auto;
-    gap: 8px;
     align-items: center;
+    gap: 8px;
     padding: 6px 0;
 }
+.menu-title {
+    width: 180px;
+    flex-shrink: 0;
+}
 
+.menu-type {
+    width: 65px;
+    flex-shrink: 0;
+}
+
+.menu-target {
+    width: 180px;
+    flex-shrink: 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.menu-level {
+    width: 25px;
+    flex-shrink: 0;
+    text-align: center;
+}
 .menu-item span {
     font-weight: 500;
 }
@@ -178,10 +200,13 @@ body {
     opacity: .7;
 }
 
-.menu-item button {
+.menu-item .menu-action-btn {
     width: 100px;
 } 
-/* riga deele pagine */
+.menu-item:hover {
+    background: rgba(0,0,0,0.06);
+}
+/* riga delle pagine */
 .page-row {
     display: grid;
     grid-template-columns: 80px 180px 1fr;
@@ -201,4 +226,112 @@ body {
 
 .page-slug {
     color: #555;
+}
+/* =====================================
+   MENU BUTTONS
+   ===================================== */
+
+.menu-icon-btn,
+.menu-level-btn {
+    width: 36px;
+    height: 32px;
+    padding: 0;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-action-btn {
+    min-width: 100px;
+    height: 32px;
+}
+#menu-save  {
+    background-color: pink;
+    color: black;
+    border: 1px solid black;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.menu-section-title {
+    margin: 18px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ccc;
+    font-size: 20px;
+}
+.available-page-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 6px;
+}
+
+
+.available-page-item span {
+
+    width: 150px;
+
+    flex-shrink: 0;
+}
+
+
+.menu-add-page {
+
+    min-width: 100px;
+}
+/* ==================================================
+   MENU BOX
+   ================================================== */    
+.menu-box {
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    padding: 15px;
+
+    margin-bottom: 20px;
+
+    background: #dadada;
+}
+.menu-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding-bottom: 8px;
+
+    margin-bottom: 8px;
+
+    border-bottom: 1px solid #ccc;
+
+    font-weight: bold;
+
+    font-size: 13px;
+}
+
+
+.menu-buttons {
+
+    width: 80px;
+
+    text-align: center;
+}
+
+
+.menu-actions {
+
+    width: 210px;
+
+    text-align: center;
 }

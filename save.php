@@ -435,7 +435,6 @@ function renderNavbarWidgetHTML($widget)
     $align = $p['align'] ?? 'right';
     $gap = intval($p['gap'] ?? 20);
     $orientation = $p['orientation'] ?? 'horizontal';
-error_log("NAVBAR PHP ORIENTATION = " . $orientation);
     $color = $p['color'] ?? '#000000';
     $fontSize = intval($p['fontSize'] ?? 16);
     $padding = intval($p['padding'] ?? 10);
@@ -549,7 +548,6 @@ error_log("NAVBAR PHP ORIENTATION = " . $orientation);
 
             unset($node);
         }
-error_log("NAVBAR PHP CLASS = " . $orientationClass);    
 
         return $root;
     };

@@ -86,9 +86,12 @@ function renderAvailablePages(){
 
 
     let html = `
-        <h3>Pagine disponibili</h3>
-    `;
+        <div class="menu-box">
 
+            <h3 class="menu-section-title">
+                Pagine disponibili
+            </h3>
+        `;
 
 adminAvailablePages.forEach(page => {
 
@@ -104,7 +107,7 @@ const presente = adminSiteMenu.some(
             </span>
 
             <button
-                class="menu-add-page"
+                class="menu-action-btn menu-add-page"
                 data-page="${page.page}"
                 data-title="${page.title}"
                 ${presente ? "disabled" : ""}>
@@ -118,6 +121,9 @@ const presente = adminSiteMenu.some(
 
 });
 
+html += `
+</div>
+`;
     box.innerHTML = html;
 
 }
@@ -133,8 +139,48 @@ function renderSiteMenu(){
 
 
     let html = `
-        <h3>Menu attuale</h3>
-    `;
+        <div class="menu-box">
+
+            <h3 class="menu-section-title">
+                Menu attuale
+            </h3>
+        `;
+
+html += `
+
+<div class="menu-header">
+
+    <span class="menu-title">
+        Titolo
+    </span>
+
+    <span class="menu-type">
+        Tipo
+    </span>
+
+    <span class="menu-target">
+        Destinazione
+    </span>
+
+    <span class="menu-level">
+        Liv.
+    </span>
+
+    <span class="menu-buttons">
+        Cambia livello
+    </span>
+
+    <span class="menu-buttons">
+        Sposta
+    </span>
+
+    <span class="menu-actions">
+        Azioni
+    </span>
+
+</div>
+
+`;
 
 
 adminSiteMenu.forEach((item, index) => {
@@ -160,38 +206,38 @@ html += `
 
     <button
         type="button"
-        class="menu-level-down"
+        class="menu-level-btn menu-level-down"
         data-index="${index}">
         −
     </button>
 
     <button
         type="button"
-        class="menu-level-up"
+        class="menu-level-btn menu-level-up"
         data-index="${index}">
         +
     </button>
 
 <button
-    class="menu-move-up"
+    class="menu-icon-btn menu-move-up"
     data-index="${index}">
     ↑
 </button>
 
 <button
-    class="menu-move-down"
+    class="menu-icon-btn menu-move-down"
     data-index="${index}">
     ↓
 </button>
 
 <button
-    class="menu-edit-item"
+    class="menu-action-btn menu-edit-item"
     data-index="${index}">
     Modifica
 </button>
 
 <button
-    class="menu-delete-item"
+    class="menu-action-btn menu-delete-item"
     data-index="${index}">
     Rimuovi
 </button>
@@ -201,6 +247,9 @@ html += `
 
 });
 
+html += `
+        </div>
+        `;
     box.innerHTML = html;
 
 }

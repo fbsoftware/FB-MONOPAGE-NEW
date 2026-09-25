@@ -6,13 +6,12 @@
         Caricamento pagine...
     </div>
 
-    <hr>
 
     <div id="site-menu-builder">
         Caricamento menu...
     </div>
     <br />
-    <button id="menu-save">
+    <button id="menu-save" class="top-action-btn">
         Salva menu
     </button>
 

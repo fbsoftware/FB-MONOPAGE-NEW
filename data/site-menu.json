@@ -19,12 +19,6 @@
     },
     {
         "title": "Voce 9",
-        "type": "external",
-        "target": "https:\/\/www.faustobresciani.it",
-        "level": 2
-    },
-    {
-        "title": "Voce 9",
         "type": "page",
         "target": "voce-9",
         "level": 0

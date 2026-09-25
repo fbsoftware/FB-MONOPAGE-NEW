@@ -39,7 +39,7 @@
             </div>
 
             <div style="flex:1">
-                <button id="save-site-menu">Salva menu</button>
+                <button id="save-site-menu" class="top-action-btn">Salva menu</button>
             </div>  
             <div style="flex:1">
                 <button id="nav-exit"> ⬅ Esci</button>
