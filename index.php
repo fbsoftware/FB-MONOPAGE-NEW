@@ -1,5 +1,6 @@
 <?php
 require_once 'FB-EDITOR/config/app.php';
+require_once 'FB-EDITOR/lib/site-renderer.php';
 
 function h($value) {
     return htmlspecialchars((string)$value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
@@ -7,7 +8,7 @@ function h($value) {
 
 function loadSiteMenu(): array
 {
-    $menuPath = __DIR__ . '/data/site-menu.json';
+    $menuPath = APP_ROOT . '/data/site-menu.json';
 
     if (!file_exists($menuPath)) {
         return [];
@@ -58,7 +59,29 @@ function renderSiteMenuHTML(array $items): string
 
     return $html;
 }
+function loadGlobalSection(string $type): string
+{
+    if (!in_array($type, ['header', 'footer'], true)) {
+        return '';
+    }
 
+    $path = __DIR__ . '/data/site/' . $type . '.json';
+
+    if (!file_exists($path)) {
+        return '';
+    }
+
+    $json = file_get_contents($path);
+    $data = json_decode($json, true);
+
+    if (!is_array($data) || !isset($data['section'])) {
+        return '';
+    }
+
+    return renderSectionHTML($data['section']);
+}
+$globalHeader = loadGlobalSection('header');
+$globalFooter = loadGlobalSection('footer');
 $siteMenu = loadSiteMenu();
 $page = $_GET['page'] ?? 'home';
 $page = preg_replace('/[^a-zA-Z0-9\-_]/', '', $page);
@@ -102,9 +125,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <main>
 
+<?php echo $globalHeader; ?>
+
 <section id="page-content">
     <?php echo $pageContent; ?>
 </section>
+
+<?php echo $globalFooter; ?>
 
 <!-- Torna su in alto -->
 <a id="back-to-top" href="#">↑</a>

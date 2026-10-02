@@ -1,9 +1,9 @@
 {
     "meta": {
         "tema": null,
-        "page": "voce-9",
+        "page": "test",
         "version": "2.0",
-        "updated_at": "2026-09-15T17:09:48+02:00"
+        "updated_at": "2026-10-02T12:15:04+02:00"
     },
     "global": {
         "colors": {
@@ -34,20 +34,20 @@
     },
     "sections": [
         {
-            "id": "sec-1789484953284-917",
-            "background": "#ffffff",
+            "id": "sec-1790608623566-948",
+            "background": "var(--color-bg)",
             "padding": "20",
             "margin": "20",
             "columns": [
                 {
-                    "id": "col-1789484953284-641",
-                    "width": 50,
+                    "id": "col-1790608623566-504",
+                    "width": 100,
                     "widgets": [
                         {
-                            "id": "w1789484967983_1",
+                            "id": "w1790873837959_1",
                             "type": "header",
                             "props": {
-                                "text": "Voce #9",
+                                "text": "Titolo ---",
                                 "level": "h2",
                                 "align": "center",
                                 "color": "#000000",
@@ -58,7 +58,7 @@
                             }
                         },
                         {
-                            "id": "w1789484984809_2",
+                            "id": "w1790873840115_2",
                             "type": "text",
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
@@ -70,12 +70,14 @@
                                 "customClass": ""
                             }
                         }
-                    ]
+                    ],
+                    "height": 120
                 }
-            ]
+            ],
+            "height": "150"
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1789484967983_1",
+    "selectedType": "column",
+    "selectedId": "col-1790608623566-504",
     "isDirty": true
 }

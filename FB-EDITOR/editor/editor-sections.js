@@ -14,8 +14,8 @@ editor.sections = {
             backgroundPositionY: 50,
             overlayColor: "#000000",
             overlayOpacity: 0.4,
-            height: 400,
-            padding: 20,
+            height: 100,
+            padding: 0,
             margin: 0,
             customCss: ""
         },
@@ -268,6 +268,10 @@ editor.renderSection = function(section){
 
             <button class="save-section-template button">
                 <span class="material-symbols-outlined">save</span>
+            </button>
+
+            <button class="save-section-global button" title="Salva globale">
+                <span class="material-symbols-outlined">language</span>
             </button>
         `);
 

@@ -1,9 +1,9 @@
 {
     "meta": {
         "tema": null,
-        "page": "test-voci",
+        "page": "home",
         "version": "2.0",
-        "updated_at": "2026-09-24T18:13:57+02:00"
+        "updated_at": "2026-09-30T20:57:29+02:00"
     },
     "global": {
         "colors": {
@@ -34,17 +34,38 @@
     },
     "sections": [
         {
-            "id": "sec-1789833183083-669",
-            "background": "#ffffff",
+            "id": "sec-1790762383084-309",
+            "background": "var(--color-bg)",
             "padding": "20",
             "margin": "20",
             "columns": [
                 {
-                    "id": "col-1789833183083-544",
-                    "width": 50,
+                    "id": "col-1790761807530-835",
+                    "width": 13,
                     "widgets": [
                         {
-                            "id": "w1790264875760_1",
+                            "id": "w1790427825246_1",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/logo.png",
+                                "alt": "",
+                                "align": "left",
+                                "width": "150",
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": "",
+                                "height": "77"
+                            }
+                        }
+                    ],
+                    "height": 120
+                },
+                {
+                    "id": "col-1790761813288-681",
+                    "width": 87,
+                    "widgets": [
+                        {
+                            "id": "w1790443300128_1",
                             "type": "navbar",
                             "props": {
                                 "source": "site",
@@ -58,44 +79,34 @@
                                 "customClass": "",
                                 "items": [
                                     {
-                                        "label": "Test1-page",
+                                        "label": "Home",
                                         "type": "page",
-                                        "target": "test1",
+                                        "target": "home",
                                         "level": 0
                                     },
                                     {
-                                        "label": "Test2-anchor",
-                                        "type": "anchor",
-                                        "target": "contatti",
-                                        "level": 1
-                                    },
-                                    {
-                                        "label": "CTA Page",
+                                        "label": "Hero",
                                         "type": "page",
-                                        "target": "CTA-page",
-                                        "level": 2
+                                        "target": "hero",
+                                        "level": 0
                                     },
                                     {
-                                        "label": "Voce 9",
-                                        "type": "external",
-                                        "target": "https:\/\/www.faustobresciani.it",
-                                        "level": 2
-                                    },
-                                    {
-                                        "label": "Voce 9",
+                                        "label": "Test",
                                         "type": "page",
-                                        "target": "voce-9",
+                                        "target": "test",
                                         "level": 0
                                     }
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "height": 120
                 }
-            ]
+            ],
+            "height": "150"
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1790264875760_1",
+    "selectedType": "column",
+    "selectedId": "col-1790761813288-681",
     "isDirty": true
 }

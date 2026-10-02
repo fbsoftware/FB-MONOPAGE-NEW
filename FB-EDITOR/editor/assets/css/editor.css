@@ -155,12 +155,12 @@ display: none !important;
 /*========================  */
 /*  SEZIONE                 */
 /*========================  */
-.canvas-section {
+.sectioncanvas- {
     position: relative;
     overflow: hidden;
     border: 1px dashed #ddd;
     transition: 0.2s;
-    min-height: 200px;
+    min-height: 100px;
     margin-bottom: 20px;
     display: flex;
 }
@@ -457,9 +457,13 @@ textarea{
 #inspector select{
     width:100%;
 }
-/*=================================================*/
-/* TOOLBAR                                         */
-/*=================================================*/
+.inspector-info {
+    color: #fff;
+    margin-top: 4px;
+}
+/*=================================================
+    TOOLBAR                                         
+==================================================*/  
 .canvas-widget.selected .widget-toolbar,
 .canvas-column.selected .column-toolbar,
 .canvas-section.selected .section-toolbar{
@@ -483,6 +487,8 @@ textarea{
     position:absolute;
     top:0px;
     left:0;
+    z-index: 1000;
+    pointer-events: auto;
     background:pink;
     display:none;
     opacity:0;
@@ -977,4 +983,62 @@ body {
 .widget-navbar.vertical .navbar-menu {
     flex-direction: column;
     align-items: flex-start;
+}
+/* =====================================
+   HERO SLIDER
+===================================== */
+
+.hero-slide {
+    position: relative;
+}
+
+.hero-slide-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.hero-slide-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-slide-title {
+    margin: 0 0 10px 0;
+}
+
+.hero-slide-text {
+    margin: 0;
+}
+
+/* =========================
+   HERO WIDGET
+========================= */
+
+.widget-hero {
+    position:relative;
+}
+
+.hero-overlay {
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.hero-content {
+    text-align:center;
+    padding:20px;
+}
+
+.hero-title {
+    margin:0 0 10px 0;
+}
+
+.hero-text {
+    margin:0;
 }

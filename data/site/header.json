@@ -1,0 +1,75 @@
+{
+    "type": "header",
+    "section": {
+        "id": "sec-1790762383084-309",
+        "background": "var(--color-bg)",
+        "padding": "20",
+        "margin": "20",
+        "columns": [
+            {
+                "id": "col-1790761807530-835",
+                "width": 13,
+                "widgets": [
+                    {
+                        "id": "w1790427825246_1",
+                        "type": "image",
+                        "props": {
+                            "src": "assets/images/logo.png",
+                            "alt": "",
+                            "align": "left",
+                            "width": "150",
+                            "customCss": "",
+                            "imgCss": "",
+                            "customClass": "",
+                            "height": "77"
+                        }
+                    }
+                ],
+                "height": 120
+            },
+            {
+                "id": "col-1790761813288-681",
+                "width": 87,
+                "widgets": [
+                    {
+                        "id": "w1790443300128_1",
+                        "type": "navbar",
+                        "props": {
+                            "source": "site",
+                            "orientation": "horizontal",
+                            "align": "right",
+                            "gap": 20,
+                            "color": "#000000",
+                            "fontSize": 16,
+                            "padding": 10,
+                            "customCss": "",
+                            "customClass": "",
+                            "items": [
+                                {
+                                    "label": "Home",
+                                    "type": "page",
+                                    "target": "home",
+                                    "level": 0
+                                },
+                                {
+                                    "label": "Hero",
+                                    "type": "page",
+                                    "target": "hero",
+                                    "level": 0
+                                },
+                                {
+                                    "label": "Test",
+                                    "type": "page",
+                                    "target": "test",
+                                    "level": 0
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "height": 120
+            }
+        ],
+        "height": "150"
+    }
+}

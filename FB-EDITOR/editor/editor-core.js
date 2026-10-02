@@ -389,7 +389,6 @@ $(document).on("click", ".add-column", function(e){
     section.columns.push({
         id: editor.utils.uuid("col"),
         width: 100  , 
-        margin: 20,
         widgets: []
     });
 
@@ -779,8 +778,10 @@ $(document).on("click", ".image-thumb", function(e){
         widget.props[field] = value;
 
         editor.state.isDirty = true;
-        editor.render();
-        editor.openInspector(widget, editor.widgets[widget.type]);
+        editor.renderInspector(
+            widget,
+            editor.widgets[widget.type]
+        );
         return;
     }
 
@@ -838,11 +839,12 @@ window.addEventListener("beforeunload", function(e){
         e.returnValue = "";
     }
 });
-///=================================
+//=================================
 //  Salva sezione come template
 //=================================
 $(document).on("click", ".save-section-template", async function(e){
 
+                    console.log("CLICK SAVE TEMPLATE");
     e.preventDefault();
     e.stopPropagation();
 
@@ -926,6 +928,86 @@ const name = prompt(
         (data.error || "errore sconosciuto")
     );
 });
+
+//=================================
+// Salva sezione come globale
+//=================================
+$(document).on(
+    "click",
+    ".save-section-global",
+    async function(e) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const sectionId = $(this)
+            .closest(".canvas-section")
+            .data("id");
+
+        const section = editor.findSectionById(sectionId);
+
+        if (!section) {
+            alert("Sezione non trovata");
+            return;
+        }
+
+        const choice = prompt(
+            "Salva la sezione globale come:\n\n" +
+            "1 = Header\n" +
+            "2 = Footer"
+        );
+
+        if (choice === null) return;
+
+        let type = "";
+
+        if (choice.trim() === "1") {
+            type = "header";
+        }
+
+        if (choice.trim() === "2") {
+            type = "footer";
+        }
+
+        if (!type) {
+            alert("Scelta non valida");
+            return;
+        }
+
+        const res = await fetch(
+            window.APP_URL +
+            "/FB-EDITOR/api/save-global-section.php",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    type: type,
+                    section: section
+                })
+            }
+        );
+
+        const data = await res.json();
+
+        if (data.success) {
+
+            alert(
+                type === "header"
+                    ? "Header globale salvato"
+                    : "Footer globale salvato"
+            );
+
+            return;
+        }
+
+        alert(
+            "Errore salvataggio globale: " +
+            (data.error || "errore sconosciuto")
+        );
+    }
+);
 
 //=================================
 //  Carica lista dei template
@@ -1353,12 +1435,12 @@ $(document).on(
         const type = $(this).attr("data-structure-type");
         const id = $(this).attr("data-structure-id");
 
-        console.log(
+/*        console.log(
             "STRUTTURA SELECT:",
             type,
             id
         );
-
+*/
         editor.state.selectedType = type;
         editor.state.selectedId = id;
 

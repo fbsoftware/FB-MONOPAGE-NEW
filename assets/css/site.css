@@ -468,4 +468,62 @@ ul.site-menu  {
     flex-direction: column;
     align-items: flex-start;
 }
+/* =====================================
+   HERO SLIDER
+===================================== */
 
+.hero-slide {
+    position: relative;
+}
+
+.hero-slide-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.hero-slide-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-slide-title {
+    margin: 0 0 10px 0;
+}
+
+.hero-slide-text {
+    margin: 0;
+}
+/* =====================================
+   HERO WIDGET - SITO
+===================================== */
+
+.widget-hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.widget-hero .hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.widget-hero .hero-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.widget-hero .hero-title {
+    margin: 0 0 10px 0;
+}
+
+.widget-hero .hero-text {
+    margin: 0;
+}

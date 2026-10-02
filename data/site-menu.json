@@ -1,26 +1,20 @@
 [
     {
-        "title": "Test1-page",
+        "title": "Home",
         "type": "page",
-        "target": "test1",
+        "target": "home",
         "level": 0
     },
     {
-        "title": "Test2-anchor",
-        "type": "anchor",
-        "target": "contatti",
-        "level": 1
+        "title": "Hero",
+        "type": "page",
+        "target": "hero",
+        "level": 0
     },
     {
-        "title": "CTA Page",
+        "title": "Test",
         "type": "page",
-        "target": "CTA-page",
-        "level": 2
-    },
-    {
-        "title": "Voce 9",
-        "type": "page",
-        "target": "voce-9",
+        "target": "test",
         "level": 0
     }
 ]

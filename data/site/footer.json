@@ -1,0 +1,30 @@
+{
+    "type": "footer",
+    "section": {
+        "id": "sec-1790866219539-348",
+        "background": "#ffffff",
+        "padding": "20",
+        "margin": "20",
+        "columns": [
+            {
+                "id": "col-1790866219539-2",
+                "width": 100,
+                "widgets": [
+                    {
+                        "id": "w1790866223555_3",
+                        "type": "text",
+                        "props": {
+                            "text": "FB-EDITOR  by fbsoftware",
+                            "align": "center",
+                            "color": "var(--color-primary)",
+                            "padding": 0,
+                            "margin": 0,
+                            "customCss": "font-weight:bold;",
+                            "customClass": ""
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

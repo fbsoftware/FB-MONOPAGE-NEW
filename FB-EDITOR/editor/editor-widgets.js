@@ -2,14 +2,11 @@
 // Editor Widgets - proprietà + campi di modifica
 //============================================================== 
 var editor = editor || {};
-console.log("FILE NAVBAR WIDGET CARICATO - VERSIONE TEST");
 editor.widgets = editor.widgets || {};
 
 // ==================================================
 // WIDGET NAVBAR
 // ==================================================
-
-
 editor.siteMenuForNavbar = null;
 
 // ==================================================
@@ -90,8 +87,6 @@ editor.loadSiteMenuForNavbar = async function(){
 
 };
 
-console.log("NAVBAR JS CARICATO");
-
 // ==================================================
 // Costruisce la gerarchia del menu dai livelli
 // ==================================================
@@ -149,7 +144,6 @@ editor.buildMenuTree = function(items)
     return root;
 
 };
-console.log("BUILD MENU TREE: FUNZIONE DEFINITA");
 
 // ==================================================
 // WIDGET NAVBAR
@@ -320,8 +314,8 @@ else {
 
     const menuTree = editor.buildMenuTree(items);
 
-            console.log("NAVBAR ITEMS:", items);
-            console.log("NAVBAR MENU TREE:", menuTree);
+ //           console.log("NAVBAR ITEMS:", items);
+   //         console.log("NAVBAR MENU TREE:", menuTree);
 
     const renderMenuTree = function(nodes){
 
@@ -339,9 +333,8 @@ else {
 
         if(type === "page"){
             href =
-                "pages/" +
-                target.replace(/\.html$/, "") +
-                ".html";
+                "/FB-MONOPAGE-NEW/index.php?page=" +
+                target.replace(/\.html$/, "");
         }
 
         if(type === "external" || type === "url"){
@@ -716,7 +709,7 @@ editor.widgets.image = {
         src: "",
         alt: "",
         align: "left",
-        width: 300,
+        height: 300,
         customCss:"",
         imgCss:"",
         customClass:""
@@ -746,9 +739,9 @@ editor.widgets.image = {
             }
         },
 
-        width: {
+        height: {
             type: "number",
-            label: "Larghezza px",  
+            label: "Altezza px",  
             group: "stile"
 
         },
@@ -789,7 +782,7 @@ editor.widgets.image = {
                 style="text-align:${p.align ?? "left"};
                 ${p.customCss ?? ""}">
                     <img src="${src}" alt="${p.alt ?? ""}" 
-                    style="width:${p.width ?? 300}px;
+                    style="height:${p.height ?? 300}px;
                     ${p.imgCss ?? ""}">
             </div>
         `;
@@ -1007,6 +1000,369 @@ editor.widgets.imageSlide = {
         `;
     }
     };
+
+// ==================================================
+// WIDGET HERO
+// ==================================================
+editor.widgets.hero = {
+
+    label: "Hero",
+    icon: "🖼️",
+
+    defaultProps: {
+        image: "",
+        title: "",
+        text: "",
+        height: 500,
+        overlay: true,
+        customCss: "",
+        customClass: ""
+    },
+
+    fields: {
+
+        image: {
+            type: "image_picker",
+            label: "Immagine",
+            group: "contenuto"
+        },
+
+        title: {
+            type: "text",
+            label: "Titolo",
+            group: "contenuto"
+        },
+
+        text: {
+            type: "textarea",
+            label: "Descrizione",
+            group: "contenuto"
+        },
+
+        height: {
+            type: "number",
+            label: "Altezza px",
+            group: "stile"
+        },
+
+        overlay: {
+            type: "checkbox",
+            label: "Overlay",
+            group: "stile"
+        },
+
+        customCss: {
+            type: "textarea",
+            label: "CSS personalizzato",
+            group: "avanzate"
+        },
+
+        customClass: {
+            type: "text",
+            label: "Classe CSS",
+            group: "avanzate"
+        }
+    },
+
+    render(widget) {
+
+    const p = widget.props || {};
+
+    const height = parseInt(
+        p.height ?? 500,
+        10
+    );
+
+    const image = p.image || "";
+    const title = p.title || "";
+    const text = p.text || "";
+
+    if (!image) {
+
+        return `
+            <div class="widget-hero-placeholder">
+                Nessuna immagine selezionata
+            </div>
+        `;
+    }
+
+
+    return `
+        <div
+            class="widget-hero ${p.customClass || ""}"
+            data-widget-id="${widget.id}"
+            style="
+                ${p.customCss || ""}
+                position:relative;
+                height:${height}px;
+                overflow:hidden;
+            "
+        >
+
+            <img
+                src="${editor.resolveAssetUrl(image)}"
+                alt=""
+                style="
+                    width:100%;
+                    height:100%;
+                    object-fit:cover;
+                    display:block;
+                "
+            >
+
+            ${
+                p.overlay !== false
+                ? `
+                <div class="hero-overlay">
+
+                    <div class="hero-content">
+
+                        ${
+                            title
+                            ? `
+                            <h1 class="hero-title">
+                                ${title}
+                            </h1>
+                            `
+                            : ""
+                        }
+
+                        ${
+                            text
+                            ? `
+                            <div class="hero-text">
+                                ${text}
+                            </div>
+                            `
+                            : ""
+                        }
+
+                    </div>
+
+                </div>
+                `
+                : ""
+            }
+
+        </div>
+    `;
+}
+};
+
+// ==================================================
+// WIDGET HERO SLIDE
+// ==================================================
+editor.widgets.heroSlide = {
+
+    label: "Hero Slider",
+    icon: "🎬",
+
+defaultProps: {
+    folder: "portfolio",
+    height: 500,
+    interval: 5000,
+    showArrows: true,
+    showDots: true,
+
+    slides: [],
+
+    customCss: "",
+    customClass: ""
+},
+
+    fields: {
+
+        folder: {
+            type: "galleryFolderSelect",
+            label: "Cartella immagini",
+            group: "contenuto"
+        },
+        slides: {
+            type: "heroSlides",
+            label: "Contenuti slide",
+            group: "contenuto"
+        },
+        height: {
+            type: "number",
+            label: "Altezza slider px",
+            group: "stile"
+        },
+
+        interval: {
+            type: "number",
+            label: "Intervallo autoplay ms",
+            group: "stile"
+        },
+
+        showArrows: {
+            type: "checkbox",
+            label: "Mostra frecce",
+            group: "stile"
+        },
+
+        showDots: {
+            type: "checkbox",
+            label: "Mostra indicatori",
+            group: "stile"
+        },
+
+        customCss: {
+            type: "textarea",
+            label: "CSS personalizzato",
+            group: "avanzate"
+        },
+
+        customClass: {
+            type: "text",
+            label: "Classe CSS",
+            group: "avanzate"
+        }
+    },
+
+render(widget) {
+
+    const p = widget.props || {};
+
+    const height = parseInt(
+        p.height ?? 500,
+        10
+    );
+
+    const slides = Array.isArray(p.slides)
+        ? p.slides
+        : [];
+
+    const showArrows = editor.toBoolean(
+        p.showArrows,
+        true
+    );
+
+    const showDots = editor.toBoolean(
+        p.showDots,
+        true
+    );
+
+
+    if (!slides.length) {
+
+        return `
+            <div class="widget-slider-empty">
+                Nessuna slide disponibile
+            </div>
+        `;
+    }
+
+
+    const slidesHtml = slides.map((slide, index) => {
+
+        return `
+            <div class="slide hero-slide ${index === 0 ? "active" : ""}">
+
+                <img
+                    src="${slide.image || ""}"
+                    alt=""
+                    style="
+                        width:100%;
+                        height:${height}px;
+                        object-fit:cover;
+                        display:block;
+                    "
+                >
+
+                <div class="hero-slide-overlay">
+
+                    <div class="hero-slide-content">
+
+                        ${
+                            slide.title
+                            ? `
+                            <h2 class="hero-slide-title">
+                                ${slide.title}
+                            </h2>
+                            `
+                            : ""
+                        }
+
+
+                        ${
+                            slide.text
+                            ? `
+                            <div class="hero-slide-text">
+                                ${slide.text}
+                            </div>
+                            `
+                            : ""
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+
+    }).join("");
+
+
+
+    const arrows = showArrows
+        ? `
+            <button type="button" class="prev">
+                ❮
+            </button>
+
+            <button type="button" class="next">
+                ❯
+            </button>
+        `
+        : "";
+
+
+    const dots = showDots
+        ? `
+            <div class="slider-dots">
+
+            ${
+                slides.map((slide,index)=>`
+
+                    <button
+                        type="button"
+                        class="dot ${index===0 ? "active":""}"
+                        data-slide="${index}">
+                    </button>
+
+                `).join("")
+            }
+
+            </div>
+        `
+        : "";
+
+
+    return `
+        <div
+            class="widget-slider widget-hero-slider ${p.customClass || ""}"
+            data-widget-id="${widget.id}"
+            data-interval="${p.interval ?? 5000}"
+            style="${p.customCss || ""}"
+        >
+
+            <div class="slider-slides">
+
+                ${slidesHtml}
+
+            </div>
+
+
+            ${arrows}
+
+            ${dots}
+
+
+        </div>
+    `;
+}
+};
 // ==================================================
 // WIDGET VIDEO
 // ==================================================
@@ -1525,30 +1881,147 @@ console.log(
 );
 
 // ==========================
-// WIDGET GALLERY DEFINITIVO
+// GALLERY ASSETS CACHE
 // ==========================
 editor.galleryAssets = editor.galleryAssets || {};
 
+// ==========================
 // Legge immagini già caricate
+// ==========================
 editor.getGalleryImages = function(folder) {
     return editor.galleryAssets[folder] || [];
 };
 
-// Carica immagini via PHP per il folder selezionato
-editor.loadGalleryImages = function(folder) {
-    if (!folder) return;
+// ================================================
+// HERO SLIDER - sincronizza cartella → slides
+// ================================================
+editor.syncHeroSlidesFromFolder = function(widget) {
 
-    fetch(`${window.FB_APP.appUrl}/FB-EDITOR/api/list-gallery-images.php?folder=${folder}&t=${Date.now()}`)
-        .then(r => r.json())
-        .then(data => {
-            if (!data.success) return;
-            // Salva nella cache unica
-            editor.galleryAssets[folder] = data.images;
-            editor.render(); // Aggiorna il canvas
-        })
-        .catch(err => console.error("Errore caricamento immagini gallery:", err));
+    console.log("HERO SYNC - WIDGET:", widget);
+
+    if (!widget || widget.type !== "heroSlide") {
+        console.log("HERO SYNC - widget non valido");
+        return;
+    }
+
+    const p = widget.props || {};
+    const folder = p.folder || "";
+
+    console.log("HERO SYNC - FOLDER:", folder);
+    console.log(
+        "HERO SYNC - CACHE:",
+        editor.galleryAssets[folder]
+    );
+
+    if (!folder) {
+        return;
+    }
+
+    const images = editor.getGalleryImages(folder);
+
+    console.log(
+        "HERO SYNC - IMAGES:",
+        images
+    );
+
+    if (!images.length) {
+        console.log("HERO SYNC - NESSUNA IMMAGINE");
+        return;
+    }
+
+    const oldSlides = Array.isArray(p.slides)
+        ? p.slides
+        : [];
+
+    const oldMap = {};
+
+    oldSlides.forEach(slide => {
+
+        if (slide.image) {
+            oldMap[slide.image] = slide;
+        }
+
+    });
+
+    p.slides = images.map(src => {
+
+        if (oldMap[src]) {
+            return oldMap[src];
+        }
+
+        return {
+            image: src,
+            title: "",
+            text: ""
+        };
+
+    });
+
+    widget.props = p;
+
+    editor.state.isDirty = true;
+
+        console.log(
+        "HERO SYNC - SLIDES CREATE:",
+        p.slides
+    );
+
 };
 
+// ==========================
+// Carica immagini via PHP per il folder selezionato
+// ==========================
+editor.loadGalleryImages = function(folder, targetWidget = null) {
+
+    if (!folder) return;
+
+    const url =
+        `${window.FB_APP.appUrl}/FB-EDITOR/api/list-gallery-images.php?folder=${folder}&t=${Date.now()}`;
+
+    fetch(url)
+        .then(r => r.json())
+        .then(data => {
+
+            if (!data.success) return;
+
+            editor.galleryAssets[folder] = data.images;
+
+            const widget =
+                targetWidget ||
+                editor.findWidgetById(editor.state.selectedId);
+
+            if (
+    widget &&
+    widget.type === "heroSlide" &&
+    widget.props.folder === folder
+) {
+
+    console.log(
+        "HERO TEST - SINCRONIZZO HERO"
+    );
+
+    editor.syncHeroSlidesFromFolder(widget);
+
+    editor.renderInspector(
+        widget,
+        editor.widgets[widget.type]
+    );
+}
+
+            console.log(
+                "HERO TEST - SLIDES DOPO:",
+                widget ? widget.props.slides : null
+            );
+
+            editor.render();
+        })
+        .catch(err =>
+            console.error(
+                "Errore caricamento immagini gallery:",
+                err
+            )
+        );
+};
 //=========================
 // Inizializza immagini della gallery al caricamento del widget
 //=========================
@@ -1562,13 +2035,19 @@ editor.initGalleryWidget = function(widget) {
 //=========================
 // Handler select folder nell’inspector
 //=========================
-$(document).on("change", "#inspector [data-field='folder']", function() {
+$(document).on("change","#widget-inspector [data-field='folder']",
+    function() {
+
     const folder = $(this).val();
-    const widget = editor.findWidgetById(editor.state.selectedId);
+    const widget = editor.findWidgetById(
+        editor.state.selectedId
+    );
+
     if (!widget) return;
 
     widget.props.folder = folder;
-    editor.loadGalleryImages(folder); // Aggiorna il canvas
+
+    editor.loadGalleryImages(folder, widget);
 });
 
 //=================================
@@ -1787,7 +2266,6 @@ groups[groupName].forEach(fieldName => {
         $panel.append(html);
     });
 };
-
 
 //==================================
 // inspector generico per elementi
@@ -2058,6 +2536,82 @@ html += `
         </div>
     `;
     }
+
+    if(field.type === "heroSlides"){
+
+    const slides = Array.isArray(value)
+        ? value
+        : [];
+
+    let html = `
+        <div class="hero-slides-editor">
+    `;
+
+    if(!slides.length){
+
+        html += `
+            <div class="inspector-info">
+                Nessun contenuto slide ancora associato.
+            </div>
+        `;
+
+    }
+
+    slides.forEach((slide, index) => {
+
+        html += `
+            <div
+                class="hero-slide-editor-item"
+                data-slide-index="${index}"
+            >
+
+                <strong>
+                    Slide ${index + 1}
+                </strong>
+
+                <label>
+                    Immagine
+                </label>
+
+                <input
+                    type="text"
+                    value="${slide.image || ""}"
+                    data-hero-slide-field="image"
+                    data-slide-index="${index}"
+                    readonly
+                >
+
+                <label>
+                    Titolo
+                </label>
+
+                <input
+                    type="text"
+                    value="${slide.title || ""}"
+                    data-hero-slide-field="title"
+                    data-slide-index="${index}"
+                >
+
+                <label>
+                    Testo
+                </label>
+
+                <textarea
+                    data-hero-slide-field="text"
+                    data-slide-index="${index}"
+                >${slide.text || ""}</textarea>
+
+            </div>
+        `;
+    });
+
+    html += `
+        </div>
+    `;
+
+    input = html;
+}
+
     if (field.type === "galleryFolderSelect") {
         const folders = editor.galleryFolders || [];
         let html = `<select data-field="${fieldName}">`;
@@ -2067,6 +2621,80 @@ html += `
         html += `</select>`;
         return html;
     }
+
+if (field.type === "heroSlides") {
+
+    const slides = Array.isArray(value)
+        ? value
+        : [];
+
+    let html = `
+        <div class="hero-slides-editor">
+    `;
+
+    if (!slides.length) {
+
+        html += `
+            <div class="inspector-info">
+                Nessun contenuto slide ancora associato.
+            </div>
+        `;
+
+    }
+
+    slides.forEach((slide, index) => {
+
+        html += `
+            <div
+                class="hero-slide-editor-item"
+                data-slide-index="${index}"
+            >
+
+                <strong>
+                    Slide ${index + 1}
+                </strong>
+
+                <label>
+                    Immagine
+                </label>
+
+                <input
+                    type="text"
+                    value="${slide.image || ""}"
+                    data-hero-slide-field="image"
+                    data-slide-index="${index}"
+                    readonly
+                >
+
+                <label>
+                    Titolo
+                </label>
+
+                <input
+                    type="text"
+                    value="${slide.title || ""}"
+                    data-hero-slide-field="title"
+                    data-slide-index="${index}"
+                >
+
+                <label>
+                    Testo
+                </label>
+
+                <textarea
+                    data-hero-slide-field="text"
+                    data-slide-index="${index}"
+                >${slide.text || ""}</textarea>
+
+            </div>
+        `;
+    });
+
+    html += `</div>`;
+
+    return html;
+}
+
     if (field.type === "checkbox") {
 
     const checked = editor.toBoolean(value, false)
@@ -2370,7 +2998,58 @@ $(document).on("input blur", ".richtext-editor", function(e){
     widget.props[field] = $(this).html();
     editor.state.isDirty = true;
 });
+//==================================================
+// HERO SLIDE - aggiornamento titolo/testo
+//==================================================
+$(document).on(
+    "input change",
+    "[data-hero-slide-field]",
+    function () {
 
+        const widget = editor.findWidgetById(
+            editor.state.selectedId
+        );
+
+        if (!widget || widget.type !== "heroSlide") {
+            return;
+        }
+
+        const index = parseInt(
+            $(this).attr("data-slide-index"),
+            10
+        );
+
+        const field = $(this).attr(
+            "data-hero-slide-field"
+        );
+
+        const value = $(this).val();
+
+        if (!Array.isArray(widget.props.slides)) {
+            widget.props.slides = [];
+        }
+
+        if (!widget.props.slides[index]) {
+            console.error(
+                "Slide non trovata:",
+                index
+            );
+            return;
+        }
+
+        widget.props.slides[index][field] = value;
+
+        editor.state.isDirty = true;
+
+        console.log(
+            "HERO SLIDE UPDATE:",
+            index,
+            field,
+            value,
+            widget.props.slides[index]
+        );
+    }
+);
 //=================================
 //  carica cartelle per gallery
 //================================= 
