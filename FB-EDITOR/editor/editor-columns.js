@@ -8,25 +8,26 @@ editor.columns = {
     icon:"📝",
 
   defaultProps: {
-    width: 100 ,
+    width: 50 ,
     height: 100,
     padding: 0,
     margin: 0,
     background: "transparent",
-    customCss: ""
+    customCss: "",
+    customClass: ""
     },
 
     fields: {
       width: {
-        type: "range",
+        type: "number",
         min: 10,
         max: 100,
-        label: "Larghezza",
+        label: "Larghezza %",
         group:"contenuto"
       },
         height: {
         type: "number",
-        label: "Altezza",
+        label: "Altezza px",
         group:"contenuto"
       },  
         padding: {
@@ -48,21 +49,26 @@ editor.columns = {
         type:"textarea",
         label:"CSS personalizzato",
         group:"avanzate"
-    }
+        },
+        customClass: {
+            type: "text",
+            label: "Classe CSS personalizzata",
+            group: "avanzate"
+        }
     },
 
     render(column){
       const p = column;
 
       return `
-      <div class="canvas-column"
+      <div class="canvas-column ${p.customClass || ''}" 
            data-id="${column.id}"
            style="width:${p.width ||100}%;
-            height:${p.height ||200}px;
-            padding:${p.padding ||20}px;
-            margin:${p.margin || 0}px;
-            background:${p.background ||'transparent'};
-            ${p.customCss}">
+                  height:${p.height ||200}px;
+                  padding:${p.padding ||20}px;
+                  margin:${p.margin || 0}px;
+                  background:${p.background ||'transparent'};
+                  ${p.customCss}">
       </div>
       `;
     }

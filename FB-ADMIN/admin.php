@@ -68,7 +68,16 @@ require_once dirname(__DIR__) . '/FB-EDITOR/config/app.php';
     Pagine
 
 </a>
+<!-- global -------------------------------------------------->
+<a href="#" class="admin-menu-item" data-view="global">
 
+    <span class="material-symbols-outlined">
+        language
+    </span>
+
+    Globali
+
+</a>
 <!-- templates -------------------------------------------------->
 <a href="#" class="admin-menu-item" data-view="templates">
                 <span class="material-symbols-outlined">
@@ -130,6 +139,7 @@ require_once dirname(__DIR__) . '/FB-EDITOR/config/app.php';
 <script> window.APP_URL = <?= json_encode(APP_URL) ?>;</script>
 <script src="<?= APP_URL ?>/FB-ADMIN/assets/js/admin.js"></script>
 <script src="<?= APP_URL ?>/FB-ADMIN/assets/js/pages.js"></script>
+<script src="<?= APP_URL ?>/FB-ADMIN/assets/js/global.js"></script>
 <script src="<?= APP_URL ?>/FB-ADMIN/assets/js/templates.js"></script>
 <script src="<?= APP_URL ?>/FB-ADMIN/assets/js/menu.js"></script>
 </body>

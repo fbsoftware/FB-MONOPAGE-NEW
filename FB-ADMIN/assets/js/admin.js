@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (view === "menu") {
                     loadMenu();
                 }
+                if (view === "global") {
+                    loadGlobals();
+                }
             });
 
         });

@@ -1,0 +1,102 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "Gallery",
+        "version": "2.0",
+        "updated_at": "2026-10-08T18:16:21+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#baf8fd"
+        },
+        "typography": {
+            "heading": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "body": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "sizes": {
+                "h1": 48,
+                "h2": 36,
+                "h3": 28,
+                "body": 16,
+                "small": 14
+            }
+        },
+        "fonts": []
+    },
+    "sections": [
+        {
+            "id": "sec-1791209989032-510",
+            "background": "var(--color-bg)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1791209989032-44",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1791213149248_1",
+                            "type": "gallery",
+                            "props": {
+                                "folder": "portfolio",
+                                "columns": 3,
+                                "gap": 16,
+                                "radius": 8,
+                                "height": 180
+                            }
+                        }
+                    ],
+                    "height": 400,
+                    "padding": 20
+                },
+                {
+                    "id": "col-1791213045310-533",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1791213180382_2",
+                            "type": "header",
+                            "props": {
+                                "text": "Galleria d'immagini",
+                                "level": "h2",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791213183279_3",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 400
+                }
+            ],
+            "height": "423"
+        }
+    ],
+    "selectedType": "column",
+    "selectedId": "col-1791209989032-44",
+    "isDirty": true
+}

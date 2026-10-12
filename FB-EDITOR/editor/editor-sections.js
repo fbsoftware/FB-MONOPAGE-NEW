@@ -10,7 +10,13 @@ editor.sections = {
         defaultProps: {
             anchor: "",
             background: "transparent",
+            backgroundType: "empty",
             backgroundImage: "",
+            backgroundSlider: "",
+            backgroundSection: "",
+            slides: [],
+            sliderInterval: 5,
+            sliderFade: 1,
             backgroundPositionY: 50,
             overlayColor: "#000000",
             overlayOpacity: 0.4,
@@ -21,11 +27,38 @@ editor.sections = {
         },
 
         fields: {
+
+
+
+        backgroundType: {
+                type: "select",
+                label: "Tipo sfondo",
+                group: "stile",
+                options: {
+                    empty: "Sfondo vuoto",
+                    image: "Sfondo immagine overlay",
+                    gallery: "Sfondo gallery overlay",
+                    section: "Sfondo sezione overlay"
+                }
+            }, 
+
+            backgroundSection: {
+                type: "sectionFolderSelect",
+                label: "Cartella sezioni",
+                group: "immagini",
+                showWhen: {
+                    field: "backgroundType",
+                    values: ["section"]
+                }
+},
+
             background:{ 
             type:"color", 
             label:"Colore", 
             group:"stile" 
             },
+
+            
 
             padding: {
                 type: "number",
@@ -50,41 +83,95 @@ editor.sections = {
                 label: "CSS personalizzato",
                 group: "avanzate"
             },
+
+            backgroundSlider: {
+                type: "text",
+                label: "Cartella gallery",
+                group: "immagini",
+                showWhen: {
+                    field: "backgroundType",
+                    values: ["gallery"]
+                }
+            },
+
+            sliderInterval: {
+                type: "number",
+                min: 1,
+                max: 60,
+                step: 1,
+                label: "Intervallo immagini sec",
+                group: "immagini",
+                showWhen: {
+                    field: "backgroundType",
+                    values: ["gallery"]
+                }
+            },
+
+            sliderFade: {
+                type: "number",
+                min: 0,
+                max: 5,
+                step: 0.5,
+                label: "Durata dissolvenza sec",
+                group: "immagini",
+                showWhen: {
+                    field: "backgroundType",
+                    values: ["gallery"]
+                }
+            },
+
             backgroundImage: {
                 type: "image_picker",
                 label: "Immagine sfondo",
-                group: "immagini"
+                group: "immagini",
+                showWhen: {
+                    field: "backgroundType",
+                    values: ["image"]
+                }
+            },
+
+            backgroundPositionY: {
+                type: "number",
+                min: 0,
+                max: 100,
+                label: "Posizione verticale immagine",
+                group: "overlay",
+                showWhen: {
+                    field: "backgroundType",
+                    values: ["image"]
+                }
             },
 
             overlayColor: {
                 type: "color",
                 label: "Colore overlay",
-                group: "overlay"
+                group: "overlay",
+                showWhen: {
+                    field: "backgroundType",
+                    values: ["image"]
+                }
             },
 
             overlayOpacity: {
-                type: "range",
+                type: "number",
                 min: 0,
                 max: 1,
                 step: 0.1,
                 label: "Opacità overlay",
-                group: "overlay"
+                group: "overlay",
+                showWhen: {
+                    field: "backgroundType",
+                    values: ["image"]
+                }
             },
             height: {
-                type: "range",
+                type: "number",
                 min: 100,
                 max: 900,
                 label: "Altezza sezione",
                 group: "stile"
-            },
-
-            backgroundPositionY: {
-                type: "range",
-                min: 0,
-                max: 100,
-                label: "Posizione verticale immagine",
-                group: "overlay"
             }
+
         }
     }
 };
@@ -96,16 +183,44 @@ editor.renderSectionInspector = function(section){
 
     if(!section) return;
 
-    const bgImage = section.backgroundImage
-    ? `url('${editor.resolveAssetUrl(section.backgroundImage)}')`
-    : "none";
+    const fields = editor.sections.section.fields;
 
-    editor.renderElementInspector(
-        "<h3 style='text-align:center; margin:10px;'>Dettagli Sezione</h3>",
-        section,
-        editor.sections.section.fields,
-        "section"
-    );
+    $.getJSON(
+        "api/template-folders.php",
+        function(response){
+
+            if(response.success && Array.isArray(response.folders)){
+
+                fields.backgroundSection.options = {};
+
+                response.folders.forEach(function(folder){
+                    fields.backgroundSection.options[folder] = folder;
+                });
+            }
+
+            editor.renderElementInspector(
+                "<h3 style='text-align:center; margin:10px;'>Dettagli Sezione</h3>",
+                section,
+                fields,
+                "section"
+            );
+        }
+    )
+    .fail(function(xhr){
+
+        console.error(
+            "Errore caricamento cartelle template:",
+            xhr.status,
+            xhr.responseText
+        );
+
+        editor.renderElementInspector(
+            "<h3 style='text-align:center; margin:10px;'>Dettagli Sezione</h3>",
+            section,
+            fields,
+            "section"
+        );
+    });
 };
 
 //=================================
@@ -142,6 +257,12 @@ $(document).on("input change", "[data-section-field]", function(e){
     editor.state.isDirty = true;
 
     editor.render();
+
+// per testare se funziona il cambio di tipo di background
+        if(field === "backgroundType"){
+        editor.renderSectionInspector(section);
+    }
+
 });
 
 //=================================
@@ -211,7 +332,7 @@ editor.openSectionInspector = function(sectionId){
 //=================================
 // Render section
 //=================================
-editor.renderSection = function(section){
+editor.renderSection = function(section, allowSlider = true){
 
     const selected =
         editor.state.selectedType === "section" &&
@@ -222,6 +343,7 @@ editor.renderSection = function(section){
     const bgImage = section.backgroundImage
         ? `url('${editor.resolveAssetUrl(section.backgroundImage)}')`
         : "none";
+
     const $section = $("<div id='" + section.anchor + "'>")
         .addClass(`canvas-section ${selected}`)
         .attr("data-id", section.id)
@@ -234,7 +356,10 @@ editor.renderSection = function(section){
         .css("position", "relative")
         .css("overflow", "hidden")
         .css("height", (section.height ?? 400) + "px")
-        .css("background-position-y", (section.backgroundPositionY ?? 50) + "%");
+        .css(
+            "background-position-y",
+            (section.backgroundPositionY ?? 50) + "%"
+        );
 
     if(section.customCss){
         $section.attr(
@@ -277,8 +402,13 @@ editor.renderSection = function(section){
 
     $section.prepend($toolbar);
 
+
+    //=================================
+    // Overlay immagine
+    //=================================
     if(section.backgroundImage){
-        const $overlay = $("<div id='section.id'>")
+
+        const $overlay = $("<div>")
             .addClass("section-overlay")
             .css("position", "absolute")
             .css("inset", 0)
@@ -290,6 +420,10 @@ editor.renderSection = function(section){
         $section.append($overlay);
     }
 
+
+    //=================================
+    // Colonne della sezione
+    //=================================
     const $columns = $("<div>")
         .addClass("section-columns")
         .css("position", "relative")
@@ -301,6 +435,174 @@ editor.renderSection = function(section){
 
     $section.append($columns);
 
+
+//=================================
+// Preview slider JSON nel Canvas
+//=================================
+if(
+    allowSlider &&
+    section.backgroundType === "section" &&
+    section.backgroundSlider
+){
+
+    const folder =
+        section.backgroundSlider.replace(/^\/|\/$/g, "");
+
+    const baseUrl =
+        `${window.FB_APP.appUrl}/FB-EDITOR/templates/${folder}/`;
+
+    //=================================
+    // Carica tutti i JSON della cartella
+    //=================================
+    const loadSlides = async function(){
+
+        const slides = [];
+
+        for(let i = 1; i <= 50; i++){
+
+            const file =
+                "slide" +
+                String(i).padStart(2, "0") +
+                ".json";
+
+            try {
+
+                const response =
+                    await fetch(baseUrl + file);
+
+                if(!response.ok){
+                    break;
+                }
+
+                const data =
+                    await response.json();
+
+                if(
+                    data &&
+                    data.section &&
+                    typeof data.section === "object"
+                ){
+                    slides.push(data.section);
+                }
+
+            } catch(error) {
+
+                console.error(
+                    "Errore caricamento slide:",
+                    file,
+                    error
+                );
+
+                break;
+            }
+        }
+
+        return slides;
+    };
+
+
+    loadSlides().then(function(slides){
+
+        if(!slides.length){
+            console.warn(
+                "Nessuna slide JSON trovata:",
+                baseUrl
+            );
+            return;
+        }
+
+        //=================================
+        // Contenitore slider
+        //=================================
+        const $preview = $("<div>")
+            .addClass("canvas-section-json-preview")
+            .css({
+                position: "absolute",
+                inset: 0,
+                overflow: "hidden",
+                "z-index": 0,
+                "pointer-events": "none"
+            });
+
+
+        //=================================
+        // Crea le slide
+        //=================================
+        slides.forEach(function(slide, index){
+
+            const $slide =
+                editor.renderSection(
+                    slide,
+                    false
+                );
+
+            $slide
+                .removeClass("selected")
+                .css({
+                    position: "absolute",
+                    inset: 0,
+                    margin: 0,
+                    padding: 0,
+                    "pointer-events": "none",
+                    "z-index": 0,
+                    opacity: index === 0 ? 1 : 0,
+                    transition:
+                        "opacity " +
+                        (section.sliderFade ?? 1) +
+                        "s ease"
+                });
+
+            $preview.append($slide);
+        });
+
+
+        $section.prepend($preview);
+
+
+        //=================================
+        // Rotazione slide
+        //=================================
+        if(slides.length > 1){
+
+            let current = 0;
+
+            const interval =
+                Math.max(
+                    1,
+                    Number(section.sliderInterval ?? 5)
+                ) * 1000;
+
+            const fade =
+                Number(section.sliderFade ?? 1) * 1000;
+
+            setInterval(function(){
+
+                const $slides =
+                    $preview.children(".canvas-section");
+
+                if(!$slides.length) return;
+
+                $slides
+                    .eq(current)
+                    .css("opacity", 0);
+
+                current++;
+
+                if(current >= $slides.length){
+                    current = 0;
+                }
+
+                $slides
+                    .eq(current)
+                    .css("opacity", 1);
+
+            }, interval);
+        }
+
+    });
+}
+
+
     return $section;
 };
 //=================================
@@ -311,8 +613,8 @@ editor.renderSection = function(section){
     const section = {
         id: editor.utils.uuid("sec"),
         background: "#ffffff",
-        padding: "20",
-        margin: "20",
+        padding: "0",
+        margin: "0",
         columns: [
             {
                 id: editor.utils.uuid("col"),

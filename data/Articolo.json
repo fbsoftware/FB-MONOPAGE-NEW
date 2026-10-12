@@ -1,0 +1,254 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "Articolo",
+        "version": "2.0",
+        "updated_at": "2026-10-06T18:49:08+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#baf8fd"
+        },
+        "typography": {
+            "heading": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "body": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "sizes": {
+                "h1": 48,
+                "h2": 36,
+                "h3": 28,
+                "body": 16,
+                "small": 14
+            }
+        },
+        "fonts": []
+    },
+    "sections": [
+        {
+            "id": "sec-1791205215187-545",
+            "background": "var(--color-bg)",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1791214818607-223",
+                    "width": 10,
+                    "widgets": [
+                        {
+                            "id": "w1791214973909_5",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "87",
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791214955350_3",
+                            "type": "icon",
+                            "props": {
+                                "name": "star",
+                                "size": 48,
+                                "color": "var(--color-primary)",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "iconCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 300
+                },
+                {
+                    "id": "col-1791205215187-866",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1791205303416_1",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/auto.jpg",
+                                "alt": "",
+                                "align": "right",
+                                "height": "292",
+                                "customCss": "",
+                                "imgCss": "border-radius:10px;",
+                                "customClass": "ombra",
+                                "lightbox": true
+                            }
+                        }
+                    ],
+                    "height": 300
+                },
+                {
+                    "id": "col-1791205223784-337",
+                    "width": 34,
+                    "widgets": [
+                        {
+                            "id": "w1791205348883_2",
+                            "type": "header",
+                            "props": {
+                                "text": "Ferrari gialla",
+                                "level": "h2",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791205351573_3",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "padding:0 20px;",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791205355925_4",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": "0",
+                                "margin": 0,
+                                "customCss": "padding:0 20px;",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 300
+                }
+            ]
+        },
+        {
+            "id": "sec-1791214534651-786",
+            "background": "var(--color-bg)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1791214534651-767",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1791214496872_2",
+                            "type": "divider",
+                            "props": {
+                                "name": "home",
+                                "size": 48,
+                                "color": "var(--color-primary)",
+                                "padding": 0,
+                                "margin": 0,
+                                "height": 1,
+                                "lineaCss": "",
+                                "iconaCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 100
+                }
+            ],
+            "height": "100"
+        },
+        {
+            "id": "sec-1791214645192-482",
+            "background": "var(--color-bg)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1791214256694-658",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "wid-1791214256694-514",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/Fonteney-005.jpg",
+                                "alt": "",
+                                "align": "right",
+                                "height": "292",
+                                "customCss": "",
+                                "imgCss": "border-radius:10px;",
+                                "customClass": "ombra",
+                                "lightbox": true
+                            }
+                        }
+                    ],
+                    "height": 300
+                },
+                {
+                    "id": "col-1791214645192-754",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "wid-1791214256694-379",
+                            "type": "header",
+                            "props": {
+                                "text": "Fonteney",
+                                "level": "h2",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "wid-1791214256694-188",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": "0",
+                                "margin": 0,
+                                "customCss": "padding:0 20px;",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "wid-1791214256694-67",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "padding:0 20px;",
+                                "customClass": ""
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "selectedType": "widget",
+    "selectedId": "wid-1791214256694-514",
+    "isDirty": true
+}

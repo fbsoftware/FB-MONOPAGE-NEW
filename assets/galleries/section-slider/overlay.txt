@@ -1,0 +1,15 @@
+img1.jpg
+title=Foto 1
+text=Descrizione 1
+
+img2.jpg
+title=Foto 2
+text=Descrizione 2
+
+img3.jpg
+title=Foto 3
+text=Descrizione 3
+
+img4.jpg
+title=Foto 4
+text=Descrizione 4

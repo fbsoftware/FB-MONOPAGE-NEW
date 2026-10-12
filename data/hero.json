@@ -3,7 +3,7 @@
         "tema": null,
         "page": "hero",
         "version": "2.0",
-        "updated_at": "2026-09-29T18:57:24+02:00"
+        "updated_at": "2026-10-03T18:57:06+02:00"
     },
     "global": {
         "colors": {
@@ -42,25 +42,12 @@
                 {
                     "id": "col-1790611465320-502",
                     "width": 100,
-                    "widgets": [
-                        {
-                            "id": "w1790611468313_1",
-                            "type": "hero",
-                            "props": {
-                                "image": "assets\/images\/mulinello.jpg",
-                                "title": "HERO",
-                                "text": "testo",
-                                "height": "364",
-                                "overlay": true,
-                                "customCss": "",
-                                "customClass": "hero"
-                            }
-                        }
-                    ],
+                    "widgets": [],
                     "height": 645
                 }
             ],
-            "height": "900"
+            "height": "405",
+            "backgroundImage": "assets\/images\/mulinello.jpg"
         }
     ],
     "selectedType": "section",

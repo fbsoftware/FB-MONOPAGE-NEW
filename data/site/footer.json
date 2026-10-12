@@ -2,29 +2,130 @@
     "type": "footer",
     "section": {
         "id": "sec-1790866219539-348",
-        "background": "#ffffff",
-        "padding": "20",
-        "margin": "20",
+        "background": "#808080",
+        "padding": "",
+        "margin": "",
         "columns": [
             {
                 "id": "col-1790866219539-2",
-                "width": 100,
+                "width": 33,
                 "widgets": [
+                    {
+                        "id": "w1791471644260_3",
+                        "type": "spacer",
+                        "props": {
+                            "text": "",
+                            "height": "137",
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1791470739185_1",
+                        "type": "navbar",
+                        "props": {
+                            "source": "manual",
+                            "orientation": "vertical",
+                            "align": "left",
+                            "gap": 20,
+                            "color": "var(--color-bg)",
+                            "fontSize": "12",
+                            "padding": 10,
+                            "customCss": "",
+                            "customClass": "",
+                            "items": [
+                                {
+                                    "label": "Cookie policy",
+                                    "type": "page",
+                                    "target": "cookie"
+                                },
+                                {
+                                    "label": "Disclaimer",
+                                    "type": "page",
+                                    "target": "disclaimer"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "height": 250,
+                "background": "",
+                "customCss": "",
+                "padding": 40,
+                "margin": 0
+            },
+            {
+                "id": "col-1791471534212-92",
+                "width": 33,
+                "widgets": [
+                    {
+                        "id": "w1791472874394_2",
+                        "type": "spacer",
+                        "props": {
+                            "text": "",
+                            "height": "51",
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1791472809261_1",
+                        "type": "image",
+                        "props": {
+                            "src": "assets/images/logo.png",
+                            "alt": "",
+                            "align": "center",
+                            "height": "60",
+                            "lightbox": false,
+                            "customCss": "",
+                            "imgCss": "",
+                            "customClass": ""
+                        }
+                    },
                     {
                         "id": "w1790866223555_3",
                         "type": "text",
                         "props": {
-                            "text": "FB-EDITOR  by fbsoftware",
+                            "text": "FB-EDITOR - by fbsoftware ",
                             "align": "center",
-                            "color": "var(--color-primary)",
+                            "color": "var(--color-accent)",
+                            "padding": "20",
+                            "margin": 0,
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "col-1791471697440-869",
+                "width": 33,
+                "widgets": [
+                    {
+                        "id": "w1791471720016_5",
+                        "type": "spacer",
+                        "props": {
+                            "text": "",
+                            "height": "134",
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1791471851067_7",
+                        "type": "richtext",
+                        "props": {
+                            "html": "\n            \n            <p>Fausto bresciani 'fbsoftware'</p><p>email: fbsoftware@libero.it</p><p>sito: faustobresciani.it</p>\n        \n        ",
                             "padding": 0,
                             "margin": 0,
-                            "customCss": "font-weight:bold;",
+                            "customCss": "color:#a5f0fd;\nfont-size:12px;\n",
                             "customClass": ""
                         }
                     }
                 ]
             }
-        ]
+        ],
+        "height": "250",
+        "customCss": ""
     }
 }

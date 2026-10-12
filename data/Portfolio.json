@@ -1,0 +1,290 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "Portfolio",
+        "version": "2.0",
+        "updated_at": "2026-10-05T14:59:28+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#baf8fd"
+        },
+        "typography": {
+            "heading": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "body": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "sizes": {
+                "h1": 48,
+                "h2": 36,
+                "h3": 28,
+                "body": 16,
+                "small": 14
+            }
+        },
+        "fonts": []
+    },
+    "sections": [
+        {
+            "id": "w1791203289940_1",
+            "background": "var(--color-primary)",
+            "padding": "",
+            "margin": "",
+            "columns": [
+                {
+                    "id": "w1791203289941_2",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1791203289941_3",
+                            "type": "header",
+                            "props": {
+                                "text": "Portfolio",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "var(--color-bg)",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 104
+                },
+                {
+                    "id": "w1791203289941_4",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1791203289941_5",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "var(--color-bg)",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 102
+                }
+            ],
+            "height": "108"
+        },
+        {
+            "id": "w1791203313508_6",
+            "background": "var(--color-bg)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "w1791203313508_7",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1791203313508_8",
+                            "type": "header",
+                            "props": {
+                                "text": "faustobresciani.it",
+                                "level": "h3",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791203349171_23",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/fb-home.png",
+                                "alt": "",
+                                "align": "center",
+                                "height": "136",
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791203313508_10",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 400,
+                    "padding": 0
+                },
+                {
+                    "id": "w1791203313508_11",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1791203313508_12",
+                            "type": "header",
+                            "props": {
+                                "text": "FB-EDITOR",
+                                "level": "h3",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791203413653_24",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/FB-EDITOR.jpg",
+                                "alt": "",
+                                "align": "center",
+                                "height": "136",
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791203313508_14",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 400,
+                    "padding": 0
+                },
+                {
+                    "id": "w1791203313508_15",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1791203313508_16",
+                            "type": "header",
+                            "props": {
+                                "text": "Erbe",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791203955294_1",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/erbe.jpg",
+                                "alt": "",
+                                "align": "center",
+                                "height": "136",
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791203313508_18",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 400,
+                    "padding": 0
+                },
+                {
+                    "id": "w1791203313508_19",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1791203313508_20",
+                            "type": "header",
+                            "props": {
+                                "text": "FAEL",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791205128557_1",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/fael.jpg",
+                                "alt": "",
+                                "align": "left",
+                                "height": "136",
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791203313508_22",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 400,
+                    "padding": 0
+                }
+            ]
+        }
+    ],
+    "selectedType": "widget",
+    "selectedId": "w1791205128557_1",
+    "isDirty": true
+}

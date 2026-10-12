@@ -2,9 +2,9 @@
     "type": "header",
     "section": {
         "id": "sec-1790762383084-309",
-        "background": "var(--color-bg)",
-        "padding": "20",
-        "margin": "20",
+        "background": "#808080",
+        "padding": "0",
+        "margin": "0",
         "columns": [
             {
                 "id": "col-1790761807530-835",
@@ -16,16 +16,28 @@
                         "props": {
                             "src": "assets/images/logo.png",
                             "alt": "",
-                            "align": "left",
+                            "align": "center",
                             "width": "150",
                             "customCss": "",
                             "imgCss": "",
                             "customClass": "",
-                            "height": "77"
+                            "height": "77",
+                            "lightbox": false
+                        }
+                    },
+                    {
+                        "id": "w1791473027338_1",
+                        "type": "spacer",
+                        "props": {
+                            "text": "",
+                            "height": "7",
+                            "customCss": "",
+                            "customClass": ""
                         }
                     }
                 ],
-                "height": 120
+                "height": 77,
+                "padding": 0
             },
             {
                 "id": "col-1790761813288-681",
@@ -37,9 +49,9 @@
                         "props": {
                             "source": "site",
                             "orientation": "horizontal",
-                            "align": "right",
+                            "align": "center",
                             "gap": 20,
-                            "color": "#000000",
+                            "color": "var(--color-bg)",
                             "fontSize": 16,
                             "padding": 10,
                             "customCss": "",
@@ -52,24 +64,54 @@
                                     "level": 0
                                 },
                                 {
-                                    "label": "Hero",
+                                    "label": "Promo",
                                     "type": "page",
-                                    "target": "hero",
+                                    "target": "test",
                                     "level": 0
                                 },
                                 {
-                                    "label": "Test",
+                                    "label": "Servizi",
                                     "type": "page",
-                                    "target": "test",
+                                    "target": "servizi",
+                                    "level": 0
+                                },
+                                {
+                                    "label": "Portfolio",
+                                    "type": "page",
+                                    "target": "Portfolio",
+                                    "level": 0
+                                },
+                                {
+                                    "label": "Articolo",
+                                    "type": "page",
+                                    "target": "Articolo",
+                                    "level": 0
+                                },
+                                {
+                                    "label": "Video",
+                                    "type": "page",
+                                    "target": "Video",
+                                    "level": 0
+                                },
+                                {
+                                    "label": "Gallery",
+                                    "type": "page",
+                                    "target": "Gallery",
+                                    "level": 0
+                                },
+                                {
+                                    "label": "Slide",
+                                    "type": "page",
+                                    "target": "Slide",
                                     "level": 0
                                 }
                             ]
                         }
                     }
                 ],
-                "height": 120
+                "height": 77
             }
         ],
-        "height": "150"
+        "height": "77"
     }
 }

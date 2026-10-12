@@ -74,6 +74,36 @@ editor.loadGalleryFolders = function(){
 };
 
 //=================================
+//  Carica folder sezioni da server
+//=================================
+editor.loadSectionFolders = function(){
+
+    const url =
+        `${window.FB_APP.appUrl}/FB-EDITOR/api/template-folders.php?t=${Date.now()}`;
+
+    fetch(url)
+        .then(r => r.text())
+        .then(text => {
+            let data;
+
+            try {
+                data = JSON.parse(text);
+            } catch(e) {
+                console.error("Errore parsing JSON sezioni:", e);
+                return;
+            }
+
+            if (!data.success) return;
+
+            editor.sectionFolders = data.folders;
+
+        })
+        .catch(err =>
+            console.error("Errore fetch section folders:", err)
+        );
+};
+
+//=================================
 // risolve path immagini
 //=================================
     editor.resolveAssetUrl = function(path){
@@ -189,41 +219,119 @@ $(document).on("click", ".duplicate", function(e){
 // SAVE: BOTTONE PUBBLICA
 //================================
 $(document).on("click", "#save-layout", function(){
+
     if(!confirm("Vuoi Pubblicare il layout ?")) return;
 
     console.log("SALVATAGGIO:", editor.state);
 
+    //================================
+    // GLOBALE
+    //================================
+    if(window.EDITOR_CONFIG.global){
+
+        const globalType = window.EDITOR_CONFIG.global;
+
+        fetch(window.APP_URL + "/FB-EDITOR/api/save-global-section.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                type: globalType,
+                section: editor.state.sections[0]
+            })
+        })
+        .then(async res => {
+
+            const text = await res.text();
+
+            console.log("RAW GLOBAL SAVE RESPONSE:", text);
+
+            try {
+                return JSON.parse(text);
+            } catch(err) {
+                throw new Error(
+                    "Risposta non JSON da save-global.php: " + text
+                );
+            }
+        })
+        .then(res => {
+
+            console.log("GLOBAL SAVE RESULT:", res);
+
+            if(res.success){
+
+                editor.state.isDirty = false;
+
+                alert("Globale salvato!");
+
+            } else {
+
+                alert("Errore: " + res.error);
+            }
+        })
+        .catch(err => {
+
+            console.error(err);
+
+            alert(
+                "Errore salvataggio globale: " +
+                err.message
+            );
+        });
+
+        return;
+    }
+
+    //================================
+    // PAGINA NORMALE
+    //================================
     fetch(window.APP_URL + "/save.php", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify(editor.state)
     })
     .then(async res => {
+
         const text = await res.text();
+
         console.log("RAW SAVE RESPONSE:", text);
 
         try {
             return JSON.parse(text);
-        } catch (err) {
-            throw new Error("Risposta non JSON da save.php: " + text);
+        } catch(err) {
+            throw new Error(
+                "Risposta non JSON da save.php: " + text
+            );
         }
     })
     .then(res => {
+
         console.log("SAVE RESULT:", res);
 
         if(res.success){
+
             editor.state.isDirty = false;
+
             alert("Salvato!");
+
         } else {
+
             alert("Errore: " + res.error);
         }
     })
     .catch(err => {
+
         console.error(err);
-        alert("Errore salvataggio: " + err.message);
+
+        alert(
+            "Errore salvataggio: " +
+            err.message
+        );
     });
 });
-
 //================================
 // SAVE / PUBBLICA
 //================================
@@ -388,7 +496,7 @@ $(document).on("click", ".add-column", function(e){
 
     section.columns.push({
         id: editor.utils.uuid("col"),
-        width: 100  , 
+        width: 50  , 
         widgets: []
     });
 
@@ -472,11 +580,6 @@ $(document).on("input change", "#widget-inspector [data-field]", function(){
 }
 
     item.props[field] = value;
-
-                                console.log(
-                                    "PROPRIETA' NAVBAR:",
-                                    item.props
-                                );
 
     editor.render(); // refresh canvas
 });

@@ -1,0 +1,103 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "Video",
+        "version": "2.0",
+        "updated_at": "2026-10-08T18:12:41+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#baf8fd"
+        },
+        "typography": {
+            "heading": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "body": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "sizes": {
+                "h1": 48,
+                "h2": 36,
+                "h3": 28,
+                "body": 16,
+                "small": 14
+            }
+        },
+        "fonts": []
+    },
+    "sections": [
+        {
+            "id": "sec-1791206844640-138",
+            "background": "var(--color-bg)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1791206849895-60",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1791206905207_1",
+                            "type": "header",
+                            "props": {
+                                "text": "Vinicio Capossela",
+                                "level": "h2",
+                                "align": "right",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791206907327_2",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "right",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "col-1791206844640-895",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1791206912146_3",
+                            "type": "video",
+                            "props": {
+                                "url": "v55g74Oi8qs",
+                                "aspectRatio": "16:9",
+                                "align": "center",
+                                "padding": "20",
+                                "margin": "",
+                                "customCss": "",
+                                "videoCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 440
+                }
+            ],
+            "height": "440"
+        }
+    ],
+    "selectedType": "widget",
+    "selectedId": "w1791206912146_3",
+    "isDirty": true
+}

@@ -411,7 +411,7 @@ editor.widgets.header = {
             level: "h2",
             align: "center",    
             color:"#000000",
-            padding:0,
+            padding:20,
             margin:0  ,
             customCss:"",
             customClass:""
@@ -503,7 +503,7 @@ editor.widgets.text = {
      text:"Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
      align:"left",
      color:"#000000",
-     padding:0,
+     padding:20,
      margin:0,
      customCss:"",
      customClass:""
@@ -517,8 +517,8 @@ fields:{
             right:"Destra",
             justify:"Giustificato"} },
     color:{ type:"color", label:"Colore", group:"stile" },
-    padding:{ type:"number", label:"Padding px", group:"avanzate" },
-    margin:{ type:"number", label:"Margin px", group:"avanzate" },
+    padding:{ type:"number", label:"Padding px", group:"stile" },
+    margin:{ type:"number", label:"Margin px", group:"stile" },
     customCss: {
         type: "textarea",
         label: "CSS personalizzato",
@@ -710,6 +710,7 @@ editor.widgets.image = {
         alt: "",
         align: "left",
         height: 300,
+        lightbox: false,
         customCss:"",
         imgCss:"",
         customClass:""
@@ -745,23 +746,28 @@ editor.widgets.image = {
             group: "stile"
 
         },
-    
-    customCss: {
-    type: "textarea",
-    label: "CSS div",
-    group: "avanzate"
-    },
+        lightbox: {
+            type: "checkbox",
+            label: "Lightbox",
+            group: "stile"
+        },
+            
+        customCss: {
+            type: "textarea",
+            label: "CSS div",
+            group: "avanzate"
+            },
 
-    imgCss: {
-    type: "textarea",
-    label: "CSS image",
-    group: "avanzate"
-    },
-    customClass: {
-        type: "text",
-        label: "Classe CSS",
-        group: "avanzate"
-    }
+        imgCss: {
+            type: "textarea",
+            label: "CSS image",
+            group: "avanzate"
+            },
+        customClass: {
+            type: "text",
+            label: "Classe CSS",
+            group: "avanzate"
+        }
     },
 
     render(widget){
@@ -2337,7 +2343,14 @@ editor.renderElementInspector = function(title, target, fields, dataAttr){
 
             const field = fields[fieldName];
             const value = target[fieldName] ?? "";
+            if(field.showWhen)
+            {
+            const currentValue = target[field.showWhen.field];
 
+                if(!field.showWhen.values.includes(currentValue)){
+                    return;
+                }
+            }
             let input = editor.renderInspectorInput(fieldName, field, value, dataAttr);
 
             if(fieldName === "backgroundImage" && value){
@@ -2619,6 +2632,20 @@ html += `
             html += `<option value="${folder}" ${value === folder ? "selected" : ""}>${folder}</option>`;
         });
         html += `</select>`;
+        return html;
+    }
+
+    if (field.type === "sectionFolderSelect") {
+        const folders = editor.sectionFolders || [];
+
+        let html = `<select data-section-field="${fieldName}">`;
+
+        folders.forEach(folder => {
+            html += `<option value="${folder}" ${value === folder ? "selected" : ""}>${folder}</option>`;
+        });
+
+        html += `</select>`;
+
         return html;
     }
 

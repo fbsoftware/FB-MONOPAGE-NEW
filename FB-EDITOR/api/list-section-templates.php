@@ -3,6 +3,8 @@ header('Content-Type: application/json');
 
 $rootDir = dirname(__DIR__);
 $templateDir = $rootDir . '/templates';
+error_log("TEMPLATE BASE DIR: " . $baseDir);
+error_log("TEMPLATE DIR EXISTS: " . (is_dir($baseDir) ? "SI" : "NO"));        
 
 $templates = [];
 // echo "P A T H =" . $templateDir;

@@ -1,0 +1,77 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "PROVE",
+        "version": "2.0",
+        "updated_at": "2026-10-12T20:29:05+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#baf8fd"
+        },
+        "typography": {
+            "heading": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "body": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "sizes": {
+                "h1": 48,
+                "h2": 36,
+                "h3": 28,
+                "body": 16,
+                "small": 14
+            }
+        },
+        "fonts": []
+    },
+    "sections": [
+        {
+            "id": "sec-1791477729270-557",
+            "background": "#ffffff",
+            "padding": "20",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1791477729270-678",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1791820337579_1",
+                            "type": "header",
+                            "props": {
+                                "text": "Widget",
+                                "level": "h1",
+                                "align": "left",
+                                "color": "var(--color-accent)",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 387
+                }
+            ],
+            "height": "400",
+            "backgroundSlider": "section-slider-test",
+            "sliderInterval": "3",
+            "sliderFade": "2",
+            "backgroundImage": "",
+            "overlayOpacity": "0",
+            "overlayColor": "var(--color-bg)",
+            "backgroundType": "section"
+        }
+    ],
+    "selectedType": "widget",
+    "selectedId": "w1791820337579_1",
+    "isDirty": true
+}

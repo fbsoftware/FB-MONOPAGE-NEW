@@ -6,15 +6,51 @@
         "level": 0
     },
     {
-        "title": "Hero",
+        "title": "Promo",
         "type": "page",
-        "target": "hero",
+        "target": "test",
         "level": 0
     },
     {
-        "title": "Test",
+        "title": "Servizi",
         "type": "page",
-        "target": "test",
+        "target": "servizi",
+        "level": 0
+    },
+    {
+        "title": "Portfolio",
+        "type": "page",
+        "target": "Portfolio",
+        "level": 0
+    },
+    {
+        "title": "Articolo",
+        "type": "page",
+        "target": "Articolo",
+        "level": 0
+    },
+    {
+        "title": "Video",
+        "type": "page",
+        "target": "Video",
+        "level": 0
+    },
+    {
+        "title": "Gallery",
+        "type": "page",
+        "target": "Gallery",
+        "level": 0
+    },
+    {
+        "title": "Slide",
+        "type": "page",
+        "target": "Slide",
+        "level": 0
+    },
+    {
+        "title": "PROVE",
+        "type": "page",
+        "target": "PROVE",
         "level": 0
     }
 ]

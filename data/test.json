@@ -3,7 +3,7 @@
         "tema": null,
         "page": "test",
         "version": "2.0",
-        "updated_at": "2026-10-02T12:15:04+02:00"
+        "updated_at": "2026-10-08T16:02:48+02:00"
     },
     "global": {
         "colors": {
@@ -35,49 +35,258 @@
     "sections": [
         {
             "id": "sec-1790608623566-948",
-            "background": "var(--color-bg)",
-            "padding": "20",
-            "margin": "20",
+            "background": "var(--color-primary)",
+            "padding": "",
+            "margin": "",
             "columns": [
                 {
                     "id": "col-1790608623566-504",
-                    "width": 100,
+                    "width": 50,
                     "widgets": [
                         {
                             "id": "w1790873837959_1",
                             "type": "header",
                             "props": {
-                                "text": "Titolo ---",
+                                "text": "Promo",
                                 "level": "h2",
                                 "align": "center",
-                                "color": "#000000",
-                                "padding": 0,
-                                "margin": 0,
-                                "customCss": "",
-                                "customClass": ""
-                            }
-                        },
-                        {
-                            "id": "w1790873840115_2",
-                            "type": "text",
-                            "props": {
-                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
-                                "align": "left",
-                                "color": "#000000",
-                                "padding": 0,
+                                "color": "var(--color-bg)",
+                                "padding": "20",
                                 "margin": 0,
                                 "customCss": "",
                                 "customClass": ""
                             }
                         }
                     ],
-                    "height": 120
+                    "height": 104
+                },
+                {
+                    "id": "col-1791132779120-612",
+                    "width": 100,
+                    "widgets": [
+                        {
+                            "id": "w1790873840115_2",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "var(--color-bg)",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 102
                 }
             ],
-            "height": "150"
+            "height": "108"
+        },
+        {
+            "id": "sec-1791128312744-401",
+            "background": "var(--color-bg)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1791128312744-25",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1791128473808_1",
+                            "type": "header",
+                            "props": {
+                                "text": "PHP",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791128499396_3",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/classi.png",
+                                "alt": "",
+                                "align": "center",
+                                "height": "173",
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": "",
+                                "lightbox": false
+                            }
+                        },
+                        {
+                            "id": "w1791128492451_2",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 400,
+                    "padding": 0
+                },
+                {
+                    "id": "col-1791132862617-506",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1791132862617_727",
+                            "type": "header",
+                            "props": {
+                                "text": "jQUERY",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791468114086_2",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/jquery.png",
+                                "alt": "",
+                                "align": "center",
+                                "height": "173",
+                                "lightbox": false,
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791133001010_3",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 400,
+                    "padding": 0
+                },
+                {
+                    "id": "col-1791132864507-645",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1791132864507_765",
+                            "type": "header",
+                            "props": {
+                                "text": "Layout",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791132864507_87",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/layout.png",
+                                "alt": "",
+                                "align": "center",
+                                "height": "173",
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791133009443_4",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 400,
+                    "padding": 0
+                },
+                {
+                    "id": "col-1791132866287-136",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1791132866287_676",
+                            "type": "header",
+                            "props": {
+                                "text": "Lingue",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791132866287_908",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/traduci.png",
+                                "alt": "",
+                                "align": "center",
+                                "height": "173",
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791133017191_5",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 400,
+                    "padding": 0
+                }
+            ]
         }
     ],
-    "selectedType": "column",
-    "selectedId": "col-1790608623566-504",
+    "selectedType": "widget",
+    "selectedId": "w1791468114086_2",
     "isDirty": true
 }

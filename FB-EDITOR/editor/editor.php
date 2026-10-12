@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 require_once '../config/app.php';
 ?>
 <!DOCTYPE html>
@@ -27,12 +27,23 @@ $tema = '';
 $template = $_GET['template'] ?? null;
 $templateName = $_GET['name'] ?? null;
 $page = $_GET['page'] ?? null;
+$global = $_GET['global'] ?? null;
 
 if ($template) {
 
     $template = preg_replace('/[^a-zA-Z0-9\-_]/', '', $template);
 
     $layoutFile = "../templates/{$template}.json";
+
+} elseif ($global) {
+
+    $global = preg_replace('/[^a-zA-Z0-9\-_]/', '', $global);
+
+    if (!in_array($global, ['header', 'footer'], true)) {
+        die('Globale non valido');
+    }
+
+    $layoutFile = "../../data/site/{$global}.json";
 
 } else {
 
@@ -56,6 +67,64 @@ if (file_exists($layoutFile)) {
     // in una pagina temporanea
     // =========================================
     if ($template && isset($layoutData['section'])) {
+
+    $section = $layoutData['section'];
+
+    $layoutData = [
+
+        'meta' => [
+            'tema' => null,
+            'page' => null,
+            'version' => '2.0'
+        ],
+
+        'global' => [
+            'colors' => [
+                'primary'   => '#3366ff',
+                'secondary' => '#ff6633',
+                'accent'    => '#ffa500',
+                'text'      => '#222222',
+                'bg'        => '#baf8fd'
+            ],
+
+            'typography' => [
+                'heading' => [
+                    'fontFamily' => 'Inter',
+                    'weight' => 400
+                ],
+
+                'body' => [
+                    'fontFamily' => 'Inter',
+                    'weight' => 400
+                ],
+
+                'sizes' => [
+                    'h1' => 48,
+                    'h2' => 36,
+                    'h3' => 28,
+                    'body' => 16,
+                    'small' => 14
+                ]
+            ],
+
+            'fonts' => []
+        ],
+
+        'sections' => [
+            $section
+        ],
+
+        'selectedType' => 'section',
+        'selectedId'   => $section['id'] ?? null,
+        'isDirty'      => false
+    ];
+}
+
+// =========================================
+// GLOBALE: converte la sezione globale
+// in un layout pagina temporaneo
+// =========================================
+if ($global && isset($layoutData['section'])) {
 
     $section = $layoutData['section'];
 
@@ -228,34 +297,42 @@ if (file_exists($layoutFile)) {
                 <div style="display: flex; gap: 250px; justify-content: space-between; margin-bottom: 20px;">
 <div style="flex:5">
 
-    <?php if ($template): ?>
+<?php if ($template): ?>
 
-        <h2 style="text-align:center">
-            Template:
-            <span style="color:black">
-                <?= htmlspecialchars(
-                    $template === 'new' && $templateName
-                        ? $templateName
-                        : $template
-                ) ?>
-            </span>
-        </h2>
+    <h2 style="text-align:center">
+        Template:
+        <span style="color:black">
+            <?= htmlspecialchars(
+                $template === 'new' && $templateName
+                    ? $templateName
+                    : $template
+            ) ?>
+        </span>
+    </h2>
 
-    <?php else: ?>
+<?php elseif ($global): ?>
 
-        <h2 style="text-align:center">
-            Layout del tema:
-            <span style="color:black">
-                <?= htmlspecialchars($tema) ?>
-            </span>
+    <h2 style="text-align:center">
+        Globale:
+        <span style="color:black">
+            <?= htmlspecialchars(ucfirst($global)) ?>
+        </span>
+    </h2>
 
-            pagina:
-            <span style="color:black">
-                <?= htmlspecialchars($page) ?>
-            </span>
-        </h2>
+<?php else: ?>
 
-    <?php endif; ?>
+    <h2 style="text-align:center">
+        <span style="color:black">
+            <?= htmlspecialchars($tema) ?>
+        </span>
+
+        pagina:
+        <span style="color:black">
+            <?= htmlspecialchars($page) ?>
+        </span>
+    </h2>
+
+<?php endif; ?>
 
 </div>
                     <div style="flex:1">
@@ -304,6 +381,7 @@ window.FB_APP = {
 window.EDITOR_CONFIG = {
     tema: null,
     page: <?= json_encode($page) ?>,
+    global: <?= json_encode($global) ?>,
     template: <?= json_encode($template) ?>,
     templateName: <?= json_encode($templateName) ?>
 };

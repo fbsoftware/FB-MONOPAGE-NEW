@@ -1,0 +1,205 @@
+{
+    "type": "section",
+    "name": "promo",
+    "created_at": "2026-10-05T14:19:30+02:00",
+    "section": {
+        "id": "sec-1791128312744-401",
+        "background": "var(--color-bg)",
+        "padding": "0",
+        "margin": "0",
+        "columns": [
+            {
+                "id": "col-1791128312744-25",
+                "width": 25,
+                "widgets": [
+                    {
+                        "id": "w1791128473808_1",
+                        "type": "header",
+                        "props": {
+                            "text": "- 1 -",
+                            "level": "h2",
+                            "align": "center",
+                            "color": "#000000",
+                            "padding": "20",
+                            "margin": 0,
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1791128499396_3",
+                        "type": "image",
+                        "props": {
+                            "src": "assets\/images\/classi.png",
+                            "alt": "",
+                            "align": "center",
+                            "height": "173",
+                            "customCss": "",
+                            "imgCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1791128492451_2",
+                        "type": "text",
+                        "props": {
+                            "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                            "align": "left",
+                            "color": "#000000",
+                            "padding": "20",
+                            "margin": 0,
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    }
+                ],
+                "height": 400,
+                "padding": 0
+            },
+            {
+                "id": "col-1791132862617-506",
+                "width": 25,
+                "widgets": [
+                    {
+                        "id": "w1791132862617_727",
+                        "type": "header",
+                        "props": {
+                            "text": "- 2 -",
+                            "level": "h2",
+                            "align": "center",
+                            "color": "#000000",
+                            "padding": "20",
+                            "margin": 0,
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1791132862617_381",
+                        "type": "image",
+                        "props": {
+                            "src": "assets\/images\/jquery.png",
+                            "alt": "",
+                            "align": "center",
+                            "height": "173",
+                            "customCss": "",
+                            "imgCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1791133001010_3",
+                        "type": "text",
+                        "props": {
+                            "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                            "align": "left",
+                            "color": "#000000",
+                            "padding": 20,
+                            "margin": 0,
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    }
+                ],
+                "height": 400,
+                "padding": 0
+            },
+            {
+                "id": "col-1791132864507-645",
+                "width": 25,
+                "widgets": [
+                    {
+                        "id": "w1791132864507_765",
+                        "type": "header",
+                        "props": {
+                            "text": "- 3 -",
+                            "level": "h2",
+                            "align": "center",
+                            "color": "#000000",
+                            "padding": "20",
+                            "margin": 0,
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1791132864507_87",
+                        "type": "image",
+                        "props": {
+                            "src": "assets\/images\/layout.png",
+                            "alt": "",
+                            "align": "center",
+                            "height": "173",
+                            "customCss": "",
+                            "imgCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1791133009443_4",
+                        "type": "text",
+                        "props": {
+                            "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                            "align": "left",
+                            "color": "#000000",
+                            "padding": 20,
+                            "margin": 0,
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    }
+                ],
+                "height": 400,
+                "padding": 0
+            },
+            {
+                "id": "col-1791132866287-136",
+                "width": 25,
+                "widgets": [
+                    {
+                        "id": "w1791132866287_676",
+                        "type": "header",
+                        "props": {
+                            "text": "- 4 -",
+                            "level": "h2",
+                            "align": "center",
+                            "color": "#000000",
+                            "padding": "20",
+                            "margin": 0,
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1791132866287_908",
+                        "type": "image",
+                        "props": {
+                            "src": "assets\/images\/traduci.png",
+                            "alt": "",
+                            "align": "center",
+                            "height": "173",
+                            "customCss": "",
+                            "imgCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1791133017191_5",
+                        "type": "text",
+                        "props": {
+                            "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                            "align": "left",
+                            "color": "#000000",
+                            "padding": 20,
+                            "margin": 0,
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    }
+                ],
+                "height": 400,
+                "padding": 0
+            }
+        ]
+    }
+}

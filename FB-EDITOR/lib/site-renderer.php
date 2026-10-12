@@ -1,4 +1,28 @@
 <?php
+//=================================
+// Funzioni di supporto video
+//=================================
+
+function getVideoAspectRatioPadding(string $ratio): string
+{
+    switch ($ratio) {
+
+        case '16:9':
+            return '56.25%';
+
+        case '4:3':
+            return '75%';
+
+        case '1:1':
+            return '100%';
+
+        case '21:9':
+            return '42.86%';
+
+        default:
+            return '56.25%';
+    }
+}
 //******************************************
  // Render singolo widget in HTML pubblico
 //****************************************** 
@@ -105,16 +129,27 @@ function renderWidgetHTML(array $widget): string
             $customCss = $props['customCss'] ?? '';
             $imgCss = $props['imgCss'] ?? '';
             $customClass = $props['customClass'] ?? '';
+            $lightbox = !empty($props['lightbox']);
 
-            return '<div class="widget-image ' . h($customClass) . '" 
-                        style="justify-content:' . h($align) . ';
-                        align-items:' . h($align) . ';
-                        ' . h($customCss) . '">'
-                . '<img src="' . h($src) . '" 
-                        alt="' . h($alt) . '" 
-                        style="width:' . h($width) . ';
-                        ' . h($imgCss) . '">'
-                . '</div>';
+                $lightboxClass = $lightbox
+                    ? ' gallery-lightbox-trigger'
+                    : '';
+
+                $lightboxData = $lightbox
+                    ? ' data-src="' . h($src) . '"'
+                    : '';
+
+        return '<div class="widget-image ' . h($customClass) . '"
+                    style="justify-content:' . h($align) . ';
+                    align-items:' . h($align) . ';
+                    ' . h($customCss) . '">'
+            . '<img src="' . h($src) . '"
+                ' . $lightboxData . '
+                class="' . h(trim($lightboxClass)) . '"
+                alt="' . h($alt) . '"
+                style="height:' . h($height) . ';
+                ' . h($imgCss) . '">'
+            . '</div>';
 
         case 'spacer':
             $height = isset($props['height']) ? ((int)$props['height'] . 'px') : '40px';
@@ -884,6 +919,7 @@ function renderColumnHTML(array $column): string
     $margin    = isset($column['margin']) ? ((int)$column['margin'] . 'px') : '0px';
     $background = $column['background'] ?? ($column['sfondoColor'] ?? 'transparent');
     $customCss = $column['customCss'] ?? '';
+    $customClass = $column['customClass'] ?? '';
 
     $widgets = $column['widgets'] ?? [];
 
@@ -908,13 +944,74 @@ function renderColumnHTML(array $column): string
 /************************************
  * Render sezione in HTML pubblico
  ************************************/
-function renderSectionHTML(array $section): string
+function renderSectionHTML(array $section, bool $allowSlider = true): string
 {
     $background = $section['background'] ?? 'transparent';
     $padding    = isset($section['padding']) ? ((int)$section['padding'] . 'px') : '20px';
     $margin     = isset($section['margin']) ? ((int)$section['margin'] . 'px') : '0px';
     $customCss  = $section['customCss'] ?? '';
     $backgroundImage = $section['backgroundImage'] ?? '';
+    $backgroundSlider = trim($section['backgroundSlider'] ?? '', '/');
+    $backgroundType = $section['backgroundType'] ?? 'empty';
+    $sliderSections = [];
+
+if (
+    $allowSlider &&
+    $backgroundType === 'section' &&
+    $backgroundSlider !== ''
+) {
+
+    $sliderDir =
+        APP_ROOT .
+        '/FB-EDITOR/templates/' .
+        $backgroundSlider;
+
+    if (is_dir($sliderDir)) {
+
+        $files = scandir($sliderDir);
+        sort($files);
+
+        foreach ($files as $file) {
+
+            if (
+                $file === '.' ||
+                $file === '..'
+            ) {
+                continue;
+            }
+
+            if (
+                strtolower(
+                    pathinfo($file, PATHINFO_EXTENSION)
+                ) !== 'json'
+            ) {
+                continue;
+            }
+
+            $filePath = $sliderDir . '/' . $file;
+
+            $data = json_decode(
+                file_get_contents($filePath),
+                true
+            );
+
+            if (
+                is_array($data) &&
+                isset($data['section']) &&
+                is_array($data['section'])
+            ) {
+
+                $sliderSections[] = $data['section'];
+            }
+        }
+    }
+}
+    $sliderInterval = isset($section['sliderInterval'])
+        ? (float)$section['sliderInterval']
+        : 5;
+    $sliderFade = isset($section['sliderFade'])
+        ? (float)$section['sliderFade']
+        : 1;
     $overlayColor    = $section['overlayColor'] ?? '#000000';
     $overlayOpacity  = $section['overlayOpacity'] ?? 0.4;
     $columns    = $section['columns'] ?? [];
@@ -923,13 +1020,55 @@ function renderSectionHTML(array $section): string
     $anchor = $section['anchor'] ?? '';
     $bgStyle = '';
 
-    if($backgroundImage){
+    $sliderImages = [];
+    if ($backgroundSlider !== '') {
+
+        $sliderDir = APP_ROOT . '/assets/galleries/' . $backgroundSlider;
+
+        if (is_dir($sliderDir)) {
+
+            $files = scandir($sliderDir);
+            sort($files);
+
+            foreach ($files as $file) {
+
+                if ($file === '.' || $file === '..') {
+                    continue;
+                }
+
+                $ext = strtolower(
+                    pathinfo($file, PATHINFO_EXTENSION)
+                );
+
+                if (in_array($ext, [
+                    'jpg',
+                    'jpeg',
+                    'png',
+                    'webp',
+                    'gif'
+                ])) {
+
+                    $sliderImages[] =
+                        ASSETS_URL .
+                        '/galleries/' .
+                        $backgroundSlider .
+                        '/' .
+                        $file;
+                }
+            }
+        }
+    }
+
+    $bgStyle .= "
+        position:relative;
+        overflow:hidden;
+    ";
+
+    if ($backgroundImage) {
         $bgStyle .= "
             background-image:url('" . h($backgroundImage) . "');
             background-size:cover;
-            background-position:center ' . h($backgroundPositionY) . ';
-            position:relative;
-            overflow:hidden;
+            background-position:center " . h($backgroundPositionY) . ";
         ";
     }
 
@@ -937,11 +1076,89 @@ function renderSectionHTML(array $section): string
     background:' . h($background) . ';
     padding:' . h($padding) . ';
     margin:' . h($margin) . ';
-    min-height:' . h($height) . ';
     background-position:center ' . h($backgroundPositionY) . ';
     ' . $bgStyle . '
     ' . h($customCss) . '
 ">';
+
+error_log('ENTRO NEL NUOVO SLIDER JSON');
+
+if (!empty($sliderSections)) {
+
+    $html .= '<div class="section-background-slider" style="
+        position:absolute;
+        inset:0;
+        z-index:0;
+        overflow:hidden;
+    ">';
+
+    foreach ($sliderSections as $index => $slideSection) {
+
+error_log('RENDERIZZO SLIDE JSON ' . ($index + 1));
+
+        $html .= '
+            <div
+                class="section-json-slide"
+                style="
+                    position:absolute;
+                    inset:0;
+                    opacity:' . ($index === 0 ? '1' : '0') . ';
+                    transition:opacity ' . $sliderFade . 's ease;
+                "
+            >';
+
+
+
+        $html .= renderSectionHTML(
+            $slideSection,
+            false
+        );
+
+        $html .= '
+            </div>
+        ';
+    }
+
+    $html .= '</div>';
+
+    $html .= '
+    <script>
+    (function(){
+
+        const sliders = document.querySelectorAll(
+            ".section-background-slider"
+        );
+
+        sliders.forEach(function(slider){
+
+            const slides = slider.querySelectorAll(
+                ".section-json-slide"
+            );
+
+            if (slides.length <= 1) return;
+
+            let current = 0;
+
+            setInterval(function(){
+
+                slides[current].style.opacity = "0";
+
+                current++;
+
+                if (current >= slides.length) {
+                    current = 0;
+                }
+
+                slides[current].style.opacity = "1";
+
+            }, ' . ($sliderInterval * 1000) . ');
+
+        });
+
+    })();
+    </script>
+    ';
+}
 
 if($backgroundImage){
 
@@ -951,7 +1168,8 @@ if($backgroundImage){
         background:' . h($overlayColor) . ';
         opacity:' . h($overlayOpacity) . ';
         pointer-events:none;
-    "></div>';
+        ">
+        </div>';
 }
 
     $html .= '<div class="page-columns" style="position:relative;z-index:2;">';
@@ -960,8 +1178,8 @@ if($backgroundImage){
         $html .= renderColumnHTML($column);
     }
 
-    $html .= '</div>';
-    $html .= '</section>';
+$html .= '</div>';
+$html .= '</section>';
 
-    return $html;
+return $html;
 }

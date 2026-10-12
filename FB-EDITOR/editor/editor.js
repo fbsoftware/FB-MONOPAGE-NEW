@@ -31,6 +31,13 @@ editor.init = function () {
         console.warn("loadGalleryFolders non disponibile");
     }
 
+    // Carica cartelle sezioni
+    if (typeof editor.loadSectionFolders === "function") {
+        editor.loadSectionFolders();
+    } else {
+        console.warn("loadSectionFolders non disponibile");
+    }
+
     editor.bindSiteConfigSave();
 
     editor.state.meta.updated_at = new Date().toISOString();

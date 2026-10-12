@@ -3,7 +3,7 @@
         "tema": null,
         "page": "home",
         "version": "2.0",
-        "updated_at": "2026-09-30T20:57:29+02:00"
+        "updated_at": "2026-10-04T17:37:13+02:00"
     },
     "global": {
         "colors": {
@@ -36,77 +36,105 @@
         {
             "id": "sec-1790762383084-309",
             "background": "var(--color-bg)",
-            "padding": "20",
-            "margin": "20",
+            "padding": "0",
+            "margin": "0",
             "columns": [
                 {
-                    "id": "col-1790761807530-835",
-                    "width": 13,
+                    "id": "col-1791044450389-491",
+                    "width": 34,
                     "widgets": [
                         {
-                            "id": "w1790427825246_1",
-                            "type": "image",
+                            "id": "w1791044487110_3",
+                            "type": "spacer",
                             "props": {
-                                "src": "assets\/images\/logo.png",
-                                "alt": "",
-                                "align": "left",
-                                "width": "150",
+                                "text": "",
+                                "height": "128",
                                 "customCss": "",
-                                "imgCss": "",
-                                "customClass": "",
-                                "height": "77"
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791044476004_1",
+                            "type": "header",
+                            "props": {
+                                "text": "Pesca a mosca",
+                                "level": "h1",
+                                "align": "center",
+                                "color": "var(--color-bg)",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791045092997_4",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20",
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791045109100_5",
+                            "type": "button",
+                            "props": {
+                                "text": "Mulinello",
+                                "url": "http:\/\/localhost\/FB-MONOPAGE-NEW\/index.php?page=hero",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600",
+                                "customCss": "",
+                                "buttonCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1791044479138_2",
+                            "type": "text",
+                            "props": {
+                                "text": "È un sistema di pesca molto particolare nei paesi anglosassoni.",
+                                "align": "left",
+                                "color": "var(--color-bg)",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
                             }
                         }
                     ],
-                    "height": 120
+                    "height": 400
                 },
                 {
-                    "id": "col-1790761813288-681",
-                    "width": 87,
+                    "id": "col-1791044455772-871",
+                    "width": 100,
                     "widgets": [
                         {
-                            "id": "w1790443300128_1",
-                            "type": "navbar",
+                            "id": "w1791045143471_6",
+                            "type": "spacer",
                             "props": {
-                                "source": "site",
-                                "orientation": "horizontal",
-                                "align": "right",
-                                "gap": 20,
-                                "color": "#000000",
-                                "fontSize": 16,
-                                "padding": 10,
+                                "text": "",
+                                "height": "264",
                                 "customCss": "",
-                                "customClass": "",
-                                "items": [
-                                    {
-                                        "label": "Home",
-                                        "type": "page",
-                                        "target": "home",
-                                        "level": 0
-                                    },
-                                    {
-                                        "label": "Hero",
-                                        "type": "page",
-                                        "target": "hero",
-                                        "level": 0
-                                    },
-                                    {
-                                        "label": "Test",
-                                        "type": "page",
-                                        "target": "test",
-                                        "level": 0
-                                    }
-                                ]
+                                "customClass": ""
                             }
                         }
                     ],
-                    "height": 120
+                    "height": 400
                 }
             ],
-            "height": "150"
+            "height": "500",
+            "backgroundImage": "assets\/images\/flyfishing1.jpg"
         }
     ],
-    "selectedType": "column",
-    "selectedId": "col-1790761813288-681",
+    "selectedType": "widget",
+    "selectedId": "w1791045109100_5",
     "isDirty": true
 }
