@@ -952,6 +952,7 @@ function renderSectionHTML(array $section, bool $allowSlider = true): string
     $customCss  = $section['customCss'] ?? '';
     $backgroundImage = $section['backgroundImage'] ?? '';
     $backgroundSlider = trim($section['backgroundSlider'] ?? '', '/');
+    $backgroundGallery = trim($section['backgroundGallery'] ?? '', '/');
     $backgroundType = $section['backgroundType'] ?? 'empty';
     $sliderSections = [];
 
@@ -1020,10 +1021,11 @@ if (
     $anchor = $section['anchor'] ?? '';
     $bgStyle = '';
 
-    $sliderImages = [];
-    if ($backgroundSlider !== '') {
+$sliderImages = [];
 
-        $sliderDir = APP_ROOT . '/assets/galleries/' . $backgroundSlider;
+if ($backgroundType === 'gallery' && $backgroundGallery !== '') {
+
+    $sliderDir = APP_ROOT . '/assets/galleries/' . $backgroundGallery;
 
         if (is_dir($sliderDir)) {
 
@@ -1047,13 +1049,12 @@ if (
                     'webp',
                     'gif'
                 ])) {
-
-                    $sliderImages[] =
-                        ASSETS_URL .
-                        '/galleries/' .
-                        $backgroundSlider .
-                        '/' .
-                        $file;
+                $sliderImages[] =
+                    ASSETS_URL .
+                    '/galleries/' .
+                    $backgroundGallery .
+                    '/' .
+                    $file;
                 }
             }
         }
@@ -1133,6 +1134,81 @@ error_log('RENDERIZZO SLIDE JSON ' . ($index + 1));
 
             const slides = slider.querySelectorAll(
                 ".section-json-slide"
+            );
+
+            if (slides.length <= 1) return;
+
+            let current = 0;
+
+            setInterval(function(){
+
+                slides[current].style.opacity = "0";
+
+                current++;
+
+                if (current >= slides.length) {
+                    current = 0;
+                }
+
+                slides[current].style.opacity = "1";
+
+            }, ' . ($sliderInterval * 1000) . ');
+
+        });
+
+    })();
+    </script>
+    ';
+}
+
+//=================================
+// Gallery immagini come sfondo
+//=================================
+if (
+    $backgroundType === 'gallery' &&
+    !empty($sliderImages)
+) {
+
+    $html .= '<div class="section-gallery-slider" style="
+        position:absolute;
+        inset:0;
+        z-index:0;
+        overflow:hidden;
+    ">';
+
+    foreach ($sliderImages as $index => $image) {
+
+        $html .= '
+            <div
+                class="section-gallery-slide"
+                style="
+                    position:absolute;
+                    inset:0;
+                    background-image:url(\'' . h($image) . '\');
+                    background-size:cover;
+                    background-position:center ' . h($backgroundPositionY) . ';
+                    background-repeat:no-repeat;
+                    opacity:' . ($index === 0 ? '1' : '0') . ';
+                    transition:opacity ' . $sliderFade . 's ease;
+                "
+            ></div>
+        ';
+    }
+
+    $html .= '</div>';
+
+    $html .= '
+    <script>
+    (function(){
+
+        const sliders = document.querySelectorAll(
+            ".section-gallery-slider"
+        );
+
+        sliders.forEach(function(slider){
+
+            const slides = slider.querySelectorAll(
+                ".section-gallery-slide"
             );
 
             if (slides.length <= 1) return;

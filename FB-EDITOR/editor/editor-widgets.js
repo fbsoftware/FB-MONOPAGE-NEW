@@ -2379,6 +2379,7 @@ editor.renderElementInspector = function(title, target, fields, dataAttr){
         $panel.append(html);
     });
 };
+
 //================================= 
 // render input campo dettagli
 //=================================
@@ -2627,11 +2628,15 @@ html += `
 
     if (field.type === "galleryFolderSelect") {
         const folders = editor.galleryFolders || [];
-        let html = `<select data-field="${fieldName}">`;
+
+        let html = `<select ${attr}>`;
+
         folders.forEach(folder => {
             html += `<option value="${folder}" ${value === folder ? "selected" : ""}>${folder}</option>`;
         });
+
         html += `</select>`;
+
         return html;
     }
 

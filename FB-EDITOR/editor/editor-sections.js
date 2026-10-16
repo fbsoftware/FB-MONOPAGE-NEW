@@ -14,6 +14,7 @@ editor.sections = {
             backgroundImage: "",
             backgroundSlider: "",
             backgroundSection: "",
+            backgroundGallery: "",
             slides: [],
             sliderInterval: 5,
             sliderFade: 1,
@@ -57,8 +58,7 @@ editor.sections = {
             label:"Colore", 
             group:"stile" 
             },
-
-            
+          
 
             padding: {
                 type: "number",
@@ -90,10 +90,19 @@ editor.sections = {
                 group: "immagini",
                 showWhen: {
                     field: "backgroundType",
-                    values: ["gallery"]
+                    values: ["section"]
                 }
             },
 
+            backgroundGallery: {
+                type: "galleryFolderSelect",
+                label: "Cartella gallery",
+                group: "immagini",
+                showWhen: {
+                    field: "backgroundType",
+                    values: ["gallery"]
+                }
+            },
             sliderInterval: {
                 type: "number",
                 min: 1,
@@ -185,44 +194,13 @@ editor.renderSectionInspector = function(section){
 
     const fields = editor.sections.section.fields;
 
-    $.getJSON(
-        "api/template-folders.php",
-        function(response){
-
-            if(response.success && Array.isArray(response.folders)){
-
-                fields.backgroundSection.options = {};
-
-                response.folders.forEach(function(folder){
-                    fields.backgroundSection.options[folder] = folder;
-                });
-            }
-
-            editor.renderElementInspector(
-                "<h3 style='text-align:center; margin:10px;'>Dettagli Sezione</h3>",
-                section,
-                fields,
-                "section"
-            );
-        }
-    )
-    .fail(function(xhr){
-
-        console.error(
-            "Errore caricamento cartelle template:",
-            xhr.status,
-            xhr.responseText
-        );
-
-        editor.renderElementInspector(
-            "<h3 style='text-align:center; margin:10px;'>Dettagli Sezione</h3>",
-            section,
-            fields,
-            "section"
-        );
-    });
+    editor.renderElementInspector(
+        "<h3 style='text-align:center; margin:10px;'>Dettagli Sezione</h3>",
+        section,
+        fields,
+        "section"
+    );
 };
-
 //=================================
 // Rimuovi immagine sfondo sezione
 //=================================
@@ -435,6 +413,180 @@ editor.renderSection = function(section, allowSlider = true){
 
     $section.append($columns);
 
+//=================================
+// Preview prima immagine Gallery nel Canvas
+//=================================
+if (
+    section.backgroundType === "gallery" &&
+    section.backgroundGallery
+) {
+
+    const folder =
+        section.backgroundGallery.replace(/^\/+|\/+$/g, "");
+
+    const baseUrl =
+        `${window.FB_APP.appUrl}/assets/galleries/${folder}/`;
+
+    fetch(
+        `${window.FB_APP.appUrl}/FB-EDITOR/api/list-gallery-images.php?folder=${encodeURIComponent(folder)}`
+    )
+        .then(response => response.json())
+        .then(data => {
+
+            if (
+                !data.success ||
+                !Array.isArray(data.images) ||
+                !data.images.length
+            ) {
+                console.warn(
+                    "Nessuna immagine Gallery trovata:",
+                    folder
+                );
+                return;
+            }
+
+            const image = data.images[0];
+
+            const imageUrl =
+                image.startsWith("http") || image.startsWith("/")
+                    ? image
+                    : baseUrl + image;
+
+            //=================================
+// Preview Gallery nel Canvas
+//=================================
+if (
+    section.backgroundType === "gallery" &&
+    section.backgroundGallery
+) {
+
+    const folder =
+        section.backgroundGallery.replace(/^\/+|\/+$/g, "");
+
+    fetch(
+        `${window.FB_APP.appUrl}/FB-EDITOR/api/list-gallery-images.php?folder=${encodeURIComponent(folder)}`
+    )
+        .then(response => response.json())
+        .then(data => {
+
+            if (
+                !data.success ||
+                !Array.isArray(data.images) ||
+                !data.images.length
+            ) {
+                console.warn(
+                    "Nessuna immagine Gallery trovata:",
+                    folder
+                );
+                return;
+            }
+
+            //=================================
+            // Contenitore Gallery
+            //=================================
+            const $galleryPreview = $("<div>")
+                .addClass("canvas-section-gallery-preview")
+                .css({
+                    position: "absolute",
+                    inset: 0,
+                    overflow: "hidden",
+                    "z-index": 0,
+                    "pointer-events": "none"
+                });
+
+            //=================================
+            // Crea le immagini sovrapposte
+            //=================================
+            data.images.forEach(function(image, index){
+
+                const imageUrl =
+                    image.startsWith("http") || image.startsWith("/")
+                        ? image
+                        : `${window.FB_APP.appUrl}/${image}`;
+
+                const $slide = $("<div>")
+                    .addClass("canvas-section-gallery-slide")
+                    .css({
+                        position: "absolute",
+                        inset: 0,
+                        "background-image": `url("${imageUrl}")`,
+                        "background-size": "cover",
+                        "background-position": "center",
+                        "background-repeat": "no-repeat",
+                        opacity: index === 0 ? 1 : 0,
+                        transition:
+                            "opacity " +
+                            (section.sliderFade ?? 1) +
+                            "s ease",
+                        "pointer-events": "none"
+                    });
+
+                $galleryPreview.append($slide);
+            });
+
+            // Inserisce la Gallery dietro le colonne/widget
+            $section.prepend($galleryPreview);
+
+            //=================================
+            // Rotazione Gallery
+            //=================================
+            if(data.images.length > 1){
+
+                let current = 0;
+
+                const interval =
+                    Math.max(
+                        1,
+                        Number(section.sliderInterval ?? 5)
+                    ) * 1000;
+
+                setInterval(function(){
+
+                    const $slides =
+                        $galleryPreview.children(
+                            ".canvas-section-gallery-slide"
+                        );
+
+                    if(!$slides.length) return;
+
+                    $slides
+                        .eq(current)
+                        .css("opacity", 0);
+
+                    current++;
+
+                    if(current >= $slides.length){
+                        current = 0;
+                    }
+
+                    $slides
+                        .eq(current)
+                        .css("opacity", 1);
+
+                }, interval);
+            }
+
+        })
+        .catch(error => {
+
+            console.error(
+                "Errore caricamento Gallery nel Canvas:",
+                error
+            );
+
+        });
+}
+
+            $section.prepend($galleryPreview);
+
+        })
+        .catch(error => {
+            console.error(
+                "Errore caricamento Gallery nel Canvas:",
+                error
+            );
+        });
+}
 
 //=================================
 // Preview slider JSON nel Canvas
