@@ -951,7 +951,7 @@ function renderSectionHTML(array $section, bool $allowSlider = true): string
     $margin     = isset($section['margin']) ? ((int)$section['margin'] . 'px') : '0px';
     $customCss  = $section['customCss'] ?? '';
     $backgroundImage = $section['backgroundImage'] ?? '';
-    $backgroundSlider = trim($section['backgroundSlider'] ?? '', '/');
+    $backgroundSection = trim($section['backgroundSection'] ?? '', '/');
     $backgroundGallery = trim($section['backgroundGallery'] ?? '', '/');
     $backgroundType = $section['backgroundType'] ?? 'empty';
     $sliderSections = [];
@@ -959,13 +959,13 @@ function renderSectionHTML(array $section, bool $allowSlider = true): string
 if (
     $allowSlider &&
     $backgroundType === 'section' &&
-    $backgroundSlider !== ''
+    $backgroundSection !== ''
 ) {
 
     $sliderDir =
-        APP_ROOT .
-        '/FB-EDITOR/templates/' .
-        $backgroundSlider;
+    APP_ROOT .
+    '/FB-EDITOR/templates/' .
+    $backgroundSection;
 
     if (is_dir($sliderDir)) {
 

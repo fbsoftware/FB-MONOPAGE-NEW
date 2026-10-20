@@ -414,45 +414,6 @@ editor.renderSection = function(section, allowSlider = true){
     $section.append($columns);
 
 //=================================
-// Preview prima immagine Gallery nel Canvas
-//=================================
-if (
-    section.backgroundType === "gallery" &&
-    section.backgroundGallery
-) {
-
-    const folder =
-        section.backgroundGallery.replace(/^\/+|\/+$/g, "");
-
-    const baseUrl =
-        `${window.FB_APP.appUrl}/assets/galleries/${folder}/`;
-
-    fetch(
-        `${window.FB_APP.appUrl}/FB-EDITOR/api/list-gallery-images.php?folder=${encodeURIComponent(folder)}`
-    )
-        .then(response => response.json())
-        .then(data => {
-
-            if (
-                !data.success ||
-                !Array.isArray(data.images) ||
-                !data.images.length
-            ) {
-                console.warn(
-                    "Nessuna immagine Gallery trovata:",
-                    folder
-                );
-                return;
-            }
-
-            const image = data.images[0];
-
-            const imageUrl =
-                image.startsWith("http") || image.startsWith("/")
-                    ? image
-                    : baseUrl + image;
-
-            //=================================
 // Preview Gallery nel Canvas
 //=================================
 if (
@@ -524,7 +485,9 @@ if (
                 $galleryPreview.append($slide);
             });
 
-            // Inserisce la Gallery dietro le colonne/widget
+            //=================================
+            // Inserisce la Gallery nel Canvas
+            //=================================
             $section.prepend($galleryPreview);
 
             //=================================
@@ -577,67 +540,86 @@ if (
         });
 }
 
-            $section.prepend($galleryPreview);
-
-        })
-        .catch(error => {
-            console.error(
-                "Errore caricamento Gallery nel Canvas:",
-                error
-            );
-        });
-}
-
 //=================================
 // Preview slider JSON nel Canvas
 //=================================
 if(
     allowSlider &&
     section.backgroundType === "section" &&
-    section.backgroundSlider
+    section.backgroundSection
 ){
 
-    const folder =
-        section.backgroundSlider.replace(/^\/|\/$/g, "");
+        const folder =
+        section.backgroundSection.replace(/^\/+|\/+$/g, "");
 
     const baseUrl =
         `${window.FB_APP.appUrl}/FB-EDITOR/templates/${folder}/`;
 
-    //=================================
-    // Carica tutti i JSON della cartella
-    //=================================
-    const loadSlides = async function(){
+//=================================
+// Carica tutti i JSON della cartella
+//=================================
+const loadSlides = async function(){
 
-        const slides = [];
+    const slides = [];
 
-        for(let i = 1; i <= 50; i++){
+    try {
 
-            const file =
-                "slide" +
-                String(i).padStart(2, "0") +
-                ".json";
+        // Recupera l'elenco reale dei file presenti
+        const response = await fetch(
+            `${window.FB_APP.appUrl}/FB-EDITOR/api/list-section-slides.php?folder=${encodeURIComponent(folder)}`
+        );
+
+        if(!response.ok){
+            console.error(
+                "Errore caricamento elenco slide:",
+                response.status
+            );
+            return slides;
+        }
+
+        const data = await response.json();
+
+        if(
+            !data.success ||
+            !Array.isArray(data.files)
+        ){
+            console.warn(
+                "Nessuna lista slide valida:",
+                folder
+            );
+            return slides;
+        }
+
+        //=================================
+        // Carica i JSON nell'ordine ricevuto
+        //=================================
+        for(const file of data.files){
 
             try {
 
-                const response =
+                const slideResponse =
                     await fetch(baseUrl + file);
 
-                if(!response.ok){
-                    break;
+                if(!slideResponse.ok){
+                    console.warn(
+                        "Slide non caricabile:",
+                        file
+                    );
+                    continue;
                 }
 
-                const data =
-                    await response.json();
+                const slideData =
+                    await slideResponse.json();
 
                 if(
-                    data &&
-                    data.section &&
-                    typeof data.section === "object"
+                    slideData &&
+                    slideData.section &&
+                    typeof slideData.section === "object"
                 ){
-                    slides.push(data.section);
+                    slides.push(slideData.section);
                 }
 
-            } catch(error) {
+            } catch(error){
 
                 console.error(
                     "Errore caricamento slide:",
@@ -645,12 +627,21 @@ if(
                     error
                 );
 
-                break;
+                // Non blocca le altre slide
+                continue;
             }
         }
 
-        return slides;
-    };
+    } catch(error){
+
+        console.error(
+            "Errore caricamento elenco slide:",
+            error
+        );
+    }
+
+    return slides;
+};
 
 
     loadSlides().then(function(slides){
