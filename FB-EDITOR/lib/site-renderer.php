@@ -52,6 +52,8 @@ function renderWidgetHTML(array $widget): string
         case 'textarea':
             $text  = $props['text'] ?? '';
             $align = $props['align'] ?? 'left';
+            $padding = isset($props['padding']) ? ((int)$props['padding'] . 'px') : '0px';
+            $margin = isset($props['margin']) ? ((int)$props['margin'] . 'px') : '0px';
             $color = $props['color'] ?? 'inherit';
             $customCss = $props['customCss'] ?? '';
             $customClass = $props['customClass'] ?? '';
@@ -59,6 +61,9 @@ function renderWidgetHTML(array $widget): string
             return '<div class="widget-text ' . h($customClass) . '" 
                         style="text-align:' . h($align) . ';
                         color:' . h($color) . ';
+                        padding:' . h($padding) . ';
+                        margin:' . h($margin) . ';
+
                          ' . h($customCss) . '">'
                 . nl2br(h($text))
                 . '</div>';
@@ -126,6 +131,8 @@ function renderWidgetHTML(array $widget): string
             $alt = $props['alt'] ?? '';
             $align = $props['align'] ?? 'left';
             $height = isset($props['height']) ? ((int)$props['height'] . 'px') : 'auto';
+            $padding = isset($props['padding']) ? ((int)$props['padding'] . 'px') : '0px';
+            $margin = isset($props['margin']) ? ((int)$props['margin'] . 'px') : '0px';
             $customCss = $props['customCss'] ?? '';
             $imgCss = $props['imgCss'] ?? '';
             $customClass = $props['customClass'] ?? '';
@@ -142,6 +149,8 @@ function renderWidgetHTML(array $widget): string
         return '<div class="widget-image ' . h($customClass) . '"
                     style="justify-content:' . h($align) . ';
                     align-items:' . h($align) . ';
+                    margin:' . h($margin) . ';
+                    padding:' . h($padding) . ';
                     ' . h($customCss) . '">'
             . '<img src="' . h($src) . '"
                 ' . $lightboxData . '
@@ -251,12 +260,9 @@ function renderWidgetHTML(array $widget): string
             $customClass = $props['customClass'] ?? '';
 
             return '<div class="widget-divider ' . h($customClass) . '" 
-                        style="display:flex;
-                            align-items: center;
+                            style="display:flex;
                             justify-content:center;
-                            align-items:' . h($align) . ';
-                            padding:' . h($padding) . ';
-                            margin:' . h($margin) . ';">
+                            align-items:center;">
                         <div style="flex: 1; height:'. h($height).'; 
                                 background:'. h($color).';
                                 ' . h($lineaCss) . '">
@@ -271,11 +277,11 @@ function renderWidgetHTML(array $widget): string
                                 ' . h($name) . '
                             </span>
                         </div>
-                        <div style="flex: 1; 
-                                height:'. h($height).'; 
-                                background:'. h($color).';
-                                ' . h($lineaCss) . '">
-                        </div>
+                    <div style="flex: 1; 
+                            height:'. h($height).'; 
+                            background:'. h($color).';
+                            ' . h($lineaCss) . '">
+                    </div>
             </div>';
         case 'richtext':
             $html = $props['html'] ?? '';
@@ -949,6 +955,7 @@ function renderSectionHTML(array $section, bool $allowSlider = true): string
     $background = $section['background'] ?? 'transparent';
     $padding    = isset($section['padding']) ? ((int)$section['padding'] . 'px') : '20px';
     $margin     = isset($section['margin']) ? ((int)$section['margin'] . 'px') : '0px';
+    $height     = isset($section['height']) ? ((int)$section['height'] . 'px') : 'auto';
     $customCss  = $section['customCss'] ?? '';
     $backgroundImage = $section['backgroundImage'] ?? '';
     $backgroundSection = trim($section['backgroundSection'] ?? '', '/');
@@ -1077,6 +1084,7 @@ if ($backgroundType === 'gallery' && $backgroundGallery !== '') {
     background:' . h($background) . ';
     padding:' . h($padding) . ';
     margin:' . h($margin) . ';
+    // height:' . h($height) . ';
     background-position:center ' . h($backgroundPositionY) . ';
     ' . $bgStyle . '
     ' . h($customCss) . '

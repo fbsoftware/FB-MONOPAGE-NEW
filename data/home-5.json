@@ -1,0 +1,59 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "home-5",
+        "version": "2.0",
+        "updated_at": "2026-10-22T18:14:08+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#baf8fd"
+        },
+        "typography": {
+            "heading": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "body": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "sizes": {
+                "h1": 48,
+                "h2": 36,
+                "h3": 28,
+                "body": 16,
+                "small": 14
+            }
+        },
+        "fonts": []
+    },
+    "sections": [
+        {
+            "id": "sec-1792685604575-408",
+            "background": "#ffffff",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1792685604575-204",
+                    "width": 100,
+                    "widgets": [],
+                    "height": 475
+                }
+            ],
+            "height": "475",
+            "backgroundImage": "",
+            "backgroundGallery": "",
+            "backgroundSection": "fly",
+            "backgroundType": "section"
+        }
+    ],
+    "selectedType": "section",
+    "selectedId": "sec-1792685604575-408",
+    "isDirty": true
+}

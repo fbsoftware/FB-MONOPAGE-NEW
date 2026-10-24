@@ -1,0 +1,68 @@
+{
+    "type": "section",
+    "name": "fly2",
+    "created_at": "2026-10-23T23:06:06+02:00",
+    "section": {
+        "id": "sec-1792170476462-824",
+        "background": "#ffffff",
+        "padding": "0",
+        "margin": "0",
+        "columns": [
+            {
+                "id": "col-1792170476462-677",
+                "width": 24,
+                "widgets": [],
+                "height": 475,
+                "background": ""
+            },
+            {
+                "id": "col-1792521708610-441",
+                "width": 30,
+                "widgets": [
+                    {
+                        "id": "w1792171226675_3",
+                        "type": "spacer",
+                        "props": {
+                            "text": "",
+                            "height": "207",
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1792170905307_1",
+                        "type": "header",
+                        "props": {
+                            "text": "La pesca a mosca",
+                            "level": "h2",
+                            "align": "left",
+                            "color": "var(--color-bg)",
+                            "padding": 20,
+                            "margin": 0,
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1792170957946_2",
+                        "type": "text",
+                        "props": {
+                            "text": "Si pratica normalmente su torrente",
+                            "align": "left",
+                            "color": "var(--color-bg)",
+                            "padding": "0",
+                            "margin": 0,
+                            "customCss": "padding-left:20px;\n",
+                            "customClass": ""
+                        }
+                    }
+                ],
+                "height": 475
+            }
+        ],
+        "backgroundType": "image",
+        "backgroundGallery": "hero-slider",
+        "backgroundImage": "assets\/images\/flyfishing1.jpg",
+        "height": "475"
+    }
+}

@@ -451,13 +451,13 @@ fields:{
     padding:{
         type:"number",
         label:"Padding px",
-        group:"avanzate"
+        group:"stile"
     },
 
     margin:{
         type:"number",
         label:"Margin px",
-        group:"avanzate"
+        group:"stile"
     },
 
     customCss: {
@@ -556,6 +556,8 @@ editor.widgets.textarea = {
 defaultProps:{
     text:"Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed",
     align:"left",
+    padding:20,
+    margin:0,
     color:"var(--color-text)",
     fontSize:"16px",
     fontWeight:"400",
@@ -581,6 +583,8 @@ defaultProps:{
         label:"Colore",
         group:"stile",
     },
+    padding:{ type:"number", label:"Padding px", group:"stile" },
+    margin:{ type:"number", label:"Margin px", group:"stile" },
     fontSize:{
         type:"select",
         label:"Dimensione font",
@@ -622,9 +626,10 @@ defaultProps:{
         const p = widget.props;
 
         return `<div  class="widget-text" >
-        <textarea style="
-            text-align:${p.align || "left"};
+        <textarea style="text-align:${p.align || "left"};
             color:${p.color || "#000"};
+            padding:${p.padding ?? 0}px;
+            margin:${p.margin ?? 0}px;
             font-size:${p.fontSize || "16px"};
             font-weight:${p.fontWeight|| "400"};
             background:transparent;
@@ -710,6 +715,8 @@ editor.widgets.image = {
         alt: "",
         align: "left",
         height: 300,
+        margin: 0,
+        padding: 0,
         lightbox: false,
         customCss:"",
         imgCss:"",
@@ -745,6 +752,16 @@ editor.widgets.image = {
             label: "Altezza px",  
             group: "stile"
 
+        },
+        margin: {
+            type: "number",
+            label: "Margin px",
+            group: "stile"
+        },
+        padding: {
+            type: "number",
+            label: "Padding px",
+            group: "stile"
         },
         lightbox: {
             type: "checkbox",
@@ -786,6 +803,8 @@ editor.widgets.image = {
         return `
             <div class="widget-image ${p.customClass || ''}" 
                 style="text-align:${p.align ?? "left"};
+                margin:${p.margin ?? 0}px;
+                padding:${p.padding ?? 0}px;
                 ${p.customCss ?? ""}">
                     <img src="${src}" alt="${p.alt ?? ""}" 
                     style="height:${p.height ?? 300}px;
@@ -1696,6 +1715,7 @@ editor.widgets.icon = {
         name: "home",
         size: 48,
         color: "var(--color-primary)",
+        icone: "https://fonts.google.com/icons?hl=it",
         align: "center",
         padding: 0,
         margin: 0,
@@ -1716,7 +1736,11 @@ editor.widgets.icon = {
             label: "Dimensione px",
             group: "stile"  
         },
-
+        icone: {
+            type: "text",
+            label: "Link icone",
+            group: "contenuto"
+        },
         color: {
             type: "color",
             label: "Colore",
@@ -1859,7 +1883,6 @@ editor.widgets.divider = {
                     flex-direction: row;
                     align-items: center; 
                     gap: 15px; 
-                    margin: 20px 0;
                     ${p.lineaCss ?? ""} ">
                 <div style="flex: 1; height: ${p.height ?? 1}px; 
                     background: ${resolveColor(p.color)};
@@ -1868,6 +1891,8 @@ editor.widgets.divider = {
                     <div><span class="material-symbols-outlined" style="
                     font-size:${p.size ?? 48}px!important;
                     color:${p.color ?? "var(--color-primary)"};
+                    margin:${p.margin ?? 0}px;
+                    padding:${p.padding ?? 0}px;
                     ${p.iconCssaCss ?? ""} ">
                     ${p.name ?? "home"}
                     </span></div>
@@ -2399,19 +2424,19 @@ editor.renderInspectorInput = function(fieldName, field, value, dataAttr){
         `;
     }
 
-    if(field.type === "textarea"){
-        input = `
-            <textarea ${attr} rows="8">${value}</textarea>
-        `;
-    }
-
-    if(field.type === "number"){
-        input = `
-            <input type="number"
-                   ${attr}
-                   value="${value}">
-        `;
-    }
+if(field.type === "textarea"){
+    input = `<textarea ${attr} rows="8">${value}</textarea>`;
+}
+if(field.type === "number"){
+    input = `
+        <input type="number"
+               ${attr}
+               value="${value}"
+               ${field.min !== undefined ? `min="${field.min}"` : ""}
+               ${field.max !== undefined ? `max="${field.max}"` : ""}
+               ${field.step !== undefined ? `step="${field.step}"` : ""}>
+    `;
+}
 
     if(field.type === "range"){
         input = `
@@ -2627,33 +2652,46 @@ html += `
 }
 
     if (field.type === "galleryFolderSelect") {
-        const folders = editor.galleryFolders || [];
+    const folders = editor.galleryFolders || [];
 
-        let html = `<select ${attr}>`;
+    let html = `
+        <select ${attr}>
+            <option value="">-- Seleziona cartella --</option>
+    `;
 
-        folders.forEach(folder => {
-            html += `<option value="${folder}" ${value === folder ? "selected" : ""}>${folder}</option>`;
-        });
+    folders.forEach(folder => {
+        html += `
+            <option value="${folder}" ${value === folder ? "selected" : ""}>
+                ${folder}
+            </option>
+        `;
+    });
 
-        html += `</select>`;
+    html += `</select>`;
 
-        return html;
-    }
+    return html;
+}
 
     if (field.type === "sectionFolderSelect") {
-        const folders = editor.sectionFolders || [];
+    const folders = editor.sectionFolders || [];
 
-        let html = `<select data-section-field="${fieldName}">`;
+    let html = `
+        <select data-section-field="${fieldName}">
+            <option value="">-- Seleziona cartella --</option>
+    `;
 
-        folders.forEach(folder => {
-            html += `<option value="${folder}" ${value === folder ? "selected" : ""}>${folder}</option>`;
-        });
+    folders.forEach(folder => {
+        html += `
+            <option value="${folder}" ${value === folder ? "selected" : ""}>
+                ${folder}
+            </option>
+        `;
+    });
 
-        html += `</select>`;
+    html += `</select>`;
 
-        return html;
-    }
-
+    return html;
+}
 if (field.type === "heroSlides") {
 
     const slides = Array.isArray(value)

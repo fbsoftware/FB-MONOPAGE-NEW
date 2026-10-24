@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+
 // Salva il file nella root del sito
 require_once __DIR__ . '/FB-EDITOR/config/app.php';
 require_once __DIR__ . '/FB-EDITOR/lib/site-renderer.php';

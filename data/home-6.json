@@ -1,0 +1,70 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "home-6",
+        "version": "2.0",
+        "updated_at": "2026-10-23T18:47:44+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#baf8fd"
+        },
+        "typography": {
+            "heading": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "body": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "sizes": {
+                "h1": 48,
+                "h2": 36,
+                "h3": 28,
+                "body": 16,
+                "small": 14
+            }
+        },
+        "fonts": []
+    },
+    "sections": [
+        {
+            "id": "sec-1792774010300-687",
+            "background": "var(--color-accent)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1792774010300-347",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1792774020936_1",
+                            "type": "divider",
+                            "props": {
+                                "name": "home",
+                                "size": 48,
+                                "color": "var(--color-primary)",
+                                "padding": 0,
+                                "margin": 0,
+                                "height": 1,
+                                "lineaCss": "",
+                                "iconaCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "background": "var(--color-bg)"
+                }
+            ]
+        }
+    ],
+    "selectedType": null,
+    "selectedId": null,
+    "isDirty": true
+}

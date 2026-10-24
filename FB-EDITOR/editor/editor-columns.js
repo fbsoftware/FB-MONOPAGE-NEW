@@ -32,12 +32,12 @@ editor.columns = {
       },  
         padding: {
         type: "number",
-        label: "Padding",
+        label: "Padding px",
         group: "stile"
       },
         margin: {
         type: "number",
-        label: "Margin",
+        label: "Margin px",
         group: "stile"
       },
         background: {

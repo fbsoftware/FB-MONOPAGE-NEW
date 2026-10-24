@@ -1,0 +1,67 @@
+{
+    "type": "section",
+    "name": "fly4",
+    "created_at": "2026-10-23T23:06:56+02:00",
+    "section": {
+        "id": "sec-1792170476462-824",
+        "background": "#ffffff",
+        "padding": "0",
+        "margin": "0",
+        "columns": [
+            {
+                "id": "col-1792171362103-729",
+                "width": 63,
+                "widgets": []
+            },
+            {
+                "id": "col-1792170476462-677",
+                "width": 30,
+                "widgets": [
+                    {
+                        "id": "w1792171226675_3",
+                        "type": "spacer",
+                        "props": {
+                            "text": "",
+                            "height": "279",
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1792170905307_1",
+                        "type": "header",
+                        "props": {
+                            "text": "La pesca a mosca",
+                            "level": "h2",
+                            "align": "left",
+                            "color": "var(--color-bg)",
+                            "padding": 20,
+                            "margin": 0,
+                            "customCss": "",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1792170957946_2",
+                        "type": "text",
+                        "props": {
+                            "text": "Cattura con mosca sommersa",
+                            "align": "left",
+                            "color": "var(--color-bg)",
+                            "padding": "0",
+                            "margin": 0,
+                            "customCss": "padding-left:20px;\n",
+                            "customClass": ""
+                        }
+                    }
+                ],
+                "height": 475,
+                "background": ""
+            }
+        ],
+        "backgroundType": "image",
+        "backgroundGallery": "hero-slider",
+        "backgroundImage": "assets\/images\/trota.jpg",
+        "height": "475"
+    }
+}

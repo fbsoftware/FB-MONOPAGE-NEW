@@ -1,10 +1,10 @@
 {
     "type": "section",
-    "name": "CTA",
-    "created_at": "2026-10-11T14:21:51+02:00",
+    "name": "slide02",
+    "created_at": "2026-10-20T15:55:54+02:00",
     "section": {
         "id": "sec-1791396256885-63",
-        "background": "#ffffff",
+        "background": "var(--color-bg)",
         "padding": "20",
         "margin": "0",
         "columns": [
@@ -22,8 +22,8 @@
                         "id": "w1791397887450_1",
                         "type": "header",
                         "props": {
-                            "text": "C T A",
-                            "level": "h1",
+                            "text": "C T A 2",
+                            "level": "h2",
                             "align": "center",
                             "color": "var(--color-primary)",
                             "padding": 20,

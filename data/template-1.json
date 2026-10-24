@@ -1,0 +1,324 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "template-1",
+        "version": "2.0",
+        "updated_at": "2026-10-23T20:11:02+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#baf8fd"
+        },
+        "typography": {
+            "heading": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "body": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "sizes": {
+                "h1": 48,
+                "h2": 36,
+                "h3": 28,
+                "body": 16,
+                "small": 14
+            }
+        },
+        "fonts": []
+    },
+    "sections": [
+        {
+            "id": "sec-1792779019232-557",
+            "background": "var(--color-bg)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1792779019232-166",
+                    "width": 100,
+                    "widgets": []
+                }
+            ],
+            "height": "50"
+        },
+        {
+            "id": "sec-1792778687016-809",
+            "background": "var(--color-bg)",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "w1792778715527_16",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1792778715527_17",
+                            "type": "header",
+                            "props": {
+                                "text": "jQuery",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1792778715527_18",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/jquery.png",
+                                "alt": "",
+                                "align": "center",
+                                "height": "173",
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1792778715527_19",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1792778715527_20",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600",
+                                "customCss": "",
+                                "buttonCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 522,
+                    "padding": 0,
+                    "customCss": "border:1px solid red;\nborder-radius:10px;\n"
+                },
+                {
+                    "id": "w1792778715527_11",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1792778715527_12",
+                            "type": "header",
+                            "props": {
+                                "text": "Abitazione",
+                                "level": "h2",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1792778715527_13",
+                            "type": "icon",
+                            "props": {
+                                "name": "home",
+                                "size": 48,
+                                "color": "var(--color-primary)",
+                                "align": "center",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "iconCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1792778715527_14",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1792778715527_15",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600",
+                                "customCss": "",
+                                "buttonCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 400,
+                    "padding": 0,
+                    "customCss": "border:1px solid red;\nborder-radius:10px;\n"
+                },
+                {
+                    "id": "w1792778715527_6",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1792778715527_7",
+                            "type": "header",
+                            "props": {
+                                "text": "faustobresciani.it",
+                                "level": "h3",
+                                "align": "center",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": "10",
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1792778715527_8",
+                            "type": "image",
+                            "props": {
+                                "src": "assets\/images\/fb-home.png",
+                                "alt": "",
+                                "align": "center",
+                                "height": "136",
+                                "customCss": "",
+                                "imgCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1792778715527_9",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": "20",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1792778715527_10",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600",
+                                "customCss": "",
+                                "buttonCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 500,
+                    "padding": 0,
+                    "customCss": "border:1px solid red;\nborder-radius:10px;\n"
+                },
+                {
+                    "id": "w1792778715527_2",
+                    "width": 25,
+                    "widgets": [
+                        {
+                            "id": "w1792778715527_3",
+                            "type": "header",
+                            "props": {
+                                "text": "C T A",
+                                "level": "h1",
+                                "align": "center",
+                                "color": "var(--color-primary)",
+                                "padding": "10",
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1792778715527_4",
+                            "type": "text",
+                            "props": {
+                                "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
+                                "align": "left",
+                                "color": "#000000",
+                                "padding": 20,
+                                "margin": 0,
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1792778715527_5",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": 20,
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600",
+                                "customCss": "",
+                                "buttonCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "customClass": "",
+                    "customCss": "border-top: 1px solid;\nborder-right: 2px solid;\nborder-bottom: 3px solid;\nborder-left :4px solid;\nborder-color: red;\nborder-radius: 10px;",
+                    "height": 400
+                }
+            ],
+            "height": "550"
+        }
+    ],
+    "selectedType": "section",
+    "selectedId": "sec-1792779019232-557",
+    "isDirty": true
+}

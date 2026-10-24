@@ -3,7 +3,7 @@
         "tema": null,
         "page": "Portfolio",
         "version": "2.0",
-        "updated_at": "2026-10-05T14:59:28+02:00"
+        "updated_at": "2026-10-23T18:59:31+02:00"
     },
     "global": {
         "colors": {
@@ -132,6 +132,25 @@
                                 "customCss": "",
                                 "customClass": ""
                             }
+                        },
+                        {
+                            "id": "w1792774428515_1",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": "13",
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600",
+                                "customCss": "",
+                                "buttonCss": "",
+                                "customClass": ""
+                            }
                         }
                     ],
                     "height": 400,
@@ -178,6 +197,25 @@
                                 "padding": 20,
                                 "margin": 0,
                                 "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1792774493681_2",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": "13",
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600",
+                                "customCss": "",
+                                "buttonCss": "",
                                 "customClass": ""
                             }
                         }
@@ -228,6 +266,25 @@
                                 "customCss": "",
                                 "customClass": ""
                             }
+                        },
+                        {
+                            "id": "w1792774497450_3",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": "13",
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600",
+                                "customCss": "",
+                                "buttonCss": "",
+                                "customClass": ""
+                            }
                         }
                     ],
                     "height": 400,
@@ -276,15 +333,35 @@
                                 "customCss": "",
                                 "customClass": ""
                             }
+                        },
+                        {
+                            "id": "w1792774502929_4",
+                            "type": "button",
+                            "props": {
+                                "text": "CERCA",
+                                "url": "#",
+                                "align": "center",
+                                "color": "#000000",
+                                "sfondo": "#ffa500",
+                                "bordo": 25,
+                                "padd": "13",
+                                "padding": 20,
+                                "fontSize": "22px",
+                                "fontWeight": "600",
+                                "customCss": "",
+                                "buttonCss": "",
+                                "customClass": ""
+                            }
                         }
                     ],
                     "height": 400,
                     "padding": 0
                 }
-            ]
+            ],
+            "height": "500"
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1791205128557_1",
-    "isDirty": true
+    "selectedType": null,
+    "selectedId": null,
+    "isDirty": false
 }

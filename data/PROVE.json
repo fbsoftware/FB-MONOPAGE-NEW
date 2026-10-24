@@ -3,7 +3,7 @@
         "tema": null,
         "page": "PROVE",
         "version": "2.0",
-        "updated_at": "2026-10-16T18:48:17+02:00"
+        "updated_at": "2026-10-23T23:28:26+02:00"
     },
     "global": {
         "colors": {
@@ -34,45 +34,40 @@
     },
     "sections": [
         {
-            "id": "sec-1791477729270-557",
+            "id": "sec-1792504753042-314",
             "background": "#ffffff",
-            "padding": "20",
+            "padding": "0",
             "margin": "0",
             "columns": [
                 {
-                    "id": "col-1791477729270-678",
+                    "id": "col-1792504753042-57",
                     "width": 100,
                     "widgets": [
                         {
-                            "id": "w1791820337579_1",
-                            "type": "header",
+                            "id": "w1792513692963_2",
+                            "type": "icon",
                             "props": {
-                                "text": "Widget",
-                                "level": "h1",
-                                "align": "left",
+                                "name": "sailing",
+                                "size": 48,
                                 "color": "var(--color-accent)",
-                                "padding": 20,
+                                "align": "right",
+                                "padding": "20",
                                 "margin": 0,
                                 "customCss": "",
+                                "iconCss": "",
                                 "customClass": ""
                             }
                         }
                     ],
-                    "height": 387
+                    "height": 475
                 }
             ],
-            "height": "400",
-            "backgroundSlider": "section-slider-test",
-            "sliderInterval": "3",
-            "sliderFade": "2",
-            "backgroundImage": "",
-            "overlayOpacity": "0",
-            "overlayColor": "var(--color-bg)",
-            "backgroundType": "gallery",
-            "backgroundGallery": "promozioni"
+            "height": "475",
+            "backgroundType": "section",
+            "backgroundSection": "fly"
         }
     ],
-    "selectedType": "section",
-    "selectedId": "sec-1791477729270-557",
+    "selectedType": "widget",
+    "selectedId": "w1792513692963_2",
     "isDirty": true
 }

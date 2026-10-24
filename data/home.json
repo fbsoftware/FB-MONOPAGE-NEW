@@ -3,7 +3,7 @@
         "tema": null,
         "page": "home",
         "version": "2.0",
-        "updated_at": "2026-10-04T17:37:13+02:00"
+        "updated_at": "2026-10-20T22:39:06+02:00"
     },
     "global": {
         "colors": {
@@ -38,103 +38,13 @@
             "background": "var(--color-bg)",
             "padding": "0",
             "margin": "0",
-            "columns": [
-                {
-                    "id": "col-1791044450389-491",
-                    "width": 34,
-                    "widgets": [
-                        {
-                            "id": "w1791044487110_3",
-                            "type": "spacer",
-                            "props": {
-                                "text": "",
-                                "height": "128",
-                                "customCss": "",
-                                "customClass": ""
-                            }
-                        },
-                        {
-                            "id": "w1791044476004_1",
-                            "type": "header",
-                            "props": {
-                                "text": "Pesca a mosca",
-                                "level": "h1",
-                                "align": "center",
-                                "color": "var(--color-bg)",
-                                "padding": 0,
-                                "margin": 0,
-                                "customCss": "",
-                                "customClass": ""
-                            }
-                        },
-                        {
-                            "id": "w1791045092997_4",
-                            "type": "spacer",
-                            "props": {
-                                "text": "",
-                                "height": "20",
-                                "customCss": "",
-                                "customClass": ""
-                            }
-                        },
-                        {
-                            "id": "w1791045109100_5",
-                            "type": "button",
-                            "props": {
-                                "text": "Mulinello",
-                                "url": "http:\/\/localhost\/FB-MONOPAGE-NEW\/index.php?page=hero",
-                                "align": "center",
-                                "color": "#000000",
-                                "sfondo": "#ffa500",
-                                "bordo": 25,
-                                "padd": 20,
-                                "padding": 20,
-                                "fontSize": "22px",
-                                "fontWeight": "600",
-                                "customCss": "",
-                                "buttonCss": "",
-                                "customClass": ""
-                            }
-                        },
-                        {
-                            "id": "w1791044479138_2",
-                            "type": "text",
-                            "props": {
-                                "text": "È un sistema di pesca molto particolare nei paesi anglosassoni.",
-                                "align": "left",
-                                "color": "var(--color-bg)",
-                                "padding": "20",
-                                "margin": 0,
-                                "customCss": "",
-                                "customClass": ""
-                            }
-                        }
-                    ],
-                    "height": 400
-                },
-                {
-                    "id": "col-1791044455772-871",
-                    "width": 100,
-                    "widgets": [
-                        {
-                            "id": "w1791045143471_6",
-                            "type": "spacer",
-                            "props": {
-                                "text": "",
-                                "height": "264",
-                                "customCss": "",
-                                "customClass": ""
-                            }
-                        }
-                    ],
-                    "height": 400
-                }
-            ],
+            "columns": [],
             "height": "500",
-            "backgroundImage": "assets\/images\/flyfishing1.jpg"
+            "backgroundType": "section",
+            "backgroundSection": "fly"
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1791045109100_5",
+    "selectedType": "section",
+    "selectedId": "sec-1790762383084-309",
     "isDirty": true
 }

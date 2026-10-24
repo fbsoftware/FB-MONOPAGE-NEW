@@ -1,0 +1,71 @@
+{
+    "meta": {
+        "tema": null,
+        "page": "home-7",
+        "version": "2.0",
+        "updated_at": "2026-10-23T18:46:26+02:00"
+    },
+    "global": {
+        "colors": {
+            "primary": "#3366ff",
+            "secondary": "#ff6633",
+            "accent": "#ffa500",
+            "text": "#222222",
+            "bg": "#baf8fd"
+        },
+        "typography": {
+            "heading": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "body": {
+                "fontFamily": "Inter",
+                "weight": 400
+            },
+            "sizes": {
+                "h1": 48,
+                "h2": 36,
+                "h3": 28,
+                "body": 16,
+                "small": 14
+            }
+        },
+        "fonts": []
+    },
+    "sections": [
+        {
+            "id": "sec-1792773926401-500",
+            "background": "#ffffff",
+            "padding": "0",
+            "margin": "0",
+            "columns": [
+                {
+                    "id": "col-1792773926401-758",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1792773937414_2",
+                            "type": "divider",
+                            "props": {
+                                "name": "home",
+                                "size": 48,
+                                "color": "var(--color-primary)",
+                                "padding": 0,
+                                "margin": 0,
+                                "height": 1,
+                                "lineaCss": "",
+                                "iconaCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "background": "var(--color-bg)"
+                }
+            ],
+            "height": "400"
+        }
+    ],
+    "selectedType": "section",
+    "selectedId": "sec-1792773926401-500",
+    "isDirty": true
+}

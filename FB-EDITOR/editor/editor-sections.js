@@ -231,18 +231,36 @@ $(document).on("input change", "[data-section-field]", function(e){
     const section = editor.findSectionById(editor.state.selectedId);
     if (!section) return;
 
+
+    //=================================
+    // Cambio tipo sfondo
+    //=================================
+    if(field === "backgroundType"){
+
+        // Cambiando modalità, elimina
+        // le proprietà specifiche della modalità precedente
+        section.backgroundImage = "";
+        section.backgroundGallery = "";
+        section.backgroundSection = "";
+
+    }
+
+
     section[field] = value;
+
     editor.state.isDirty = true;
 
     editor.render();
 
-// per testare se funziona il cambio di tipo di background
-        if(field === "backgroundType"){
+
+    //=================================
+    // Ricostruisce Inspector
+    //=================================
+    if(field === "backgroundType"){
         editor.renderSectionInspector(section);
     }
 
 });
-
 //=================================
 // ➕ SEZIONE
 //=================================
@@ -334,10 +352,8 @@ editor.renderSection = function(section, allowSlider = true){
         .css("position", "relative")
         .css("overflow", "hidden")
         .css("height", (section.height ?? 400) + "px")
-        .css(
-            "background-position-y",
-            (section.backgroundPositionY ?? 50) + "%"
-        );
+        .css("background-position-y",
+            (section.backgroundPositionY ?? 50) + "%")
 
     if(section.customCss){
         $section.attr(
