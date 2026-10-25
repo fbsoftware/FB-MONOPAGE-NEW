@@ -365,31 +365,43 @@ editor.renderSection = function(section, allowSlider = true){
     const $toolbar = $("<div>")
         .addClass("section-toolbar")
         .html(`
-            <button class="move-up button">
+            <button class="move-up button"
+                    title="Sposta sezione su">
                 <span class="material-symbols-outlined">arrow_upward</span>
             </button>
 
-            <button class="move-down button">
+            <button class="move-down button"
+                    title="Sposta sezione giù">
                 <span class="material-symbols-outlined">arrow_downward</span>
             </button>
 
-            <button class="duplicate button">
+            <button class="duplicate button"
+                    title="Duplica sezione">
                 <span class="material-symbols-outlined">content_copy</span>
             </button>
 
-            <button class="delete-section button">
+            <button class="delete-section button"
+                    title="Elimina sezione">
                 <span class="material-symbols-outlined">delete</span>
             </button>
 
-            <button class="add-column button">
+            <button class="add-column button"
+                    title="Aggiungi colonna a destra">
                 <span class="material-symbols-outlined">add_column_right</span>
             </button>
 
-            <button class="save-section-template button">
+            <button class="save-section-template button"
+                    title="Salva come template">
                 <span class="material-symbols-outlined">save</span>
             </button>
 
-            <button class="save-section-global button" title="Salva globale">
+            <button class="save-section-slide button"
+                    title="Salva come slide">
+                <span class="material-symbols-outlined">view_carousel</span>
+            </button>
+
+            <button class="save-section-global button"
+                    title="Salva globale">
                 <span class="material-symbols-outlined">language</span>
             </button>
         `);

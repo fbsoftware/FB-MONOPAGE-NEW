@@ -26,6 +26,7 @@ $tema = '';
 
 $template = $_GET['template'] ?? null;
 $templateName = $_GET['name'] ?? null;
+$slide = $_GET['slide'] ?? null;
 $page = $_GET['page'] ?? null;
 $global = $_GET['global'] ?? null;
 
@@ -33,7 +34,22 @@ if ($template) {
 
     $template = preg_replace('/[^a-zA-Z0-9\-_]/', '', $template);
 
-    $layoutFile = "../templates/{$template}.json";
+    if ($slide) {
+
+        $slide = preg_replace(
+            '/[^a-zA-Z0-9\-_\.]/',
+            '',
+            $slide
+        );
+
+        $layoutFile =
+            "../templates/{$template}/{$slide}";
+
+    } else {
+
+        $layoutFile =
+            "../templates/{$template}.json";
+    }
 
 } elseif ($global) {
 
@@ -297,7 +313,16 @@ if ($global && isset($layoutData['section'])) {
                 <div style="display: flex; gap: 250px; justify-content: space-between; margin-bottom: 20px;">
 <div style="flex:5">
 
-<?php if ($template): ?>
+<?php if ($template && $slide): ?>
+
+    <h2 style="text-align:center">
+        Slide:
+        <span style="color:black">
+            <?= htmlspecialchars($template . '/' . $slide) ?>
+        </span>
+    </h2>
+
+<?php elseif ($template): ?>
 
     <h2 style="text-align:center">
         Template:

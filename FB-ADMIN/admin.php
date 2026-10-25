@@ -88,6 +88,16 @@ require_once dirname(__DIR__) . '/FB-EDITOR/config/app.php';
 
             </a>
 
+<!-- slides -------------------------------------------------->
+<a href="#" class="admin-menu-item" data-view="slides">
+
+    <span class="material-symbols-outlined">
+        view_carousel
+    </span>
+
+    Slides
+
+</a>
 <!--   appearance -------------------------------------------------->
             <div class="admin-menu-group">
 
@@ -141,6 +151,7 @@ require_once dirname(__DIR__) . '/FB-EDITOR/config/app.php';
 <script src="<?= APP_URL ?>/FB-ADMIN/assets/js/pages.js"></script>
 <script src="<?= APP_URL ?>/FB-ADMIN/assets/js/global.js"></script>
 <script src="<?= APP_URL ?>/FB-ADMIN/assets/js/templates.js"></script>
+<script src="<?= APP_URL ?>/FB-ADMIN/assets/js/slides.js"></script>
 <script src="<?= APP_URL ?>/FB-ADMIN/assets/js/menu.js"></script>
 </body>
 </html>

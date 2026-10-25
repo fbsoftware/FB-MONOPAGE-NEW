@@ -26,6 +26,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (view === "templates") {
                     loadTemplates();
                 }
+
+                if (view === "slides") {
+                    loadSlides();
+                }
                 if (view === "menu") {
                     loadMenu();
                 }

@@ -1565,3 +1565,79 @@ $(document).on(
         $("#tabs > ul > li").eq(1).find("a").trigger("click");
     }
 );
+
+//=================================
+// Salva sezione come slide
+//=================================
+$(document).on("click", ".save-section-slide", async function(e){
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    console.log("CLICK SAVE SLIDE");
+
+    const sectionId = $(this)
+        .closest(".canvas-section")
+        .data("id");
+
+    const section = editor.findSectionById(sectionId);
+
+    if(!section) return;
+
+    const folder = prompt(
+        "Nome cartella slider:"
+    );
+
+    if(!folder) return;
+
+    console.log("CARTELLA SLIDER:", folder);
+
+    try {
+
+        const response = await fetch(
+            window.APP_URL +
+            "/FB-EDITOR/api/save-section-slide.php",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: folder,
+                    section: section
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        console.log("SAVE SLIDE RESULT:", data);
+
+        if(data.success){
+
+            alert(
+                "Slide salvata:\n" +
+                data.file
+            );
+
+            return;
+        }
+
+        alert(
+            "Errore salvataggio slide: " +
+            (data.error || "errore sconosciuto")
+        );
+
+    } catch(error) {
+
+        console.error(
+            "Errore salvataggio slide:",
+            error
+        );
+
+        alert(
+            "Errore di comunicazione con il server"
+        );
+    }
+
+});
