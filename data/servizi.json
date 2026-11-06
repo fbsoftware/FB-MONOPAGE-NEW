@@ -3,15 +3,15 @@
         "tema": null,
         "page": "servizi",
         "version": "2.0",
-        "updated_at": "2026-10-23T18:53:14+02:00"
+        "updated_at": "2026-10-29T21:12:10+01:00"
     },
     "global": {
         "colors": {
-            "primary": "#3366ff",
-            "secondary": "#ff6633",
+            "primary": "#0a9413",
+            "secondary": "#51d661",
             "accent": "#ffa500",
             "text": "#222222",
-            "bg": "#baf8fd"
+            "bg": "#88f19d"
         },
         "typography": {
             "heading": {
@@ -70,7 +70,7 @@
                             "props": {
                                 "text": "Lorem ipsum dolor sit amet. Sit minus quibusdam eum error blanditiis sed suscipit minus. Sed voluptatem eaque non quam quis quo asperiores quisquam qui harum sunt.",
                                 "align": "left",
-                                "color": "var(--color-bg)",
+                                "color": "var(--color-text)",
                                 "padding": "20",
                                 "margin": 0,
                                 "customCss": "",
@@ -78,7 +78,8 @@
                             }
                         }
                     ],
-                    "height": 102
+                    "height": 107,
+                    "background": "var(--color-secondary)"
                 }
             ],
             "height": "108"
@@ -368,7 +369,7 @@
             ]
         }
     ],
-    "selectedType": "column",
-    "selectedId": "w1791202858395_10",
-    "isDirty": true
+    "selectedType": null,
+    "selectedId": null,
+    "isDirty": false
 }

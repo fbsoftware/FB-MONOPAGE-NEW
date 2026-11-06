@@ -21,7 +21,7 @@ editor.sections = {
             backgroundPositionY: 50,
             overlayColor: "#000000",
             overlayOpacity: 0.4,
-            height: 100,
+            height: 450,
             padding: 0,
             margin: 0,
             customCss: ""
@@ -351,7 +351,7 @@ editor.renderSection = function(section, allowSlider = true){
         .css("background-position", "center")
         .css("position", "relative")
         .css("overflow", "hidden")
-        .css("height", (section.height ?? 400) + "px")
+        .css("height", (section.height ?? 450) + "px")
         .css("background-position-y",
             (section.backgroundPositionY ?? 50) + "%")
 
@@ -743,9 +743,6 @@ const loadSlides = async function(){
                     Number(section.sliderInterval ?? 5)
                 ) * 1000;
 
-            const fade =
-                Number(section.sliderFade ?? 1) * 1000;
-
             setInterval(function(){
 
                 const $slides =
@@ -776,19 +773,22 @@ const loadSlides = async function(){
 
     return $section;
 };
+
 //=================================
-//  Create new section
+// Create new section
 //=================================
- editor.createSection = function(){
+editor.createSection = function(){
 
     const section = {
         id: editor.utils.uuid("sec"),
         background: "#ffffff",
+        height: 450,
         padding: "0",
         margin: "0",
         columns: [
             {
                 id: editor.utils.uuid("col"),
+                height: 450,
                 width: 50,
                 widgets: []
             }
@@ -802,6 +802,7 @@ const loadSlides = async function(){
 
     editor.render();
 };
+
 
 //=================================
 // Normalize section column widths

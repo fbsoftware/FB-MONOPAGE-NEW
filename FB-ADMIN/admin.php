@@ -48,15 +48,12 @@ require_once dirname(__DIR__) . '/FB-EDITOR/config/app.php';
             </a>
 
 <!-- media -------------------------------------------------->
-            <a href="#" class="admin-menu-item">
-
-                <span class="material-symbols-outlined">
-                    perm_media
-                </span>
-
-                Media
-
-            </a>
+<a href="#" class="admin-menu-item" data-view="media">
+    <span class="material-symbols-outlined">
+        perm_media
+    </span>
+    Media
+</a>
 
 <!-- pages -------------------------------------------------->
 <a href="#" class="admin-menu-item" data-view="pages">
@@ -118,7 +115,7 @@ require_once dirname(__DIR__) . '/FB-EDITOR/config/app.php';
             </div>
 
 <!-- settings -------------------------------------------------- -->
-            <a href="#" class="admin-menu-item">
+            <a href="#" class="admin-menu-item" data-view="configuration">
 
                 <span class="material-symbols-outlined">
                     settings
@@ -127,7 +124,6 @@ require_once dirname(__DIR__) . '/FB-EDITOR/config/app.php';
                 Configurazione
 
             </a>
-
         </nav>
 
     </aside>
@@ -152,6 +148,8 @@ require_once dirname(__DIR__) . '/FB-EDITOR/config/app.php';
 <script src="<?= APP_URL ?>/FB-ADMIN/assets/js/global.js"></script>
 <script src="<?= APP_URL ?>/FB-ADMIN/assets/js/templates.js"></script>
 <script src="<?= APP_URL ?>/FB-ADMIN/assets/js/slides.js"></script>
+<script src="<?= APP_URL ?>/FB-ADMIN/assets/js/configuration.js"></script>
 <script src="<?= APP_URL ?>/FB-ADMIN/assets/js/menu.js"></script>
+<script src="<?= APP_URL ?>/FB-ADMIN/assets/js/media.js"></script>
 </body>
 </html>

@@ -300,105 +300,12 @@ function renderWidgetHTML(array $widget): string
             return renderGalleryWidgetHTML($widget);  
         case 'imageSlide':
             return renderImageSlideWidgetHTML($widget); 
-        case 'heroSlide':
-            return renderHeroSlideWidgetHTML($widget);    
-        case 'hero':
+
            return renderHeroWidgetHTML($widget);
         default:
                 return '<div class="widget-unknown">Widget non supportato: ' . h($type) . '</div>';
         }
 
-}
-//=================================
-// Render widget Hero nel sito
-//=================================
-function renderHeroWidgetHTML($widget)
-{
-    $p = $widget['props'] ?? [];
-
-    $image = $p['image'] ?? '';
-    $title = $p['title'] ?? '';
-    $text = $p['text'] ?? '';
-
-    $height = intval($p['height'] ?? 500);
-
-    $overlay = filter_var(
-        $p['overlay'] ?? true,
-        FILTER_VALIDATE_BOOLEAN,
-        FILTER_NULL_ON_FAILURE
-    );
-
-    if ($overlay === null) {
-        $overlay = true;
-    }
-
-    $customClass = trim($p['customClass'] ?? '');
-    $customCss = trim($p['customCss'] ?? '');
-
-    if ($image === '') {
-        return '<div class="widget-hero-placeholder">
-                    Nessuna immagine selezionata
-                </div>';
-    }
-
-    $overlayHtml = '';
-
-    if ($overlay) {
-
-        $titleHtml = '';
-
-        if ($title !== '') {
-            $titleHtml = '
-                <h1 class="hero-title">' .
-                    h($title) .
-                '</h1>';
-        }
-
-        $textHtml = '';
-
-        if ($text !== '') {
-            $textHtml = '
-                <div class="hero-text">' .
-                    h($text) .
-                '</div>';
-        }
-
-        $overlayHtml = '
-            <div class="hero-overlay">
-                <div class="hero-content">
-                    ' . $titleHtml . '
-                    ' . $textHtml . '
-                </div>
-            </div>';
-    }
-
-    return '
-        <div
-            class="widget-hero ' . h($customClass) . '"
-            data-widget-id="' . h($widget['id'] ?? '') . '"
-            style="
-                position:relative;
-                height:' . $height . 'px;
-                overflow:hidden;
-                ' . h($customCss) . '
-            "
-        >
-
-            <img
-                src="' . h($image) . '"
-                alt=""
-                style="
-                    width:100%;
-                    height:100%;
-                    object-fit:cover;
-                    display:block;
-                "
-            >
-
-            ' . $overlayHtml . '
-
-        </div>
-    ';
 }
 // ------------------------------------------
 // Render widget navbar in HTML pubblico

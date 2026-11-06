@@ -9,7 +9,7 @@ editor.columns = {
 
   defaultProps: {
     width: 50 ,
-    height: 100,
+    height: 450,
     padding: 0,
     margin: 0,
     background: "transparent",
@@ -64,7 +64,7 @@ editor.columns = {
       <div class="canvas-column ${p.customClass || ''}" 
            data-id="${column.id}"
            style="width:${p.width ||100}%;
-                  height:${p.height ||200}px;
+                  height:${p.height ?? 450}px;
                   padding:${p.padding ||20}px;
                   margin:${p.margin || 0}px;
                   background:${p.background ||'transparent'};
@@ -101,15 +101,13 @@ editor.addColumn = function(sectionId){
     if(!section) return;
 
     section.columns.push({
-
         id: editor.generateId("col"),
         width: section.columns.length,
+        height: 450,
         widgets: []
-
     });
 
     editor.render();
-
 };
 
 //=================================
@@ -170,7 +168,7 @@ editor.renderColumn = function(column){
         .addClass(`canvas-column ${selected}`)
         .attr("data-id", column.id)
         .css("flex-basis", (column.width ?? 100) + "%")
-        .css("height", (column.height ?? 200) + "px")
+        .css("height", (column.height ?? 450) + "px")
         .css("padding", (column.padding ?? 20) + "px")
         .css("margin", (column.margin ?? 0) + "px")
         .css("background", column.background || "transparent")

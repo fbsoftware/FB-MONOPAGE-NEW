@@ -160,7 +160,6 @@ display: none !important;
     overflow: hidden;
     border: 1px dashed #ddd;
     transition: 0.2s;
-    /* min-height: 100px; */
     margin-bottom: 20px;
     display: flex;
 }
@@ -175,7 +174,6 @@ display: none !important;
 .section-columns{
     display:flex;
     flex-direction:row;
-    gap:10px;
     align-items:stretch;
     width:100%;
     min-height: 80px;
@@ -320,7 +318,7 @@ button {
     }
 
 .widget-button a:hover {
-    box-shadow: 8px 5px 5px rgba(0, 0, 0, 1);;
+    box-shadow: 8px 5px 5px rgba(0, 0, 0, 1);
     transition: box-shadow 0.3s ease;
 }
 button.button {
@@ -514,34 +512,6 @@ textarea{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     gap: 8px;
-}
-
-.image-thumb {
-    border: 2px solid transparent;
-    cursor: pointer;
-    padding: 4px;
-    text-align: center;
-    outline: 2px solid red;
-    pointer-events: auto;
-}
-
-.image-thumb img {
-    width: 100%;
-    height: 60px;
-    object-fit: cover;
-}
-
-.image-thumb.selected {
-    border-color: blue;
-}
-
-.img-name {
-    font-size: 10px;
-    overflow: hidden;
-}
-.image-thumb img,
-.image-thumb .img-name {
-    pointer-events: none;
 }
 
 /*  MENU  */
@@ -787,38 +757,6 @@ textarea{
 .widget-slider .dot.active {
     background: #fff;
 }
-.widget-slider .prev {
-    left: 12px;
-}
-
-.widget-slider .next {
-    right: 12px;
-}
-
-.widget-slider .slider-dots {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 12px;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    z-index: 10;
-}
-
-.widget-slider .dot {
-    width: 12px;
-    height: 12px;
-    padding: 0;
-    border: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.55);
-    cursor: pointer;
-}
-
-.widget-slider .dot.active {
-    background: #fff;
-}
 /*   HANDLE   */
 .column-drag-handle,
 .widget-drag-handle {
@@ -984,61 +922,74 @@ body {
     flex-direction: column;
     align-items: flex-start;
 }
-/* =====================================
-   HERO SLIDER
-===================================== */
 
-.hero-slide {
-    position: relative;
-}
+/* ==========================================
+   BARRA SUPERIORE FB-EDITOR
+========================================== */
 
-.hero-slide-overlay {
-    position: absolute;
-    inset: 0;
+.editor-topbar {
     display: flex;
     align-items: center;
-    justify-content: center;
-    pointer-events: none;
+    justify-content: flex-start;
+    gap: 18px;
+    margin-bottom: 20px;
+    padding: 15px 10px;
+    width: 100%;
 }
 
-.hero-slide-content {
-    text-align: center;
-    padding: 20px;
+.editor-page-title {
+    flex: 1 1 auto;
+    min-width: 280px;
 }
 
-.hero-slide-title {
-    margin: 0 0 10px 0;
-}
-
-.hero-slide-text {
+.editor-page-title h2 {
+    text-align: left !important;
+    white-space: nowrap;
+    font-size: 28px;
     margin: 0;
 }
 
-/* =========================
-   HERO WIDGET
-========================= */
-
-.widget-hero {
-    position:relative;
+.editor-topbar-action {
+    flex: 0 0 auto;
 }
 
-.hero-overlay {
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.editor-topbar .top-action-btn {
+    background-color: pink;
+    color: black;
+    border: 1px solid #333;
+    border-radius: 6px;
+    min-width: 130px;
+    height: 52px;
+    padding: 0 18px;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    white-space: nowrap;
 }
 
-.hero-content {
-    text-align:center;
-    padding:20px;
+.editor-topbar .top-action-btn .material-symbols-outlined {
+    font-size: 20px !important;
 }
 
-.hero-title {
-    margin:0 0 10px 0;
+/* Allineamento uniforme pulsanti toolbar */
+
+.editor-topbar-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
 }
 
-.hero-text {
-    margin:0;
+.editor-topbar-action > .top-action-btn {
+    position: relative;
+    top: 0;
+    transform: none;
+    vertical-align: middle;
+    margin: 0 !important;
+}
+.editor-topbar .top-action-btn:hover {
+    background-color: #ff9eae;
 }

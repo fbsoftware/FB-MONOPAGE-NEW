@@ -363,88 +363,6 @@ $(document).on("click", "#editor-exit", function(event){
     window.location.href =
         window.APP_URL + "/FB-ADMIN/admin.php";
 });
-//=================================
-// carica la configurazione globale (colori, font, ecc) da site-config.json
-//=================================
-editor.applySiteConfigToForm = function(config){
-    $("#color-primary").val(config.colors?.primary ?? "#3366ff");
-    $("#color-secondary").val(config.colors?.secondary ?? "#ff6633");
-    $("#color-accent").val(config.colors?.accent ?? "#ffa500");
-    $("#color-text").val(config.colors?.text ?? "#222222");
-    $("#color-bg").val(config.colors?.bg ?? "#ffffff");
-
-    $("#heading-family").val(config.typography?.heading?.fontFamily ?? "Inter");
-    $("#heading-weight").val(config.typography?.heading?.weight ?? 400);
-
-    $("#body-family").val(config.typography?.body?.fontFamily ?? "Inter");
-    $("#body-weight").val(config.typography?.body?.weight ?? 400);
-
-    $("#font-h1").val(config.typography?.sizes?.h1 ?? 48);
-    $("#font-h2").val(config.typography?.sizes?.h2 ?? 36);
-    $("#font-h3").val(config.typography?.sizes?.h3 ?? 28);
-    $("#font-body").val(config.typography?.sizes?.body ?? 16);
-    $("#font-small").val(config.typography?.sizes?.small ?? 14);
-};
-
-//=================================
-//  Bind site config save
-//=================================
-editor.bindSiteConfigSave = function(){
-
-    $("#saveSiteConfig").off("click").on("click", function(){
-
-        const config = {
-            colors: {
-                primary: $("#color-primary").val(),
-                secondary: $("#color-secondary").val(),
-                accent: $("#color-accent").val(),
-                text: $("#color-text").val(),
-                bg: $("#color-bg").val()
-            },
-
-            typography: {
-                heading: {
-                    fontFamily: $("#heading-family").val(),
-                    weight: parseInt($("#heading-weight").val(), 10)
-                },
-
-                body: {
-                    fontFamily: $("#body-family").val(),
-                    weight: parseInt($("#body-weight").val(), 10)
-                },
-
-                sizes: {
-                    h1: parseInt($("#font-h1").val(), 10),
-                    h2: parseInt($("#font-h2").val(), 10),
-                    h3: parseInt($("#font-h3").val(), 10),
-                    body: parseInt($("#font-body").val(), 10),
-                    small: parseInt($("#font-small").val(), 10)
-                }
-            }
-        };
-
-        fetch(window.APP_URL + "/editor/save-site-config.php", {
-            method: "POST",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify(config)
-        })
-        .then(res => res.json())
-        .then(res => {
-            editor.applyGlobalCssVariables(config);
-            if(res.ok){
-                $("#siteConfigStatus").text("✔ Salvato");
-
-                window.SITE_CONFIG = config;
-                editor.applySiteConfigToForm(config);
-                editor.applyGlobalCssVariables(config);
-                editor.render();
-
-                console.log("Configurazione aggiornata", config);
-                alert("Configurazione salvata!");
-            }
-        });
-    });
-};
 
 //=================================
 // Toolbar Cancella colonna
@@ -738,16 +656,6 @@ $(document).on("click", ".canvas-section", function(e){
  
 });
 
-//=============================================
-//  TABS
-//=============================================
-$("#tabs").on("tabsactivate", function(event, ui){
-
-    if(ui.newPanel.attr("id") === "global"){
-        editor.applySiteConfigToForm(window.SITE_CONFIG);
-    }
-});
-
 //=================================
 //  setta lo stato s 'isDirty' a true 
 //  quando si modifica un campo nell'inspector
@@ -857,69 +765,7 @@ editor.loadImages = async function(){
     return data.images;
 };
 
-//=================================
-// image-thumb click
-//=================================
-$(document).on("click", ".image-thumb", function(e){
-    e.preventDefault();
-    e.stopPropagation();
 
-    const field = $(this).data("field");
-    const value = $(this).data("value");
-
-    const selectedType = editor.state.selectedType;
-    const selectedId = editor.state.selectedId;
-
-    console.log("selectedType", selectedType);
-    console.log("selectedId", selectedId);
-    console.log("field", field, "value", value);
-
-    if(selectedType === "widget"){
-        const widget = editor.findWidgetById(selectedId);
-        if(!widget) return;
-
-        widget.props[field] = value;
-
-        editor.state.isDirty = true;
-        editor.renderInspector(
-            widget,
-            editor.widgets[widget.type]
-        );
-        return;
-    }
-
-    if(selectedType === "section"){
-        const section = editor.findSectionById(selectedId);
-        if(!section) return;
-
-        section[field] = value;
-
-        editor.state.isDirty = true;
-        editor.render();
-        editor.openSectionInspector(section.id);
-        return;
-    }
-
-    if(selectedType === "column"){
-        const column = editor.findColumnById(selectedId);
-        if(!column) return;
-
-        column[field] = value;
-
-        editor.state.isDirty = true;
-        editor.render();
-        editor.openColumnInspector(column.id);
-        return;
-    }
-});
-
-
-//=================================
-// blocca la propagazione sull’intero picker:
-//================================= 
-$(document).on("click", ".image-picker, .image-thumb, .image-thumb *", function(e){
-    e.stopPropagation();
-});
 
 //=================================
 //  accordion inspector
@@ -1566,6 +1412,7 @@ $(document).on(
     }
 );
 
+
 //=================================
 // Salva sezione come slide
 //=================================
@@ -1573,8 +1420,6 @@ $(document).on("click", ".save-section-slide", async function(e){
 
     e.preventDefault();
     e.stopPropagation();
-
-    console.log("CLICK SAVE SLIDE");
 
     const sectionId = $(this)
         .closest(".canvas-section")
@@ -1584,13 +1429,28 @@ $(document).on("click", ".save-section-slide", async function(e){
 
     if(!section) return;
 
-    const folder = prompt(
-        "Nome cartella slider:"
-    );
+    const params = new URLSearchParams(window.location.search);
+
+    const template = params.get("template");
+    const slide = params.get("slide");
+
+    const isEdit = Boolean(template && slide);
+
+    const folder = isEdit
+        ? template
+        : prompt("Nome cartella slider:");
 
     if(!folder) return;
 
-    console.log("CARTELLA SLIDER:", folder);
+    if(isEdit){
+
+        if(!confirm(
+            "Sovrascrivere la slide esistente?\n" +
+            folder + "/" + slide
+        )){
+            return;
+        }
+    }
 
     try {
 
@@ -1604,12 +1464,19 @@ $(document).on("click", ".save-section-slide", async function(e){
                 },
                 body: JSON.stringify({
                     name: folder,
+                    mode: isEdit ? "edit" : "new",
+                    slide: isEdit ? slide : null,
                     section: section
                 })
             }
         );
 
-        const data = await response.json();
+        const result = await response.text();
+
+console.log("HTTP STATUS:", response.status);
+console.log("RISPOSTA SERVER:", result);
+
+const data = JSON.parse(result);
 
         console.log("SAVE SLIDE RESULT:", data);
 
@@ -1630,14 +1497,9 @@ $(document).on("click", ".save-section-slide", async function(e){
 
     } catch(error) {
 
-        console.error(
-            "Errore salvataggio slide:",
-            error
-        );
+        console.error("Errore salvataggio slide:", error);
 
-        alert(
-            "Errore di comunicazione con il server"
-        );
+        alert("Errore di comunicazione con il server");
     }
 
 });

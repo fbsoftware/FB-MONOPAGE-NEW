@@ -2,7 +2,7 @@
     "type": "footer",
     "section": {
         "id": "sec-1790866219539-348",
-        "background": "#808080",
+        "background": "var(--color-bg)",
         "padding": "",
         "margin": "",
         "columns": [
@@ -11,16 +11,6 @@
                 "width": 33,
                 "widgets": [
                     {
-                        "id": "w1791471644260_3",
-                        "type": "spacer",
-                        "props": {
-                            "text": "",
-                            "height": "137",
-                            "customCss": "",
-                            "customClass": ""
-                        }
-                    },
-                    {
                         "id": "w1791470739185_1",
                         "type": "navbar",
                         "props": {
@@ -28,7 +18,7 @@
                             "orientation": "vertical",
                             "align": "left",
                             "gap": 20,
-                            "color": "var(--color-bg)",
+                            "color": "var(--color-primary)",
                             "fontSize": "12",
                             "padding": 10,
                             "customCss": "",
@@ -48,7 +38,7 @@
                         }
                     }
                 ],
-                "height": 250,
+                "height": 150,
                 "background": "",
                 "customCss": "",
                 "padding": 40,
@@ -58,16 +48,6 @@
                 "id": "col-1791471534212-92",
                 "width": 33,
                 "widgets": [
-                    {
-                        "id": "w1791472874394_2",
-                        "type": "spacer",
-                        "props": {
-                            "text": "",
-                            "height": "51",
-                            "customCss": "",
-                            "customClass": ""
-                        }
-                    },
                     {
                         "id": "w1791472809261_1",
                         "type": "image",
@@ -88,29 +68,30 @@
                         "props": {
                             "text": "FB-EDITOR - by fbsoftware ",
                             "align": "center",
-                            "color": "var(--color-accent)",
+                            "color": "var(--color-primary)",
                             "padding": "20",
                             "margin": 0,
+                            "customCss": "font-weight:bold;",
+                            "customClass": ""
+                        }
+                    },
+                    {
+                        "id": "w1793302633347_1",
+                        "type": "spacer",
+                        "props": {
+                            "text": "",
+                            "height": "20",
                             "customCss": "",
                             "customClass": ""
                         }
                     }
-                ]
+                ],
+                "height": 150
             },
             {
                 "id": "col-1791471697440-869",
                 "width": 33,
                 "widgets": [
-                    {
-                        "id": "w1791471720016_5",
-                        "type": "spacer",
-                        "props": {
-                            "text": "",
-                            "height": "134",
-                            "customCss": "",
-                            "customClass": ""
-                        }
-                    },
                     {
                         "id": "w1791471851067_7",
                         "type": "richtext",
@@ -118,14 +99,15 @@
                             "html": "\n            \n            <p>Fausto bresciani 'fbsoftware'</p><p>email: fbsoftware@libero.it</p><p>sito: faustobresciani.it</p>\n        \n        ",
                             "padding": 0,
                             "margin": 0,
-                            "customCss": "color:#a5f0fd;\nfont-size:12px;\n",
+                            "customCss": "color:#0a9413;\nfont-size:12px;\n",
                             "customClass": ""
                         }
                     }
-                ]
+                ],
+                "height": 150
             }
         ],
-        "height": "250",
+        "height": "150",
         "customCss": ""
     }
 }

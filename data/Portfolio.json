@@ -3,15 +3,15 @@
         "tema": null,
         "page": "Portfolio",
         "version": "2.0",
-        "updated_at": "2026-10-23T18:59:31+02:00"
+        "updated_at": "2026-11-05T20:29:18+01:00"
     },
     "global": {
         "colors": {
-            "primary": "#3366ff",
-            "secondary": "#ff6633",
+            "primary": "#066a0d",
+            "secondary": "#51d661",
             "accent": "#ffa500",
             "text": "#222222",
-            "bg": "#baf8fd"
+            "bg": "#aaf3b9"
         },
         "typography": {
             "heading": {
@@ -78,7 +78,8 @@
                             }
                         }
                     ],
-                    "height": 102
+                    "height": 102,
+                    "background": "var(--color-primary)"
                 }
             ],
             "height": "108"
@@ -153,7 +154,7 @@
                             }
                         }
                     ],
-                    "height": 400,
+                    "height": 500,
                     "padding": 0
                 },
                 {
@@ -184,7 +185,10 @@
                                 "height": "136",
                                 "customCss": "",
                                 "imgCss": "",
-                                "customClass": ""
+                                "customClass": "",
+                                "margin": 0,
+                                "padding": 0,
+                                "lightbox": false
                             }
                         },
                         {
@@ -220,7 +224,7 @@
                             }
                         }
                     ],
-                    "height": 400,
+                    "height": 500,
                     "padding": 0
                 },
                 {
@@ -287,7 +291,7 @@
                             }
                         }
                     ],
-                    "height": 400,
+                    "height": 500,
                     "padding": 0
                 },
                 {
@@ -354,14 +358,14 @@
                             }
                         }
                     ],
-                    "height": 400,
+                    "height": 500,
                     "padding": 0
                 }
             ],
             "height": "500"
         }
     ],
-    "selectedType": null,
-    "selectedId": null,
-    "isDirty": false
+    "selectedType": "column",
+    "selectedId": "w1791203313508_19",
+    "isDirty": true
 }

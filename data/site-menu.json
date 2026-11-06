@@ -8,7 +8,7 @@
     {
         "title": "Promo",
         "type": "page",
-        "target": "test",
+        "target": "template-1",
         "level": 0
     },
     {
@@ -45,12 +45,6 @@
         "title": "Slide",
         "type": "page",
         "target": "Slide",
-        "level": 0
-    },
-    {
-        "title": "PROVE",
-        "type": "page",
-        "target": "PROVE",
         "level": 0
     }
 ]

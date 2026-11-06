@@ -3,15 +3,15 @@
         "tema": null,
         "page": "test",
         "version": "2.0",
-        "updated_at": "2026-10-23T22:56:46+02:00"
+        "updated_at": "2026-11-02T18:54:04+01:00"
     },
     "global": {
         "colors": {
-            "primary": "#3366ff",
-            "secondary": "#ff6633",
+            "primary": "#0a9413",
+            "secondary": "#51d661",
             "accent": "#ffa500",
             "text": "#222222",
-            "bg": "#baf8fd"
+            "bg": "#88f19d"
         },
         "typography": {
             "heading": {
@@ -34,71 +34,26 @@
     },
     "sections": [
         {
-            "id": "sec-1792528257371-162",
-            "background": "var(--color-primary)",
+            "id": "sec-1793382423966-927",
+            "background": "var(--color-bg)",
             "padding": "0",
             "margin": "0",
             "columns": [
                 {
-                    "id": "col-1792528257372-891",
+                    "id": "col-1793382423966-596",
                     "width": 50,
-                    "widgets": [
-                        {
-                            "id": "w1792784700919_1",
-                            "type": "image",
-                            "props": {
-                                "src": "assets\/images\/aereo-pec2.png",
-                                "alt": "",
-                                "align": "center",
-                                "height": "161",
-                                "lightbox": true,
-                                "customCss": "border:2px solid black;",
-                                "imgCss": "opacity:0.5;",
-                                "customClass": "",
-                                "margin": "0",
-                                "padding": "0"
-                            }
-                        }
-                    ],
-                    "height": 252,
-                    "padding": 0,
-                    "background": "var(--color-secondary)",
-                    "margin": 0
-                },
-                {
-                    "id": "col-1792786013490-420",
-                    "width": 49,
-                    "widgets": [
-                        {
-                            "id": "w1792786053450_1",
-                            "type": "image",
-                            "props": {
-                                "src": "assets\/images\/FAEL-logo-2025.png",
-                                "alt": "",
-                                "align": "center",
-                                "height": "161",
-                                "lightbox": true,
-                                "customCss": "",
-                                "imgCss": "",
-                                "customClass": "",
-                                "margin": 0,
-                                "padding": 0
-                            }
-                        }
-                    ],
-                    "background": "var(--color-secondary)",
-                    "height": 200
+                    "widgets": [],
+                    "height": 500
                 }
             ],
-            "height": "357",
-            "backgroundImage": "",
+            "height": "450",
+            "backgroundImage": "assets\/galleries\/promozioni\/1000016167.jpg",
             "backgroundGallery": "",
             "backgroundSection": "",
-            "backgroundType": "empty",
-            "overlayOpacity": "0"
+            "backgroundType": "image"
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "w1792786053450_1",
+    "selectedType": null,
+    "selectedId": null,
     "isDirty": true
 }

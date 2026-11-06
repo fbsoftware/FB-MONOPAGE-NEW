@@ -3,15 +3,15 @@
         "tema": null,
         "page": "Gallery",
         "version": "2.0",
-        "updated_at": "2026-10-08T18:16:21+02:00"
+        "updated_at": "2026-11-05T20:45:38+01:00"
     },
     "global": {
         "colors": {
-            "primary": "#3366ff",
-            "secondary": "#ff6633",
+            "primary": "#066a0d",
+            "secondary": "#51d661",
             "accent": "#ffa500",
             "text": "#222222",
-            "bg": "#baf8fd"
+            "bg": "#aaf3b9"
         },
         "typography": {
             "heading": {
@@ -48,14 +48,14 @@
                             "type": "gallery",
                             "props": {
                                 "folder": "portfolio",
-                                "columns": 3,
+                                "columns": "2",
                                 "gap": 16,
                                 "radius": 8,
                                 "height": 180
                             }
                         }
                     ],
-                    "height": 400,
+                    "height": 500,
                     "padding": 20
                 },
                 {
@@ -90,13 +90,13 @@
                             }
                         }
                     ],
-                    "height": 400
+                    "height": 500
                 }
             ],
-            "height": "423"
+            "height": "500"
         }
     ],
     "selectedType": "column",
-    "selectedId": "col-1791209989032-44",
+    "selectedId": "col-1791213045310-533",
     "isDirty": true
 }

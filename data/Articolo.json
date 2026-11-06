@@ -3,15 +3,15 @@
         "tema": null,
         "page": "Articolo",
         "version": "2.0",
-        "updated_at": "2026-10-06T18:49:08+02:00"
+        "updated_at": "2026-11-05T20:40:46+01:00"
     },
     "global": {
         "colors": {
-            "primary": "#3366ff",
-            "secondary": "#ff6633",
+            "primary": "#066a0d",
+            "secondary": "#51d661",
             "accent": "#ffa500",
             "text": "#222222",
-            "bg": "#baf8fd"
+            "bg": "#aaf3b9"
         },
         "typography": {
             "heading": {
@@ -193,11 +193,23 @@
                                 "customCss": "",
                                 "imgCss": "border-radius:10px;",
                                 "customClass": "ombra",
-                                "lightbox": true
+                                "lightbox": true,
+                                "margin": 0,
+                                "padding": 0
+                            }
+                        },
+                        {
+                            "id": "w1793907018018_1",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "80",
+                                "customCss": "",
+                                "customClass": ""
                             }
                         }
                     ],
-                    "height": 300
+                    "height": 500
                 },
                 {
                     "id": "col-1791214645192-754",
@@ -245,10 +257,11 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "height": "400"
         }
     ],
-    "selectedType": "widget",
-    "selectedId": "wid-1791214256694-514",
+    "selectedType": "section",
+    "selectedId": "sec-1791214645192-482",
     "isDirty": true
 }

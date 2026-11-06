@@ -149,14 +149,33 @@ function getYoutubeVideoId(string $url): string
 function renderPageHTML(array $data): string
 {
     $sections = $data['sections'] ?? [];
+    $colors = $data['global']['colors'] ?? [];
 
+    // Variabili CSS dalla configurazione
+    $css = "<style id=\"fb-theme\">\n:root {\n";
+
+    foreach ($colors as $name => $value) {
+        if (
+            preg_match('/^[a-zA-Z][a-zA-Z0-9-]*$/', $name) &&
+            is_string($value) &&
+            preg_match('/^#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?$/', $value)
+        ) {
+            $css .= "    --color-{$name}: {$value};\n";
+        }
+    }
+
+    $css .= "}\n</style>\n";
+
+    // Rendering sezioni
     $body = '';
+
     foreach ($sections as $section) {
         $body .= renderSectionHTML($section) . "\n";
     }
 
-    return $body;
-}//============================ 
+    return $css . $body;
+}
+//============================ 
 // Risolve URL asset (immagini) per HTML pubblico
 //============================
 function resolveAssetUrl(string $path): string
@@ -168,132 +187,4 @@ function resolveAssetUrl(string $path): string
     if (strpos($path, '/') === 0) return $path;
 
     return $baseUrl . '/' . ltrim($path, '/');
-}
-
-//=================================
-// Render widget Hero Slide nel sito
-//=================================
-function renderHeroSlideWidgetHTML($widget)
-{
-    $p = $widget['props'] ?? [];
-
-    $slides = $p['slides'] ?? [];
-
-    if (!is_array($slides) || empty($slides)) {
-        return '<div class="widget-hero-slide-empty">Nessuna slide disponibile</div>';
-    }
-
-    $height = intval($p['height'] ?? 500);
-    $interval = intval($p['interval'] ?? 5000);
-
-    $showArrows = filter_var(
-        $p['showArrows'] ?? true,
-        FILTER_VALIDATE_BOOLEAN,
-        FILTER_NULL_ON_FAILURE
-    );
-
-    $showDots = filter_var(
-        $p['showDots'] ?? true,
-        FILTER_VALIDATE_BOOLEAN,
-        FILTER_NULL_ON_FAILURE
-    );
-
-    if ($showArrows === null) $showArrows = true;
-    if ($showDots === null) $showDots = true;
-
-    $customClass = trim($p['customClass'] ?? '');
-    $customCss = trim($p['customCss'] ?? '');
-
-    $slidesHtml = '';
-
-    foreach ($slides as $index => $slide) {
-
-        $image = $slide['image'] ?? '';
-        $title = $slide['title'] ?? '';
-        $text = $slide['text'] ?? '';
-
-        $activeClass = $index === 0 ? ' active' : '';
-
-        $slidesHtml .= '
-            <div class="slide hero-slide' . $activeClass . '">
-
-                <img
-                    src="' . h($image) . '"
-                    alt=""
-                    style="
-                        width:100%;
-                        height:' . $height . 'px;
-                        object-fit:cover;
-                        display:block;
-                    "
-                >
-
-                <div class="hero-slide-overlay">
-                    <div class="hero-slide-content">
-
-                        ' . (
-                            $title !== ''
-                            ? '<h2 class="hero-slide-title">' . h($title) . '</h2>'
-                            : ''
-                        ) . '
-
-                        ' . (
-                            $text !== ''
-                            ? '<div class="hero-slide-text">' . h($text) . '</div>'
-                            : ''
-                        ) . '
-
-                    </div>
-                </div>
-
-            </div>
-        ';
-    }
-
-    $arrowsHtml = '';
-
-    if ($showArrows) {
-        $arrowsHtml = '
-            <button type="button" class="prev">&#10094;</button>
-            <button type="button" class="next">&#10095;</button>
-        ';
-    }
-
-    $dotsHtml = '';
-
-    if ($showDots) {
-
-        $dotsHtml = '<div class="slider-dots">';
-
-        foreach ($slides as $index => $_slide) {
-
-            $activeClass = $index === 0 ? ' active' : '';
-
-            $dotsHtml .= '
-                <button
-                    type="button"
-                    class="dot' . $activeClass . '"
-                    data-slide="' . $index . '">
-                </button>
-            ';
-        }
-
-        $dotsHtml .= '</div>';
-    }
-
-    return '
-        <div
-            class="widget-slider widget-hero-slider ' . h($customClass) . '"
-            data-interval="' . $interval . '"
-            data-widget-id="' . h($widget['id'] ?? '') . '"
-            style="' . h($customCss) . '"
-        >
-            <div class="slider-slides">
-                ' . $slidesHtml . '
-            </div>
-
-            ' . $arrowsHtml . '
-            ' . $dotsHtml . '
-        </div>
-    ';
 }

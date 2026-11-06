@@ -1,10 +1,10 @@
 {
     "colors": {
-        "primary": "#3366ff",
-        "secondary": "#ff6633",
+        "primary": "#066a0d",
+        "secondary": "#51d661",
         "accent": "#ffa500",
         "text": "#222222",
-        "bg": "#baf8fd"
+        "bg": "#aaf3b9"
     },
     "typography": {
         "heading": {

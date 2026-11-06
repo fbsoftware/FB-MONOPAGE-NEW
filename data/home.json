@@ -3,15 +3,15 @@
         "tema": null,
         "page": "home",
         "version": "2.0",
-        "updated_at": "2026-10-20T22:39:06+02:00"
+        "updated_at": "2026-10-29T20:45:44+01:00"
     },
     "global": {
         "colors": {
-            "primary": "#3366ff",
-            "secondary": "#ff6633",
+            "primary": "#0a9413",
+            "secondary": "#51d661",
             "accent": "#ffa500",
             "text": "#222222",
-            "bg": "#baf8fd"
+            "bg": "#88f19d"
         },
         "typography": {
             "heading": {
@@ -38,13 +38,55 @@
             "background": "var(--color-bg)",
             "padding": "0",
             "margin": "0",
-            "columns": [],
-            "height": "500",
+            "columns": [
+                {
+                    "id": "col-1793296006059-307",
+                    "width": 50,
+                    "widgets": [],
+                    "height": 500
+                },
+                {
+                    "id": "col-1793296009301-953",
+                    "width": 50,
+                    "widgets": [
+                        {
+                            "id": "w1793302874388_1",
+                            "type": "spacer",
+                            "props": {
+                                "text": "",
+                                "height": "20",
+                                "customCss": "",
+                                "customClass": ""
+                            }
+                        },
+                        {
+                            "id": "w1793296015852_1",
+                            "type": "icon",
+                            "props": {
+                                "name": "phishing",
+                                "size": 48,
+                                "color": "var(--color-accent)",
+                                "icone": "https:\/\/fonts.google.com\/icons?hl=it",
+                                "align": "right",
+                                "padding": 0,
+                                "margin": 0,
+                                "customCss": "",
+                                "iconCss": "",
+                                "customClass": ""
+                            }
+                        }
+                    ],
+                    "height": 500
+                }
+            ],
+            "height": "475",
             "backgroundType": "section",
-            "backgroundSection": "fly"
+            "backgroundSection": "fly",
+            "backgroundImage": "",
+            "backgroundGallery": ""
         }
     ],
-    "selectedType": "section",
-    "selectedId": "sec-1790762383084-309",
+    "selectedType": null,
+    "selectedId": null,
     "isDirty": true
 }

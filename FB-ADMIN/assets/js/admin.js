@@ -36,6 +36,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (view === "global") {
                     loadGlobals();
                 }
+                if (view === "configuration") {
+                   loadConfiguration();
+                }
+                if (view === "media") {
+                loadMedia();
+                }
             });
 
         });

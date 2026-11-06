@@ -16,6 +16,7 @@ require_once '../config/app.php';
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="<?= APP_URL ?>/FB-EDITOR/editor/assets/css/editor.css">
+<link rel="stylesheet" href="<?= APP_URL ?>/FB-EDITOR/media/media-manager.css">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
 </head>
     <body>
@@ -225,13 +226,6 @@ if ($global && isset($layoutData['section'])) {
     </a>
 </li>
 
-    <li><a href="#global">                
-            <span class="material-symbols-outlined" 
-            style="font-size :30px !important;
-                    color:var(--color-text)">                    
-            settings
-            </span>
-            </a></li>
     </ul>
 
     <div id="accordion">  
@@ -243,64 +237,6 @@ if ($global && isset($layoutData['section'])) {
         <div id="structure-panel">
             <div id="page-structure"></div>
         </div>
-        <!-- impostazioni globali---------------------------- -->
-        <div id="global">
-            <label for="color-primary">Colore primario:</label>
-            <input id="color-primary" type="color">
-            <label for="color-secondary">Colore secondario:</label>
-            <input id="color-secondary" type="color">
-            <label for="color-accent">Colore accento:</label>
-            <input id="color-accent" type="color">
-            <label for="color-text">Colore testo:</label>
-            <input id="color-text" type="color">
-            <label for="color-bg">Colore sfondo:</label>    
-            <input id="color-bg" type="color">
-
-            <label for="heading-family">Font heading:</label>
-            <select id="heading-family">
-                <option value="Inter">Inter</option>
-                <option value="Montserrat">Montserrat</option>
-                <option value="Poppins">Poppins</option>
-                <option value="Roboto">Roboto</option>
-            </select>
-
-            <label for="heading-weight">Peso font heading:</label>
-            <select id="heading-weight">
-                <option value="400">Regular</option>
-                <option value="600">Semi-bold</option>
-                <option value="700">Bold</option>
-            </select>
-
-            <label for="body-family">Font body:</label>
-            <select id="body-family">
-                <option value="Inter">Inter</option>
-                <option value="Montserrat">Montserrat</option>
-                <option value="Poppins">Poppins</option>
-                <option value="Roboto">Roboto</option>
-            </select>
-
-            <label for="body-weight">Peso font body:</label>
-            <select id="body-weight">
-                <option value="400">Regular</option>
-                <option value="500">Medium</option>
-                <option value="600">Semi-bold</option>
-                <option value="700">Bold</option>
-            </select>
-
-            <label for="font-h1">Dimensione H1:</label>
-            <input id="font-h1" type="number">
-            <label for="font-h2">Dimensione H2:</label>
-            <input id="font-h2" type="number">
-            <label for="font-h3">Dimensione H3:</label>
-            <input id="font-h3" type="number">
-            <label for="font-body">Dimensione testo:</label>
-            <input id="font-body" type="number">
-            <label for="font-small">Testo piccolo:</label>
-            <input id="font-small" type="number">
-            <br /><br />
-            <button id="saveSiteConfig">Salva config</button>
-            <div id="siteConfigStatus"></div>
-        </div>  <!-- global -->
     </div> <!-- accordion -->
 </div> <!-- tabs -->
 
@@ -309,69 +245,77 @@ if ($global && isset($layoutData['section'])) {
     <?php include '../includes/nav.php'; ?> -->
 
     <div class="canvas-panel">
-                <div style="flex:2">&nbsp;</div>
-                <div style="display: flex; gap: 250px; justify-content: space-between; margin-bottom: 20px;">
-<div style="flex:5">
+        <div class="editor-topbar">
+            <div class="editor-page-title">
 
-<?php if ($template && $slide): ?>
+            <?php if ($template && $slide): ?>
 
-    <h2 style="text-align:center">
-        Slide:
-        <span style="color:black">
-            <?= htmlspecialchars($template . '/' . $slide) ?>
-        </span>
-    </h2>
+            <h2 style="text-align:center">
+                Slide:
+                <span style="color:black">
+                    <?= htmlspecialchars($template . '/' . $slide) ?>
+                </span>
+            </h2>
 
-<?php elseif ($template): ?>
+            <?php elseif ($template): ?>
 
-    <h2 style="text-align:center">
-        Template:
-        <span style="color:black">
-            <?= htmlspecialchars(
-                $template === 'new' && $templateName
-                    ? $templateName
-                    : $template
-            ) ?>
-        </span>
-    </h2>
+            <h2 style="text-align:center">
+                Template:
+                <span style="color:black">
+                    <?= htmlspecialchars(
+                        $template === 'new' && $templateName
+                            ? $templateName
+                            : $template
+                    ) ?>
+                </span>
+            </h2>
 
-<?php elseif ($global): ?>
+            <?php elseif ($global): ?>
 
-    <h2 style="text-align:center">
-        Globale:
-        <span style="color:black">
-            <?= htmlspecialchars(ucfirst($global)) ?>
-        </span>
-    </h2>
+            <h2 style="text-align:center">
+                Globale:
+                <span style="color:black">
+                    <?= htmlspecialchars(ucfirst($global)) ?>
+                </span>
+            </h2>
 
-<?php else: ?>
+            <?php else: ?>
 
-    <h2 style="text-align:center">
-        <span style="color:black">
-            <?= htmlspecialchars($tema) ?>
-        </span>
+            <h2 style="text-align:center">
+                <span style="color:black">
+                    <?= htmlspecialchars($tema) ?>
+                </span>
 
-        pagina:
-        <span style="color:black">
-            <?= htmlspecialchars($page) ?>
-        </span>
-    </h2>
+                Pagina:
+                <span style="color:black">
+                    <?= htmlspecialchars($page) ?>
+                </span>
+            </h2>
 
-<?php endif; ?>
+            <?php endif; ?>
 
-</div>
-                    <div style="flex:1">
-                        <button id="save-layout" class="top-action-btn"> 
-                        <span class="material-symbols-outlined">publish</span>Pubblica</button>
-                    </div> 
-                    <div style="flex:1">
-                        <button id="editor-exit" class="top-action-btn">
-                         <span class="material-symbols-outlined">logout</span>Esci</button>
-                    </div> 
-                </div> 
+            </div>    <!--    TITOLO -->
+
+            <!-- Bottoni -->
+            <div class="editor-topbar-action">
+                <button id="save-layout" class="top-action-btn"> 
+                <span class="material-symbols-outlined">publish</span>
+                Pubblica</button>
+            </div> 
+            <div class="editor-topbar-action">
+                <button id="open-media-manager" class="top-action-btn">
+                    <span class="material-symbols-outlined">perm_media</span>
+                    Media</button>
+            </div>
+            <div class="editor-topbar-action">
+                <button id="editor-exit" class="top-action-btn">
+                    <span class="material-symbols-outlined">logout</span>
+                    Esci</button>
+            </div> 
+            </div>    <!--   -->
 
 
-        <div>
+            <div>   <!--    canvas panel -->
             <div id="site-menu-builder"></div>
             <div id="canvas" class="canvas"> </div>
                 <div style="display:flex; justify-content:center">
@@ -393,9 +337,41 @@ if ($global && isset($layoutData['section'])) {
                 </div>
             </div>
         </div>  
-    </div> 
-</div> <!--#editor-->
+    </div><!--   topbar -->
+</div> <!--#editor-->   
 
+<!-- ======================================
+     FB-EDITOR - MEDIA MANAGER
+======================================= -->
+<div id="fb-media-manager" style="display:none;">
+    <div class="fb-media-window">
+        <div class="fb-media-header">
+            <h2>Libreria Media</h2>
+            <button type="button" id="fb-media-close">✕</button>
+        </div>
+
+        <div class="fb-media-toolbar">
+            <input type="search"
+                   id="fb-media-search"
+                   placeholder="Cerca immagini...">
+        </div>
+
+        <div class="fb-media-body">
+            <aside id="fb-media-folders"></aside>
+            <main id="fb-media-grid"></main>
+            <aside id="fb-media-details"></aside>
+        </div>
+
+        <div class="fb-media-footer">
+            <span id="fb-media-count"></span>
+            <button type="button"
+                    id="fb-media-select"
+                    disabled>
+                Inserisci nell'editor
+            </button>
+        </div>
+    </div>
+</div>
 <script>
 window.FB_APP = {
     appUrl: "<?= APP_URL ?>",
@@ -457,7 +433,6 @@ $(function(){
             $("#widgets-panel").hide();
             $("#widget-inspector").hide();
             $("#structure-panel").hide();
-            $("#global").hide();
 
             // apre solo quello selezionato
             ui.newPanel.show();
@@ -468,7 +443,6 @@ $(function(){
     $("#widgets-panel").hide();
     $("#widget-inspector").hide();
     $("#structure-panel").hide();
-    $("#global").hide();
 });
  </script>
 <script>
@@ -482,7 +456,11 @@ window.APP_URL = <?= json_encode(APP_URL) ?>;
 <script src="editor-dragdrop.js"></script>
 <script src="editor-state.js"></script>
 <script src="editor-render.js"></script>        <!-- quì editor.render() definizione -->
-<script src="editor.js"></script>             <!-- quì editor.init() defin. + uso -->
+<script src="editor.js"></script>
 <script src="nav.js"></script>
+
+<!-- MEDIA MANAGER -->
+<script src="<?= APP_URL ?>/FB-EDITOR/media/media-manager.js"></script>
+
 </body>
 </html>

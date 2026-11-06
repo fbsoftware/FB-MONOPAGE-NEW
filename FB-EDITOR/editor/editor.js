@@ -18,7 +18,6 @@ editor.init = function () {
 
     // Carica config globale
     if(window.SITE_CONFIG){
-        editor.applySiteConfigToForm(window.SITE_CONFIG);
         editor.applyGlobalCssVariables(window.SITE_CONFIG);
 
         editor.state.global.colors = window.SITE_CONFIG.colors || {};
@@ -37,8 +36,6 @@ editor.init = function () {
     } else {
         console.warn("loadSectionFolders non disponibile");
     }
-
-    editor.bindSiteConfigSave();
 
     editor.state.meta.updated_at = new Date().toISOString();
 
